@@ -1,7 +1,7 @@
 # Graph Report - turbohistory-website  (2026-07-19)
 
 ## Corpus Check
-- 5 files · ~110,418 words
+- 5 files · ~110,588 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `cc7a4c1f`
+- Built from commit: `945eef68`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -31,22 +31,22 @@
 4. `esc()` - 6 edges
 5. `shell()` - 6 edges
 6. `book_page()` - 6 edges
-7. `db()` - 5 edges
-8. `index_page()` - 5 edges
+7. `index_page()` - 5 edges
+8. `db()` - 5 edges
 9. `subscribe()` - 4 edges
-10. `rate_limited()` - 3 edges
+10. `blurb_html()` - 3 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `db()` --references--> `Connection`  [EXTRACTED]
-  api/app.py →   _Bridges community 5 → community 6_
-- `subscribe()` --calls--> `db()`  [EXTRACTED]
-  api/app.py → api/app.py  _Bridges community 5 → community 4_
-- `subscribe()` --calls--> `rate_limited()`  [EXTRACTED]
-  api/app.py → api/app.py  _Bridges community 6 → community 4_
 - `book_page()` --calls--> `capture()`  [EXTRACTED]
   build.py → build.py  _Bridges community 2 → community 1_
 - `curated_page()` --calls--> `capture()`  [EXTRACTED]
   build.py → build.py  _Bridges community 2 → community 3_
+- `privacy_page()` --calls--> `shell()`  [EXTRACTED]
+  build.py → build.py  _Bridges community 2 → community 0_
+- `main()` --calls--> `book_page()`  [EXTRACTED]
+  build.py → build.py  _Bridges community 1 → community 0_
+- `main()` --calls--> `curated_page()`  [EXTRACTED]
+  build.py → build.py  _Bridges community 3 → community 0_
 
 ## Import Cycles
 - None detected.

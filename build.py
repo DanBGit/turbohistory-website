@@ -117,7 +117,7 @@ html.ck-lock,html.ck-lock body{overflow:hidden}
 .pick{padding:22px 0;border-bottom:1px solid #221c16}
 .pick-ours{background:rgba(201,162,75,.06);border:1px solid #4a3c22;border-radius:5px;padding:22px 24px;margin:10px 0}
 .pick-ours h3{color:var(--gold)}
-.tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);background:var(--gold);padding:3px 8px;border-radius:3px;vertical-align:middle;margin-left:8px;font-family:system-ui,sans-serif}
+.ourstag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);background:var(--gold);padding:3px 8px;border-radius:3px;vertical-align:middle;margin-left:8px;font-family:system-ui,sans-serif}
 tr.ours td{background:rgba(201,162,75,.08);border-top:1px solid #4a3c22;border-bottom:1px solid #4a3c22}
 #ck[hidden],#ck-prefs[hidden]{display:none!important}
 #ck{position:fixed;inset:0;z-index:999;background:rgba(6,5,4,.86);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:20px}
@@ -415,7 +415,7 @@ def book_page(b: dict, books: list[dict]) -> str:
              if is_writer else
              f"{name} Book: The Short Version, Read in Under an Hour | Turbo History")
     desc = (f"Want a book about {name} without the 600 pages? {b['title']} tells the "
-            f"story in about an hour. The rise, the fall, why it still matters. "
+            f"story in under an hour. The rise, the fall, why it still matters. "
             f"Free on Kindle Unlimited.")
     others = [x for x in books if x["slug"] != slug][:6]
     rel = "".join(
@@ -439,7 +439,7 @@ def book_page(b: dict, books: list[dict]) -> str:
     <div class="kicker">Turbo History #{b.get('series_n','')}</div>
     <h1>{esc(name)}</h1>
     <p class="tag">{esc(b['hook'])}</p>
-    <p class="muted" style="margin-top:14px">About an hour to read. &pound;2.99 / $2.99, free on Kindle Unlimited.</p>
+    <p class="muted" style="margin-top:14px">Under an hour to read. &pound;2.99 / $2.99, free on Kindle Unlimited.</p>
     <p><a class="btn" href="{b['amazon']}">Read it on Amazon</a>
        <a class="btn ghost" href="{AMAZON_AUTHOR}">All {len(books)} Books</a></p>
   </div>
@@ -453,13 +453,12 @@ def book_page(b: dict, books: list[dict]) -> str:
 </div></section>
 {capture(b)}
 <section class="wrap" id="more"><h2>More from the series</h2>
-  <p class="sub">One figure or one event per book. About an hour each.</p>
+  <p class="sub">One figure or one event per book. Under an hour each.</p>
   <div class="grid">{rel}</div>
 </section>
 """
     return shell(title, desc, f"{BASE}/books/{slug}/", body, schema,
                  og_image=f"{BASE}/covers/{slug}.jpg")
-
 
 
 CURATION_DIR = PROJECT / "seo" / "curation"
@@ -498,7 +497,7 @@ def curated_page(c: dict, b: dict, books: list[dict]) -> str:
         mine = p.get("is_ours")
         cls = " pick pick-ours" if mine else " pick"
         anchor = " id='ours'" if mine else ""
-        tag = " <span class='tag'>ours</span>" if mine else ""
+        tag = " <span class='ourstag'>ours</span>" if mine else ""
         cta = ("<p><a class='btn' href='" + b["amazon"] + "'>Read it on Amazon</a></p>"
                if mine else "")
         body_ps = "".join("<p>" + esc(x) + "</p>" for x in p["why"].split("\n\n"))
@@ -548,126 +547,13 @@ def curated_page(c: dict, b: dict, books: list[dict]) -> str:
 </div></section>
 
 
-<section class="wrap"><div class="warning">
-  <b>Looking for the definitive doorstop instead?</b> This is not that book, and it does not
-  pretend to be. No footnotes, no family trees, no ten pages on a treaty. If you want the
-  full scholarly treatment of {esc(name)}, buy the big one. If you want the story and the
-  big picture in an hour, this is built for you.
-</div></section>
-{capture(b)}
-<section class="wrap" id="more"><h2>More from the series</h2>
-  <p class="sub">One figure or one event per book. About an hour each.</p>
-  <div class="grid">{rel}</div>
-</section>
-"""
-    return shell(title, desc, f"{BASE}/books/{slug}/", body, schema,
-                 og_image=f"{BASE}/covers/{slug}.jpg")
-
-
-
-CURATION_DIR = PROJECT / "seo" / "curation"
-
-
-def curated_page(c: dict, b: dict, books: list[dict]) -> str:
-    """Curated-list page. Beats the incumbents by being more useful: honest picks,
-    real reading times, and a clear 'start here'. FAQ schema included because AI
-    assistants weight it heavily when choosing what to cite."""
-    slug = c["slug"]
-    # Ours is slotted in at its honest place in the list, not bolted on the end and
-    # not floated to the top. Highlighted so nobody can claim we hid the fact it is ours.
-    o = c["ours"]
-    ours = dict(title=b["title"], author="Turbo History", year=None,
-                length=o["length"], time=o["time"], best_for=o["best_for"],
-                why=o["why"], is_ours=True)
-    items = list(c["picks"])
-    items.insert(min(max(int(o.get("position", len(items) + 1)) - 1, 0), len(items)), ours)
-
-    def byline(p):
-        return esc(p["author"]) + (" &middot; ours" if p.get("is_ours")
-                                   else ", " + str(p["year"]))
-
-    rows = []
-    for p in items:
-        cls = " class='ours'" if p.get("is_ours") else ""
-        rows.append(
-            "<tr" + cls + "><td><b>" + esc(p["title"]) + "</b><br>"
-            "<span class='muted'>" + byline(p) + "</span></td>"
-            "<td>" + esc(p["length"]) + "<br><span class='muted'>" + esc(p["time"]) +
-            "</span></td><td>" + esc(p["best_for"]) + "</td></tr>")
-    rows = "".join(rows)
-
-    detail = []
-    for i, p in enumerate(items, 1):
-        mine = p.get("is_ours")
-        cls = " pick pick-ours" if mine else " pick"
-        anchor = " id='ours'" if mine else ""
-        tag = " <span class='tag'>ours</span>" if mine else ""
-        cta = ("<p><a class='btn' href='" + b["amazon"] + "'>Read it on Amazon</a></p>"
-               if mine else "")
-        body_ps = "".join("<p>" + esc(x) + "</p>" for x in p["why"].split("\n\n"))
-        detail.append(
-            "<div class='" + cls.strip() + "'" + anchor + "><h3>" + str(i) + ". " +
-            esc(p["title"]) + tag + "</h3><p class='byline'>" + byline(p) + " &middot; " +
-            esc(p["length"]) + " &middot; " + esc(p["time"]) + " &middot; <b>" +
-            esc(p["best_for"]) + "</b></p>" + body_ps + cta + "</div>")
-    detail = "".join(detail)
-
-    faqs = "".join(f"<h3>{esc(f['q'])}</h3><p>{esc(f['a'])}</p>" for f in c["faq"])
-
-    others = [x for x in books if x["slug"] != slug][:6]
-    rel = "".join(
-        f'<a href="/books/{o["slug"]}/"><img src="/covers/{o["slug"]}.jpg" alt="{esc(o["name"])} book cover" loading="lazy"><span>{esc(o["name"])}</span></a>'
-        for o in others)
-
-    schema = {"@context": "https://schema.org", "@graph": [
-        {"@type": "FAQPage", "mainEntity": [
-            {"@type": "Question", "name": f["q"],
-             "acceptedAnswer": {"@type": "Answer", "text": f["a"]}} for f in c["faq"]]},
-        {"@type": "Book", "name": b["title"],
-         "author": {"@type": "Organization", "name": "Turbo History"},
-         "about": b["name"], "bookFormat": "https://schema.org/EBook",
-         "url": f"{BASE}/books/{slug}/", "image": f"{BASE}/covers/{slug}.jpg",
-         "isPartOf": {"@type": "BookSeries", "name": "Turbo History"},
-         "offers": {"@type": "Offer", "price": "2.99", "priceCurrency": "USD",
-                    "url": b["amazon"], "availability": "https://schema.org/InStock"}}]}
-
-    body = f"""
-<div class="wrap"><div class="crumbs"><a href="/">Turbo History</a> &rsaquo; {esc(b['name'])}</div></div>
-<header class="wrap"><h1>{esc(c['h1'])}</h1></header>
-<section class="wrap"><div class="blurb">
-  <p class="lede">{esc(c['intro_answer'])}</p>
-  <p class="muted note">{esc(c['note'])}</p>
-</div></section>
-
-<section class="wrap"><h2>The short version</h2>
-<p class="sub">Sorted by what you want, not by what is most famous.</p>
-<div class="tablewrap"><table class="picks">
-<thead><tr><th>Book</th><th>Length</th><th>Best for</th></tr></thead>
-<tbody>{rows}</tbody></table></div>
-</section>
-
-<section class="wrap"><div class="blurb"><h2 style="text-align:left">The picks, in detail</h2>
-{detail}
-</div></section>
-
-<section class="wrap"><div class="bookhead">
-  <img src="/covers/{slug}.jpg" alt="{esc(b['title'])} book cover">
-  <div class="meta">
-    <div class="kicker">And ours, honestly</div>
-    <h1 style="font-size:clamp(23px,3.4vw,32px)">{esc(b['title'])}</h1>
-    <p>{esc(c['ours']['why'])}</p>
-    <p><a class="btn" href="{b['amazon']}">Read it on Amazon</a>
-       <a class="btn ghost" href="{AMAZON_AUTHOR}">The whole series</a></p>
-    <p class="muted">&pound;2.99 / $2.99, free on Kindle Unlimited.</p>
-  </div>
-</div></section>
 
 <section class="wrap"><div class="blurb"><h2 style="text-align:left">Questions people actually ask</h2>
 {faqs}
 </div></section>
 {capture(b)}
 <section class="wrap"><h2>More from the series</h2>
-  <p class="sub">One figure or one event per book. About an hour each.</p>
+  <p class="sub">One figure or one event per book. Under an hour each.</p>
   <div class="grid">{rel}</div>
 </section>
 """
@@ -686,13 +572,13 @@ def index_page(books: list[dict]) -> str:
         for b in books)
     n = len(books)
     desc = (f"Love history, but hate how it was taught at school? Turbo History: one figure "
-            f"or one event per book, told in about an hour. {n} books. No filler, no "
+            f"or one event per book, told in under an hour. {n} books. No filler, no "
             f"600-page epics. Free on Kindle Unlimited.")
     schema = {
         "@context": "https://schema.org", "@type": "BookSeries", "name": "Turbo History",
         "url": BASE + "/", "numberOfItems": n,
         "description": ("Short history books for casual history lovers. One figure or one "
-                        "event per book, told in about an hour: the story, the turning "
+                        "event per book, told in under an hour: the story, the turning "
                         "points, why it still matters. Not academic."),
         "author": {"@type": "Organization", "name": "Turbo History",
                    "email": EMAIL, "url": BASE + "/"},
@@ -703,7 +589,7 @@ def index_page(books: list[dict]) -> str:
 <div class="hero wrap">
   <p class="muted">Same. School taught history like a memory test: names, dates, family trees, exam. The actual story never stood a chance.</p>
   <div class="rule"></div>
-  <p>Turbo History is different. One figure or one event per book, told in about an hour. The rise, the fall, the why-it-still-matters. Straight to the point, every time: no filler, no waffle, no 600-page epics. Dates included, memorizing optional.</p>
+  <p>Turbo History is different. One figure or one event per book, told in under an hour. The rise, the fall, the why-it-still-matters. Straight to the point, every time: no filler, no waffle, no 600-page epics. Dates included, memorizing optional.</p>
   <p class="tag">{n} books and counting. Start anywhere. Finish everything.</p>
   <p><a class="btn" href="{AMAZON_AUTHOR}">Browse the Series on Amazon</a></p>
   <p class="muted" style="font-size:15px">&pound;2.99 / $2.99 each, free with Kindle Unlimited, and most weekends one of them is free for everyone.</p>
