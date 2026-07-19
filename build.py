@@ -40,6 +40,14 @@ READY = Path.home() / "Downloads" / "turbo-history-ready"
 BASE = "https://turbohistory.com"
 EMAIL = "turbo@turbohistory.com"
 AMAZON_AUTHOR = "https://www.amazon.com/author/turbohistory"
+GA_ID = "G-D8J4PNSQ9J"
+
+HEAD_EXTRA = f"""<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}
+gtag('js',new Date());gtag('config','{GA_ID}');</script>"""
 
 # Subjects whose "<name> books" search intent means their own writing, not
 # biographies of them. We still give them pages; we just don't chase that phrase.
@@ -85,6 +93,13 @@ h2{font-size:clamp(21px,3.2vw,29px);text-align:center;font-weight:400;margin-bot
 .capture{background:var(--panel);border:1px solid #2a231b;border-radius:5px;padding:30px;max-width:640px;margin:0 auto;text-align:center}
 .capture h2{margin-bottom:10px}
 .capture .why{color:var(--muted);font-size:15.5px;margin-bottom:18px}
+.signup{display:block}
+.signup input[type=email]{width:min(340px,86%);padding:13px 15px;border-radius:3px;border:1px solid #3a3025;background:#0d0b08;color:var(--parchment);font-family:Georgia,serif;font-size:16px;margin:0 6px 10px 0}
+.signup input[type=email]:focus{outline:none;border-color:var(--gold)}
+.signup button{border:none;cursor:pointer;vertical-align:top}
+.opt{display:block;margin-top:12px;color:var(--muted);font-size:14.5px;cursor:pointer}
+.opt input{margin-right:7px}
+.fineprint{color:var(--muted);font-size:13.5px;margin-top:12px}
 .bookhead{display:flex;gap:34px;align-items:flex-start;flex-wrap:wrap;padding:26px 0 8px}
 .bookhead img{width:230px;border-radius:4px;box-shadow:0 10px 32px rgba(0,0,0,.6)}
 .bookhead .meta{flex:1;min-width:270px}
@@ -98,11 +113,44 @@ footer .links{margin-bottom:9px;font-size:14.5px}
 @media(max-width:640px){.bookhead{gap:22px}.bookhead img{width:160px;margin:0 auto}}
 """
 
-CAPTURE = f"""<section class="wrap"><div class="capture">
-  <h2>One free history book. Every weekend.</h2>
-  <p class="why">Most weekends one book in the series goes free on Amazon. Tell us where to send it and we will tell you which one, before it goes back to full price.</p>
-  <p><a class="btn" href="{AMAZON_AUTHOR}">Browse the Series</a></p>
-  <p class="muted" style="font-size:14px;margin-top:14px">Email sign-up arriving shortly. For now, follow Turbo History on Amazon for new releases.</p>
+# Set once the Turbo History MailerLite account exists (separate from the business
+# account - different brand, different sender domain, different consent purpose).
+# Paste the embedded-form action URL here and the real form renders automatically.
+ML_FORM_ACTION = ""
+
+
+def capture(book: dict | None = None) -> str:
+    """Email capture. Honest hook: the books really are free most weekends."""
+    if book:
+        head = "This book is free sometimes. Want to know when?"
+        why = (f"{esc(book['name'])} goes free on Amazon from time to time, along with the "
+               f"rest of the series. Leave your email and we will tell you the moment it does.")
+        extra = ('<label class="opt"><input type="checkbox" name="groups[]" value="all" checked> '
+                 'Tell me about every free Turbo History book, not just this one</label>')
+        hidden = f'<input type="hidden" name="fields[book_interest]" value="{esc(book["slug"])}">'
+    else:
+        head = "Turbo History books are free most weekends."
+        why = ("Most weekends one book in the series goes completely free on Amazon. Leave "
+               "your email and we will tell you which one, before it goes back to full price.")
+        extra = ""
+        hidden = ""
+
+    if ML_FORM_ACTION:
+        form = f"""<form class="signup" action="{ML_FORM_ACTION}" method="post" target="_blank">
+      {hidden}
+      <input type="email" name="fields[email]" placeholder="you@example.com" required aria-label="Email address">
+      <button class="btn" type="submit">Notify Me</button>
+      {extra}
+      <p class="fineprint">Free books only. No spam, unsubscribe any time.</p>
+    </form>"""
+    else:
+        form = f"""<p><a class="btn" href="mailto:{EMAIL}?subject=Free%20book%20alerts">Email Us to Join the List</a></p>
+      <p class="fineprint">Free books only. No spam, unsubscribe any time.</p>"""
+
+    return f"""<section class="wrap"><div class="capture">
+  <h2>{head}</h2>
+  <p class="why">{why}</p>
+  {form}
 </div></section>"""
 
 
@@ -131,6 +179,7 @@ def shell(page_title: str, description: str, canonical: str, body: str,
 <meta property="og:type" content="website">
 <meta property="og:image" content="{og}">
 <meta name="twitter:card" content="summary_large_image">
+{HEAD_EXTRA}
 {schema_tag}
 <style>{CSS}</style>
 </head>
@@ -246,7 +295,7 @@ def book_page(b: dict, books: list[dict]) -> str:
   full scholarly treatment of {esc(name)}, buy the big one. If you want the story and the
   big picture in an hour, this is built for you.
 </div></section>
-{CAPTURE}
+{capture(b)}
 <section class="wrap" id="more"><h2>More from the series</h2>
   <p class="sub">One figure or one event per book. About an hour each.</p>
   <div class="grid">{rel}</div>
@@ -298,7 +347,7 @@ def index_page(books: list[dict]) -> str:
   pages on a treaty. If you want that depth, you'll want a bigger book. If you want the
   story and the big picture, you're home.
 </div></section>
-{CAPTURE}
+{capture()}
 <section class="wrap" id="books"><h2>Every book in the series</h2>
   <p class="sub">{n} and counting. Start anywhere.</p>
   <div class="grid">{allg}</div>
