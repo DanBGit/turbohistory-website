@@ -108,6 +108,11 @@ h2{font-size:clamp(21px,3.2vw,29px);text-align:center;font-weight:400;margin-bot
 .opt input{margin-right:7px}
 .fineprint{color:var(--muted);font-size:13.5px;margin-top:12px}
 html.ck-lock,html.ck-lock body{overflow:hidden}
+.pick{padding:22px 0;border-bottom:1px solid #221c16}
+.pick-ours{background:rgba(201,162,75,.06);border:1px solid #4a3c22;border-radius:5px;padding:22px 24px;margin:10px 0}
+.pick-ours h3{color:var(--gold)}
+.tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);background:var(--gold);padding:3px 8px;border-radius:3px;vertical-align:middle;margin-left:8px;font-family:system-ui,sans-serif}
+tr.ours td{background:rgba(201,162,75,.08);border-top:1px solid #4a3c22;border-bottom:1px solid #4a3c22}
 #ck[hidden],#ck-prefs[hidden]{display:none!important}
 #ck{position:fixed;inset:0;z-index:999;background:rgba(6,5,4,.86);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:20px}
 .ck-box{background:var(--panel);border:1px solid #3a3025;border-radius:6px;max-width:520px;width:100%;padding:32px;box-shadow:0 20px 60px rgba(0,0,0,.7);text-align:center;max-height:90vh;overflow-y:auto}
@@ -414,21 +419,147 @@ def curated_page(c: dict, b: dict, books: list[dict]) -> str:
     real reading times, and a clear 'start here'. FAQ schema included because AI
     assistants weight it heavily when choosing what to cite."""
     slug = c["slug"]
-    rows = "".join(
-        f"<tr><td><b>{esc(p['title'])}</b><br><span class='muted'>{esc(p['author'])}, {p['year']}</span></td>"
-        f"<td>{esc(p['length'])}<br><span class='muted'>{esc(p['time'])}</span></td>"
-        f"<td>{esc(p['best_for'])}</td></tr>"
-        for p in c["picks"])
-    rows += (f"<tr class='ours'><td><b>{esc(b['title'])}</b><br>"
-             f"<span class='muted'>Turbo History, ours</span></td>"
-             f"<td>~90 pages<br><span class='muted'>About an hour</span></td>"
-             f"<td>{esc(c['ours']['best_for'])}</td></tr>")
+    # Ours is slotted in at its honest place in the list, not bolted on the end and
+    # not floated to the top. Highlighted so nobody can claim we hid the fact it is ours.
+    o = c["ours"]
+    ours = dict(title=b["title"], author="Turbo History", year=None,
+                length=o["length"], time=o["time"], best_for=o["best_for"],
+                why=o["why"], is_ours=True)
+    items = list(c["picks"])
+    items.insert(min(max(int(o.get("position", len(items) + 1)) - 1, 0), len(items)), ours)
 
-    detail = "".join(
-        f"<h3>{i}. {esc(p['title'])}</h3>"
-        f"<p class='byline'>{esc(p['author'])}, {p['year']} &middot; {esc(p['length'])} &middot; "
-        f"{esc(p['time'])} &middot; <b>{esc(p['best_for'])}</b></p><p>{esc(p['why'])}</p>"
-        for i, p in enumerate(c["picks"], 1))
+    def byline(p):
+        return esc(p["author"]) + (" &middot; ours" if p.get("is_ours")
+                                   else ", " + str(p["year"]))
+
+    rows = []
+    for p in items:
+        cls = " class='ours'" if p.get("is_ours") else ""
+        rows.append(
+            "<tr" + cls + "><td><b>" + esc(p["title"]) + "</b><br>"
+            "<span class='muted'>" + byline(p) + "</span></td>"
+            "<td>" + esc(p["length"]) + "<br><span class='muted'>" + esc(p["time"]) +
+            "</span></td><td>" + esc(p["best_for"]) + "</td></tr>")
+    rows = "".join(rows)
+
+    detail = []
+    for i, p in enumerate(items, 1):
+        mine = p.get("is_ours")
+        cls = " pick pick-ours" if mine else " pick"
+        anchor = " id='ours'" if mine else ""
+        tag = " <span class='tag'>ours</span>" if mine else ""
+        cta = ("<p><a class='btn' href='" + b["amazon"] + "'>Read it on Amazon</a></p>"
+               if mine else "")
+        body_ps = "".join("<p>" + esc(x) + "</p>" for x in p["why"].split("\n\n"))
+        detail.append(
+            "<div class='" + cls.strip() + "'" + anchor + "><h3>" + str(i) + ". " +
+            esc(p["title"]) + tag + "</h3><p class='byline'>" + byline(p) + " &middot; " +
+            esc(p["length"]) + " &middot; " + esc(p["time"]) + " &middot; <b>" +
+            esc(p["best_for"]) + "</b></p>" + body_ps + cta + "</div>")
+    detail = "".join(detail)
+
+    faqs = "".join(f"<h3>{esc(f['q'])}</h3><p>{esc(f['a'])}</p>" for f in c["faq"])
+
+    others = [x for x in books if x["slug"] != slug][:6]
+    rel = "".join(
+        f'<a href="/books/{o["slug"]}/"><img src="/covers/{o["slug"]}.jpg" alt="{esc(o["name"])} book cover" loading="lazy"><span>{esc(o["name"])}</span></a>'
+        for o in others)
+
+    schema = {"@context": "https://schema.org", "@graph": [
+        {"@type": "FAQPage", "mainEntity": [
+            {"@type": "Question", "name": f["q"],
+             "acceptedAnswer": {"@type": "Answer", "text": f["a"]}} for f in c["faq"]]},
+        {"@type": "Book", "name": b["title"],
+         "author": {"@type": "Organization", "name": "Turbo History"},
+         "about": b["name"], "bookFormat": "https://schema.org/EBook",
+         "url": f"{BASE}/books/{slug}/", "image": f"{BASE}/covers/{slug}.jpg",
+         "isPartOf": {"@type": "BookSeries", "name": "Turbo History"},
+         "offers": {"@type": "Offer", "price": "2.99", "priceCurrency": "USD",
+                    "url": b["amazon"], "availability": "https://schema.org/InStock"}}]}
+
+    body = f"""
+<div class="wrap"><div class="crumbs"><a href="/">Turbo History</a> &rsaquo; {esc(b['name'])}</div></div>
+<header class="wrap"><h1>{esc(c['h1'])}</h1></header>
+<section class="wrap"><div class="blurb">
+  <p class="lede">{esc(c['intro_answer'])}</p>
+  <p class="muted note">{esc(c['note'])}</p>
+</div></section>
+
+<section class="wrap"><h2>The short version</h2>
+<p class="sub">Sorted by what you want, not by what is most famous.</p>
+<div class="tablewrap"><table class="picks">
+<thead><tr><th>Book</th><th>Length</th><th>Best for</th></tr></thead>
+<tbody>{rows}</tbody></table></div>
+</section>
+
+<section class="wrap"><div class="blurb"><h2 style="text-align:left">The picks, in detail</h2>
+{detail}
+</div></section>
+
+
+<section class="wrap"><div class="warning">
+  <b>Looking for the definitive doorstop instead?</b> This is not that book, and it does not
+  pretend to be. No footnotes, no family trees, no ten pages on a treaty. If you want the
+  full scholarly treatment of {esc(name)}, buy the big one. If you want the story and the
+  big picture in an hour, this is built for you.
+</div></section>
+{capture(b)}
+<section class="wrap" id="more"><h2>More from the series</h2>
+  <p class="sub">One figure or one event per book. About an hour each.</p>
+  <div class="grid">{rel}</div>
+</section>
+"""
+    return shell(title, desc, f"{BASE}/books/{slug}/", body, schema,
+                 og_image=f"{BASE}/covers/{slug}.jpg")
+
+
+
+CURATION_DIR = PROJECT / "seo" / "curation"
+
+
+def curated_page(c: dict, b: dict, books: list[dict]) -> str:
+    """Curated-list page. Beats the incumbents by being more useful: honest picks,
+    real reading times, and a clear 'start here'. FAQ schema included because AI
+    assistants weight it heavily when choosing what to cite."""
+    slug = c["slug"]
+    # Ours is slotted in at its honest place in the list, not bolted on the end and
+    # not floated to the top. Highlighted so nobody can claim we hid the fact it is ours.
+    o = c["ours"]
+    ours = dict(title=b["title"], author="Turbo History", year=None,
+                length=o["length"], time=o["time"], best_for=o["best_for"],
+                why=o["why"], is_ours=True)
+    items = list(c["picks"])
+    items.insert(min(max(int(o.get("position", len(items) + 1)) - 1, 0), len(items)), ours)
+
+    def byline(p):
+        return esc(p["author"]) + (" &middot; ours" if p.get("is_ours")
+                                   else ", " + str(p["year"]))
+
+    rows = []
+    for p in items:
+        cls = " class='ours'" if p.get("is_ours") else ""
+        rows.append(
+            "<tr" + cls + "><td><b>" + esc(p["title"]) + "</b><br>"
+            "<span class='muted'>" + byline(p) + "</span></td>"
+            "<td>" + esc(p["length"]) + "<br><span class='muted'>" + esc(p["time"]) +
+            "</span></td><td>" + esc(p["best_for"]) + "</td></tr>")
+    rows = "".join(rows)
+
+    detail = []
+    for i, p in enumerate(items, 1):
+        mine = p.get("is_ours")
+        cls = " pick pick-ours" if mine else " pick"
+        anchor = " id='ours'" if mine else ""
+        tag = " <span class='tag'>ours</span>" if mine else ""
+        cta = ("<p><a class='btn' href='" + b["amazon"] + "'>Read it on Amazon</a></p>"
+               if mine else "")
+        body_ps = "".join("<p>" + esc(x) + "</p>" for x in p["why"].split("\n\n"))
+        detail.append(
+            "<div class='" + cls.strip() + "'" + anchor + "><h3>" + str(i) + ". " +
+            esc(p["title"]) + tag + "</h3><p class='byline'>" + byline(p) + " &middot; " +
+            esc(p["length"]) + " &middot; " + esc(p["time"]) + " &middot; <b>" +
+            esc(p["best_for"]) + "</b></p>" + body_ps + cta + "</div>")
+    detail = "".join(detail)
 
     faqs = "".join(f"<h3>{esc(f['q'])}</h3><p>{esc(f['a'])}</p>" for f in c["faq"])
 
