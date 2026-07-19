@@ -122,6 +122,16 @@ h2{font-size:clamp(21px,3.2vw,29px);text-align:center;font-weight:400;margin-bot
 .blurb{max-width:760px;margin:0 auto;font-size:17px}
 .blurb p{margin:14px 0}.blurb ul{margin:14px 0 14px 22px}.blurb li{margin:7px 0}
 .crumbs{font-size:13.5px;color:var(--muted);padding:14px 0}
+.lede{font-size:19px;line-height:1.6}
+.note{font-size:14.5px;font-style:italic}
+.tablewrap{overflow-x:auto;max-width:900px;margin:0 auto}
+table.picks{width:100%;border-collapse:collapse;font-size:15.5px}
+table.picks th{text-align:left;padding:12px 14px;border-bottom:2px solid var(--gold);color:var(--gold);font-family:Futura,'Trebuchet MS',Arial,sans-serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+table.picks td{padding:14px;border-bottom:1px solid #262019;vertical-align:top}
+table.picks tr.ours{background:rgba(201,162,75,.09)}
+table.picks tr.ours td{border-bottom:none}
+.blurb h3{margin:26px 0 4px;font-size:20px;color:var(--parchment);font-weight:400}
+.byline{color:var(--muted);font-size:14.5px;margin:0 0 8px}
 footer{border-top:1px solid #262019;margin-top:26px;padding:28px 0 42px;text-align:center;color:var(--muted);font-size:13.5px}
 footer .links{margin-bottom:9px;font-size:14.5px}
 @media(max-width:640px){.bookhead{gap:22px}.bookhead img{width:160px;margin:0 auto}}
@@ -366,6 +376,94 @@ def book_page(b: dict, books: list[dict]) -> str:
                  og_image=f"{BASE}/covers/{slug}.jpg")
 
 
+
+CURATION_DIR = PROJECT / "seo" / "curation"
+
+
+def curated_page(c: dict, b: dict, books: list[dict]) -> str:
+    """Curated-list page. Beats the incumbents by being more useful: honest picks,
+    real reading times, and a clear 'start here'. FAQ schema included because AI
+    assistants weight it heavily when choosing what to cite."""
+    slug = c["slug"]
+    rows = "".join(
+        f"<tr><td><b>{esc(p['title'])}</b><br><span class='muted'>{esc(p['author'])}, {p['year']}</span></td>"
+        f"<td>{esc(p['length'])}<br><span class='muted'>{esc(p['time'])}</span></td>"
+        f"<td>{esc(p['best_for'])}</td></tr>"
+        for p in c["picks"])
+    rows += (f"<tr class='ours'><td><b>{esc(b['title'])}</b><br>"
+             f"<span class='muted'>Turbo History, ours</span></td>"
+             f"<td>~90 pages<br><span class='muted'>About an hour</span></td>"
+             f"<td>{esc(c['ours']['best_for'])}</td></tr>")
+
+    detail = "".join(
+        f"<h3>{i}. {esc(p['title'])}</h3>"
+        f"<p class='byline'>{esc(p['author'])}, {p['year']} &middot; {esc(p['length'])} &middot; "
+        f"{esc(p['time'])} &middot; <b>{esc(p['best_for'])}</b></p><p>{esc(p['why'])}</p>"
+        for i, p in enumerate(c["picks"], 1))
+
+    faqs = "".join(f"<h3>{esc(f['q'])}</h3><p>{esc(f['a'])}</p>" for f in c["faq"])
+
+    others = [x for x in books if x["slug"] != slug][:6]
+    rel = "".join(
+        f'<a href="/books/{o["slug"]}/"><img src="/covers/{o["slug"]}.jpg" alt="{esc(o["name"])} book cover" loading="lazy"><span>{esc(o["name"])}</span></a>'
+        for o in others)
+
+    schema = {"@context": "https://schema.org", "@graph": [
+        {"@type": "FAQPage", "mainEntity": [
+            {"@type": "Question", "name": f["q"],
+             "acceptedAnswer": {"@type": "Answer", "text": f["a"]}} for f in c["faq"]]},
+        {"@type": "Book", "name": b["title"],
+         "author": {"@type": "Organization", "name": "Turbo History"},
+         "about": b["name"], "bookFormat": "https://schema.org/EBook",
+         "url": f"{BASE}/books/{slug}/", "image": f"{BASE}/covers/{slug}.jpg",
+         "isPartOf": {"@type": "BookSeries", "name": "Turbo History"},
+         "offers": {"@type": "Offer", "price": "2.99", "priceCurrency": "USD",
+                    "url": b["amazon"], "availability": "https://schema.org/InStock"}}]}
+
+    body = f"""
+<div class="wrap"><div class="crumbs"><a href="/">Turbo History</a> &rsaquo; {esc(b['name'])}</div></div>
+<header class="wrap"><h1>{esc(c['h1'])}</h1></header>
+<section class="wrap"><div class="blurb">
+  <p class="lede">{esc(c['intro_answer'])}</p>
+  <p class="muted note">{esc(c['note'])}</p>
+</div></section>
+
+<section class="wrap"><h2>The short version</h2>
+<p class="sub">Sorted by what you want, not by what is most famous.</p>
+<div class="tablewrap"><table class="picks">
+<thead><tr><th>Book</th><th>Length</th><th>Best for</th></tr></thead>
+<tbody>{rows}</tbody></table></div>
+</section>
+
+<section class="wrap"><div class="blurb"><h2 style="text-align:left">The picks, in detail</h2>
+{detail}
+</div></section>
+
+<section class="wrap"><div class="bookhead">
+  <img src="/covers/{slug}.jpg" alt="{esc(b['title'])} book cover">
+  <div class="meta">
+    <div class="kicker">And ours, honestly</div>
+    <h1 style="font-size:clamp(23px,3.4vw,32px)">{esc(b['title'])}</h1>
+    <p>{esc(c['ours']['why'])}</p>
+    <p><a class="btn" href="{b['amazon']}">Read it on Amazon</a>
+       <a class="btn ghost" href="{AMAZON_AUTHOR}">The whole series</a></p>
+    <p class="muted">&pound;2.99 / $2.99, free on Kindle Unlimited.</p>
+  </div>
+</div></section>
+
+<section class="wrap"><div class="blurb"><h2 style="text-align:left">Questions people actually ask</h2>
+{faqs}
+</div></section>
+{capture(b)}
+<section class="wrap"><h2>More from the series</h2>
+  <p class="sub">One figure or one event per book. About an hour each.</p>
+  <div class="grid">{rel}</div>
+</section>
+"""
+    return shell(c["meta_title"], c["meta_description"], f"{BASE}/books/{slug}/",
+                 body, schema, og_image=f"{BASE}/covers/{slug}.jpg")
+
+
 def index_page(books: list[dict]) -> str:
     by_slug = {b["slug"]: b for b in books}
     featured = [by_slug[s] for s in FEATURED if s in by_slug] or books[:12]
@@ -508,7 +606,12 @@ def main() -> None:
     for b in books:
         d = books_dir / b["slug"]
         d.mkdir(parents=True, exist_ok=True)
-        (d / "index.html").write_text(book_page(b, books))
+        cur = CURATION_DIR / f"{b['slug']}.json"
+        if cur.exists():
+            (d / "index.html").write_text(
+                curated_page(json.loads(cur.read_text()), b, books))
+        else:
+            (d / "index.html").write_text(book_page(b, books))
 
     today = date.today().isoformat()
     urls = ([(BASE + "/", "1.0")]
