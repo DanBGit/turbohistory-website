@@ -108,6 +108,7 @@ h2{font-size:clamp(21px,3.2vw,29px);text-align:center;font-weight:400;margin-bot
 .opt input{margin-right:7px}
 .fineprint{color:var(--muted);font-size:13.5px;margin-top:12px}
 html.ck-lock,html.ck-lock body{overflow:hidden}
+#ck[hidden],#ck-prefs[hidden]{display:none!important}
 #ck{position:fixed;inset:0;z-index:999;background:rgba(6,5,4,.86);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:20px}
 .ck-box{background:var(--panel);border:1px solid #3a3025;border-radius:6px;max-width:520px;width:100%;padding:32px;box-shadow:0 20px 60px rgba(0,0,0,.7);text-align:center;max-height:90vh;overflow-y:auto}
 .ck-box h2{font-size:24px;margin-bottom:12px}
@@ -178,8 +179,8 @@ CONSENT_JS = """
   var ASK=['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV',
   'LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH','BR','CA'];
   var K='th_consent', el=document.getElementById('ck'), root=document.documentElement;
-  function grant(v){ gtag('consent','update',{ad_storage:v,ad_user_data:v,
-    ad_personalization:v,analytics_storage:v}); }
+  function grant(v){ try{ gtag('consent','update',{ad_storage:v,ad_user_data:v,
+    ad_personalization:v,analytics_storage:v}); }catch(e){} }
   function open_(){ el.hidden=false; root.classList.add('ck-lock'); }
   function shut(){ el.hidden=true; root.classList.remove('ck-lock'); }
   function save(v){ try{localStorage.setItem(K,v);}catch(e){} grant(v==='yes'?'granted':'denied'); shut(); }

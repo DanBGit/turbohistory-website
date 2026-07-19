@@ -1,7 +1,7 @@
 # Graph Report - turbohistory-website  (2026-07-19)
 
 ## Corpus Check
-- 3 files · ~94,521 words
+- 3 files · ~99,113 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `285b3218`
+- Built from commit: `5d9c0389`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
