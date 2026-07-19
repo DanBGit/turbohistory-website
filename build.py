@@ -303,6 +303,12 @@ def index_page(books: list[dict]) -> str:
   <p class="sub">{n} and counting. Start anywhere.</p>
   <div class="grid">{allg}</div>
 </section>
+<section class="wrap" id="contact" style="text-align:center">
+  <h2>Contact</h2>
+  <p class="sub" style="margin-bottom:12px">Questions, requests for who to cover next, or anything else.</p>
+  <p style="font-size:18px"><a href="mailto:{EMAIL}">{EMAIL}</a></p>
+  <p class="muted" style="font-size:14.5px;margin-top:10px">Turbo History is written and published by Turbo History.<br>Every book is available on Amazon and Kindle Unlimited.</p>
+</section>
 """
     return shell(
         "Turbo History | One-Hour History Books for People Who Hate How History Was Taught",
