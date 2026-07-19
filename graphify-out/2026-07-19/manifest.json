@@ -5,7 +5,7 @@
     "semantic_hash": ""
   },
   "site/index.html": {
-    "mtime": 1784482138.4780195,
+    "mtime": 1784482416.2372997,
     "ast_hash": "5a41086e866f5f9291844a658c66024a",
     "semantic_hash": ""
   },
@@ -70,8 +70,8 @@
     "semantic_hash": ""
   },
   "build.py": {
-    "mtime": 1784482138.4112105,
-    "ast_hash": "724075c76821b63181baf21a5fedbe1e",
+    "mtime": 1784482407.2012792,
+    "ast_hash": "6214bd72b6e38f5230f1e68b177d1cdb",
     "semantic_hash": ""
   },
   ".memsearch/memory/2026-07-19.md": {
@@ -80,197 +80,197 @@
     "semantic_hash": ""
   },
   "site/books/abraham-lincoln/index.html": {
-    "mtime": 1784482138.4882782,
+    "mtime": 1784482416.2482867,
     "ast_hash": "02623b631d16ef70003b9841394cd380",
     "semantic_hash": ""
   },
   "site/books/alexander-the-great/index.html": {
-    "mtime": 1784482138.4901712,
+    "mtime": 1784482416.25782,
     "ast_hash": "11699093140f8014029d79ed9d75129c",
     "semantic_hash": ""
   },
   "site/books/amelia-earhart/index.html": {
-    "mtime": 1784482138.4928367,
+    "mtime": 1784482416.2599413,
     "ast_hash": "2b7f6d448d219e4426901a48e8373d3d",
     "semantic_hash": ""
   },
   "site/books/american-civil-war/index.html": {
-    "mtime": 1784482138.4925997,
+    "mtime": 1784482416.2597244,
     "ast_hash": "95976a06a6fa418377a18ff2b8374a5a",
     "semantic_hash": ""
   },
   "site/books/anne-boleyn/index.html": {
-    "mtime": 1784482138.4955635,
+    "mtime": 1784482416.2629447,
     "ast_hash": "4b290d54097f18f0f3f4b9c42fe84d8c",
     "semantic_hash": ""
   },
   "site/books/blackbeard/index.html": {
-    "mtime": 1784482138.4959705,
+    "mtime": 1784482416.2635074,
     "ast_hash": "517172e625bc706aec254ca7bb8670e2",
     "semantic_hash": ""
   },
   "site/books/catherine-the-great/index.html": {
-    "mtime": 1784482138.4934828,
+    "mtime": 1784482416.260749,
     "ast_hash": "c91946e566c02b9ccc06ffbfc18b8902",
     "semantic_hash": ""
   },
   "site/books/christopher-columbus/index.html": {
-    "mtime": 1784482138.4924018,
+    "mtime": 1784482416.2595248,
     "ast_hash": "cf2defe423e9bf1790cac979842bff56",
     "semantic_hash": ""
   },
   "site/books/cleopatra/index.html": {
-    "mtime": 1784482138.487514,
+    "mtime": 1784482416.247254,
     "ast_hash": "8b288835ebda5b178ccd616bce4941c4",
     "semantic_hash": ""
   },
   "site/books/elizabeth-i/index.html": {
-    "mtime": 1784482138.4909017,
+    "mtime": 1784482416.2582471,
     "ast_hash": "16948b0224e771e85b3c69cac69c07f1",
     "semantic_hash": ""
   },
   "site/books/franklin-d.-roosevelt/index.html": {
-    "mtime": 1784482138.4880905,
+    "mtime": 1784482416.248087,
     "ast_hash": "de224cce28d7504b7e7f1efbb8238956",
     "semantic_hash": ""
   },
   "site/books/genghis-khan/index.html": {
-    "mtime": 1784482138.487307,
+    "mtime": 1784482416.2470012,
     "ast_hash": "1e1db45c07d8741cc4ebf3344f6f9d59",
     "semantic_hash": ""
   },
   "site/books/george-iii/index.html": {
-    "mtime": 1784482138.4905143,
+    "mtime": 1784482416.2580361,
     "ast_hash": "b6be558689d088c50bbb5d6e7e6bb555",
     "semantic_hash": ""
   },
   "site/books/george-washington/index.html": {
-    "mtime": 1784482138.4886472,
+    "mtime": 1784482416.248809,
     "ast_hash": "4ee086b1502ca8f7e5366b297c1b2a79",
     "semantic_hash": ""
   },
   "site/books/grigori-rasputin/index.html": {
-    "mtime": 1784482138.493692,
+    "mtime": 1784482416.2610059,
     "ast_hash": "8111f0f9dd561759f554f2bbdb0c8b9c",
     "semantic_hash": ""
   },
   "site/books/hannibal/index.html": {
-    "mtime": 1784482138.4961798,
+    "mtime": 1784482416.2637463,
     "ast_hash": "152d2fd8fec5b76564bb05ddea959821",
     "semantic_hash": ""
   },
   "site/books/henry-viii/index.html": {
-    "mtime": 1784482138.4957728,
+    "mtime": 1784482416.2632565,
     "ast_hash": "851bb88916dd88229d37199cb30efdf1",
     "semantic_hash": ""
   },
   "site/books/isaac-newton/index.html": {
-    "mtime": 1784482138.4919567,
+    "mtime": 1784482416.2590916,
     "ast_hash": "94bf4a010e4bef00dd9497a7d0c1d65b",
     "semantic_hash": ""
   },
   "site/books/jane-austen/index.html": {
-    "mtime": 1784482138.4942713,
+    "mtime": 1784482416.2616715,
     "ast_hash": "19a3697b52af6a1d56b33b964da14a5b",
     "semantic_hash": ""
   },
   "site/books/joan-of-arc/index.html": {
-    "mtime": 1784482138.493269,
+    "mtime": 1784482416.2604833,
     "ast_hash": "c1ef3300eabf41904d2a9ae2258110da",
     "semantic_hash": ""
   },
   "site/books/julius-caesar/index.html": {
-    "mtime": 1784482138.4921844,
+    "mtime": 1784482416.2593062,
     "ast_hash": "0f763f5813c5895c2b7d56f1eec14d07",
     "semantic_hash": ""
   },
   "site/books/leonardo-da-vinci/index.html": {
-    "mtime": 1784482138.4946911,
+    "mtime": 1784482416.2621057,
     "ast_hash": "e3d8087937e1486ee6c2e3ecf251528d",
     "semantic_hash": ""
   },
   "site/books/louis-xiv/index.html": {
-    "mtime": 1784482138.4949195,
+    "mtime": 1784482416.262318,
     "ast_hash": "3bcfe0947015e92563972329b3755b32",
     "semantic_hash": ""
   },
   "site/books/marie-antoinette/index.html": {
-    "mtime": 1784482138.4911544,
+    "mtime": 1784482416.2584703,
     "ast_hash": "3d79bb5f0555091e4f25b449f212fc7d",
     "semantic_hash": ""
   },
   "site/books/marie-curie/index.html": {
-    "mtime": 1784482138.49305,
+    "mtime": 1784482416.2601695,
     "ast_hash": "1eaeb668b3188886b0199ffe61779d34",
     "semantic_hash": ""
   },
   "site/books/mary-queen-of-scots/index.html": {
-    "mtime": 1784482138.4913838,
+    "mtime": 1784482416.2586908,
     "ast_hash": "6f073036846e3f9e2e960e110959b27d",
     "semantic_hash": ""
   },
   "site/books/mary-shelley/index.html": {
-    "mtime": 1784482138.494077,
+    "mtime": 1784482416.2614536,
     "ast_hash": "0629fd10d8bcee725028366b9e5ea68a",
     "semantic_hash": ""
   },
   "site/books/napoleon/index.html": {
-    "mtime": 1784482138.4884565,
+    "mtime": 1784482416.248478,
     "ast_hash": "8210b863880d1637560423099de623cd",
     "semantic_hash": ""
   },
   "site/books/nikola-tesla/index.html": {
-    "mtime": 1784482138.4944706,
+    "mtime": 1784482416.2618914,
     "ast_hash": "4c60a4a84aa66eaf35c75307dacc8b70",
     "semantic_hash": ""
   },
   "site/books/queen-victoria/index.html": {
-    "mtime": 1784482138.487712,
+    "mtime": 1784482416.2474732,
     "ast_hash": "43b4eddc99da4dbb0ea73231eff6f2ec",
     "semantic_hash": ""
   },
   "site/books/theodore-roosevelt/index.html": {
-    "mtime": 1784482138.489896,
+    "mtime": 1784482416.2576015,
     "ast_hash": "c87a9712cd73446e21726996e2f7696d",
     "semantic_hash": ""
   },
   "site/books/thomas-jefferson/index.html": {
-    "mtime": 1784482138.4951534,
+    "mtime": 1784482416.262523,
     "ast_hash": "49f7a03e5693501e6530b653c0478504",
     "semantic_hash": ""
   },
   "site/books/ulysses-s.-grant/index.html": {
-    "mtime": 1784482138.4953706,
+    "mtime": 1784482416.262734,
     "ast_hash": "8f6a14428b9563f228976a897291b261",
     "semantic_hash": ""
   },
   "site/books/vlad-the-impaler/index.html": {
-    "mtime": 1784482138.4938931,
+    "mtime": 1784482416.2612333,
     "ast_hash": "43642b83bc0514577953ef7fa3c833f2",
     "semantic_hash": ""
   },
   "site/books/william-shakespeare/index.html": {
-    "mtime": 1784482138.4879055,
+    "mtime": 1784482416.247834,
     "ast_hash": "7cb243cf1c31a27ea50d60cc6cecdc1c",
     "semantic_hash": ""
   },
   "site/books/william-the-conqueror/index.html": {
-    "mtime": 1784482138.4917192,
+    "mtime": 1784482416.258894,
     "ast_hash": "a1564114606bfb50dd2e78a0af89df3c",
     "semantic_hash": ""
   },
   "site/books/world-war-i/index.html": {
-    "mtime": 1784482138.4896429,
+    "mtime": 1784482416.2573504,
     "ast_hash": "fdaabad3f469e02bc05725f526f05947",
     "semantic_hash": ""
   },
   "site/books/world-war-ii/index.html": {
-    "mtime": 1784482138.4893289,
+    "mtime": 1784482416.2570972,
     "ast_hash": "a72fc8df054489dc6930cefd720da05e",
     "semantic_hash": ""
   },
   "site/robots.txt": {
-    "mtime": 1784482138.496583,
+    "mtime": 1784482416.2640815,
     "ast_hash": "772431047de9084bc63c4c826f879ce8",
     "semantic_hash": ""
   },
@@ -425,8 +425,8 @@
     "semantic_hash": ""
   },
   "site/privacy/index.html": {
-    "mtime": 1784482138.4782085,
-    "ast_hash": "9ca6b2208baafe15aeaf62794e3b8b66",
+    "mtime": 1784482416.2375674,
+    "ast_hash": "c5c25d1a627b11ec4f9592e05c8b3ced",
     "semantic_hash": ""
   },
   "api/app.py": {

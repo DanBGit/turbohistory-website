@@ -447,7 +447,8 @@ def book_page(b: dict, books: list[dict]) -> str:
 <section class="wrap"><div class="blurb">{blurb_html(b['blurb'])}</div></section>
 <section class="wrap"><div class="warning">
   <b>Looking for the definitive doorstop instead?</b> This is not that book, and it does not
-  pretend to be. No footnotes, no family trees, no ten pages on a treaty. If you want the
+  pretend to be. No footnotes to chase, no family trees, no ten pages on a treaty. Sources
+  at the back if you want to go deeper. If you want the
   full scholarly treatment of {esc(name)}, buy the big one. If you want the story and the
   big picture in an hour, this is built for you.
 </div></section>
@@ -599,7 +600,8 @@ def index_page(books: list[dict]) -> str:
   <div class="grid">{fg}</div>
 </section>
 <section class="wrap"><div class="warning">
-  <b>Fair warning:</b> these are not academic books. No footnotes, no family trees, no ten
+  <b>Fair warning:</b> these are not academic books. No footnotes to chase, no family trees,
+  no ten
   pages on a treaty. If you want that depth, you'll want a bigger book. If you want the
   story and the big picture, you're home.
 </div></section>

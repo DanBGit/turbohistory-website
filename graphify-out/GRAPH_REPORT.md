@@ -1,16 +1,16 @@
 # Graph Report - turbohistory-website  (2026-07-19)
 
 ## Corpus Check
-- 5 files · ~110,588 words
+- 5 files · ~109,875 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 29 nodes · 51 edges · 8 communities (6 shown, 2 thin omitted)
+- 28 nodes · 50 edges · 8 communities (4 shown, 4 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `945eef68`
+- Built from commit: `514986aa`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -25,49 +25,41 @@
 - deploy.sh
 
 ## God Nodes (most connected - your core abstractions)
-1. `curated_page()` - 7 edges
-2. `main()` - 7 edges
-3. `capture()` - 6 edges
-4. `esc()` - 6 edges
-5. `shell()` - 6 edges
-6. `book_page()` - 6 edges
+1. `main()` - 7 edges
+2. `capture()` - 6 edges
+3. `esc()` - 6 edges
+4. `shell()` - 6 edges
+5. `book_page()` - 6 edges
+6. `curated_page()` - 6 edges
 7. `index_page()` - 5 edges
 8. `db()` - 5 edges
 9. `subscribe()` - 4 edges
 10. `blurb_html()` - 3 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `book_page()` --calls--> `capture()`  [EXTRACTED]
-  build.py → build.py  _Bridges community 2 → community 1_
 - `curated_page()` --calls--> `capture()`  [EXTRACTED]
   build.py → build.py  _Bridges community 2 → community 3_
 - `privacy_page()` --calls--> `shell()`  [EXTRACTED]
   build.py → build.py  _Bridges community 2 → community 0_
-- `main()` --calls--> `book_page()`  [EXTRACTED]
-  build.py → build.py  _Bridges community 1 → community 0_
+- `book_page()` --calls--> `blurb_html()`  [EXTRACTED]
+  build.py → build.py  _Bridges community 1 → community 2_
 - `main()` --calls--> `curated_page()`  [EXTRACTED]
   build.py → build.py  _Bridges community 3 → community 0_
+- `db()` --references--> `Connection`  [EXTRACTED]
+  api/app.py →   _Bridges community 5 → community 6_
 
 ## Import Cycles
 - None detected.
 
-## Communities (8 total, 2 thin omitted)
+## Communities (8 total, 4 thin omitted)
 
 ### Community 0 - "build.py"
 Cohesion: 0.70
 Nodes (4): load_books(), main(), make_thumbs(), privacy_page()
 
-### Community 1 - "book_page"
-Cohesion: 0.67
-Nodes (3): blurb_html(), book_page(), Pipeline blurbs are plain text with bullet lines. Render as real HTML.
-
 ### Community 2 - "esc"
 Cohesion: 0.60
-Nodes (5): capture(), esc(), index_page(), Email capture. Honest hook: the books really are free most weekends., shell()
-
-### Community 3 - "curated_page"
-Cohesion: 0.67
-Nodes (3): curated_page(), Curated-list page. Beats the incumbents by being more useful: honest picks,, Curated-list page. Beats the incumbents by being more useful: honest picks,
+Nodes (6): book_page(), capture(), esc(), index_page(), Email capture. Honest hook: the books really are free most weekends., shell()
 
 ### Community 4 - "app.py"
 Cohesion: 0.50
@@ -80,16 +72,16 @@ Nodes (4): count(), db(), export(), CSV export, ready to paste into MailerLite w
 ## Knowledge Gaps
 - **1 isolated node(s):** `deploy.sh script`
   These have ≤1 connection - possible missing edges or undocumented components.
-- **2 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **4 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `curated_page()` connect `curated_page` to `build.py`, `esc`?**
-  _High betweenness centrality (0.075) - this node is a cross-community bridge._
-- **Why does `capture()` connect `esc` to `build.py`, `book_page`, `curated_page`?**
   _High betweenness centrality (0.041) - this node is a cross-community bridge._
-- **Why does `blurb_html()` connect `book_page` to `build.py`?**
+- **Why does `capture()` connect `esc` to `build.py`, `curated_page`?**
+  _High betweenness centrality (0.040) - this node is a cross-community bridge._
+- **Why does `blurb_html()` connect `book_page` to `build.py`, `esc`?**
   _High betweenness centrality (0.037) - this node is a cross-community bridge._
 - **What connects `deploy.sh script` to the rest of the system?**
   _1 weakly-connected nodes found - possible documentation gaps or missing edges._
