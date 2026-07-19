@@ -67,6 +67,12 @@ h2{font-size:clamp(21px,3.2vw,29px);text-align:center;font-weight:400;margin-bot
 .opt input{margin-right:7px}
 .fineprint{color:var(--muted);font-size:13.5px;margin-top:12px}
 html.ck-lock,html.ck-lock body{overflow:hidden}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0}
+.consent{display:flex;gap:10px;align-items:flex-start;text-align:left;margin-top:12px;font-size:14.5px;line-height:1.5}
+.consent input{width:19px;height:19px;accent-color:var(--gold);flex-shrink:0;margin-top:2px}
+.submsg{min-height:1em;margin-top:12px;font-size:15px}
+.submsg.err{color:#e08b7a}
+.submsg.ok{color:var(--gold);font-size:17px}
 .pick{padding:22px 0;border-bottom:1px solid #221c16}
 .pick-ours{background:rgba(201,162,75,.06);border:1px solid #4a3c22;border-radius:5px;padding:22px 24px;margin:10px 0}
 .pick-ours h3{color:var(--gold)}
@@ -139,9 +145,56 @@ footer .links{margin-bottom:9px;font-size:14.5px}
 <section class="wrap"><div class="capture">
   <h2>This book is free sometimes. Want to know when?</h2>
   <p class="why">William Shakespeare goes free on Amazon from time to time, along with the rest of the series. Leave your email and we will tell you the moment it does.</p>
-  <p><a class="btn" href="mailto:turbo@turbohistory.com?subject=Free%20book%20alerts">Email Us to Join the List</a></p>
-      <p class="fineprint">We only use your email to tell you about free Turbo History books.
-      Unsubscribe any time. See our <a href="/privacy/">privacy policy</a>.</p>
+  <form class="signup" id="sub" novalidate>
+      <input type="hidden" name="fields[book_interest]" value="william-shakespeare">
+      <input type="email" name="email" placeholder="you@example.com" required
+             autocomplete="email" aria-label="Email address">
+      <button class="btn" type="submit">Tell Me When They Are Free</button>
+      <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off"
+             aria-hidden="true">
+      <label class="opt"><input type="checkbox" name="groups[]" value="all" checked> Tell me about every free Turbo History book, not just this one</label>
+      <label class="opt consent" hidden><input type="checkbox" name="consent">
+        <span>Yes, email me when Turbo History books are free. I can unsubscribe any time.</span></label>
+      <p class="submsg" role="status" aria-live="polite"></p>
+      <p class="fineprint">We only ever use it to tell you when a book is free. No ads, no
+      sharing, no selling. Unsubscribe in one click. See our
+      <a href="/privacy/">privacy policy</a>.</p>
+    </form>
+    <script>
+    (function(){
+      var f=document.getElementById('sub'); if(!f) return;
+      var msg=f.querySelector('.submsg'), box=f.querySelector('.consent');
+      var TEXT="Yes, email me when Turbo History books are free. I can unsubscribe any time.";
+      var ASK=['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT',
+      'LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH','BR','CA'];
+      var country='';
+      fetch('/cdn-cgi/trace').then(function(r){return r.text();}).then(function(t){
+        var m=/loc=([A-Z]{2})/.exec(t); country=m?m[1]:'';
+        if(!country||ASK.indexOf(country)>-1) box.hidden=false;
+      }).catch(function(){ box.hidden=false; });
+      f.addEventListener('submit',function(e){
+        e.preventDefault();
+        var btn=f.querySelector('button'), body={
+          email:f.email.value, website:f.website.value, country:country,
+          consent:box.hidden?true:f.consent.checked, consent_text:TEXT,
+          source:location.pathname };
+        if(!box.hidden && !f.consent.checked){
+          msg.className='submsg err'; msg.textContent='Please tick the box so we know you want them.'; return; }
+        btn.disabled=true; msg.className='submsg'; msg.textContent='One moment...';
+        fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify(body)})
+          .then(function(r){return r.json();})
+          .then(function(d){
+            if(d.ok){ f.innerHTML='<p class="submsg ok">'+(d.message||'You are in.')+
+              ' We will email you the next time a book goes free.</p>'; }
+            else { msg.className='submsg err'; msg.textContent=d.error||'Something went wrong.';
+              btn.disabled=false; }
+          })
+          .catch(function(){ msg.className='submsg err';
+            msg.textContent='Could not reach us. Please try again.'; btn.disabled=false; });
+      });
+    })();
+    </script>
 </div></section>
 <section class="wrap" id="more"><h2>More from the series</h2>
   <p class="sub">One figure or one event per book. About an hour each.</p>
