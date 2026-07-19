@@ -66,13 +66,22 @@ h2{font-size:clamp(21px,3.2vw,29px);text-align:center;font-weight:400;margin-bot
 .opt{display:block;margin-top:12px;color:var(--muted);font-size:14.5px;cursor:pointer}
 .opt input{margin-right:7px}
 .fineprint{color:var(--muted);font-size:13.5px;margin-top:12px}
-#ck{position:fixed;left:0;right:0;bottom:0;z-index:99;background:#161210;border-top:1px solid var(--gold);box-shadow:0 -8px 30px rgba(0,0,0,.6)}
-.ck-in{max-width:1060px;margin:0 auto;padding:18px 22px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
-.ck-txt{flex:1;min-width:260px;font-size:15px;color:var(--parchment)}
-.ck-btns{display:flex;gap:10px;align-items:center}
-#ck .btn{margin:0;padding:12px 26px}
-#ck .btn.ghost{padding:12px 20px;font-weight:400;opacity:.85}
-@media(max-width:620px){.ck-in{padding:15px 18px}.ck-btns{width:100%}#ck .btn{flex:1;text-align:center}}
+html.ck-lock,html.ck-lock body{overflow:hidden}
+#ck{position:fixed;inset:0;z-index:999;background:rgba(6,5,4,.86);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:20px}
+.ck-box{background:var(--panel);border:1px solid #3a3025;border-radius:6px;max-width:520px;width:100%;padding:32px;box-shadow:0 20px 60px rgba(0,0,0,.7);text-align:center;max-height:90vh;overflow-y:auto}
+.ck-box h2{font-size:24px;margin-bottom:12px}
+.ck-box p{font-size:15.5px;color:var(--parchment);margin-bottom:20px}
+.ck-acts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.ck-acts .btn{margin:0;min-width:150px}
+.ck-acts .btn.ghost{opacity:.8;font-weight:400}
+.ck-link{display:block;margin:16px auto 0;background:none;border:none;color:var(--muted);font-family:Georgia,serif;font-size:14px;text-decoration:underline;cursor:pointer}
+.ck-link:hover{color:var(--gold)}
+#ck-prefs{margin-top:18px;border-top:1px solid #2a231b;padding-top:16px;text-align:left}
+.ck-row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid #221c16;font-size:14.5px}
+.ck-row input{width:20px;height:20px;accent-color:var(--gold);flex-shrink:0;margin-top:2px}
+#ck-save{margin-top:14px;width:100%}
+.ck-fine{font-size:13px;color:var(--muted);margin:18px 0 0}
+@media(max-width:620px){.ck-box{padding:24px 20px}.ck-acts .btn{flex:1;min-width:0}}
 .bookhead{display:flex;gap:34px;align-items:flex-start;flex-wrap:wrap;padding:26px 0 8px}
 .bookhead img{width:230px;border-radius:4px;box-shadow:0 10px 32px rgba(0,0,0,.6)}
 .bookhead .meta{flex:1;min-width:270px}
@@ -138,41 +147,59 @@ footer .links{margin-bottom:9px;font-size:14.5px}
   <div>&copy; Turbo History. All books available on Amazon and Kindle Unlimited.</div>
 </div></footer>
 
-<div id="ck" hidden role="dialog" aria-label="Cookie choices">
-  <div class="ck-in">
-    <div class="ck-txt"><b>Cookies.</b> We use Google Analytics to see which books people
-      actually read about. Nothing else, no ads, we never sell anything.
-      <a href="/privacy/">Privacy policy</a>.</div>
-    <div class="ck-btns">
+<div id="ck" hidden role="dialog" aria-modal="true" aria-labelledby="ck-h">
+  <div class="ck-box">
+    <h2 id="ck-h">Before you read on</h2>
+    <p>We use Google Analytics to see which books people are actually interested in.
+       That is the only thing we track, we run no ads, and we never sell anything to anyone.</p>
+    <div class="ck-acts">
       <button id="ck-yes" class="btn">Accept All</button>
       <button id="ck-no" class="btn ghost">Reject</button>
     </div>
+    <button id="ck-man" class="ck-link">Manage preferences</button>
+    <div id="ck-prefs" hidden>
+      <label class="ck-row"><span><b>Strictly necessary</b><br>
+        <span class="muted">Needed for the site to work. Always on.</span></span>
+        <input type="checkbox" checked disabled></label>
+      <label class="ck-row"><span><b>Analytics</b><br>
+        <span class="muted">Google Analytics: which pages get read. No ads, no profiling.</span></span>
+        <input type="checkbox" id="ck-an"></label>
+      <button id="ck-save" class="btn ghost">Save preferences</button>
+    </div>
+    <p class="ck-fine">Read our <a href="/privacy/">privacy policy</a>. You can change your
+       mind any time using "Your privacy choices" at the bottom of any page.</p>
   </div>
 </div>
 <script>
 (function(){
   var ASK=['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV',
   'LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH','BR','CA'];
-  var K='th_consent', el=document.getElementById('ck');
-  function grant(v){
-    gtag('consent','update',{ad_storage:v,ad_user_data:v,ad_personalization:v,analytics_storage:v});
-  }
-  function close(){ el.hidden=true; }
-  function decide(save){ return function(){ try{localStorage.setItem(K,save);}catch(e){}
-    grant(save==='yes'?'granted':'denied'); close(); }; }
-  document.getElementById('ck-yes').onclick=decide('yes');
-  document.getElementById('ck-no').onclick=decide('no');
-  window.thPrivacy=function(){ el.hidden=false; };
+  var K='th_consent', el=document.getElementById('ck'), root=document.documentElement;
+  function grant(v){ gtag('consent','update',{ad_storage:v,ad_user_data:v,
+    ad_personalization:v,analytics_storage:v}); }
+  function open_(){ el.hidden=false; root.classList.add('ck-lock'); }
+  function shut(){ el.hidden=true; root.classList.remove('ck-lock'); }
+  function save(v){ try{localStorage.setItem(K,v);}catch(e){} grant(v==='yes'?'granted':'denied'); shut(); }
+  document.getElementById('ck-yes').onclick=function(){ save('yes'); };
+  document.getElementById('ck-no').onclick=function(){ save('no'); };
+  document.getElementById('ck-man').onclick=function(){
+    var p=document.getElementById('ck-prefs'); p.hidden=!p.hidden; };
+  document.getElementById('ck-save').onclick=function(){
+    save(document.getElementById('ck-an').checked?'yes':'no'); };
+  window.thPrivacy=function(){
+    var saved=null; try{saved=localStorage.getItem(K);}catch(e){}
+    document.getElementById('ck-an').checked = (saved==='yes');
+    open_(); };
 
   var saved=null; try{saved=localStorage.getItem(K);}catch(e){}
   if(saved){ grant(saved==='yes'?'granted':'denied'); return; }
 
-  // Cloudflare gives us the country for free on our own domain. No third party, no cost.
+  // Country comes free from Cloudflare on our own domain. No third party.
   fetch('/cdn-cgi/trace').then(function(r){return r.text();}).then(function(t){
-    var m=/loc=([A-Z]{2})/.exec(t), c=m?m[1]:'';
-    if(ASK.indexOf(c)>-1){ el.hidden=false; }      // ask first, tags stay off
-    else { grant('granted'); }                      // opt-out regions: on by default
-  }).catch(function(){ el.hidden=false; });         // unknown? ask. Safest.
+    var m=/loc=([A-Z]{2})/.exec(t);
+    if(m && ASK.indexOf(m[1])>-1){ open_(); }   // decision required before reading
+    else { grant('granted'); }                   // opt-out regions: on by default
+  }).catch(function(){ open_(); });
 })();
 </script>
 
