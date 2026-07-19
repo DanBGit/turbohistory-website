@@ -45,9 +45,16 @@ GA_ID = "G-D8J4PNSQ9J"
 HEAD_EXTRA = f"""<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script>
+// Google Consent Mode v2. Default DENIED everywhere; granted immediately for visitors
+// outside consent-required jurisdictions, or on explicit Accept. No tag fires before this.
+window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}
+gtag('consent','default',{{ad_storage:'denied',ad_user_data:'denied',
+ ad_personalization:'denied',analytics_storage:'denied',functionality_storage:'granted',
+ security_storage:'granted',wait_for_update:1500}});
+</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}
-gtag('js',new Date());gtag('config','{GA_ID}');</script>"""
+<script>gtag('js',new Date());gtag('config','{GA_ID}',{{anonymize_ip:true}});</script>"""
 
 # Subjects whose "<name> books" search intent means their own writing, not
 # biographies of them. We still give them pages; we just don't chase that phrase.
@@ -100,6 +107,13 @@ h2{font-size:clamp(21px,3.2vw,29px);text-align:center;font-weight:400;margin-bot
 .opt{display:block;margin-top:12px;color:var(--muted);font-size:14.5px;cursor:pointer}
 .opt input{margin-right:7px}
 .fineprint{color:var(--muted);font-size:13.5px;margin-top:12px}
+#ck{position:fixed;left:0;right:0;bottom:0;z-index:99;background:#161210;border-top:1px solid var(--gold);box-shadow:0 -8px 30px rgba(0,0,0,.6)}
+.ck-in{max-width:1060px;margin:0 auto;padding:18px 22px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.ck-txt{flex:1;min-width:260px;font-size:15px;color:var(--parchment)}
+.ck-btns{display:flex;gap:10px;align-items:center}
+#ck .btn{margin:0;padding:12px 26px}
+#ck .btn.ghost{padding:12px 20px;font-weight:400;opacity:.85}
+@media(max-width:620px){.ck-in{padding:15px 18px}.ck-btns{width:100%}#ck .btn{flex:1;text-align:center}}
 .bookhead{display:flex;gap:34px;align-items:flex-start;flex-wrap:wrap;padding:26px 0 8px}
 .bookhead img{width:230px;border-radius:4px;box-shadow:0 10px 32px rgba(0,0,0,.6)}
 .bookhead .meta{flex:1;min-width:270px}
@@ -111,6 +125,49 @@ h2{font-size:clamp(21px,3.2vw,29px);text-align:center;font-weight:400;margin-bot
 footer{border-top:1px solid #262019;margin-top:26px;padding:28px 0 42px;text-align:center;color:var(--muted);font-size:13.5px}
 footer .links{margin-bottom:9px;font-size:14.5px}
 @media(max-width:640px){.bookhead{gap:22px}.bookhead img{width:160px;margin:0 auto}}
+"""
+
+# Jurisdictions where we ask BEFORE firing analytics. EEA + UK + Switzerland (opt-in
+# regimes) and Brazil/Canada. US is opt-out under CCPA/CPRA, so US visitors get analytics
+# immediately plus a "Your privacy choices" footer link that opens the same panel.
+CONSENT_JS = """
+<div id="ck" hidden role="dialog" aria-label="Cookie choices">
+  <div class="ck-in">
+    <div class="ck-txt"><b>Cookies.</b> We use Google Analytics to see which books people
+      actually read about. Nothing else, no ads, we never sell anything.
+      <a href="/privacy/">Privacy policy</a>.</div>
+    <div class="ck-btns">
+      <button id="ck-yes" class="btn">Accept All</button>
+      <button id="ck-no" class="btn ghost">Reject</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var ASK=['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV',
+  'LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH','BR','CA'];
+  var K='th_consent', el=document.getElementById('ck');
+  function grant(v){
+    gtag('consent','update',{ad_storage:v,ad_user_data:v,ad_personalization:v,analytics_storage:v});
+  }
+  function close(){ el.hidden=true; }
+  function decide(save){ return function(){ try{localStorage.setItem(K,save);}catch(e){}
+    grant(save==='yes'?'granted':'denied'); close(); }; }
+  document.getElementById('ck-yes').onclick=decide('yes');
+  document.getElementById('ck-no').onclick=decide('no');
+  window.thPrivacy=function(){ el.hidden=false; };
+
+  var saved=null; try{saved=localStorage.getItem(K);}catch(e){}
+  if(saved){ grant(saved==='yes'?'granted':'denied'); return; }
+
+  // Cloudflare gives us the country for free on our own domain. No third party, no cost.
+  fetch('/cdn-cgi/trace').then(function(r){return r.text();}).then(function(t){
+    var m=/loc=([A-Z]{2})/.exec(t), c=m?m[1]:'';
+    if(ASK.indexOf(c)>-1){ el.hidden=false; }      // ask first, tags stay off
+    else { grant('granted'); }                      // opt-out regions: on by default
+  }).catch(function(){ el.hidden=false; });         // unknown? ask. Safest.
+})();
+</script>
 """
 
 # Set once the Turbo History MailerLite account exists (separate from the business
@@ -141,11 +198,14 @@ def capture(book: dict | None = None) -> str:
       <input type="email" name="fields[email]" placeholder="you@example.com" required aria-label="Email address">
       <button class="btn" type="submit">Notify Me</button>
       {extra}
-      <p class="fineprint">Free books only. No spam, unsubscribe any time.</p>
+      <p class="fineprint">By subscribing you agree we can email you about free Turbo History
+      books. That is all we use it for. Unsubscribe any time, one click. See our
+      <a href="/privacy/">privacy policy</a>.</p>
     </form>"""
     else:
         form = f"""<p><a class="btn" href="mailto:{EMAIL}?subject=Free%20book%20alerts">Email Us to Join the List</a></p>
-      <p class="fineprint">Free books only. No spam, unsubscribe any time.</p>"""
+      <p class="fineprint">We only use your email to tell you about free Turbo History books.
+      Unsubscribe any time. See our <a href="/privacy/">privacy policy</a>.</p>"""
 
     return f"""<section class="wrap"><div class="capture">
   <h2>{head}</h2>
@@ -190,9 +250,10 @@ def shell(page_title: str, description: str, canonical: str, body: str,
 </nav></div>
 {body}
 <footer><div class="wrap">
-  <div class="links"><a href="/">Home</a> &middot; <a href="{AMAZON_AUTHOR}">Amazon Author Page</a> &middot; <a href="mailto:{EMAIL}">{EMAIL}</a></div>
+  <div class="links"><a href="/">Home</a> &middot; <a href="{AMAZON_AUTHOR}">Amazon Author Page</a> &middot; <a href="/privacy/">Privacy</a> &middot; <a href="#" onclick="thPrivacy();return false;">Your privacy choices</a> &middot; <a href="mailto:{EMAIL}">{EMAIL}</a></div>
   <div>&copy; Turbo History. All books available on Amazon and Kindle Unlimited.</div>
 </div></footer>
+{CONSENT_JS}
 </body>
 </html>
 """
@@ -364,12 +425,82 @@ def index_page(books: list[dict]) -> str:
         desc, BASE + "/", body, schema)
 
 
+
+PRIVACY_BODY = f"""
+<div class="wrap"><div class="crumbs"><a href="/">Turbo History</a> &rsaquo; Privacy</div></div>
+<header class="wrap"><h1 style="font-size:clamp(26px,4vw,40px)">Privacy Policy</h1></header>
+<section class="wrap"><div class="blurb">
+<p class="muted">Last updated: {{updated}}. Short version: we run Google Analytics to see which
+books people are interested in, and if you give us your email we use it to tell you when
+books are free. We do not sell anything to anyone, ever.</p>
+
+<h2 style="text-align:left;margin-top:30px">Who we are</h2>
+<p>This site is run by Turbo History, an independent publisher of short history books.
+Contact us about anything on this page at <a href="mailto:privacy@turbohistory.com">privacy@turbohistory.com</a>.</p>
+
+<h2 style="text-align:left;margin-top:30px">What we collect</h2>
+<p><b>Analytics.</b> We use Google Analytics 4 to count visits and see which book pages are
+popular. It sets cookies and collects things like your approximate location, device and
+which pages you viewed. Your IP address is anonymised. In the UK, EEA, Switzerland, Brazil
+and Canada none of this runs unless you press Accept. Everywhere else it runs by default
+and you can turn it off any time using "Your privacy choices" in the footer.</p>
+<p><b>Your email, if you give it.</b> If you sign up for free book alerts we store your email
+address and, if you told us, which book you were interested in. We use it for one thing:
+telling you when Turbo History books are free or newly released. We do not sell, rent or
+share it. Every email has a one-click unsubscribe.</p>
+<p><b>Server logs.</b> Our host keeps standard web server logs (IP, page, time) for security
+and troubleshooting.</p>
+
+<h2 style="text-align:left;margin-top:30px">Legal basis</h2>
+<p>Analytics: your consent, where consent is required. Email alerts: your consent, given when
+you subscribe. Server logs: our legitimate interest in keeping the site up and secure.</p>
+
+<h2 style="text-align:left;margin-top:30px">Who else sees it</h2>
+<p>Google (analytics), and our email delivery provider when you subscribe. Our web host stores
+the site and logs. Nobody else. We never sell data.</p>
+
+<h2 style="text-align:left;margin-top:30px">How long we keep it</h2>
+<p>Analytics data: 14 months. Your email: until you unsubscribe or ask us to delete it.</p>
+
+<h2 style="text-align:left;margin-top:30px">Your rights</h2>
+<p>You can ask us for a copy of what we hold about you, ask us to correct it, or ask us to
+delete it. Email <a href="mailto:privacy@turbohistory.com">privacy@turbohistory.com</a> and we
+will sort it. If you are in the UK or EEA and think we have handled your data badly, you can
+also complain to your national data protection authority.</p>
+
+<h2 style="text-align:left;margin-top:30px">Cookies</h2>
+<p>Only Google Analytics cookies, and only with consent where consent is required. No
+advertising cookies, no tracking pixels, no third-party ad networks. You can change your
+choice any time via "Your privacy choices" in the footer.</p>
+
+<h2 style="text-align:left;margin-top:30px">Buying the books</h2>
+<p>Our books are sold by Amazon, not by this website. We never see your payment details.
+Amazon's own privacy policy covers anything you do on their site.</p>
+
+<h2 style="text-align:left;margin-top:30px">Changes</h2>
+<p>If we change this policy we will update the date at the top.</p>
+</div></section>
+"""
+
+
+def privacy_page() -> str:
+    from datetime import date as _d
+    body = PRIVACY_BODY.replace("{updated}", _d.today().strftime("%d %B %Y"))
+    return shell("Privacy Policy | Turbo History",
+                 "How Turbo History handles analytics, email sign-ups and cookies. Short "
+                 "version: analytics to see which books people like, email only for free "
+                 "book alerts, nothing sold to anyone.",
+                 BASE + "/privacy/", body)
+
+
 def main() -> None:
     books = load_books()
     SITE.mkdir(parents=True, exist_ok=True)
     make_thumbs(books)
 
     (SITE / "index.html").write_text(index_page(books))
+    (SITE / "privacy").mkdir(exist_ok=True)
+    (SITE / "privacy" / "index.html").write_text(privacy_page())
 
     books_dir = SITE / "books"
     if books_dir.exists():
@@ -380,7 +511,9 @@ def main() -> None:
         (d / "index.html").write_text(book_page(b, books))
 
     today = date.today().isoformat()
-    urls = [(BASE + "/", "1.0")] + [(f"{BASE}/books/{b['slug']}/", "0.8") for b in books]
+    urls = ([(BASE + "/", "1.0")]
+            + [(f"{BASE}/books/{b['slug']}/", "0.8") for b in books]
+            + [(BASE + "/privacy/", "0.2")])
     (SITE / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

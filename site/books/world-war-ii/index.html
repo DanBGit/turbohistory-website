@@ -15,9 +15,16 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script>
+// Google Consent Mode v2. Default DENIED everywhere; granted immediately for visitors
+// outside consent-required jurisdictions, or on explicit Accept. No tag fires before this.
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',
+ ad_personalization:'denied',analytics_storage:'denied',functionality_storage:'granted',
+ security_storage:'granted',wait_for_update:1500});
+</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D8J4PNSQ9J"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','G-D8J4PNSQ9J');</script>
+<script>gtag('js',new Date());gtag('config','G-D8J4PNSQ9J',{anonymize_ip:true});</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Book", "name": "World War II: The War That Redrew Everything", "author": {"@type": "Organization", "name": "Turbo History"}, "about": "World War II", "bookFormat": "https://schema.org/EBook", "inLanguage": "en", "url": "https://turbohistory.com/books/world-war-ii/", "image": "https://turbohistory.com/covers/world-war-ii.jpg", "isPartOf": {"@type": "BookSeries", "name": "Turbo History"}, "description": "Want a book about World War II without the 600 pages? World War II: The War That Redrew Everything tells the story in about an hour. The rise, the fall, why it still matters. Free on Kindle Unlimited.", "offers": {"@type": "Offer", "price": "2.99", "priceCurrency": "USD", "url": "https://www.amazon.com/dp/B0H4D9TDVH", "availability": "https://schema.org/InStock"}}</script>
 <style>
 :root{--ink:#0d0b08;--panel:#161210;--parchment:#e9ddc6;--gold:#c9a24b;--gold-soft:#a8873d;--muted:#9d907a}
@@ -59,6 +66,13 @@ h2{font-size:clamp(21px,3.2vw,29px);text-align:center;font-weight:400;margin-bot
 .opt{display:block;margin-top:12px;color:var(--muted);font-size:14.5px;cursor:pointer}
 .opt input{margin-right:7px}
 .fineprint{color:var(--muted);font-size:13.5px;margin-top:12px}
+#ck{position:fixed;left:0;right:0;bottom:0;z-index:99;background:#161210;border-top:1px solid var(--gold);box-shadow:0 -8px 30px rgba(0,0,0,.6)}
+.ck-in{max-width:1060px;margin:0 auto;padding:18px 22px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.ck-txt{flex:1;min-width:260px;font-size:15px;color:var(--parchment)}
+.ck-btns{display:flex;gap:10px;align-items:center}
+#ck .btn{margin:0;padding:12px 26px}
+#ck .btn.ghost{padding:12px 20px;font-weight:400;opacity:.85}
+@media(max-width:620px){.ck-in{padding:15px 18px}.ck-btns{width:100%}#ck .btn{flex:1;text-align:center}}
 .bookhead{display:flex;gap:34px;align-items:flex-start;flex-wrap:wrap;padding:26px 0 8px}
 .bookhead img{width:230px;border-radius:4px;box-shadow:0 10px 32px rgba(0,0,0,.6)}
 .bookhead .meta{flex:1;min-width:270px}
@@ -101,7 +115,8 @@ footer .links{margin-bottom:9px;font-size:14.5px}
   <h2>This book is free sometimes. Want to know when?</h2>
   <p class="why">World War II goes free on Amazon from time to time, along with the rest of the series. Leave your email and we will tell you the moment it does.</p>
   <p><a class="btn" href="mailto:turbo@turbohistory.com?subject=Free%20book%20alerts">Email Us to Join the List</a></p>
-      <p class="fineprint">Free books only. No spam, unsubscribe any time.</p>
+      <p class="fineprint">We only use your email to tell you about free Turbo History books.
+      Unsubscribe any time. See our <a href="/privacy/">privacy policy</a>.</p>
 </div></section>
 <section class="wrap" id="more"><h2>More from the series</h2>
   <p class="sub">One figure or one event per book. About an hour each.</p>
@@ -109,8 +124,47 @@ footer .links{margin-bottom:9px;font-size:14.5px}
 </section>
 
 <footer><div class="wrap">
-  <div class="links"><a href="/">Home</a> &middot; <a href="https://www.amazon.com/author/turbohistory">Amazon Author Page</a> &middot; <a href="mailto:turbo@turbohistory.com">turbo@turbohistory.com</a></div>
+  <div class="links"><a href="/">Home</a> &middot; <a href="https://www.amazon.com/author/turbohistory">Amazon Author Page</a> &middot; <a href="/privacy/">Privacy</a> &middot; <a href="#" onclick="thPrivacy();return false;">Your privacy choices</a> &middot; <a href="mailto:turbo@turbohistory.com">turbo@turbohistory.com</a></div>
   <div>&copy; Turbo History. All books available on Amazon and Kindle Unlimited.</div>
 </div></footer>
+
+<div id="ck" hidden role="dialog" aria-label="Cookie choices">
+  <div class="ck-in">
+    <div class="ck-txt"><b>Cookies.</b> We use Google Analytics to see which books people
+      actually read about. Nothing else, no ads, we never sell anything.
+      <a href="/privacy/">Privacy policy</a>.</div>
+    <div class="ck-btns">
+      <button id="ck-yes" class="btn">Accept All</button>
+      <button id="ck-no" class="btn ghost">Reject</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var ASK=['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV',
+  'LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH','BR','CA'];
+  var K='th_consent', el=document.getElementById('ck');
+  function grant(v){
+    gtag('consent','update',{ad_storage:v,ad_user_data:v,ad_personalization:v,analytics_storage:v});
+  }
+  function close(){ el.hidden=true; }
+  function decide(save){ return function(){ try{localStorage.setItem(K,save);}catch(e){}
+    grant(save==='yes'?'granted':'denied'); close(); }; }
+  document.getElementById('ck-yes').onclick=decide('yes');
+  document.getElementById('ck-no').onclick=decide('no');
+  window.thPrivacy=function(){ el.hidden=false; };
+
+  var saved=null; try{saved=localStorage.getItem(K);}catch(e){}
+  if(saved){ grant(saved==='yes'?'granted':'denied'); return; }
+
+  // Cloudflare gives us the country for free on our own domain. No third party, no cost.
+  fetch('/cdn-cgi/trace').then(function(r){return r.text();}).then(function(t){
+    var m=/loc=([A-Z]{2})/.exec(t), c=m?m[1]:'';
+    if(ASK.indexOf(c)>-1){ el.hidden=false; }      // ask first, tags stay off
+    else { grant('granted'); }                      // opt-out regions: on by default
+  }).catch(function(){ el.hidden=false; });         // unknown? ask. Safest.
+})();
+</script>
+
 </body>
 </html>
