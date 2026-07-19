@@ -1,0 +1,72 @@
+{
+  "README.md": {
+    "mtime": 1784465388.5284214,
+    "ast_hash": "470418863c805461309cd6341c9499b1",
+    "semantic_hash": ""
+  },
+  "site/index.html": {
+    "mtime": 1784474646.1834424,
+    "ast_hash": "a9c195e8939034f0e596767aa9bc978d",
+    "semantic_hash": ""
+  },
+  "site/covers/anne-boleyn.jpg": {
+    "mtime": 1784465214.0479004,
+    "ast_hash": "c2c253217b9e2a422f70283037b36fc3",
+    "semantic_hash": ""
+  },
+  "site/covers/blackbeard.jpg": {
+    "mtime": 1784465214.4010005,
+    "ast_hash": "ef7251dc14d83a456f8acec66ad6c94a",
+    "semantic_hash": ""
+  },
+  "site/covers/cleopatra.jpg": {
+    "mtime": 1784465213.9774163,
+    "ast_hash": "229ce965a5553ebccf1f44d69e6eeda1",
+    "semantic_hash": ""
+  },
+  "site/covers/edgar-allan-poe.jpg": {
+    "mtime": 1784465259.695874,
+    "ast_hash": "710e8b3a4bbd13dcb0557d3b9e75f73b",
+    "semantic_hash": ""
+  },
+  "site/covers/elizabeth-i.jpg": {
+    "mtime": 1784465214.12275,
+    "ast_hash": "b48146cec57293359d83cd5282109b4b",
+    "semantic_hash": ""
+  },
+  "site/covers/genghis-khan.jpg": {
+    "mtime": 1784465214.193743,
+    "ast_hash": "71bae10a8835055574669a785ab05703",
+    "semantic_hash": ""
+  },
+  "site/covers/hannibal.jpg": {
+    "mtime": 1784465214.334103,
+    "ast_hash": "08aed8e8d6b888f24472539001c0dbf9",
+    "semantic_hash": ""
+  },
+  "site/covers/joan-of-arc.jpg": {
+    "mtime": 1784465214.5272717,
+    "ast_hash": "2994fabf294d330c4e09a9bc62befdb6",
+    "semantic_hash": ""
+  },
+  "site/covers/leonardo-da-vinci.jpg": {
+    "mtime": 1784465214.634745,
+    "ast_hash": "189e30ab84a20722974350cd6ebd21b1",
+    "semantic_hash": ""
+  },
+  "site/covers/marie-curie.jpg": {
+    "mtime": 1784465214.7625668,
+    "ast_hash": "26c18ff03ded3b3e99237af3a816da6a",
+    "semantic_hash": ""
+  },
+  "site/covers/napoleon.jpg": {
+    "mtime": 1784465214.2665246,
+    "ast_hash": "a653cdeb78753c61d21035e425a7a9c9",
+    "semantic_hash": ""
+  },
+  "site/covers/world-war-ii.jpg": {
+    "mtime": 1784465214.836827,
+    "ast_hash": "025912a5e96fa60c518fb3c274353a43",
+    "semantic_hash": ""
+  }
+}
