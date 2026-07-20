@@ -1,16 +1,16 @@
 # Graph Report - turbohistory-website  (2026-07-20)
 
 ## Corpus Check
-- 5 files · ~201,871 words
+- 6 files · ~202,773 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 30 nodes · 54 edges · 7 communities (4 shown, 3 thin omitted)
+- 33 nodes · 60 edges · 7 communities (4 shown, 3 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b8e6b256`
+- Built from commit: `ffdbf72a`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -25,15 +25,15 @@
 
 ## God Nodes (most connected - your core abstractions)
 1. `main()` - 8 edges
-2. `capture()` - 6 edges
-3. `esc()` - 6 edges
-4. `shell()` - 6 edges
-5. `book_page()` - 6 edges
-6. `curated_page()` - 6 edges
-7. `index_page()` - 5 edges
-8. `db()` - 5 edges
-9. `subscribe()` - 4 edges
-10. `blurb_html()` - 3 edges
+2. `esc()` - 7 edges
+3. `book_page()` - 7 edges
+4. `curated_page()` - 7 edges
+5. `capture()` - 6 edges
+6. `shell()` - 6 edges
+7. `collection_line()` - 5 edges
+8. `index_page()` - 5 edges
+9. `db()` - 5 edges
+10. `subscribe()` - 4 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `privacy_page()` --calls--> `shell()`  [EXTRACTED]
@@ -53,12 +53,12 @@
 ## Communities (7 total, 3 thin omitted)
 
 ### Community 0 - "build.py"
-Cohesion: 0.52
+Cohesion: 0.43
 Nodes (6): build_related(), load_books(), main(), make_thumbs(), _overlap(), privacy_page()
 
 ### Community 2 - "esc"
-Cohesion: 0.46
-Nodes (8): book_page(), capture(), curated_page(), esc(), index_page(), Email capture. Honest hook: the books really are free most weekends., Curated-list page. Beats the incumbents by being more useful: honest picks,, shell()
+Cohesion: 0.38
+Nodes (10): book_page(), capture(), collection_line(), curated_page(), esc(), index_page(), Email capture. Honest hook: the books really are free most weekends., Small 'Part of' line under the book title. (+2 more)
 
 ### Community 4 - "app.py"
 Cohesion: 0.50
@@ -77,10 +77,10 @@ Nodes (4): count(), db(), export(), CSV export, ready to paste into MailerLite w
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `curated_page()` connect `esc` to `build.py`?**
-  _High betweenness centrality (0.040) - this node is a cross-community bridge._
+  _High betweenness centrality (0.043) - this node is a cross-community bridge._
 - **Why does `capture()` connect `esc` to `build.py`?**
-  _High betweenness centrality (0.039) - this node is a cross-community bridge._
-- **Why does `blurb_html()` connect `book_page` to `build.py`, `esc`?**
+  _High betweenness centrality (0.038) - this node is a cross-community bridge._
+- **Why does `collection_line()` connect `esc` to `build.py`?**
   _High betweenness centrality (0.037) - this node is a cross-community bridge._
 - **What connects `deploy.sh script` to the rest of the system?**
   _1 weakly-connected nodes found - possible documentation gaps or missing edges._
