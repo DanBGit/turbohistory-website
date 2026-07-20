@@ -407,6 +407,45 @@ def blurb_html(blurb: str) -> str:
     return "".join(out)
 
 
+# Which books to show as "More from the series" on each page.
+#
+# This used to be books[:6], i.e. the SAME six books on all 41 pages. That gave those six
+# 40 inbound links each and left 34 pages with none, so most of the site was reachable only
+# from the homepage. Two problems for search: link equity piled up on six arbitrary pages,
+# and there was no topical signal at all connecting, say, the Tudor books to each other.
+#
+# Now: score by genuine overlap (shared themes, era, region, kind), then break ties by
+# whichever candidate has been used least so far. The tie-break is what spreads the links,
+# and it makes the picker order-dependent by design.
+RELATED: dict[str, list[dict]] = {}
+
+
+def _overlap(a: dict, b: dict) -> int:
+    score = 3 * len(set(a.get("themes") or []) & set(b.get("themes") or []))
+    if a.get("era") and a.get("era") == b.get("era"):
+        score += 2
+    if a.get("region") and a.get("region") == b.get("region"):
+        score += 2
+    if a.get("kind") and a.get("kind") == b.get("kind"):
+        score += 1
+    return score
+
+
+def build_related(books: list[dict], n: int = 6) -> dict[str, list[dict]]:
+    from collections import Counter
+    used: Counter = Counter()
+    out: dict[str, list[dict]] = {}
+    for b in books:
+        cands = [x for x in books if x["slug"] != b["slug"]]
+        # highest overlap first, then least-used, then stable by slug
+        cands.sort(key=lambda x: (-_overlap(b, x), used[x["slug"]], x["slug"]))
+        picked = cands[:n]
+        for x in picked:
+            used[x["slug"]] += 1
+        out[b["slug"]] = picked
+    return out
+
+
 def book_page(b: dict, books: list[dict]) -> str:
     name, slug = b["name"], b["slug"]
     is_writer = slug in SEO_WRITERS
@@ -417,7 +456,7 @@ def book_page(b: dict, books: list[dict]) -> str:
     desc = (f"Want a book about {name} without the 600 pages? {b['title']} tells the "
             f"story in under an hour. The rise, the fall, why it still matters. "
             f"Free on Kindle Unlimited.")
-    others = [x for x in books if x["slug"] != slug][:6]
+    others = RELATED.get(slug) or [x for x in books if x["slug"] != slug][:6]
     rel = "".join(
         f'<a href="/books/{o["slug"]}/"><img src="/covers/{o["slug"]}.jpg" alt="{esc(o["name"])} book cover" loading="lazy"><span>{esc(o["name"])}</span></a>'
         for o in others)
@@ -511,7 +550,7 @@ def curated_page(c: dict, b: dict, books: list[dict]) -> str:
 
     faqs = "".join(f"<h3>{esc(f['q'])}</h3><p>{esc(f['a'])}</p>" for f in c["faq"])
 
-    others = [x for x in books if x["slug"] != slug][:6]
+    others = RELATED.get(slug) or [x for x in books if x["slug"] != slug][:6]
     rel = "".join(
         f'<a href="/books/{o["slug"]}/"><img src="/covers/{o["slug"]}.jpg" alt="{esc(o["name"])} book cover" loading="lazy"><span>{esc(o["name"])}</span></a>'
         for o in others)
@@ -697,6 +736,7 @@ def privacy_page() -> str:
 
 def main() -> None:
     books = load_books()
+    RELATED.update(build_related(books))
     SITE.mkdir(parents=True, exist_ok=True)
     make_thumbs(books)
 
