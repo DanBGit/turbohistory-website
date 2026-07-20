@@ -2,6 +2,7 @@
   "0": "build.py",
   "1": "book_page",
   "2": "esc",
+  "3": "curated_page",
   "4": "app.py",
   "5": "db",
   "6": "rate_limited",

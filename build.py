@@ -114,6 +114,8 @@ html.ck-lock,html.ck-lock body{overflow:hidden}
 .submsg{min-height:1em;margin-top:12px;font-size:15px}
 .submsg.err{color:#e08b7a}
 .submsg.ok{color:var(--gold);font-size:17px}
+.collin{font-size:14px;margin-top:6px}
+.collin a{border-bottom:1px dotted var(--gold-soft)}
 .pick{padding:22px 0;border-bottom:1px solid #221c16}
 .pick-ours{background:rgba(201,162,75,.06);border:1px solid #4a3c22;border-radius:5px;padding:22px 24px;margin:10px 0}
 .pick-ours h3{color:var(--gold)}
@@ -478,6 +480,7 @@ def book_page(b: dict, books: list[dict]) -> str:
     <div class="kicker">Turbo History #{b.get('series_n','')}</div>
     <h1>{esc(name)}</h1>
     <p class="tag">{esc(b['hook'])}</p>
+    {collection_line(b)}
     <p class="muted" style="margin-top:14px">Under an hour to read. &pound;2.99 / $2.99, free on Kindle Unlimited.</p>
     <p><a class="btn" href="{b['amazon']}">Read it on Amazon</a>
        <a class="btn ghost" href="{AMAZON_AUTHOR}">All {len(books)} Books</a></p>
@@ -502,6 +505,33 @@ def book_page(b: dict, books: list[dict]) -> str:
 
 
 CURATION_DIR = PROJECT / "seo" / "curation"
+COLLECTIONS_FILE = PROJECT / "seo" / "collections.json"
+
+# Collection membership is stored per book in catalogue.json (written by
+# seo/apply_collections.py). A collection only earns a hub page once four books are
+# published, so until then we show the label without linking anywhere.
+def collection_titles() -> dict[str, dict]:
+    if not COLLECTIONS_FILE.exists():
+        return {}
+    return {c["slug"]: c for c in json.loads(COLLECTIONS_FILE.read_text())["collections"]}
+
+
+COLLECTION_META = collection_titles()
+HUB_MIN = 4
+
+
+def collection_line(b: dict) -> str:
+    """Small 'Part of' line under the book title."""
+    cols = [COLLECTION_META[c] for c in (b.get("collections") or []) if c in COLLECTION_META]
+    if not cols:
+        return ""
+    bits = []
+    for c in cols:
+        t = esc(c["title"])
+        bits.append(f'<a href="/collections/{c["slug"]}/">{t}</a>'
+                    if len(c["members"]) >= HUB_MIN else f"<span>{t}</span>")
+    return ('<p class="collin muted">Part of ' + " &middot; ".join(bits) + "</p>")
+
 
 
 def curated_page(c: dict, b: dict, books: list[dict]) -> str:
@@ -569,7 +599,7 @@ def curated_page(c: dict, b: dict, books: list[dict]) -> str:
 
     body = f"""
 <div class="wrap"><div class="crumbs"><a href="/">Turbo History</a> &rsaquo; {esc(b['name'])}</div></div>
-<header class="wrap"><h1>{esc(c['h1'])}</h1></header>
+<header class="wrap"><h1>{esc(c['h1'])}</h1>{collection_line(b)}</header>
 <section class="wrap"><div class="blurb">
   <p class="lede">{esc(c['intro_answer'])}</p>
   <p class="muted note">{esc(c['note'])}</p>
