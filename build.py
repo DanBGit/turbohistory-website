@@ -42,6 +42,18 @@ EMAIL = "turbo@turbohistory.com"
 AMAZON_AUTHOR = "https://www.amazon.com/author/turbohistory"
 GA_ID = "G-D8J4PNSQ9J"
 
+LOGO_NAV_SVG = """<svg viewBox="0 0 300 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <g transform="translate(150,16) scale(0.26)">
+    <rect x="-32" y="-52" width="64" height="9" rx="4" fill="#c9a24b"/>
+    <rect x="-32" y="43" width="64" height="9" rx="4" fill="#c9a24b"/>
+    <path d="M-28,-45 L28,-45 L2,0 L28,45 L-28,45 L-2,0 Z" fill="none" stroke="#c9a24b" stroke-width="4.2" stroke-linejoin="round"/>
+    <path d="M-22,-40 L22,-40 L2,-3 L-2,-3 Z" fill="#e9ddc6" opacity="0.9"/>
+    <path d="M-17,45 L17,45 L0,26 Z" fill="#e9ddc6"/>
+  </g>
+  <text x="150" y="62" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="30" letter-spacing="0.5" fill="#c9a24b">TURBO</text>
+  <text x="150" y="90" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="30" letter-spacing="4.5" fill="#e9ddc6">HISTORY</text>
+</svg>"""
+
 HEAD_EXTRA = f"""<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -74,7 +86,8 @@ body{background:var(--ink);color:var(--parchment);font-family:Georgia,'Times New
 a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
 .nav{padding:22px 0;display:flex;justify-content:space-between;align-items:center;font-family:Futura,'Trebuchet MS',Arial,sans-serif}
-.nav .logo{font-size:13px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.nav .logo{display:inline-flex;align-items:center}
+.nav .logo svg{height:50px;width:auto;display:block}
 .nav a{font-size:14px;margin-left:20px}
 header{padding:44px 0 8px;text-align:center}
 h1{font-size:clamp(28px,5vw,50px);margin:14px 0 6px;font-weight:400;line-height:1.15}
@@ -342,7 +355,7 @@ def shell(page_title: str, description: str, canonical: str, body: str,
 </head>
 <body>
 <div class="wrap"><nav class="nav">
-  <a class="logo" href="/">Turbo History</a>
+  <a class="logo" href="/" aria-label="Turbo History">{LOGO_NAV_SVG}</a>
   <span><a href="/#books">The Books</a><a href="{AMAZON_AUTHOR}">Amazon</a></span>
 </nav></div>
 {body}

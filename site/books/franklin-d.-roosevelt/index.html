@@ -33,7 +33,8 @@ body{background:var(--ink);color:var(--parchment);font-family:Georgia,'Times New
 a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
 .nav{padding:22px 0;display:flex;justify-content:space-between;align-items:center;font-family:Futura,'Trebuchet MS',Arial,sans-serif}
-.nav .logo{font-size:13px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.nav .logo{display:inline-flex;align-items:center}
+.nav .logo svg{height:50px;width:auto;display:block}
 .nav a{font-size:14px;margin-left:20px}
 header{padding:44px 0 8px;text-align:center}
 h1{font-size:clamp(28px,5vw,50px);margin:14px 0 6px;font-weight:400;line-height:1.15}
@@ -121,12 +122,22 @@ footer .links{margin-bottom:9px;font-size:14.5px}
 </head>
 <body>
 <div class="wrap"><nav class="nav">
-  <a class="logo" href="/">Turbo History</a>
+  <a class="logo" href="/" aria-label="Turbo History"><svg viewBox="0 0 300 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <g transform="translate(150,16) scale(0.26)">
+    <rect x="-32" y="-52" width="64" height="9" rx="4" fill="#c9a24b"/>
+    <rect x="-32" y="43" width="64" height="9" rx="4" fill="#c9a24b"/>
+    <path d="M-28,-45 L28,-45 L2,0 L28,45 L-28,45 L-2,0 Z" fill="none" stroke="#c9a24b" stroke-width="4.2" stroke-linejoin="round"/>
+    <path d="M-22,-40 L22,-40 L2,-3 L-2,-3 Z" fill="#e9ddc6" opacity="0.9"/>
+    <path d="M-17,45 L17,45 L0,26 Z" fill="#e9ddc6"/>
+  </g>
+  <text x="150" y="62" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="30" letter-spacing="0.5" fill="#c9a24b">TURBO</text>
+  <text x="150" y="90" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="30" letter-spacing="4.5" fill="#e9ddc6">HISTORY</text>
+</svg></a>
   <span><a href="/#books">The Books</a><a href="https://www.amazon.com/author/turbohistory">Amazon</a></span>
 </nav></div>
 
 <div class="wrap"><div class="crumbs"><a href="/">Turbo History</a> &rsaquo; Franklin D. Roosevelt</div></div>
-<header class="wrap"><h1>The Best FDR Books: Where To Actually Start</h1><p class="collin muted">Part of <a href="/collections/american-presidents/">American Presidents</a></p></header>
+<header class="wrap"><h1>The Best FDR Books: Where To Actually Start</h1><p class="collin muted">Part of <a href="/collections/american-presidents/">American Presidents</a> &middot; <span>The Second World War</span></p></header>
 <section class="wrap"><div class="blurb">
   <p class="lede">If you want one biography, read Jean Edward Smith&#x27;s FDR, which is the standard modern single volume. If you want the Depression and the war as one story about the whole country, read David M. Kennedy&#x27;s Freedom from Fear. If you want the war years inside the White House, read Doris Kearns Goodwin&#x27;s No Ordinary Time. If you want something short, Roy Jenkins wrote a 186-page life. And if you have under an hour rather than a month, ours covers the whole life in one sitting.</p>
   <p class="muted note">Every book listed here is real, in print or easily found through a library, and worth the time. Reading times are honest estimates from page count, not measured. One thing worth knowing before you buy: there is no single-volume life of Roosevelt that covers everything well, and the authors mostly do not pretend otherwise. His twelve years in office contain two enormous subjects, the New Deal and the Second World War, and books that are strong on one are usually thin on the other. We have said in each entry which years and which subject the book actually covers, so you can pick by period rather than by reputation. Smith and Jenkins are the ones that attempt the whole life. Katznelson is the New Deal. Goodwin and Hamilton are the war. Ward is the years before the presidency, which almost everything else compresses into a chapter.</p>

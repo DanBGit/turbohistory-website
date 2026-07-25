@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 210" width="620" height="210" role="img" aria-label="Turbo History">
+  <g transform="translate(310,52) scale(0.62)">
+    <rect x="-32" y="-52" width="64" height="9" rx="4" fill="#c9a24b"/>
+    <rect x="-32" y="43" width="64" height="9" rx="4" fill="#c9a24b"/>
+    <path d="M-28,-45 L28,-45 L2,0 L28,45 L-28,45 L-2,0 Z" fill="none" stroke="#c9a24b" stroke-width="3.4" stroke-linejoin="round"/>
+    <path d="M-22,-40 L22,-40 L2,-3 L-2,-3 Z" fill="#e9ddc6" opacity="0.9"/>
+    <path d="M-17,45 L17,45 L0,26 Z" fill="#e9ddc6"/>
+    <rect x="-0.8" y="0" width="1.6" height="20" fill="#e9ddc6" opacity="0.75"/>
+  </g>
+  <text x="310" y="140" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="60" letter-spacing="1" fill="#c9a24b">TURBO</text>
+  <text x="310" y="190" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="60" letter-spacing="9" fill="#e9ddc6">HISTORY</text>
+</svg>
