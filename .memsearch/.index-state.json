@@ -1,0 +1,16 @@
+{
+  "collection": "ms_turbohistory_website_1ae1a88b",
+  "failed_files": [],
+  "last_completed_at": "2026-07-26T10:56:43.559489Z",
+  "last_error": "RuntimeError: Failed to open the local Milvus Lite database. If this database was created with an older Milvus Lite release, it may not be compatible with Milvus Lite 3.x. Move the existing .db file aside, then rebuild the index from your source markdown files with 'memsearch index'. Alternatively, use Milvus Server via Docker or Zilliz Cloud.",
+  "last_failed_at": "2026-07-26T10:56:43.559489Z",
+  "last_started_at": "2026-07-26T10:56:41.732939Z",
+  "milvus_uri": "~/.memsearch/milvus.db",
+  "operation": "index",
+  "paths": [
+    "/Users/danielboss/Documents/kindle-create- history/turbohistory-website/.memsearch/memory"
+  ],
+  "schema_version": 1,
+  "status": "error",
+  "updated_at": "2026-07-26T10:56:43.559489Z"
+}

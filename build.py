@@ -36,7 +36,7 @@ ROOT = Path(__file__).resolve().parent
 SITE = ROOT / "site"
 PROJECT = ROOT.parent
 CATALOGUE = PROJECT / "catalogue.json"
-READY = Path.home() / "Downloads" / "turbo-history-ready"
+READY = PROJECT / "turbo-history-ready"
 BASE = "https://turbohistory.com"
 EMAIL = "turbo@turbohistory.com"
 AMAZON_AUTHOR = "https://www.amazon.com/author/turbohistory"
@@ -329,12 +329,16 @@ def esc(s: str) -> str:
 
 
 def shell(page_title: str, description: str, canonical: str, body: str,
-          schema: dict | None = None, og_image: str | None = None) -> str:
+          schema: dict | None = None, og_image: str | None = None,
+          noindex: bool = False) -> str:
     schema_tag = ""
     if schema:
         schema_tag = ('<script type="application/ld+json">'
                       + json.dumps(schema, ensure_ascii=False) + "</script>")
     og = og_image or f"{BASE}/covers/blackbeard.jpg"
+    # follow, not nofollow: we still want link equity flowing to the book pages
+    # from anything held back from the index.
+    robots_tag = ('<meta name="robots" content="noindex,follow">\n' if noindex else "")
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -342,7 +346,7 @@ def shell(page_title: str, description: str, canonical: str, body: str,
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(page_title)}</title>
 <meta name="description" content="{esc(description)}">
-<link rel="canonical" href="{canonical}">
+{robots_tag}<link rel="canonical" href="{canonical}">
 <meta property="og:title" content="{esc(page_title)}">
 <meta property="og:description" content="{esc(description)}">
 <meta property="og:url" content="{canonical}">
@@ -532,6 +536,12 @@ def collection_titles() -> dict[str, dict]:
 COLLECTION_META = collection_titles()
 HUB_MIN = 4
 
+# The hub pages under /collections/ have not been built yet, so the four-book rule
+# alone was emitting links to URLs that 404 (8 collections, 31 book pages). Keep the
+# label, drop the link, until the hubs actually ship. Flip to True in the same commit
+# that adds them, and build them with shell(noindex=True) until they are ready to rank.
+HUBS_LIVE = False
+
 
 def collection_line(b: dict) -> str:
     """Small 'Part of' line under the book title."""
@@ -542,7 +552,7 @@ def collection_line(b: dict) -> str:
     for c in cols:
         t = esc(c["title"])
         bits.append(f'<a href="/collections/{c["slug"]}/">{t}</a>'
-                    if len(c["members"]) >= HUB_MIN else f"<span>{t}</span>")
+                    if HUBS_LIVE and len(c["members"]) >= HUB_MIN else f"<span>{t}</span>")
     return ('<p class="collin muted">Part of ' + " &middot; ".join(bits) + "</p>")
 
 
