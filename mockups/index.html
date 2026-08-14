@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Turbo History — design directions</title>
+<style>
+:root{--ink:#0d0b08;--paper:#e9ddc6;--gold:#c9a24b;--muted:#9d907a}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--ink);color:var(--paper);font:16px/1.6 Georgia,serif;padding:64px 24px}
+.wrap{max-width:900px;margin:0 auto}
+h1{font-size:44px;font-weight:400;line-height:1.1;margin-bottom:10px}
+.lede{color:var(--muted);max-width:62ch;margin-bottom:56px}
+.dir{border-top:1px solid #2a231b;padding:32px 0}
+h2{font-size:26px;font-weight:400;color:var(--gold);margin-bottom:6px}
+.thesis{color:var(--muted);max-width:66ch;margin-bottom:18px;font-size:15px}
+.links a{display:inline-block;margin-right:10px;padding:11px 20px;border:1px solid var(--gold);
+ color:var(--gold);text-decoration:none;transition:background .2s cubic-bezier(.16,1,.3,1),color .2s cubic-bezier(.16,1,.3,1)}
+.links a:hover{background:var(--gold);color:var(--ink)}
+.links a.notes{border-color:#3a3025;color:var(--muted)}
+.links a.notes:hover{background:#3a3025;color:var(--paper)}
+</style></head><body><div class="wrap">
+<h1>Design directions</h1>
+<p class="lede">Each is a fully committed direction across the same three templates &mdash; homepage, book page (Napoleon), and a collection hub (Conquerors, a template the live site does not yet have). Pick one. They are not meant to be blended. Hero imagery is an art-directed CSS stand-in; the generation prompts are in each direction's notes.</p>
+
+<div class="dir"><h2>01b &middot; Cinematic Archive &mdash; new fonts + sand timer</h2>
+<p class="thesis">Same direction, two changes to compare against 01: Georgia and Futura replaced with self-hosted Source Serif 4 and Archivo (both free, both licensed for commercial use), and the logo's hourglass built as a running sand timer &mdash; large in the hero, small beside the reading-time lines. Start here.</p>
+<p class="links"><a href="01b-simple-font/index.html">Home</a><a href="01b-simple-font/book.html">Book</a><a href="01b-simple-font/collection.html">Collection</a><a class="notes" href="01b-simple-font/NOTES.md">Notes</a><a class="notes" href="01b-simple-font/AUDIT.md">Audit</a></p></div>
+
+<div class="dir"><h2>01 &middot; Cinematic Archive</h2>
+<p class="thesis">Prestige documentary title sequence. Near-black ground, one monumental lit scene per page, display serif at film scale, gold rationed to the accent word and the CTA, permanent grain. Motion is atmospheric: minute-long drifts, one authored load moment.</p>
+<p class="links"><a href="01-cinematic-archive/index.html">Home</a><a href="01-cinematic-archive/book.html">Book</a><a href="01-cinematic-archive/collection.html">Collection</a><a class="notes" href="01-cinematic-archive/NOTES.md">Notes</a></p></div>
+
+<div class="dir"><h2>02 &middot; Pulp Poster</h2>
+<p class="thesis">Paperback rack meets modern poster. Huge condensed all-caps, covers pinned at angles with hard offset shadows and no blur, running text on parchment panels, gold starbursts and rubber stamps. Motion is physical: things drop and land rather than fade.</p>
+<p class="links"><a href="02-pulp-poster/index.html">Home</a><a href="02-pulp-poster/book.html">Book</a><a href="02-pulp-poster/collection.html">Collection</a><a class="notes" href="02-pulp-poster/NOTES.md">Notes</a></p></div>
+
+<div class="dir"><h2>03 &middot; Museum Minimal</h2>
+<p class="thesis">A national museum that decided wall text should be readable. Parchment ground, giant serif with a ghosted first line, covers matted and framed as exhibits, tiny uppercase labels, gold used only where a museum uses brass.</p>
+<p class="links"><a href="03-museum-minimal/index.html">Home</a><a href="03-museum-minimal/book.html">Book</a><a href="03-museum-minimal/collection.html">Collection</a><a class="notes" href="03-museum-minimal/NOTES.md">Notes</a></p></div>
+</div></body></html>

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Best Napoleon Books: Where To Start | Turbo History</title>
+<meta name="description" content="The best Napoleon books, sorted by what you actually want: the definitive life, the sceptical one, the campaigns, or the hour-long version.">
+<style>
+/* ============ self-hosted brand faces (SIL OFL, local files only) ============ */
+@font-face{
+  font-family:'Source Serif 4';
+  src:url('fonts/SourceSerif4-latin.woff2') format('woff2-variations'),
+      url('fonts/SourceSerif4-latin.woff2') format('woff2');
+  font-weight:200 900;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Source Serif 4';
+  src:url('fonts/SourceSerif4-Italic-latin.woff2') format('woff2-variations'),
+      url('fonts/SourceSerif4-Italic-latin.woff2') format('woff2');
+  font-weight:200 900;font-style:italic;font-display:swap;
+}
+@font-face{
+  font-family:'Archivo';
+  src:url('fonts/Archivo-latin.woff2') format('woff2-variations'),
+      url('fonts/Archivo-latin.woff2') format('woff2');
+  font-weight:100 900;font-style:normal;font-display:swap;
+}
+:root{
+  --ink:#0d0b08;
+  --ink-2:#131009;
+  --ink-3:#060504;
+  --line:rgba(233,221,198,.14);
+  --hairline:rgba(233,221,198,.09);
+  --parchment:#e9ddc6;
+  --muted:#a39781;
+  --gold:#c9a24b;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --t-label:.75rem;
+  --t-body:1.125rem;
+  --t-lede:1.4375rem;
+  --t-h2:clamp(1.9rem,3.6vw,2.6rem);
+  --t-display:clamp(2.5rem,5.6vw,4.6rem);
+  --sans:'Archivo',Futura,'Avenir Next','Trebuchet MS',Arial,sans-serif;
+  --serif:'Source Serif 4',Georgia,'Times New Roman',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--ink);color:var(--parchment);font-family:var(--serif);font-size:var(--t-body);line-height:1.68}
+img{max-width:100%;display:block}
+a{color:var(--gold);text-decoration:none;transition:opacity .2s var(--ease)}
+a:hover{opacity:.82}
+::selection{background:var(--gold);color:var(--ink)}
+
+.grain{position:fixed;inset:0;z-index:1000;pointer-events:none;opacity:.055;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:200;
+  display:flex;align-items:center;gap:26px;padding:9px 26px 9px 16px;border-radius:999px;
+  background:rgba(9,7,5,.74);border:1px solid var(--line);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);white-space:nowrap}
+.nav .logo{display:inline-flex;align-items:center}
+.nav .logo svg{height:38px;width:auto;display:block}
+.nav a{transition:color .2s var(--ease),opacity .2s var(--ease)}
+.nav .links{display:flex;gap:22px}
+.nav .links a{font-family:var(--sans);font-size:var(--t-label);letter-spacing:.18em;text-transform:uppercase;color:var(--parchment)}
+.nav .links a:hover{color:var(--gold);opacity:1}
+
+.label{font-family:var(--sans);font-size:var(--t-label);letter-spacing:.04em;color:var(--muted)}
+.label b{color:var(--gold);font-weight:700}
+
+/* ============ book hero ============ */
+.bhero{position:relative;overflow:hidden;background:var(--ink)}
+.scene{position:absolute;inset:0;overflow:hidden}
+.scene .base{position:absolute;inset:0;background:
+  radial-gradient(90% 80% at 26% 90%, rgba(201,162,75,.20) 0%, rgba(201,162,75,0) 58%),
+  radial-gradient(46% 40% at 78% 30%, rgba(158,110,44,.10) 0%, rgba(158,110,44,0) 64%),
+  radial-gradient(150% 130% at 50% -10%, #1a130b 0%, #110d08 46%, #0d0b08 74%)}
+.scene .drift{position:absolute;inset:-22%;will-change:transform;background:
+  radial-gradient(40% 32% at 34% 66%, rgba(233,221,198,.045) 0%, rgba(233,221,198,0) 70%),
+  radial-gradient(30% 24% at 72% 44%, rgba(201,162,75,.07) 0%, rgba(201,162,75,0) 70%)}
+@media (prefers-reduced-motion:no-preference){
+  .scene .drift{animation:drift 88s var(--ease) infinite alternate}
+}
+@keyframes drift{from{transform:translate3d(-2%,1.5%,0) scale(1.02)}to{transform:translate3d(2.5%,-1.5%,0) scale(1.07)}}
+.scene .vignette{position:absolute;inset:0;background:radial-gradient(120% 100% at 50% 40%, rgba(6,5,4,0) 48%, rgba(6,5,4,.6) 100%)}
+
+.bhero .inner{position:relative;z-index:2;max-width:1160px;margin:0 auto;padding:132px 26px 84px}
+.crumbs{font-family:var(--sans);font-size:var(--t-label);letter-spacing:.04em;color:var(--muted);margin-bottom:56px}
+.crumbs a{color:var(--muted)}
+.crumbs a:hover{color:var(--gold);opacity:1}
+.crumbs .sep{margin:0 10px;color:var(--gold)}
+.bookhead{display:flex;gap:64px;align-items:center;flex-wrap:wrap}
+.bookhead .covwrap{position:relative;flex:0 0 auto;margin:0 auto}
+/* THE authored hero moment: the projector glow behind the cover on dark ground */
+.bookhead .halo{position:absolute;inset:-46%;background:radial-gradient(50% 50% at 50% 50%, rgba(201,162,75,.34) 0%, rgba(201,162,75,.08) 48%, rgba(201,162,75,0) 70%);pointer-events:none}
+@media (prefers-reduced-motion:no-preference){
+  .bookhead .halo{animation:breathe 9s ease-in-out infinite alternate}
+  @keyframes breathe{from{opacity:.75;transform:scale(.97)}to{opacity:1;transform:scale(1.05)}}
+}
+.bookhead .covwrap img{position:relative;width:min(272px,64vw);aspect-ratio:5/8;object-fit:cover;border-radius:2px;box-shadow:0 30px 60px -18px rgba(0,0,0,.85)}
+.bookhead .meta{flex:1;min-width:300px}
+.bookhead h1{font-size:var(--t-display);font-weight:400;line-height:1.06;letter-spacing:-.015em;max-width:21ch}
+.bookhead h1 .line{display:block;overflow:hidden}
+.bookhead h1 .line>span{display:block}
+.bookhead h1 em{font-style:italic;color:var(--gold)}
+.bookhead .partof{margin-top:26px}
+.bookhead .partof a{color:var(--gold)}
+.bookhead .acts{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+.motion .bookhead h1 .line>span{transform:translateY(112%);opacity:0;animation:rise 1s var(--ease) forwards}
+.motion .bookhead h1 .line:nth-child(2)>span{animation-delay:.14s}
+.motion .bookhead .partof,.motion .bookhead .acts{opacity:0;transform:translateY(24px);animation:rise2 1s var(--ease) .5s forwards}
+.motion .bookhead .acts{animation-delay:.65s}
+.motion .bookhead .covwrap{opacity:0;transform:translateY(34px);animation:rise2 1.2s var(--ease) .2s forwards}
+.motion .scene{opacity:0;animation:sceneIn 2s ease-out forwards}
+@keyframes rise{to{transform:translateY(0);opacity:1}}
+@keyframes rise2{to{transform:translateY(0);opacity:1}}
+@keyframes sceneIn{to{opacity:1}}
+
+.btn{display:inline-block;background:var(--gold);color:var(--ink);padding:15px 30px;border-radius:2px;border:none;cursor:pointer;
+  font-family:var(--sans);font-weight:700;font-size:var(--t-label);letter-spacing:.16em;text-transform:uppercase;
+  transition:transform .2s var(--ease),filter .2s var(--ease),opacity .2s var(--ease)}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.09);opacity:1}
+.btn.ghost{background:transparent;color:var(--gold);box-shadow:inset 0 0 0 1px var(--gold)}
+.btn.ghost:hover{filter:brightness(1.15)}
+
+/* ============ sections ============ */
+.wrap{max-width:1160px;margin:0 auto;padding:0 26px}
+section{padding:88px 0}
+.sect-head{text-align:center;max-width:78ch;margin:0 auto 52px}
+.sect-head h2{font-size:var(--t-h2);font-weight:400;line-height:1.15;letter-spacing:-.01em}
+.sect-head .sub{color:var(--muted);margin-top:14px}
+.sect-head .rule{width:52px;height:1px;background:var(--gold);margin:26px auto 0}
+.prose{max-width:84ch;margin:0 auto}
+.prose p{margin:16px 0}
+.prose .lede{font-size:var(--t-lede);line-height:1.55}
+.prose .note{color:var(--muted);font-style:italic}
+
+/* table */
+.tablewrap{overflow-x:auto;max-width:980px;margin:0 auto}
+table.picks{width:100%;min-width:640px;border-collapse:collapse}
+table.picks th{text-align:left;padding:14px 16px;border-bottom:1px solid var(--gold);color:var(--gold);font-family:var(--sans);font-size:var(--t-label);letter-spacing:.18em;text-transform:uppercase;font-weight:700}
+table.picks td{padding:18px 16px;border-bottom:1px solid var(--hairline);vertical-align:top}
+table.picks .m{color:var(--muted)}
+table.picks tr.ours td{background:rgba(201,162,75,.07)}
+.ourstag{font-family:var(--sans);font-size:var(--t-label);letter-spacing:.16em;text-transform:uppercase;color:var(--ink);background:var(--gold);padding:3px 9px;border-radius:2px;margin-left:10px;vertical-align:middle;font-weight:700}
+
+/* picks detail */
+.pick{max-width:84ch;margin:0 auto;padding:44px 0;border-bottom:1px solid var(--hairline)}
+.pick:last-child{border-bottom:none}
+.pick .num{font-family:var(--serif);font-size:var(--t-h2);line-height:1;color:var(--gold);font-weight:400;margin-bottom:4px}
+.pick h3{font-size:var(--t-lede);font-weight:400;margin:10px 0 6px;line-height:1.25}
+.pick .byline{color:var(--muted);font-family:var(--sans);font-size:var(--t-label);letter-spacing:.04em;margin-bottom:14px}
+.pick p{margin:14px 0}
+.pick-ours{background:rgba(201,162,75,.06);padding:44px 36px;max-width:calc(84ch + 72px)}
+.pick-ours h3{color:var(--gold)}
+@media (max-width:640px){.pick-ours{padding:36px 22px}}
+
+/* capture */
+.capture{position:relative;overflow:hidden;background:var(--ink-2);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
+.capture .glow{position:absolute;inset:0;background:radial-gradient(60% 80% at 50% 110%, rgba(201,162,75,.15) 0%, rgba(201,162,75,0) 60%)}
+.capture .inner{position:relative;max-width:640px;margin:0 auto;padding:88px 26px;text-align:center}
+.capture h2{font-size:var(--t-h2);font-weight:400;line-height:1.15}
+.capture .why{color:var(--muted);margin:18px auto 34px;max-width:59ch}
+.signup{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.signup input[type=email]{flex:1 1 260px;max-width:360px;padding:14px 16px;border-radius:2px;
+  border:1px solid var(--line);background:rgba(6,5,4,.6);color:var(--parchment);font-family:var(--serif);font-size:var(--t-body)}
+.signup input[type=email]::placeholder{color:var(--muted)}
+.signup input[type=email]:focus{border-color:var(--gold)}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0}
+.opt{display:flex;gap:10px;justify-content:center;align-items:flex-start;margin-top:20px;color:var(--muted);cursor:pointer;text-align:left;max-width:57ch;margin-left:auto;margin-right:auto}
+.opt input{accent-color:var(--gold);width:18px;height:18px;flex-shrink:0;margin-top:4px}
+.fineprint{color:var(--muted);font-size:var(--t-label);letter-spacing:.02em;margin-top:22px;font-family:var(--sans)}
+.fineprint a{color:var(--muted);text-decoration:underline}
+.fineprint a:hover{color:var(--gold)}
+
+/* related grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:30px 24px}
+.grid a{display:block;color:var(--parchment)}
+.grid a:hover{opacity:1}
+.grid .cov{overflow:hidden;border-radius:2px;box-shadow:0 18px 34px -14px rgba(0,0,0,.7)}
+.grid img{width:100%;aspect-ratio:5/8;object-fit:cover;transition:transform .25s var(--ease),filter .25s var(--ease);filter:brightness(.94)}
+.grid a:hover img{transform:scale(1.035);filter:brightness(1.04)}
+.grid span.t{display:block;margin-top:14px;text-align:center;font-family:var(--sans);font-size:var(--t-label);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);transition:color .2s var(--ease)}
+.grid a:hover span.t{color:var(--gold)}
+
+footer{border-top:1px solid var(--hairline);padding:44px 0 56px;text-align:center;color:var(--muted);font-family:var(--sans);font-size:var(--t-label);letter-spacing:.04em}
+footer .links{margin-bottom:12px}
+footer .links a{color:var(--muted)}
+footer .links a:hover{color:var(--gold)}
+footer .links span{margin:0 10px;opacity:.5}
+
+.pre{opacity:0;transform:translateY(44px);transition:opacity .95s var(--ease),transform .95s var(--ease)}
+.pre.in{opacity:1;transform:translateY(0)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+@media (max-width:640px){
+  .nav{gap:14px;padding:8px 18px 8px 12px;top:12px}
+  .nav .logo svg{height:30px}
+  .nav .links{gap:14px}
+  section{padding:60px 0}
+  .bhero .inner{padding:116px 22px 64px}
+  .crumbs{margin-bottom:36px}
+  .bookhead{gap:40px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:22px 16px}
+}
+
+
+/* ============ the sand timer: the brand's own object, one per viewport ============ */
+.hg{display:block;overflow:hidden}
+.hg .glass{fill:none;stroke:var(--parchment);stroke-opacity:.38;stroke-width:1.2;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.hg .cap{fill:var(--gold)}
+.hg .sand{fill:var(--gold)}
+.hg .mote{fill:var(--gold)}
+.hg-rot{transform-origin:120px 120px}
+/* resting/base state = full top chamber, empty bottom, no stream */
+.hg-topmask{transform:translateY(0)}
+.hg-botmask{transform:translateY(88px)}
+.hg-stream{opacity:0}
+@keyframes hgDrain{0%{transform:translateY(0)}86%,100%{transform:translateY(86px)}}
+@keyframes hgFill{0%{transform:translateY(88px)}86%,100%{transform:translateY(0)}}
+@keyframes hgPour{0%{opacity:0}5%{opacity:1}80%{opacity:1}86%,100%{opacity:0}}
+@keyframes hgFall{from{transform:translateY(0)}to{transform:translateY(9px)}}
+/* the flip at the loop seam: 180deg-symmetric glass + swapped sand = invisible restart */
+@keyframes hgFlip{0%{transform:rotate(0deg)}88%{transform:rotate(0deg);animation-timing-function:var(--ease)}100%{transform:rotate(180deg)}}
+@media (prefers-reduced-motion:no-preference){
+  .hg-run .hg-topmask{animation:hgDrain var(--hg-dur,20s) linear var(--hg-rep,infinite) both}
+  .hg-run .hg-botmask{animation:hgFill var(--hg-dur,20s) linear var(--hg-rep,infinite) both}
+  .hg-run .hg-stream{animation:hgPour var(--hg-dur,20s) linear var(--hg-rep,infinite) both}
+  .hg-run .hg-fall{animation:hgFall .5s linear infinite}
+  .hg-loop .hg-rot{animation:hgFlip var(--hg-dur,20s) linear infinite both}
+}
+@media (prefers-reduced-motion:reduce){
+  /* static, sensible resting state: about half drained, sand column standing still */
+  .hg .hg-topmask{transform:translateY(48px)}
+  .hg .hg-botmask{transform:translateY(40px)}
+  .hg .hg-stream{opacity:1}
+}
+
+.hg-inline{display:inline-block;height:2.64em;width:auto;vertical-align:-1em;margin:0 -.36em 0 -.61em;--hg-dur:18s}
+
+/* --- audit fixes: browser surfaces, focus, hit areas --- */
+::selection{background:var(--gold);color:var(--ink)}
+body{caret-color:var(--gold)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+.signup input[type=email]:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+h1,h2,h3{text-wrap:balance}
+.deck,.lede{text-wrap:pretty}
+.nav .links a{padding:12px 2px}
+footer .links a{display:inline-block;padding:6px 2px}
+@media (max-width:640px){
+  .nav{left:12px;right:12px;transform:none;width:auto;
+    justify-content:space-between;gap:10px;padding:6px 14px 6px 10px}
+  .nav .logo svg{height:26px}
+  .nav .links{gap:12px}
+  .nav .links a{font-size:.6875rem;letter-spacing:.08em;padding:10px 1px}
+}
+@media (prefers-reduced-motion:reduce){:focus-visible{outline:2px solid var(--gold)}}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Main">
+  <a class="logo" href="index.html" aria-label="Turbo History"><svg viewBox="0 0 300 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <g transform="translate(150,16) scale(0.26)">
+    <rect x="-32" y="-52" width="64" height="9" rx="4" fill="#c9a24b"/>
+    <rect x="-32" y="43" width="64" height="9" rx="4" fill="#c9a24b"/>
+    <path d="M-28,-45 L28,-45 L2,0 L28,45 L-28,45 L-2,0 Z" fill="none" stroke="#c9a24b" stroke-width="4.2" stroke-linejoin="round"/>
+    <path d="M-22,-40 L22,-40 L2,-3 L-2,-3 Z" fill="#e9ddc6" opacity="0.9"/>
+    <path d="M-17,45 L17,45 L0,26 Z" fill="#e9ddc6"/>
+  </g>
+  <text x="150" y="62" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="30" letter-spacing="0.5" fill="#c9a24b">TURBO</text>
+  <text x="150" y="90" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="30" letter-spacing="4.5" fill="#e9ddc6">HISTORY</text>
+</svg></a>
+  <span class="links"><a href="index.html#books">The Books</a><a href="collection.html">Collections</a><a href="https://www.amazon.com/author/turbohistory">Amazon</a></span>
+</nav>
+<main id="content">
+
+<header class="bhero">
+  <div class="scene" aria-hidden="true">
+    <div class="base"></div>
+    <div class="drift"></div>
+    <div class="vignette"></div>
+  </div>
+  <div class="inner">
+    <p class="crumbs"><a href="index.html">Turbo History</a><span class="sep">&rsaquo;</span>Napoleon</p>
+    <div class="bookhead">
+      <div class="covwrap">
+        <span class="halo" aria-hidden="true"></span>
+        <img src="covers/napoleon.jpg" alt="Napoleon book cover">
+      </div>
+      <div class="meta">
+        <h1><span class="line"><span>The Best Napoleon Books:</span></span><span class="line"><span>Where To <em>Actually</em> Start</span></span></h1>
+        <p class="partof label">Part of <a href="collection.html">Conquerors</a> &nbsp;&middot;&nbsp; France &nbsp;&middot;&nbsp; <svg class="hg hg-inline" viewBox="0 0 240 240" aria-hidden="true" focusable="false">
+  <defs>
+    <clipPath id="hgT"><rect class="hg-topmask" x="78" y="34" width="84" height="90"/></clipPath>
+    <clipPath id="hgB"><rect class="hg-botmask" x="78" y="118" width="84" height="88"/></clipPath>
+    <clipPath id="hgN"><rect x="114" y="120" width="12" height="80"/></clipPath>
+  </defs>
+  <g class="hg-rot">
+    <path class="sand" clip-path="url(#hgT)" d="M87,38 L153,38 C153,70 127,104 123,119 L117,119 C113,104 87,70 87,38 Z"/>
+    <path class="sand" clip-path="url(#hgB)" d="M153,202 L87,202 C87,170 113,136 117,121 L123,121 C127,136 153,170 153,202 Z"/>
+    <g class="hg-stream" clip-path="url(#hgN)"><g class="hg-fall">
+      <circle class="mote" cx="120" cy="117" r="1.5"/><circle class="mote" cx="119.1" cy="126" r="1.2"/>
+      <circle class="mote" cx="120.8" cy="135" r="1.5"/><circle class="mote" cx="119.4" cy="144" r="1.2"/>
+      <circle class="mote" cx="120.5" cy="153" r="1.5"/><circle class="mote" cx="119.2" cy="162" r="1.3"/>
+      <circle class="mote" cx="120.7" cy="171" r="1.5"/><circle class="mote" cx="119.6" cy="180" r="1.2"/>
+      <circle class="mote" cx="120.3" cy="189" r="1.5"/><circle class="mote" cx="119.3" cy="198" r="1.3"/>
+      <circle class="mote" cx="120.6" cy="207" r="1.5"/>
+    </g></g>
+    <path class="glass" d="M84,35 L156,35 C156,70 128,104 124,119 L124,121 C128,136 156,170 156,205 L84,205 C84,170 112,136 116,121 L116,119 C112,104 84,70 84,35 Z"/>
+    <rect class="cap" x="74" y="26" width="92" height="9" rx="4"/>
+    <rect class="cap" x="74" y="205" width="92" height="9" rx="4"/>
+  </g>
+</svg><b>Ours reads in under an hour</b></p>
+        <div class="acts">
+          <a class="btn" href="https://www.amazon.com/dp/B0H45ZPVR1">Read Ours on Amazon</a>
+          <a class="btn ghost" href="#shortlist">See the Full List</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="wrap">
+  <div class="prose" data-reveal>
+    <p class="lede">If you want one full biography, read Andrew Roberts&#x27;s Napoleon: A Life, which is the most readable of the big modern books and the most admiring. If you want the same life told by someone far less impressed, read Adam Zamoyski&#x27;s Napoleon: The Man Behind the Myth. If you want the wars rather than the man, David Chandler&#x27;s The Campaigns of Napoleon is still the standard reference sixty years on. If you want it short, David Bell&#x27;s Napoleon: A Concise Biography does the whole thing in about 139 pages. And if you have under an hour rather than a fortnight, ours covers the whole life in one sitting.</p>
+    <p class="note">Every book listed here is real, in print or easily found in a library, and worth the time. Reading times are honest estimates from page count at roughly 250 words per minute, so treat them as rough. One warning specific to Napoleon: almost nothing written about him is neutral. Roberts is broadly an admirer and Zamoyski is broadly not, and both of them are working from good evidence. Read one of each if you can, and be careful with anything drawn heavily from the memoirs Napoleon dictated on Saint Helena, because those were written to build a legend and they succeeded.</p>
+  </div>
+</section>
+
+<section class="wrap" id="shortlist">
+  <div class="sect-head" data-reveal>
+    <h2>The short version</h2>
+    <p class="sub">Sorted by what you want, not by what is most famous.</p>
+    <div class="rule"></div>
+  </div>
+  <div class="tablewrap" data-reveal>
+    <table class="picks">
+      <thead><tr><th>Book</th><th>Length</th><th>Best for</th></tr></thead>
+      <tbody>
+        <tr><td><b>Napoleon: A Life</b><br><span class="m">Andrew Roberts, 2014</span></td><td>~926 pages<br><span class="m">About 26 hours</span></td><td>The best readable one-volume life. Built on the full edition of Napoleon&#x27;s 33,000 surviving letters</td></tr>
+        <tr><td><b>Napoleon: The Man Behind the Myth</b><br><span class="m">Adam Zamoyski, 2018</span></td><td>~752 pages<br><span class="m">About 21 hours</span></td><td>The corrective to Roberts. A deflating account by a historian who thinks the legend has eaten the evidence</td></tr>
+        <tr class="ours"><td><b>Napoleon</b><span class="ourstag">ours</span><br><span class="m">Turbo History</span></td><td>~5,400 words<br><span class="m">Under an hour</span></td><td>The whole life in one sitting. How a Corsican outsider took France, what he built, and what it cost</td></tr>
+        <tr><td><b>Napoleon: The Path to Power, 1769-1799</b><br><span class="m">Philip Dwyer, 2007</span></td><td>~651 pages<br><span class="m">About 19 hours</span></td><td>The scholarly deep dive on the rise. Thirty years, examined properly, before he ever took the throne</td></tr>
+        <tr><td><b>The Campaigns of Napoleon</b><br><span class="m">David G. Chandler, 1966</span></td><td>~1,172 pages<br><span class="m">About 33 hours</span></td><td>The military reference, not a biography. Every campaign, with maps, from Toulon to Waterloo</td></tr>
+        <tr><td><b>The Napoleonic Wars: A Global History</b><br><span class="m">Alexander Mikaberidze, 2020</span></td><td>~936 pages<br><span class="m">About 27 hours</span></td><td>The specialist angle worth the effort. The wars as a world conflict rather than a European one</td></tr>
+        <tr><td><b>Moscow 1812: Napoleon&#x27;s Fatal March</b><br><span class="m">Adam Zamoyski, 2004</span></td><td>~672 pages<br><span class="m">About 19 hours</span></td><td>One campaign, told at full length. The invasion that destroyed the army and started the end</td></tr>
+        <tr><td><b>Napoleon: A Concise Biography</b><br><span class="m">David A. Bell, 2015</span></td><td>~139 pages<br><span class="m">About 4 hours</span></td><td>The fastest serious introduction. A leading historian of the period doing the whole life in an afternoon</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="sect-head" data-reveal>
+    <h2>The picks, in detail</h2>
+    <div class="rule"></div>
+  </div>
+
+  <div class="pick" data-reveal>
+    <p class="num">01</p>
+    <h3>Napoleon: A Life</h3>
+    <p class="byline">Andrew Roberts, 2014 &middot; ~926 pages &middot; About 26 hours</p>
+    <p>Roberts visited most of the battlefields and worked through the letters as they were published for the first time, and the result moves faster than a book this size has any right to. It is very good on Napoleon as an administrator rather than only a general. It is also openly sympathetic, it plays down the human cost of the wars, and the UK edition is titled Napoleon the Great, which tells you the argument before you open it.</p>
+  </div>
+
+  <div class="pick" data-reveal>
+    <p class="num">02</p>
+    <h3>Napoleon: The Man Behind the Myth</h3>
+    <p class="byline">Adam Zamoyski, 2018 &middot; ~752 pages &middot; About 21 hours</p>
+    <p>Zamoyski went back to European archives rather than the well-worn French ones and comes out with a man who was often insecure, improvising and lucky. It is the best single book for stripping off the myth-making, including Napoleon&#x27;s own. It is unsparing to the point of being cold, so if you want to understand why anyone followed him it is not the place to start.</p>
+  </div>
+
+  <div class="pick pick-ours" id="ours" data-reveal>
+    <p class="num">03</p>
+    <h3>Napoleon <span class="ourstag">ours</span></h3>
+    <p class="byline">Turbo History &middot; ~5,400 words &middot; Under an hour</p>
+    <p>Every book on this list goes deeper than ours, and most of them are hard work. That is not a criticism, it is the entire point of them. Roberts gives you 926 pages built on 33,000 letters. Chandler&#x27;s Campaigns of Napoleon runs to about 1,172 pages of battle analysis and maps. They are good books, and they want weeks of your life.</p>
+    <p>If you are studying the period, or writing about it, or sitting an exam on it, buy one of those and give it the time it deserves. We are not pretending to compete with them.</p>
+    <p>If you are not, ours might suit you better. It starts on Corsica, an island nobody in Paris much wanted, with a boy sent to school in France at nine who was mocked for his accent and lost his father young. Then the rise, the expansion, the years of domination and the fall, in four clear stages. Then the part most short accounts skip: what actually survived him. The Napoleonic Code, still under the law of France, Belgium, Luxembourg, Monaco, Louisiana and Quebec. The prefects, the Council of State, the Banque de France, the baccalaureate, the metric system. German and Italian nationalism, which he created by accident and did not want. And then the ledger that does not fit on a monument: slavery reinstated in the French Caribbean in 1802, rigged plebiscites, censored newspapers, women&#x27;s rights cut back by his own code, museums full of looted art, and roughly six million dead. It ends where he did, on Saint Helena in 1821, with the systems still running.</p>
+    <p>That is what the whole series is for. Love history, but hate how it was taught at school? Same. School turned it into a memory test: names, dates, family trees, exam. The actual story never stood a chance. Turbo History is one figure or one event per book, told in under an hour. The rise, the fall, and why it still matters. Dates included, memorising optional. Sources at the back if you want to go further, and every book on this page is a good place to go next.</p>
+    <p style="margin-top:24px"><a class="btn" href="https://www.amazon.com/dp/B0H45ZPVR1">Read It on Amazon</a></p>
+  </div>
+
+  <div class="pick" data-reveal>
+    <p class="num">04</p>
+    <h3>Napoleon: The Path to Power, 1769-1799</h3>
+    <p class="byline">Philip Dwyer, 2007 &middot; ~651 pages &middot; About 19 hours</p>
+    <p>Dwyer spends an entire volume on the years most biographies rush through, and he is excellent on how the young Bonaparte manufactured his own reputation through the press and through his bulletins. It is the first of two volumes, with Citizen Emperor covering 1799 to 1815, so committing to it is committing to well over a thousand pages. It is also a scholarly book and reads at that pace.</p>
+  </div>
+
+  <div class="pick" data-reveal>
+    <p class="num">05</p>
+    <h3>The Campaigns of Napoleon</h3>
+    <p class="byline">David G. Chandler, 1966 &middot; ~1,172 pages &middot; About 33 hours</p>
+    <p>This has been the standard English-language work on Napoleonic warfare for sixty years and nothing has really replaced it. If you want to understand what Napoleon actually did differently on a battlefield, this is the book. It is a reference work rather than a read, some of the scholarship has dated, and it says almost nothing about politics, marriage or motive.</p>
+  </div>
+
+  <div class="pick" data-reveal>
+    <p class="num">06</p>
+    <h3>The Napoleonic Wars: A Global History</h3>
+    <p class="byline">Alexander Mikaberidze, 2020 &middot; ~936 pages &middot; About 27 hours</p>
+    <p>Mikaberidze puts the fighting in the Americas, the Ottoman Empire, Iran, India and the oceans back into a story usually told as if it happened between Paris and Moscow, and it changes the scale of the thing entirely. It won the Society for Military History&#x27;s book award and deserved it. It is not a biography of Napoleon and he disappears for long stretches, which is the point but can be disorienting.</p>
+  </div>
+
+  <div class="pick" data-reveal>
+    <p class="num">07</p>
+    <h3>Moscow 1812: Napoleon&#x27;s Fatal March</h3>
+    <p class="byline">Adam Zamoyski, 2004 &middot; ~672 pages &middot; About 19 hours</p>
+    <p>Zamoyski built this out of soldiers&#x27; diaries and letters from both sides, and it is the most vivid account of the Russian campaign in English. If you only read one book about a single Napoleonic campaign, read this one. It is genuinely harrowing in the retreat chapters, and it assumes you already know who everyone is, so it works better as a second or third book than a first.</p>
+  </div>
+
+  <div class="pick" data-reveal>
+    <p class="num">08</p>
+    <h3>Napoleon: A Concise Biography</h3>
+    <p class="byline">David A. Bell, 2015 &middot; ~139 pages &middot; About 4 hours</p>
+    <p>Bell is a specialist in revolutionary France and this is the rare short book that does not simplify into nonsense. He is especially clear on how much of Napoleon&#x27;s career was made possible by the Revolution rather than by his own genius. It is short enough that battles get a sentence each, so you will finish it wanting more detail, which is arguably the job.</p>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="sect-head" data-reveal>
+    <h2>Questions people actually ask</h2>
+    <div class="rule"></div>
+  </div>
+  <div class="prose">
+    <div class="pick" data-reveal style="padding-top:0">
+      <h3>What is the best book about Napoleon?</h3>
+      <p>Andrew Roberts&#x27;s Napoleon: A Life (2014) is the best single-volume biography for most readers. It is built on the complete edition of Napoleon&#x27;s letters, it covers the administration as well as the battles, and it is genuinely readable at 926 pages. Be aware that Roberts admires his subject, so pair it with Adam Zamoyski&#x27;s Napoleon: The Man Behind the Myth if you want the other side of the argument.</p>
+    </div>
+    <div class="pick" data-reveal>
+      <h3>Where should I start with Napoleon?</h3>
+      <p>If you have the time, start with Roberts. If you do not, start with David Bell&#x27;s Napoleon: A Concise Biography, which is about 139 pages and written by a serious historian of revolutionary France. Bell is particularly good on how much the Revolution had already changed before Napoleon arrived, which is the context most popular accounts leave out.</p>
+    </div>
+    <div class="pick" data-reveal>
+      <h3>What is the best book on Napoleon&#x27;s battles?</h3>
+      <p>David Chandler&#x27;s The Campaigns of Napoleon, first published in 1966, is still the standard work. It runs to about 1,172 pages and covers every campaign with maps. It is a reference book rather than a narrative, so use it alongside a biography rather than instead of one. For a single campaign told as a story, Adam Zamoyski&#x27;s account of the 1812 invasion of Russia is the better read.</p>
+    </div>
+    <div class="pick" data-reveal>
+      <h3>Are there books critical of Napoleon?</h3>
+      <p>Yes, and you should read at least one. Adam Zamoyski&#x27;s Napoleon: The Man Behind the Myth is the most prominent recent example, and it argues that the legend was largely manufactured, partly by Napoleon himself on Saint Helena. Alexander Mikaberidze&#x27;s The Napoleonic Wars: A Global History is not a hostile book but it makes the scale of the damage much harder to ignore by looking beyond Europe.</p>
+    </div>
+    <div class="pick" data-reveal>
+      <h3>What is the best short book about Napoleon?</h3>
+      <p>David Bell&#x27;s Napoleon: A Concise Biography, at roughly 139 pages, is the best short book by a specialist. It gives you the shape of the career without pretending the battles can be covered properly in that space. Our own hour-long version is shorter again and focuses on what he built and what it cost rather than on campaign detail.</p>
+    </div>
+  </div>
+</section>
+
+<div class="capture">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="inner" data-reveal>
+    <h2>This book is free sometimes. Want to know when?</h2>
+    <p class="why">Napoleon goes free on Amazon from time to time, along with the rest of the series. Leave your email and we will tell you the moment it does.</p>
+    <form class="signup" id="sub" novalidate>
+      <input type="hidden" name="fields[book_interest]" value="napoleon">
+      <input type="email" name="email" placeholder="you@example.com" required autocomplete="email" aria-label="Email address">
+      <button class="btn" type="submit">Tell Me When They Are Free</button>
+      <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="opt"><input type="checkbox" name="groups[]" value="all" checked> <span>Tell me about every free Turbo History book, not just this one</span></label>
+    </form>
+    <p class="fineprint">We only ever use it to tell you when a book is free, we never share it, and you can unsubscribe in one click. See our <a href="#">privacy policy</a>.</p>
+  </div>
+</div>
+
+<section class="wrap">
+  <div class="sect-head" data-reveal>
+    <h2>More from the series</h2>
+    <p class="sub">One figure or one event per book. Under an hour each.</p>
+    <div class="rule"></div>
+  </div>
+  <div class="grid" data-stagger>
+    <a href="#"><span class="cov"><img src="covers/world-war-ii.jpg" alt="World War II book cover" loading="lazy"></span><span class="t">World War II</span></a>
+    <a href="#"><span class="cov"><img src="covers/world-war-i.jpg" alt="World War I book cover" loading="lazy"></span><span class="t">World War I</span></a>
+    <a href="#"><span class="cov"><img src="covers/genghis-khan.jpg" alt="Genghis Khan book cover" loading="lazy"></span><span class="t">Genghis Khan</span></a>
+    <a href="#"><span class="cov"><img src="covers/spartacus.jpg" alt="Spartacus book cover" loading="lazy"></span><span class="t">Spartacus</span></a>
+    <a href="#"><span class="cov"><img src="covers/alexander-the-great.jpg" alt="Alexander the Great book cover" loading="lazy"></span><span class="t">Alexander the Great</span></a>
+    <a href="#"><span class="cov"><img src="covers/julius-caesar.jpg" alt="Julius Caesar book cover" loading="lazy"></span><span class="t">Julius Caesar</span></a>
+  </div>
+</section>
+
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="index.html">Home</a><span>&middot;</span><a href="https://www.amazon.com/author/turbohistory">Amazon Author Page</a><span>&middot;</span><a href="#">Privacy</a><span>&middot;</span><a href="mailto:turbo@turbohistory.com">turbo@turbohistory.com</a></div>
+  <div>&copy; Turbo History. All books available on Amazon and Kindle Unlimited.</div>
+</div></footer>
+
+<script>
+(function(){
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.documentElement.classList.add('motion');
+  document.querySelectorAll('[data-stagger]').forEach(function(g){
+    Array.prototype.forEach.call(g.children,function(c,i){
+      c.setAttribute('data-reveal','');
+      c.style.transitionDelay = Math.min(i*60,540)+'ms';
+    });
+  });
+  var els = document.querySelectorAll('[data-reveal]');
+  els.forEach(function(el){ el.classList.add('pre'); });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  },{rootMargin:'0px 0px -10% 0px',threshold:.08});
+  els.forEach(function(el){ io.observe(el); });
+  // sand timer: runs one cycle when it reaches the viewport, then rests drained
+  var hg = document.querySelector('.hg-inline');
+  if (hg){
+    hg.style.setProperty('--hg-rep','1');
+    var hio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('hg-run'); hio.unobserve(e.target); }
+      });
+    },{threshold:.6});
+    hio.observe(hg);
+  }
+})();
+</script>
+</body>
+</html>

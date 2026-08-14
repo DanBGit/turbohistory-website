@@ -15,6 +15,8 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/SourceSerif4-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/Archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <script>
 // Google Consent Mode v2. Default DENIED everywhere; granted immediately for visitors
 // outside consent-required jurisdictions, or on explicit Accept. No tag fires before this.
@@ -27,101 +29,474 @@ gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',
 <script>gtag('js',new Date());gtag('config','G-D8J4PNSQ9J',{anonymize_ip:true});</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the best Edgar Allan Poe biography?", "acceptedAnswer": {"@type": "Answer", "text": "Kenneth Silverman's Edgar A. Poe: Mournful and Never-Ending Remembrance (1991) is the usual first recommendation, at around 564 pages, and it is careful with the evidence. Arthur Hobson Quinn's Edgar Allan Poe: A Critical Biography from 1941 is still the most thorough ever written at roughly 761 pages, and it is the book that proved how much had been forged. Jeffrey Meyers is the easiest to read of the three."}}, {"@type": "Question", "name": "Was Poe really a drunk and a drug addict?", "acceptedAnswer": {"@type": "Answer", "text": "Partly, and much less than the legend says. Poe did lose jobs through drinking and he did fall apart after his wife Virginia died, but the drug addiction was largely invented. Rufus Griswold, his literary executor, wrote a hostile obituary in 1849 and a memoir in 1850 that used forged letters to build the image of a depraved genius, and because it was the only full account for years it became the accepted one. Quinn's biography prints the originals against Griswold's versions."}}, {"@type": "Question", "name": "Where should I start reading about Poe's life?", "acceptedAnswer": {"@type": "Answer", "text": "Start with Peter Ackroyd's Poe: A Life Cut Short if you want something you can finish in two evenings, or Scott Peeples's The Man of the Crowd if you would rather have a short modern book with a fresh angle. Then go to Silverman for the full life. Leave Quinn until you want to check something in detail."}}, {"@type": "Question", "name": "How did Edgar Allan Poe die?", "acceptedAnswer": {"@type": "Answer", "text": "Nobody knows. He was found semiconscious on a Baltimore street on 3 October 1849, wearing clothes that were not his, and died in hospital four days later without ever explaining what had happened. All the medical records, including the death certificate, have been lost. Theories have included alcohol withdrawal, heart disease, epilepsy, rabies and cooping, a form of election fraud in which men were seized, drugged and made to vote repeatedly. Silverman and Quinn both treat the question as unresolved, and any book claiming certainty is overselling."}}, {"@type": "Question", "name": "Is there a good book about Poe beyond the horror stories?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. John Tresch's The Reason for the Darkness of the Night puts Poe inside the scientific culture of his day, which explains the cryptography, the hoaxes, the detective fiction and Eureka far better than the tortured-genius framing ever did. Read a straight biography first, then this one, because it is an argument rather than a life story."}}]}, {"@type": "Book", "name": "Edgar Allan Poe: Master of the Macabre", "author": {"@type": "Organization", "name": "Turbo History"}, "about": "Edgar Allan Poe", "bookFormat": "https://schema.org/EBook", "url": "https://turbohistory.com/books/edgar-allan-poe/", "image": "https://turbohistory.com/covers/edgar-allan-poe.jpg", "isPartOf": {"@type": "BookSeries", "name": "Turbo History"}, "offers": {"@type": "Offer", "price": "2.99", "priceCurrency": "USD", "url": "https://www.amazon.com/dp/B0H9BPHLHH", "availability": "https://schema.org/InStock"}}]}</script>
 <style>
-:root{--ink:#0d0b08;--panel:#161210;--parchment:#e9ddc6;--gold:#c9a24b;--gold-soft:#a8873d;--muted:#9d907a}
+@font-face{
+  font-family:'Source Serif 4';
+  src:url('/fonts/SourceSerif4-latin.woff2') format('woff2-variations'),
+      url('/fonts/SourceSerif4-latin.woff2') format('woff2');
+  font-weight:200 900;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Source Serif 4';
+  src:url('/fonts/SourceSerif4-Italic-latin.woff2') format('woff2-variations'),
+      url('/fonts/SourceSerif4-Italic-latin.woff2') format('woff2');
+  font-weight:200 900;font-style:italic;font-display:swap;
+}
+@font-face{
+  font-family:'Archivo';
+  src:url('/fonts/Archivo-latin.woff2') format('woff2-variations'),
+      url('/fonts/Archivo-latin.woff2') format('woff2');
+  font-weight:100 900;font-style:normal;font-display:swap;
+}
+:root{
+  --ink:#0d0b08;
+  --ink-2:#131009;
+  --ink-3:#060504;
+  --line:rgba(233,221,198,.14);
+  --hairline:rgba(233,221,198,.09);
+  --parchment:#e9ddc6;
+  --muted:#a39781;
+  --gold:#c9a24b;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --t-label:.75rem;
+  --t-body:1.125rem;
+  --t-lede:1.4375rem;
+  --t-h2:clamp(1.9rem,3.6vw,2.6rem);
+  --t-display:clamp(3.1rem,8.6vw,7.4rem);
+  --sans:'Archivo',Futura,'Avenir Next','Trebuchet MS',Arial,sans-serif;
+  --serif:'Source Serif 4',Georgia,'Times New Roman',serif;
+}
+/* the display step is set per template, exactly as the three mockups had it */
+body.p-book{--t-display:clamp(2.5rem,5.6vw,4.6rem)}
+body.p-collection{--t-display:clamp(2.7rem,7vw,6rem)}
+body.p-plain{--t-display:clamp(2.5rem,5.6vw,4.6rem)}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--ink);color:var(--parchment);font-family:Georgia,'Times New Roman',serif;line-height:1.65}
-a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
-.wrap{max-width:1060px;margin:0 auto;padding:0 22px}
-.nav{padding:22px 0;display:flex;justify-content:space-between;align-items:center;font-family:Futura,'Trebuchet MS',Arial,sans-serif}
-.nav .logo{display:inline-flex;align-items:center}
-.nav .logo svg{height:50px;width:auto;display:block}
-.nav a{font-size:14px;margin-left:20px}
-header{padding:44px 0 8px;text-align:center}
-h1{font-size:clamp(28px,5vw,50px);margin:14px 0 6px;font-weight:400;line-height:1.15}
-.hero{padding:10px 0 30px;text-align:center;max-width:760px;margin:0 auto}
-.hero p{font-size:clamp(16px,2.2vw,19px);margin:15px 0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--ink);color:var(--parchment);font-family:var(--serif);font-size:var(--t-body);line-height:1.68}
+img{max-width:100%;display:block}
+a{color:var(--gold);text-decoration:none;transition:opacity .2s var(--ease)}
+a:hover{opacity:.82}
+::selection{background:var(--gold);color:var(--ink)}
 .muted{color:var(--muted)}
-.rule{width:64px;height:2px;background:var(--gold);margin:26px auto}
-.tag{font-size:clamp(17px,2.5vw,22px);color:var(--gold);font-style:italic}
-.btn{display:inline-block;background:var(--gold);color:#161210;padding:13px 28px;border-radius:3px;font-family:Futura,'Trebuchet MS',Arial,sans-serif;font-weight:700;font-size:15px;letter-spacing:.05em;text-transform:uppercase;margin:8px 6px}
-.btn:hover{background:var(--gold-soft);text-decoration:none}
-.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
-.btn.ghost:hover{background:rgba(201,162,75,.12)}
-section{padding:38px 0}
-h2{font-size:clamp(21px,3.2vw,29px);text-align:center;font-weight:400;margin-bottom:6px}
-.sub{color:var(--muted);text-align:center;margin-bottom:30px;font-size:16px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:20px}
-.grid a{display:block;text-align:center;color:var(--parchment);font-size:14px}
-.grid img{width:100%;border-radius:3px;box-shadow:0 6px 22px rgba(0,0,0,.55);transition:transform .15s}
-.grid a:hover img{transform:translateY(-4px)}
-.grid span{display:block;margin-top:8px}
-.warning{background:var(--panel);border-left:3px solid var(--gold);padding:24px 28px;max-width:760px;margin:0 auto;font-size:17px}
-.warning b{color:var(--gold)}
-.capture{background:var(--panel);border:1px solid #2a231b;border-radius:5px;padding:30px;max-width:640px;margin:0 auto;text-align:center}
-.capture h2{margin-bottom:10px}
-.capture .why{color:var(--muted);font-size:15.5px;margin-bottom:18px}
-.signup{display:block}
-.signup input[type=email]{width:min(340px,86%);padding:13px 15px;border-radius:3px;border:1px solid #3a3025;background:#0d0b08;color:var(--parchment);font-family:Georgia,serif;font-size:16px;margin:0 6px 10px 0}
-.signup input[type=email]:focus{outline:none;border-color:var(--gold)}
-.signup button{border:none;cursor:pointer;vertical-align:top}
-.opt{display:block;margin-top:12px;color:var(--muted);font-size:14.5px;cursor:pointer}
-.opt input{margin-right:7px}
-.fineprint{color:var(--muted);font-size:13.5px;margin-top:12px}
-html.ck-lock,html.ck-lock body{overflow:hidden}
-.hp{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0}
-.consent{display:flex;gap:10px;align-items:flex-start;text-align:left;margin-top:12px;font-size:14.5px;line-height:1.5}
-.consent input{width:19px;height:19px;accent-color:var(--gold);flex-shrink:0;margin-top:2px}
-.submsg{min-height:1em;margin-top:12px;font-size:15px}
-.submsg.err{color:#e08b7a}
-.submsg.ok{color:var(--gold);font-size:17px}
-.collin{font-size:14px;margin-top:6px}
-.collin a{border-bottom:1px dotted var(--gold-soft)}
-.pick{padding:22px 0;border-bottom:1px solid #221c16}
-.pick-ours{background:rgba(201,162,75,.06);border:1px solid #4a3c22;border-radius:5px;padding:22px 24px;margin:10px 0}
+
+/* film grain over everything */
+.grain{position:fixed;inset:0;z-index:1000;pointer-events:none;opacity:.055;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* floating pill nav */
+.nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:200;
+  display:flex;align-items:center;gap:26px;padding:9px 26px 9px 16px;border-radius:999px;
+  background:rgba(9,7,5,.74);border:1px solid var(--line);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);white-space:nowrap}
+.nav .logo{display:inline-flex;align-items:center}
+.nav .logo svg{height:38px;width:auto;display:block}
+.nav a{transition:color .2s var(--ease),opacity .2s var(--ease)}
+.nav .links{display:flex;gap:22px}
+.nav .links a{font-family:var(--sans);font-size:var(--t-label);letter-spacing:.18em;text-transform:uppercase;color:var(--parchment)}
+.nav .links a:hover{color:var(--gold);opacity:1}
+
+/* label style */
+.label{font-family:var(--sans);font-size:var(--t-label);letter-spacing:.04em;color:var(--muted)}
+.label b{color:var(--gold);font-weight:700}
+.label a{color:var(--gold)}
+
+/* ============ homepage hero ============ */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--ink)}
+.scene{position:absolute;inset:0;overflow:hidden}
+.scene .base{position:absolute;inset:0}
+.hero .scene .base{background:
+  radial-gradient(130% 100% at 50% 118%, rgba(201,162,75,.34) 0%, rgba(201,162,75,.10) 34%, rgba(201,162,75,0) 58%),
+  radial-gradient(52% 40% at 71% 80%, rgba(226,178,86,.26) 0%, rgba(226,178,86,0) 62%),
+  radial-gradient(40% 34% at 23% 74%, rgba(158,110,44,.16) 0%, rgba(158,110,44,0) 66%),
+  radial-gradient(150% 130% at 50% -10%, #1c150c 0%, #120e08 44%, #0d0b08 72%)}
+.scene .drift,.scene .drift2{position:absolute;inset:-22%;will-change:transform}
+.hero .scene .drift{background:
+  radial-gradient(38% 30% at 30% 62%, rgba(233,221,198,.05) 0%, rgba(233,221,198,0) 70%),
+  radial-gradient(30% 26% at 74% 48%, rgba(233,221,198,.04) 0%, rgba(233,221,198,0) 70%)}
+.hero .scene .drift2{background:
+  radial-gradient(46% 34% at 60% 70%, rgba(201,162,75,.09) 0%, rgba(201,162,75,0) 70%),
+  radial-gradient(26% 22% at 22% 40%, rgba(201,162,75,.05) 0%, rgba(201,162,75,0) 72%)}
+@media (prefers-reduced-motion:no-preference){
+  .scene .drift{animation:drift 76s var(--ease) infinite alternate}
+  .scene .drift2{animation:drift2 104s var(--ease) infinite alternate}
+}
+@keyframes drift{from{transform:translate3d(-2.5%,1.5%,0) scale(1.02) rotate(-1deg)}to{transform:translate3d(2.5%,-2%,0) scale(1.07) rotate(1.4deg)}}
+@keyframes drift2{from{transform:translate3d(2%,-1%,0) scale(1.05)}to{transform:translate3d(-2.5%,2%,0) scale(1)}}
+.scene .table{position:absolute;inset:auto 0 0 0;height:30%;background:linear-gradient(to top,#060504 0%,rgba(6,5,4,.88) 22%,rgba(6,5,4,0) 100%)}
+.scene .streak{position:absolute;left:8%;right:8%;bottom:27%;height:1px;background:linear-gradient(to right,rgba(201,162,75,0) 0%,rgba(201,162,75,.5) 38%,rgba(233,221,198,.65) 50%,rgba(201,162,75,.5) 62%,rgba(201,162,75,0) 100%);filter:blur(.4px)}
+.scene .vignette{position:absolute;inset:0;background:radial-gradient(120% 100% at 50% 42%, rgba(6,5,4,0) 46%, rgba(6,5,4,.62) 100%)}
+
+.hero-inner{position:relative;z-index:2;width:100%;max-width:1160px;margin:0 auto;padding:150px 26px 96px}
+.hero h1{font-size:var(--t-display);font-weight:400;line-height:1.02;letter-spacing:-.015em;max-width:15.7ch}
+.hero h1 .line{display:block;overflow:hidden}
+.hero h1 .line>span{display:block}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero .deck{max-width:70ch;margin:34px 0 10px;font-size:var(--t-lede);line-height:1.5;color:var(--muted)}
+.hero .deck b{color:var(--parchment);font-weight:400}
+.hero .cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.hero .since{margin-top:40px}
+.motion .hero h1 .line>span{transform:translateY(112%);opacity:0;animation:rise 1s var(--ease) forwards}
+.motion .hero h1 .line:nth-child(2)>span{animation-delay:.14s}
+.motion .hero h1 .line:nth-child(3)>span{animation-delay:.28s}
+.motion .hero .deck,.motion .hero .cta,.motion .hero .since{opacity:0;transform:translateY(26px);animation:rise2 1.1s var(--ease) .55s forwards}
+.motion .hero .cta{animation-delay:.7s}
+.motion .hero .since{animation-delay:.85s}
+.motion .scene{opacity:0;animation:sceneIn 2.2s ease-out forwards}
+@keyframes rise{to{transform:translateY(0);opacity:1}}
+@keyframes rise2{to{transform:translateY(0);opacity:1}}
+@keyframes sceneIn{to{opacity:1}}
+
+/* ============ book / curated hero ============ */
+.bhero{position:relative;overflow:hidden;background:var(--ink)}
+.bhero .scene .base{background:
+  radial-gradient(90% 80% at 26% 90%, rgba(201,162,75,.20) 0%, rgba(201,162,75,0) 58%),
+  radial-gradient(46% 40% at 78% 30%, rgba(158,110,44,.10) 0%, rgba(158,110,44,0) 64%),
+  radial-gradient(150% 130% at 50% -10%, #1a130b 0%, #110d08 46%, #0d0b08 74%)}
+.bhero .scene .drift{background:
+  radial-gradient(40% 32% at 34% 66%, rgba(233,221,198,.045) 0%, rgba(233,221,198,0) 70%),
+  radial-gradient(30% 24% at 72% 44%, rgba(201,162,75,.07) 0%, rgba(201,162,75,0) 70%)}
+.bhero .inner{position:relative;z-index:2;max-width:1160px;margin:0 auto;padding:132px 26px 84px}
+.crumbs{font-family:var(--sans);font-size:var(--t-label);letter-spacing:.04em;color:var(--muted);margin-bottom:56px}
+.crumbs a{color:var(--muted)}
+.crumbs a:hover{color:var(--gold);opacity:1}
+.crumbs .sep{margin:0 10px;color:var(--gold)}
+.bookhead{display:flex;gap:64px;align-items:center;flex-wrap:wrap}
+.bookhead .covwrap{position:relative;flex:0 0 auto;margin:0 auto}
+/* the authored hero moment: a projector glow behind the cover on dark ground */
+.bookhead .halo{position:absolute;inset:-46%;background:radial-gradient(50% 50% at 50% 50%, rgba(201,162,75,.34) 0%, rgba(201,162,75,.08) 48%, rgba(201,162,75,0) 70%);pointer-events:none}
+@media (prefers-reduced-motion:no-preference){
+  .bookhead .halo{animation:breathe 9s ease-in-out infinite alternate}
+}
+@keyframes breathe{from{opacity:.75;transform:scale(.97)}to{opacity:1;transform:scale(1.05)}}
+.bookhead .covwrap img{position:relative;width:min(272px,64vw);aspect-ratio:5/8;object-fit:cover;border-radius:2px;box-shadow:0 30px 60px -18px rgba(0,0,0,.85)}
+.bookhead .meta{flex:1;min-width:300px}
+.bookhead h1{font-size:var(--t-display);font-weight:400;line-height:1.06;letter-spacing:-.015em;max-width:21ch}
+.bookhead h1 .line{display:block;overflow:hidden}
+.bookhead h1 .line>span{display:block}
+.bookhead h1 em{font-style:italic;color:var(--gold)}
+.bookhead .tag{margin-top:22px;font-size:var(--t-lede);line-height:1.5;color:var(--muted);max-width:56ch}
+.bookhead .partof{margin-top:24px}
+.bookhead .partof a{color:var(--gold)}
+.bookhead .acts{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+.motion .bookhead h1 .line>span{transform:translateY(112%);opacity:0;animation:rise 1s var(--ease) forwards}
+.motion .bookhead h1 .line:nth-child(2)>span{animation-delay:.14s}
+.motion .bookhead .tag,.motion .bookhead .partof,.motion .bookhead .acts{opacity:0;transform:translateY(24px);animation:rise2 1s var(--ease) .5s forwards}
+.motion .bookhead .partof{animation-delay:.6s}
+.motion .bookhead .acts{animation-delay:.72s}
+.motion .bookhead .covwrap{opacity:0;transform:translateY(34px);animation:rise2 1.2s var(--ease) .2s forwards}
+
+/* ============ collection hero ============ */
+.chero{position:relative;overflow:hidden;background:var(--ink)}
+.chero .scene .base{background:
+  radial-gradient(120% 96% at 50% 116%, rgba(201,162,75,.30) 0%, rgba(201,162,75,.09) 36%, rgba(201,162,75,0) 60%),
+  radial-gradient(44% 36% at 18% 62%, rgba(158,110,44,.14) 0%, rgba(158,110,44,0) 66%),
+  radial-gradient(150% 130% at 50% -12%, #1b140b 0%, #120e08 46%, #0d0b08 74%)}
+.chero .scene .drift{background:
+  radial-gradient(38% 30% at 32% 60%, rgba(233,221,198,.05) 0%, rgba(233,221,198,0) 70%),
+  radial-gradient(28% 24% at 76% 46%, rgba(233,221,198,.035) 0%, rgba(233,221,198,0) 70%)}
+.chero .scene .drift2{background:
+  radial-gradient(46% 34% at 62% 72%, rgba(201,162,75,.09) 0%, rgba(201,162,75,0) 70%),
+  radial-gradient(24% 20% at 20% 38%, rgba(201,162,75,.05) 0%, rgba(201,162,75,0) 72%)}
+.chero .inner{position:relative;z-index:2;max-width:1160px;margin:0 auto;padding:132px 26px 76px}
+.chero h1{font-size:var(--t-display);font-weight:400;line-height:1.02;letter-spacing:-.015em;max-width:17ch}
+.chero h1 .line{display:block;overflow:hidden}
+.chero h1 .line>span{display:block}
+.chero h1 em{font-style:italic;color:var(--gold)}
+.chero .deck{max-width:72ch;margin:32px 0 0;font-size:var(--t-lede);line-height:1.5;color:var(--muted)}
+.chero .deck b{color:var(--parchment);font-weight:400}
+.chero .stats{margin-top:34px}
+.chero .acts{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+/* the authored hero moment: the spines deal in, left to right, like cards on a table */
+.strip{position:relative;z-index:2;max-width:1160px;margin:0 auto;padding:0 26px 92px;display:flex;gap:14px;flex-wrap:wrap}
+.strip a{display:block;flex:0 0 auto;transition:transform .22s var(--ease),filter .22s var(--ease)}
+.strip img{width:clamp(78px,10vw,124px);aspect-ratio:5/8;object-fit:cover;border-radius:2px;filter:brightness(.86);
+  box-shadow:0 22px 40px -16px rgba(0,0,0,.85);transition:filter .22s var(--ease)}
+.strip a:hover{transform:translateY(-9px);opacity:1}
+.strip a:hover img{filter:brightness(1.05)}
+.motion .chero h1 .line>span{transform:translateY(112%);opacity:0;animation:rise 1s var(--ease) forwards}
+.motion .chero h1 .line:nth-child(2)>span{animation-delay:.14s}
+.motion .chero .deck,.motion .chero .stats,.motion .chero .acts{opacity:0;transform:translateY(26px);animation:rise2 1.05s var(--ease) .48s forwards}
+.motion .chero .stats{animation-delay:.62s}
+.motion .chero .acts{animation-delay:.76s}
+.motion .strip a{opacity:0;transform:translateY(42px);animation:rise2 .9s var(--ease) forwards}
+.motion .strip a:nth-child(1){animation-delay:.80s}
+.motion .strip a:nth-child(2){animation-delay:.88s}
+.motion .strip a:nth-child(3){animation-delay:.96s}
+.motion .strip a:nth-child(4){animation-delay:1.04s}
+.motion .strip a:nth-child(5){animation-delay:1.12s}
+.motion .strip a:nth-child(6){animation-delay:1.20s}
+.motion .strip a:nth-child(7){animation-delay:1.28s}
+.motion .strip a:nth-child(n+8){animation-delay:1.36s}
+
+/* buttons */
+.btn{display:inline-block;background:var(--gold);color:var(--ink);padding:15px 30px;border-radius:2px;border:none;cursor:pointer;
+  font-family:var(--sans);font-weight:700;font-size:var(--t-label);letter-spacing:.16em;text-transform:uppercase;
+  transition:transform .2s var(--ease),filter .2s var(--ease),opacity .2s var(--ease)}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.09);opacity:1}
+.btn.ghost{background:transparent;color:var(--gold);box-shadow:inset 0 0 0 1px var(--gold)}
+.btn.ghost:hover{filter:brightness(1.15)}
+
+/* ============ sections ============ */
+.wrap{max-width:1160px;margin:0 auto;padding:0 26px}
+section{padding:88px 0}
+.sect-head{text-align:center;max-width:78ch;margin:0 auto 52px}
+.sect-head h2{font-size:var(--t-h2);font-weight:400;line-height:1.15;letter-spacing:-.01em}
+.sect-head .sub{color:var(--muted);margin-top:14px}
+.sect-head .rule{width:52px;height:1px;background:var(--gold);margin:26px auto 0}
+.prose,.blurb{max-width:84ch;margin:0 auto}
+.prose p,.blurb p{margin:16px 0}
+.prose .lede,.blurb .lede{font-size:var(--t-lede);line-height:1.55}
+.prose .note,.blurb .note{color:var(--muted);font-style:italic}
+.blurb ul{margin:16px 0 16px 24px}
+.blurb li{margin:8px 0}
+.blurb h2{font-size:var(--t-h2);font-weight:400;line-height:1.15;margin:44px 0 10px}
+.blurb h3{font-size:var(--t-lede);font-weight:400;line-height:1.25;margin:32px 0 6px}
+.pagehead{max-width:84ch;margin:0 auto 8px}
+.pagehead h1{font-size:var(--t-display);font-weight:400;line-height:1.06;letter-spacing:-.015em}
+
+/* cover grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:30px 24px}
+.grid a{display:block;color:var(--parchment)}
+.grid a:hover{opacity:1}
+.grid .cov{display:block;overflow:hidden;border-radius:2px;box-shadow:0 18px 34px -14px rgba(0,0,0,.7)}
+.grid img{width:100%;aspect-ratio:5/8;object-fit:cover;transition:transform .25s var(--ease),filter .25s var(--ease);filter:brightness(.94)}
+.grid a:hover img{transform:scale(1.035);filter:brightness(1.04)}
+.grid span.t{display:block;margin-top:14px;text-align:center;font-family:var(--sans);font-size:var(--t-label);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);transition:color .2s var(--ease)}
+.grid a:hover span.t{color:var(--gold)}
+
+/* collections billboard */
+.bill{position:relative;overflow:hidden;padding:84px 0;background:var(--ink-2);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
+.bill .glow{position:absolute;inset:0;background:radial-gradient(70% 90% at 85% 60%, rgba(201,162,75,.13) 0%, rgba(201,162,75,0) 62%)}
+.bill .inner{position:relative;display:flex;align-items:center;gap:56px;flex-wrap:wrap}
+.bill .copy{flex:1;min-width:300px}
+.bill h2{font-size:var(--t-h2);font-weight:400;line-height:1.12;max-width:23ch}
+.bill p{color:var(--muted);max-width:64ch;margin:18px 0 30px}
+.bill .fan{display:flex;flex:0 1 auto;min-width:280px;justify-content:center}
+.bill .fan img{width:150px;aspect-ratio:5/8;object-fit:cover;border-radius:2px;box-shadow:0 20px 38px -12px rgba(0,0,0,.75)}
+.bill .fan .f1{transform:rotate(-7deg) translateY(10px)}
+.bill .fan .f2{transform:rotate(-1deg) translateY(-8px);z-index:2}
+.bill .fan .f3{transform:rotate(6deg) translateY(12px)}
+.bill .fan a{display:block;transition:transform .25s var(--ease)}
+.bill .fan a:hover{transform:translateY(-8px);opacity:1}
+
+/* ============ the reading path ============ */
+.path{position:relative;max-width:940px;margin:0 auto}
+.path .spine{position:absolute;left:31px;top:14px;bottom:120px;width:1px;
+  background:linear-gradient(to bottom,rgba(201,162,75,0) 0%,rgba(201,162,75,.55) 8%,rgba(201,162,75,.55) 88%,rgba(201,162,75,0) 100%);
+  transform-origin:top center}
+.motion .path .spine{transform:scaleY(0);transition:transform 1.8s var(--ease) .1s}
+.motion .path.lit .spine{transform:scaleY(1)}
+.step{position:relative;display:grid;grid-template-columns:64px 172px 1fr;gap:0 34px;align-items:start;padding:0 0 62px}
+.step:last-of-type{padding-bottom:0}
+.step .num{position:relative;font-size:var(--t-h2);font-weight:400;line-height:1;color:var(--gold);text-align:center;padding-top:4px}
+.step .num::after{content:"";position:absolute;left:50%;top:-14px;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px var(--ink)}
+.step .cov{display:block;border-radius:2px;overflow:hidden;box-shadow:0 20px 38px -14px rgba(0,0,0,.78)}
+.step .cov img{width:100%;aspect-ratio:5/8;object-fit:cover;filter:brightness(.92);transition:transform .25s var(--ease),filter .25s var(--ease)}
+.step .cov:hover img{transform:scale(1.035);filter:brightness(1.05)}
+.step .body{padding-top:2px}
+.step h3{font-size:var(--t-lede);font-weight:400;line-height:1.25;margin-bottom:8px}
+.step h3 a{color:var(--parchment)}
+.step h3 a:hover{color:var(--gold);opacity:1}
+.step .byline{color:var(--muted);font-family:var(--sans);font-size:var(--t-label);letter-spacing:.04em;margin-bottom:16px}
+.step .byline b{color:var(--gold);font-weight:700}
+.step .why{max-width:74ch}
+.step .why b{color:var(--parchment);font-weight:400;font-style:italic}
+.step .go{display:inline-block;margin-top:14px;font-family:var(--sans);font-size:var(--t-label);letter-spacing:.04em;
+  transition:transform .2s var(--ease),opacity .2s var(--ease)}
+.step .go:hover{transform:translateX(4px);opacity:1}
+.step .go .arr{display:inline-block;margin-left:8px}
+.step.here{background:rgba(201,162,75,.06);border-radius:2px;padding:34px 30px 40px;margin:0 -30px 62px}
+.step.here .num::after{top:-48px}
+.step.here h3 a{color:var(--gold)}
+.pathend{position:relative;margin-top:8px;padding-left:98px;color:var(--muted)}
+.pathend b{color:var(--gold);font-family:var(--sans);font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;display:block;margin-bottom:10px;font-weight:700}
+.pathend p{max-width:69ch}
+
+/* collections index */
+.cols{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:34px 30px}
+.colcard{display:block;background:var(--ink-2);border:1px solid var(--hairline);border-radius:2px;padding:28px 28px 30px;
+  transition:transform .25s var(--ease),border-color .25s var(--ease)}
+.colcard:hover{transform:translateY(-4px);border-color:var(--line);opacity:1}
+.colcard h3{font-size:var(--t-lede);font-weight:400;line-height:1.25;color:var(--gold)}
+.colcard p{color:var(--muted);margin-top:10px}
+.colcard .spines{display:flex;gap:8px;margin-top:22px}
+.colcard .spines img{width:52px;aspect-ratio:5/8;object-fit:cover;border-radius:2px;filter:brightness(.9);box-shadow:0 14px 26px -12px rgba(0,0,0,.8)}
+.colcard .count{display:block;margin-top:20px;font-family:var(--sans);font-size:var(--t-label);letter-spacing:.04em;color:var(--muted)}
+
+/* ============ curated picks ============ */
+.tablewrap{overflow-x:auto;max-width:980px;margin:0 auto}
+table.picks{width:100%;min-width:640px;border-collapse:collapse}
+table.picks th{text-align:left;padding:14px 16px;border-bottom:1px solid var(--gold);color:var(--gold);font-family:var(--sans);font-size:var(--t-label);letter-spacing:.18em;text-transform:uppercase;font-weight:700}
+table.picks td{padding:18px 16px;border-bottom:1px solid var(--hairline);vertical-align:top}
+table.picks .m{color:var(--muted)}
+table.picks tr.ours td{background:rgba(201,162,75,.07)}
+.ourstag{font-family:var(--sans);font-size:var(--t-label);letter-spacing:.16em;text-transform:uppercase;color:var(--ink);background:var(--gold);padding:3px 9px;border-radius:2px;margin-left:10px;vertical-align:middle;font-weight:700}
+.pick{max-width:84ch;margin:0 auto;padding:44px 0;border-bottom:1px solid var(--hairline)}
+.pick:last-child{border-bottom:none}
+.pick .num{font-family:var(--serif);font-size:var(--t-h2);line-height:1;color:var(--gold);font-weight:400;margin-bottom:4px}
+.pick h3{font-size:var(--t-lede);font-weight:400;margin:10px 0 6px;line-height:1.25}
+.pick .byline{color:var(--muted);font-family:var(--sans);font-size:var(--t-label);letter-spacing:.04em;margin-bottom:14px}
+.pick p{margin:14px 0}
+.pick-ours{background:rgba(201,162,75,.06);padding:44px 36px;max-width:calc(84ch + 72px)}
 .pick-ours h3{color:var(--gold)}
-.ourstag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);background:var(--gold);padding:3px 8px;border-radius:3px;vertical-align:middle;margin-left:8px;font-family:system-ui,sans-serif}
-tr.ours td{background:rgba(201,162,75,.08);border-top:1px solid #4a3c22;border-bottom:1px solid #4a3c22}
+@media (max-width:640px){.pick-ours{padding:36px 22px}}
+
+/* fair warning interlude */
+.warning{background:var(--ink-3);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
+.warning .inner{max-width:81ch;margin:0 auto;padding:88px 26px;text-align:center}
+.warning p{font-size:var(--t-lede);line-height:1.55;font-style:italic}
+.warning b{color:var(--gold);font-style:normal;font-family:var(--sans);font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;display:block;margin-bottom:22px}
+
+/* ============ email capture ============ */
+.capture{position:relative;overflow:hidden;background:var(--ink-2);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
+.capture .glow{position:absolute;inset:0;background:radial-gradient(60% 80% at 50% 110%, rgba(201,162,75,.15) 0%, rgba(201,162,75,0) 60%)}
+.capture .inner{position:relative;max-width:640px;margin:0 auto;padding:92px 26px;text-align:center}
+.capture h2{font-size:var(--t-h2);font-weight:400;line-height:1.15}
+.capture .why{color:var(--muted);margin:18px auto 34px;max-width:59ch}
+.signup{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.signup input[type=email]{flex:1 1 260px;max-width:360px;padding:14px 16px;border-radius:2px;
+  border:1px solid var(--line);background:rgba(6,5,4,.6);color:var(--parchment);font-family:var(--serif);font-size:var(--t-body)}
+.signup input[type=email]::placeholder{color:var(--muted)}
+.signup input[type=email]:focus{border-color:var(--gold)}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0}
+.opt,.consent{display:flex;gap:10px;justify-content:center;align-items:flex-start;margin-top:20px;color:var(--muted);cursor:pointer;text-align:left;max-width:57ch;margin-left:auto;margin-right:auto}
+.opt input,.consent input{accent-color:var(--gold);width:18px;height:18px;flex-shrink:0;margin-top:4px}
+.opt[hidden],.consent[hidden]{display:none}
+.submsg{min-height:1em;margin-top:18px;color:var(--muted)}
+.submsg.err{color:#e5a08e}
+.submsg.ok{color:var(--gold);font-size:var(--t-lede)}
+.fineprint{color:var(--muted);font-size:var(--t-label);letter-spacing:.02em;margin-top:22px;font-family:var(--sans)}
+.fineprint a{color:var(--muted);text-decoration:underline}
+.fineprint a:hover{color:var(--gold)}
+
+/* contact + footer */
+.contact{text-align:center}
+.contact h2{font-size:var(--t-h2);font-weight:400}
+.contact .mail{display:inline-block;margin-top:22px;font-size:var(--t-lede)}
+.contact p.small{color:var(--muted);margin-top:18px}
+footer{border-top:1px solid var(--hairline);padding:44px 0 56px;text-align:center;color:var(--muted);font-family:var(--sans);font-size:var(--t-label);letter-spacing:.04em}
+footer .links{margin-bottom:12px}
+footer .links a{color:var(--muted)}
+footer .links a:hover{color:var(--gold)}
+footer .links span{margin:0 10px;opacity:.5}
+
+/* ============ cookie dialog ============ */
+html.ck-lock,html.ck-lock body{overflow:hidden}
 #ck[hidden],#ck-prefs[hidden]{display:none!important}
-#ck{position:fixed;inset:0;z-index:999;background:rgba(6,5,4,.86);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:20px}
-.ck-box{background:var(--panel);border:1px solid #3a3025;border-radius:6px;max-width:520px;width:100%;padding:32px;box-shadow:0 20px 60px rgba(0,0,0,.7);text-align:center;max-height:90vh;overflow-y:auto}
-.ck-box h2{font-size:24px;margin-bottom:12px}
-.ck-box p{font-size:15.5px;color:var(--parchment);margin-bottom:20px}
-.ck-acts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.ck-acts .btn{margin:0;min-width:150px}
-.ck-acts .btn.ghost{opacity:.8;font-weight:400}
-.ck-link{display:block;margin:16px auto 0;background:none;border:none;color:var(--muted);font-family:Georgia,serif;font-size:14px;text-decoration:underline;cursor:pointer}
+#ck{position:fixed;inset:0;z-index:1001;background:rgba(6,5,4,.86);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:20px}
+.ck-box{background:var(--ink-2);border:1px solid var(--line);border-radius:2px;max-width:520px;width:100%;padding:34px;box-shadow:0 24px 70px rgba(0,0,0,.7);text-align:center;max-height:90vh;overflow-y:auto}
+.ck-box h2{font-size:var(--t-h2);font-weight:400;line-height:1.15;margin-bottom:16px}
+.ck-box p{color:var(--muted);margin-bottom:24px}
+.ck-acts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.ck-acts .btn{min-width:150px}
+.ck-link{display:block;margin:20px auto 0;background:none;border:none;color:var(--muted);font-family:var(--serif);font-size:var(--t-body);text-decoration:underline;cursor:pointer;padding:6px 2px}
 .ck-link:hover{color:var(--gold)}
-#ck-prefs{margin-top:18px;border-top:1px solid #2a231b;padding-top:16px;text-align:left}
-.ck-row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid #221c16;font-size:14.5px}
-.ck-row input{width:20px;height:20px;accent-color:var(--gold);flex-shrink:0;margin-top:2px}
-#ck-save{margin-top:14px;width:100%}
-.ck-fine{font-size:13px;color:var(--muted);margin:18px 0 0}
-@media(max-width:620px){.ck-box{padding:24px 20px}.ck-acts .btn{flex:1;min-width:0}}
-.bookhead{display:flex;gap:34px;align-items:flex-start;flex-wrap:wrap;padding:26px 0 8px}
-.bookhead img{width:230px;border-radius:4px;box-shadow:0 10px 32px rgba(0,0,0,.6)}
-.bookhead .meta{flex:1;min-width:270px}
-.bookhead h1{text-align:left;font-size:clamp(25px,4vw,38px)}
-.kicker{color:var(--gold);font-family:Futura,'Trebuchet MS',Arial,sans-serif;font-size:12.5px;letter-spacing:.22em;text-transform:uppercase}
-.blurb{max-width:760px;margin:0 auto;font-size:17px}
-.blurb p{margin:14px 0}.blurb ul{margin:14px 0 14px 22px}.blurb li{margin:7px 0}
-.crumbs{font-size:13.5px;color:var(--muted);padding:14px 0}
-.lede{font-size:19px;line-height:1.6}
-.note{font-size:14.5px;font-style:italic}
-.tablewrap{overflow-x:auto;max-width:900px;margin:0 auto}
-table.picks{width:100%;border-collapse:collapse;font-size:15.5px}
-table.picks th{text-align:left;padding:12px 14px;border-bottom:2px solid var(--gold);color:var(--gold);font-family:Futura,'Trebuchet MS',Arial,sans-serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
-table.picks td{padding:14px;border-bottom:1px solid #262019;vertical-align:top}
-table.picks tr.ours{background:rgba(201,162,75,.09)}
-table.picks tr.ours td{border-bottom:none}
-.blurb h3{margin:26px 0 4px;font-size:20px;color:var(--parchment);font-weight:400}
-.byline{color:var(--muted);font-size:14.5px;margin:0 0 8px}
-footer{border-top:1px solid #262019;margin-top:26px;padding:28px 0 42px;text-align:center;color:var(--muted);font-size:13.5px}
-footer .links{margin-bottom:9px;font-size:14.5px}
-@media(max-width:640px){.bookhead{gap:22px}.bookhead img{width:160px;margin:0 auto}}
+#ck-prefs{margin-top:20px;border-top:1px solid var(--hairline);padding-top:18px;text-align:left}
+.ck-row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--hairline)}
+.ck-row input{width:20px;height:20px;accent-color:var(--gold);flex-shrink:0;margin-top:5px}
+#ck-save{margin-top:16px;width:100%}
+.ck-fine{font-family:var(--sans);font-size:var(--t-label);letter-spacing:.02em;color:var(--muted);margin:20px 0 0}
+@media(max-width:620px){.ck-box{padding:26px 20px}.ck-acts .btn{flex:1;min-width:0}}
+
+/* scroll reveals - hidden state applied via JS only */
+.pre{opacity:0;transform:translateY(44px);transition:opacity .95s var(--ease),transform .95s var(--ease)}
+.pre.in{opacity:1;transform:translateY(0)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+@media (max-width:820px){
+  .step{grid-template-columns:52px 132px 1fr;gap:0 24px}
+  .path .spine{left:25px}
+  .pathend{padding-left:76px}
+}
+@media (max-width:640px){
+  .nav{gap:14px;padding:8px 18px 8px 12px;top:12px}
+  .nav .logo svg{height:30px}
+  .nav .links{gap:14px}
+  section{padding:62px 0}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:22px 16px}
+  .bill .fan img{width:104px}
+  .bill .fan .f1{transform:rotate(-7deg) translateY(6px)}
+  .bill .fan .f3{transform:rotate(6deg) translateY(8px)}
+  .hero-inner{padding:130px 22px 72px}
+  .bhero .inner{padding:116px 22px 64px}
+  .chero .inner{padding:112px 22px 44px}
+  .crumbs{margin-bottom:34px}
+  .bookhead{gap:40px}
+  .strip{padding:0 22px 64px;gap:9px}
+  .step{grid-template-columns:44px 1fr;gap:0 18px}
+  .step .cov{grid-column:2;max-width:132px;margin-bottom:18px}
+  .step .body{grid-column:2}
+  .path .spine{left:21px}
+  .step .num{font-size:var(--t-lede)}
+  .step.here{padding:26px 20px 30px;margin:0 -20px 62px}
+  .pathend{padding-left:62px}
+  .cols{grid-template-columns:1fr;gap:22px}
+}
+
+/* ============ the sand timer: the brand's own object, one per viewport ============ */
+.hg{display:block;overflow:hidden}
+.hg .glass{fill:none;stroke:var(--parchment);stroke-opacity:.38;stroke-width:1.2;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.hg .cap{fill:var(--gold)}
+.hg .sand{fill:var(--gold)}
+.hg .mote{fill:var(--gold)}
+.hg-rot{transform-origin:120px 120px}
+/* resting/base state = full top chamber, empty bottom, no stream */
+.hg-topmask{transform:translateY(0)}
+.hg-botmask{transform:translateY(88px)}
+.hg-stream{opacity:0}
+@keyframes hgDrain{0%{transform:translateY(0)}86%,100%{transform:translateY(86px)}}
+@keyframes hgFill{0%{transform:translateY(88px)}86%,100%{transform:translateY(0)}}
+@keyframes hgPour{0%{opacity:0}5%{opacity:1}80%{opacity:1}86%,100%{opacity:0}}
+@keyframes hgFall{from{transform:translateY(0)}to{transform:translateY(9px)}}
+/* the flip at the loop seam: 180deg-symmetric glass + swapped sand = invisible restart */
+@keyframes hgFlip{0%{transform:rotate(0deg)}88%{transform:rotate(0deg);animation-timing-function:var(--ease)}100%{transform:rotate(180deg)}}
+@media (prefers-reduced-motion:no-preference){
+  .hg-run .hg-topmask{animation:hgDrain var(--hg-dur,20s) linear var(--hg-rep,infinite) both}
+  .hg-run .hg-botmask{animation:hgFill var(--hg-dur,20s) linear var(--hg-rep,infinite) both}
+  .hg-run .hg-stream{animation:hgPour var(--hg-dur,20s) linear var(--hg-rep,infinite) both}
+  .hg-run .hg-fall{animation:hgFall .5s linear infinite}
+  .hg-loop .hg-rot{animation:hgFlip var(--hg-dur,20s) linear infinite both}
+}
+@media (prefers-reduced-motion:reduce){
+  /* static, sensible resting state: about half drained, sand column standing still */
+  .hg .hg-topmask{transform:translateY(48px)}
+  .hg .hg-botmask{transform:translateY(40px)}
+  .hg .hg-stream{opacity:1}
+}
+.hg-inline{display:inline-block;height:2.64em;width:auto;vertical-align:-1em;margin:0 -.36em 0 -.61em;--hg-dur:18s}
+/* the hero's monumental object: one slow, calm cycle */
+.hg-hero{--hgw:clamp(264px,28vw,396px);position:absolute;width:var(--hgw);
+  right:calc(22px - .25 * var(--hgw));bottom:calc(104px - .08333 * var(--hgw));
+  z-index:2;pointer-events:none;--hg-dur:26s}
+.motion .hg-hero{opacity:0;transform:translateY(28px);animation:rise2 1.5s var(--ease) .95s forwards}
+@media (max-width:1000px){
+  .hg-hero{position:static;--hgw:176px;margin:-15px 0 15px -22px;--hg-dur:22s}
+  .motion .hg-hero{animation-delay:.1s}
+}
+
+/* --- audit fixes: browser surfaces, focus, hit areas --- */
+body{caret-color:var(--gold)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+.signup input[type=email]:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+h1,h2,h3{text-wrap:balance}
+.deck,.lede{text-wrap:pretty}
+.nav .links a{padding:12px 2px}
+footer .links a{display:inline-block;padding:6px 2px}
+@media (max-width:640px){
+  .nav{left:12px;right:12px;transform:none;width:auto;
+    justify-content:space-between;gap:10px;padding:6px 14px 6px 10px}
+  .nav .logo svg{height:26px}
+  .nav .links{gap:12px}
+  .nav .links a{font-size:.6875rem;letter-spacing:.08em;padding:10px 1px}
+}
+@media (prefers-reduced-motion:reduce){:focus-visible{outline:2px solid var(--gold)}}
 </style>
 </head>
-<body>
-<div class="wrap"><nav class="nav">
+<body class="p-book">
+<div class="grain" aria-hidden="true"></div>
+<nav class="nav" aria-label="Main">
   <a class="logo" href="/" aria-label="Turbo History"><svg viewBox="0 0 300 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <g transform="translate(150,16) scale(0.26)">
     <rect x="-32" y="-52" width="64" height="9" rx="4" fill="#c9a24b"/>
@@ -133,33 +508,89 @@ footer .links{margin-bottom:9px;font-size:14.5px}
   <text x="150" y="62" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="30" letter-spacing="0.5" fill="#c9a24b">TURBO</text>
   <text x="150" y="90" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="30" letter-spacing="4.5" fill="#e9ddc6">HISTORY</text>
 </svg></a>
-  <span><a href="/#books">The Books</a><a href="https://www.amazon.com/author/turbohistory">Amazon</a></span>
-</nav></div>
+  <span class="links"><a href="/#books">The Books</a><a href="/collections/">Collections</a><a href="https://www.amazon.com/author/turbohistory">Amazon</a></span>
+</nav>
+<main id="content">
 
-<div class="wrap"><div class="crumbs"><a href="/">Turbo History</a> &rsaquo; Edgar Allan Poe</div></div>
-<header class="wrap"><h1>The Best Edgar Allan Poe Biographies: Where To Actually Start</h1><p class="collin muted">Part of <span>Writers</span></p></header>
-<section class="wrap"><div class="blurb">
-  <p class="lede">If you want one modern biography, read Kenneth Silverman&#x27;s Edgar A. Poe: Mournful and Never-Ending Remembrance. If you want the book that first cleared away the lies, read Arthur Hobson Quinn&#x27;s Edgar Allan Poe: A Critical Biography, which is still the most thorough life ever written. If you want something short, Peter Ackroyd&#x27;s Poe: A Life Cut Short runs to about 176 pages. And if you have under an hour rather than a fortnight, ours covers the whole life in one sitting. Everything below is sorted by what you are actually trying to get out of it.</p>
-  <p class="muted note">Every book listed here is real, in print or easily found, and worth the time. Reading times are honest estimates from page count at roughly 250 words per minute. If you came here looking for Poe&#x27;s own stories and poems rather than books about his life, this is not that list, and any bookshop will serve you better. There is one thing you need to know before you read anything about Poe. Rufus Griswold, a rival who became his literary executor, published an anonymous obituary two days after Poe died in 1849 and then a memoir in 1850 that used forged letters to present him as a depraved drunk and drug addict. It was the only full account available for years, so it became the standard one, and the drunk-and-degenerate image it invented stuck for more than a century. Arthur Hobson Quinn and Kenneth Silverman are the biographers who did the work of taking it apart, which is why they are at the top of this list.</p>
-</div></section>
+<header class="bhero">
+  <div class="scene" aria-hidden="true"><div class="base"></div><div class="drift"></div><div class="vignette"></div></div>
+  <div class="inner">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Turbo History</a><span class="sep" aria-hidden="true">&rsaquo;</span><span aria-current="page">Edgar Allan Poe</span></nav>
+    <div class="bookhead">
+      <div class="covwrap">
+        <span class="halo" aria-hidden="true"></span>
+        <img src="/covers/edgar-allan-poe.jpg" alt="Edgar Allan Poe: Master of the Macabre book cover">
+      </div>
+      <div class="meta">
+        <h1><span class="line"><span>The Best Edgar Allan Poe Biographies:</span></span><span class="line"><span>Where To <em>Actually</em> Start</span></span></h1>
+        <p class="partof label">Part of <a href="/collections/writers/">Writers</a> &nbsp;&middot;&nbsp; <svg class="hg hg-inline" viewBox="0 0 240 240" aria-hidden="true" focusable="false">
+  <defs>
+    <clipPath id="hgT"><rect class="hg-topmask" x="78" y="34" width="84" height="90"/></clipPath>
+    <clipPath id="hgB"><rect class="hg-botmask" x="78" y="118" width="84" height="88"/></clipPath>
+    <clipPath id="hgN"><rect x="114" y="120" width="12" height="80"/></clipPath>
+  </defs>
+  <g class="hg-rot">
+    <path class="sand" clip-path="url(#hgT)" d="M87,38 L153,38 C153,70 127,104 123,119 L117,119 C113,104 87,70 87,38 Z"/>
+    <path class="sand" clip-path="url(#hgB)" d="M153,202 L87,202 C87,170 113,136 117,121 L123,121 C127,136 153,170 153,202 Z"/>
+    <g class="hg-stream" clip-path="url(#hgN)"><g class="hg-fall">
+      <circle class="mote" cx="120" cy="117" r="1.5"/><circle class="mote" cx="119.1" cy="126" r="1.2"/>
+      <circle class="mote" cx="120.8" cy="135" r="1.5"/><circle class="mote" cx="119.4" cy="144" r="1.2"/>
+      <circle class="mote" cx="120.5" cy="153" r="1.5"/><circle class="mote" cx="119.2" cy="162" r="1.3"/>
+      <circle class="mote" cx="120.7" cy="171" r="1.5"/><circle class="mote" cx="119.6" cy="180" r="1.2"/>
+      <circle class="mote" cx="120.3" cy="189" r="1.5"/><circle class="mote" cx="119.3" cy="198" r="1.3"/>
+      <circle class="mote" cx="120.6" cy="207" r="1.5"/>
+    </g></g>
+    <path class="glass" d="M84,35 L156,35 C156,70 128,104 124,119 L124,121 C128,136 156,170 156,205 L84,205 C84,170 112,136 116,121 L116,119 C112,104 84,70 84,35 Z"/>
+    <rect class="cap" x="74" y="26" width="92" height="9" rx="4"/>
+    <rect class="cap" x="74" y="205" width="92" height="9" rx="4"/>
+  </g>
+</svg><b>Ours reads in under an hour</b></p>
+        <div class="acts">
+          <a class="btn" href="https://www.amazon.com/dp/B0H9BPHLHH">Read Ours on Amazon</a>
+          <a class="btn ghost" href="#shortlist">See the Full List</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
 
-<section class="wrap"><h2>The short version</h2>
-<p class="sub">Sorted by what you want, not by what is most famous.</p>
-<div class="tablewrap"><table class="picks">
-<thead><tr><th>Book</th><th>Length</th><th>Best for</th></tr></thead>
-<tbody><tr><td><b>Edgar A. Poe: Mournful and Never-Ending Remembrance</b><br><span class='muted'>Kenneth Silverman, 1991</span></td><td>~564 pages<br><span class='muted'>About 16 hours</span></td><td>The standard modern life. Careful with the evidence and serious about the grief</td></tr><tr><td><b>Edgar Allan Poe: A Critical Biography</b><br><span class='muted'>Arthur Hobson Quinn, 1941</span></td><td>~761 pages<br><span class='muted'>About 22 hours</span></td><td>The definitive documentary life. The book that exposed the forgeries</td></tr><tr class='ours'><td><b>Edgar Allan Poe: Master of the Macabre</b><br><span class='muted'>Turbo History &middot; ours</span></td><td>~5,100 words<br><span class='muted'>Under an hour</span></td><td>The whole life in one sitting. The orphan, the magazine hack, the inventor of detective fiction, and the smear that outlived him</td></tr><tr><td><b>Edgar Allan Poe: His Life and Legacy</b><br><span class='muted'>Jeffrey Meyers, 1992</span></td><td>~348 pages<br><span class='muted'>About 10 hours</span></td><td>The most readable full-length life. Half biography, half afterlife</td></tr><tr><td><b>Poe: A Life Cut Short</b><br><span class='muted'>Peter Ackroyd, 2008</span></td><td>~176 pages<br><span class='muted'>About 5 hours</span></td><td>The fastest full-length introduction. An evening or two, and it does not pretend to more</td></tr><tr><td><b>The Reason for the Darkness of the Night: Edgar Allan Poe and the Forging of American Science</b><br><span class='muted'>John Tresch, 2021</span></td><td>~448 pages<br><span class='muted'>About 13 hours</span></td><td>The argument rather than the life story. Poe as a writer obsessed with science</td></tr><tr><td><b>The Man of the Crowd: Edgar Allan Poe and the City</b><br><span class='muted'>Scott Peeples, 2020</span></td><td>~224 pages<br><span class='muted'>About 6 hours</span></td><td>Short, modern and unusual. The four cities that made him, in place of a cradle-to-grave narrative</td></tr></tbody></table></div>
+<section class="wrap">
+  <div class="prose" data-reveal>
+    <p class="lede">If you want one modern biography, read Kenneth Silverman&#x27;s Edgar A. Poe: Mournful and Never-Ending Remembrance. If you want the book that first cleared away the lies, read Arthur Hobson Quinn&#x27;s Edgar Allan Poe: A Critical Biography, which is still the most thorough life ever written. If you want something short, Peter Ackroyd&#x27;s Poe: A Life Cut Short runs to about 176 pages. And if you have under an hour rather than a fortnight, ours covers the whole life in one sitting. Everything below is sorted by what you are actually trying to get out of it.</p>
+    <p class="note">Every book listed here is real, in print or easily found, and worth the time. Reading times are honest estimates from page count at roughly 250 words per minute. If you came here looking for Poe&#x27;s own stories and poems rather than books about his life, this is not that list, and any bookshop will serve you better. There is one thing you need to know before you read anything about Poe. Rufus Griswold, a rival who became his literary executor, published an anonymous obituary two days after Poe died in 1849 and then a memoir in 1850 that used forged letters to present him as a depraved drunk and drug addict. It was the only full account available for years, so it became the standard one, and the drunk-and-degenerate image it invented stuck for more than a century. Arthur Hobson Quinn and Kenneth Silverman are the biographers who did the work of taking it apart, which is why they are at the top of this list.</p>
+  </div>
 </section>
 
-<section class="wrap"><div class="blurb"><h2 style="text-align:left">The picks, in detail</h2>
-<div class='pick'><h3>1. Edgar A. Poe: Mournful and Never-Ending Remembrance</h3><p class='byline'>Kenneth Silverman, 1991 &middot; ~564 pages &middot; About 16 hours &middot; <b>The standard modern life. Careful with the evidence and serious about the grief</b></p><p>Silverman writes the life around bereavement, starting with a mother dead of tuberculosis before Poe was three, and traces how loss runs through the work without turning it into cheap psychology. It is the biography most scholars point people to first. It is long, the tone is measured rather than gripping, and the literary analysis is lighter than in some critical studies.</p></div><div class='pick'><h3>2. Edgar Allan Poe: A Critical Biography</h3><p class='byline'>Arthur Hobson Quinn, 1941 &middot; ~761 pages &middot; About 22 hours &middot; <b>The definitive documentary life. The book that exposed the forgeries</b></p><p>Quinn went back to the letters and printed Griswold&#x27;s alterations side by side with the originals, which is how the world found out how much had been fabricated. Eighty years on it is still the fullest account of what Poe did and when. It is enormous, written in a formal 1940s academic register, and it predates decades of later scholarship, so it is a reference book rather than a weekend read.</p></div><div class='pick pick-ours' id='ours'><h3>3. Edgar Allan Poe: Master of the Macabre <span class='ourstag'>ours</span></h3><p class='byline'>Turbo History &middot; ours &middot; ~5,100 words &middot; Under an hour &middot; <b>The whole life in one sitting. The orphan, the magazine hack, the inventor of detective fiction, and the smear that outlived him</b></p><p>Every book on this list goes deeper than ours, and most of them are hard work. That is not a criticism, it is the entire point of them. Quinn gives you 761 pages of documentary biography. Silverman gives you 564 pages built on the letters. They are good books, and they want weeks of your life.</p><p>If you are studying Poe, writing about him, or sitting an exam on him, buy one of those instead. Give it the time it deserves. We are not pretending to compete with them.</p><p>If you are not, ours might suit you better. It starts with a father who walked out and an actress mother dead by the time he was three, then a Richmond merchant who took him in without ever adopting him, five years at school in England, a university career ended by gambling debts, an enlistment in the army under a false name, West Point briefly, and a brother dead young. Then the working life: the magazine boom he tried to ride, the international copyright hole that meant American writers could not get paid, the feuds, the reviewing, the invention of the detective story, the fame that arrived with The Raven and paid him almost nothing. It ends in Baltimore in October 1849, found semiconscious in clothes that were not his, dead four days later with the medical records lost, and then with Griswold, the obituary, the forged letters, and a hundred years of the wrong Poe. There is a section on the parts that do not get defended, including his marriage to a thirteen-year-old cousin, because the myth has been polished at both ends and the real person is more interesting than either version.</p><p>That is what the whole series is for. Love history, but hate how it was taught at school? Same. School turned it into a memory test: names, dates, family trees, exam. The actual story never stood a chance. Turbo History is one figure or one event per book, told in under an hour. The rise, the fall, and why it still matters. Dates included, memorising optional. Sources at the back if you want to go further, and every book on this page is a good place to go next.</p><p><a class='btn' href='https://www.amazon.com/dp/B0H9BPHLHH'>Read it on Amazon</a></p></div><div class='pick'><h3>4. Edgar Allan Poe: His Life and Legacy</h3><p class='byline'>Jeffrey Meyers, 1992 &middot; ~348 pages &middot; About 10 hours &middot; <b>The most readable full-length life. Half biography, half afterlife</b></p><p>Meyers moves quickly, is good on the magazine world Poe was trying to survive in, and devotes a substantial closing section to Poe&#x27;s influence on later writers from Baudelaire onwards. It is the easiest of the serious adult biographies to finish. He is more willing than Silverman to state a conclusion where the evidence is thin, particularly about the drinking and the death, so read him against Quinn.</p></div><div class='pick'><h3>5. Poe: A Life Cut Short</h3><p class='byline'>Peter Ackroyd, 2008 &middot; ~176 pages &middot; About 5 hours &middot; <b>The fastest full-length introduction. An evening or two, and it does not pretend to more</b></p><p>Ackroyd compresses the whole life into a brief, stylish narrative and is honest that Poe was a professional writer wrecked by an industry that barely paid. It is the quickest way to get the sequence of events straight. It is a synthesis of other people&#x27;s research with no new material, and at this length the Baltimore death and the Griswold aftermath get only a few pages each.</p></div><div class='pick'><h3>6. The Reason for the Darkness of the Night: Edgar Allan Poe and the Forging of American Science</h3><p class='byline'>John Tresch, 2021 &middot; ~448 pages &middot; About 13 hours &middot; <b>The argument rather than the life story. Poe as a writer obsessed with science</b></p><p>Tresch is a historian of science and shows Poe moving through a world of lectures, hoaxes, telescopes and new theories, which explains the cryptography, the balloon hoax, the detective stories and the strange cosmological essay Eureka. It genuinely changes how you read him. It is a thesis book, so it assumes you already know the outline of the life and it gives less room to the domestic side.</p></div><div class='pick'><h3>7. The Man of the Crowd: Edgar Allan Poe and the City</h3><p class='byline'>Scott Peeples, 2020 &middot; ~224 pages &middot; About 6 hours &middot; <b>Short, modern and unusual. The four cities that made him, in place of a cradle-to-grave narrative</b></p><p>Peeples organises Poe&#x27;s life around Richmond, Baltimore, Philadelphia and New York, and around the constant moving between cheap rooms, which turns out to explain a great deal about what he wrote and why he never got ahead. It is concise, well sourced and pleasant to read. It is deliberately not a complete biography, so pair it with Silverman if this is your first Poe book.</p></div>
-</div></section>
+<section class="wrap" id="shortlist">
+  <div class="sect-head" data-reveal>
+    <h2>The short version</h2>
+    <p class="sub">Sorted by what you want, not by what is most famous.</p>
+    <div class="rule"></div>
+  </div>
+  <div class="tablewrap" data-reveal><table class="picks">
+  <thead><tr><th>Book</th><th>Length</th><th>Best for</th></tr></thead>
+  <tbody><tr><td><b>Edgar A. Poe: Mournful and Never-Ending Remembrance</b><br><span class='m'>Kenneth Silverman, 1991</span></td><td>~564 pages<br><span class='m'>About 16 hours</span></td><td>The standard modern life. Careful with the evidence and serious about the grief</td></tr><tr><td><b>Edgar Allan Poe: A Critical Biography</b><br><span class='m'>Arthur Hobson Quinn, 1941</span></td><td>~761 pages<br><span class='m'>About 22 hours</span></td><td>The definitive documentary life. The book that exposed the forgeries</td></tr><tr class='ours'><td><b>Edgar Allan Poe: Master of the Macabre</b><br><span class='m'>Turbo History &middot; ours</span></td><td>~5,100 words<br><span class='m'>Under an hour</span></td><td>The whole life in one sitting. The orphan, the magazine hack, the inventor of detective fiction, and the smear that outlived him</td></tr><tr><td><b>Edgar Allan Poe: His Life and Legacy</b><br><span class='m'>Jeffrey Meyers, 1992</span></td><td>~348 pages<br><span class='m'>About 10 hours</span></td><td>The most readable full-length life. Half biography, half afterlife</td></tr><tr><td><b>Poe: A Life Cut Short</b><br><span class='m'>Peter Ackroyd, 2008</span></td><td>~176 pages<br><span class='m'>About 5 hours</span></td><td>The fastest full-length introduction. An evening or two, and it does not pretend to more</td></tr><tr><td><b>The Reason for the Darkness of the Night: Edgar Allan Poe and the Forging of American Science</b><br><span class='m'>John Tresch, 2021</span></td><td>~448 pages<br><span class='m'>About 13 hours</span></td><td>The argument rather than the life story. Poe as a writer obsessed with science</td></tr><tr><td><b>The Man of the Crowd: Edgar Allan Poe and the City</b><br><span class='m'>Scott Peeples, 2020</span></td><td>~224 pages<br><span class='m'>About 6 hours</span></td><td>Short, modern and unusual. The four cities that made him, in place of a cradle-to-grave narrative</td></tr></tbody></table></div>
+</section>
 
+<section class="wrap">
+  <div class="sect-head" data-reveal>
+    <h2>The picks, in detail</h2>
+    <div class="rule"></div>
+  </div>
+  <div class='pick' data-reveal><p class='num'>01</p><h3>Edgar A. Poe: Mournful and Never-Ending Remembrance</h3><p class='byline'>Kenneth Silverman, 1991 &middot; ~564 pages &middot; About 16 hours &middot; The standard modern life. Careful with the evidence and serious about the grief</p><p>Silverman writes the life around bereavement, starting with a mother dead of tuberculosis before Poe was three, and traces how loss runs through the work without turning it into cheap psychology. It is the biography most scholars point people to first. It is long, the tone is measured rather than gripping, and the literary analysis is lighter than in some critical studies.</p></div><div class='pick' data-reveal><p class='num'>02</p><h3>Edgar Allan Poe: A Critical Biography</h3><p class='byline'>Arthur Hobson Quinn, 1941 &middot; ~761 pages &middot; About 22 hours &middot; The definitive documentary life. The book that exposed the forgeries</p><p>Quinn went back to the letters and printed Griswold&#x27;s alterations side by side with the originals, which is how the world found out how much had been fabricated. Eighty years on it is still the fullest account of what Poe did and when. It is enormous, written in a formal 1940s academic register, and it predates decades of later scholarship, so it is a reference book rather than a weekend read.</p></div><div class='pick pick-ours' id='ours' data-reveal><p class='num'>03</p><h3>Edgar Allan Poe: Master of the Macabre <span class='ourstag'>ours</span></h3><p class='byline'>Turbo History &middot; ours &middot; ~5,100 words &middot; Under an hour &middot; The whole life in one sitting. The orphan, the magazine hack, the inventor of detective fiction, and the smear that outlived him</p><p>Every book on this list goes deeper than ours, and most of them are hard work. That is not a criticism, it is the entire point of them. Quinn gives you 761 pages of documentary biography. Silverman gives you 564 pages built on the letters. They are good books, and they want weeks of your life.</p><p>If you are studying Poe, writing about him, or sitting an exam on him, buy one of those instead. Give it the time it deserves. We are not pretending to compete with them.</p><p>If you are not, ours might suit you better. It starts with a father who walked out and an actress mother dead by the time he was three, then a Richmond merchant who took him in without ever adopting him, five years at school in England, a university career ended by gambling debts, an enlistment in the army under a false name, West Point briefly, and a brother dead young. Then the working life: the magazine boom he tried to ride, the international copyright hole that meant American writers could not get paid, the feuds, the reviewing, the invention of the detective story, the fame that arrived with The Raven and paid him almost nothing. It ends in Baltimore in October 1849, found semiconscious in clothes that were not his, dead four days later with the medical records lost, and then with Griswold, the obituary, the forged letters, and a hundred years of the wrong Poe. There is a section on the parts that do not get defended, including his marriage to a thirteen-year-old cousin, because the myth has been polished at both ends and the real person is more interesting than either version.</p><p>That is what the whole series is for. Love history, but hate how it was taught at school? Same. School turned it into a memory test: names, dates, family trees, exam. The actual story never stood a chance. Turbo History is one figure or one event per book, told in under an hour. The rise, the fall, and why it still matters. Dates included, memorising optional. Sources at the back if you want to go further, and every book on this page is a good place to go next.</p><p style='margin-top:24px'><a class='btn' href='https://www.amazon.com/dp/B0H9BPHLHH'>Read It on Amazon</a></p></div><div class='pick' data-reveal><p class='num'>04</p><h3>Edgar Allan Poe: His Life and Legacy</h3><p class='byline'>Jeffrey Meyers, 1992 &middot; ~348 pages &middot; About 10 hours &middot; The most readable full-length life. Half biography, half afterlife</p><p>Meyers moves quickly, is good on the magazine world Poe was trying to survive in, and devotes a substantial closing section to Poe&#x27;s influence on later writers from Baudelaire onwards. It is the easiest of the serious adult biographies to finish. He is more willing than Silverman to state a conclusion where the evidence is thin, particularly about the drinking and the death, so read him against Quinn.</p></div><div class='pick' data-reveal><p class='num'>05</p><h3>Poe: A Life Cut Short</h3><p class='byline'>Peter Ackroyd, 2008 &middot; ~176 pages &middot; About 5 hours &middot; The fastest full-length introduction. An evening or two, and it does not pretend to more</p><p>Ackroyd compresses the whole life into a brief, stylish narrative and is honest that Poe was a professional writer wrecked by an industry that barely paid. It is the quickest way to get the sequence of events straight. It is a synthesis of other people&#x27;s research with no new material, and at this length the Baltimore death and the Griswold aftermath get only a few pages each.</p></div><div class='pick' data-reveal><p class='num'>06</p><h3>The Reason for the Darkness of the Night: Edgar Allan Poe and the Forging of American Science</h3><p class='byline'>John Tresch, 2021 &middot; ~448 pages &middot; About 13 hours &middot; The argument rather than the life story. Poe as a writer obsessed with science</p><p>Tresch is a historian of science and shows Poe moving through a world of lectures, hoaxes, telescopes and new theories, which explains the cryptography, the balloon hoax, the detective stories and the strange cosmological essay Eureka. It genuinely changes how you read him. It is a thesis book, so it assumes you already know the outline of the life and it gives less room to the domestic side.</p></div><div class='pick' data-reveal><p class='num'>07</p><h3>The Man of the Crowd: Edgar Allan Poe and the City</h3><p class='byline'>Scott Peeples, 2020 &middot; ~224 pages &middot; About 6 hours &middot; Short, modern and unusual. The four cities that made him, in place of a cradle-to-grave narrative</p><p>Peeples organises Poe&#x27;s life around Richmond, Baltimore, Philadelphia and New York, and around the constant moving between cheap rooms, which turns out to explain a great deal about what he wrote and why he never got ahead. It is concise, well sourced and pleasant to read. It is deliberately not a complete biography, so pair it with Silverman if this is your first Poe book.</p></div>
+</section>
 
+<section class="wrap">
+  <div class="sect-head" data-reveal>
+    <h2>Questions people actually ask</h2>
+    <div class="rule"></div>
+  </div>
+  <div class="prose"><div class='pick' data-reveal><h3>What is the best Edgar Allan Poe biography?</h3><p>Kenneth Silverman&#x27;s Edgar A. Poe: Mournful and Never-Ending Remembrance (1991) is the usual first recommendation, at around 564 pages, and it is careful with the evidence. Arthur Hobson Quinn&#x27;s Edgar Allan Poe: A Critical Biography from 1941 is still the most thorough ever written at roughly 761 pages, and it is the book that proved how much had been forged. Jeffrey Meyers is the easiest to read of the three.</p></div><div class='pick' data-reveal><h3>Was Poe really a drunk and a drug addict?</h3><p>Partly, and much less than the legend says. Poe did lose jobs through drinking and he did fall apart after his wife Virginia died, but the drug addiction was largely invented. Rufus Griswold, his literary executor, wrote a hostile obituary in 1849 and a memoir in 1850 that used forged letters to build the image of a depraved genius, and because it was the only full account for years it became the accepted one. Quinn&#x27;s biography prints the originals against Griswold&#x27;s versions.</p></div><div class='pick' data-reveal><h3>Where should I start reading about Poe&#x27;s life?</h3><p>Start with Peter Ackroyd&#x27;s Poe: A Life Cut Short if you want something you can finish in two evenings, or Scott Peeples&#x27;s The Man of the Crowd if you would rather have a short modern book with a fresh angle. Then go to Silverman for the full life. Leave Quinn until you want to check something in detail.</p></div><div class='pick' data-reveal><h3>How did Edgar Allan Poe die?</h3><p>Nobody knows. He was found semiconscious on a Baltimore street on 3 October 1849, wearing clothes that were not his, and died in hospital four days later without ever explaining what had happened. All the medical records, including the death certificate, have been lost. Theories have included alcohol withdrawal, heart disease, epilepsy, rabies and cooping, a form of election fraud in which men were seized, drugged and made to vote repeatedly. Silverman and Quinn both treat the question as unresolved, and any book claiming certainty is overselling.</p></div><div class='pick' data-reveal><h3>Is there a good book about Poe beyond the horror stories?</h3><p>Yes. John Tresch&#x27;s The Reason for the Darkness of the Night puts Poe inside the scientific culture of his day, which explains the cryptography, the hoaxes, the detective fiction and Eureka far better than the tortured-genius framing ever did. Read a straight biography first, then this one, because it is an argument rather than a life story.</p></div></div>
+</section>
 
-<section class="wrap"><div class="blurb"><h2 style="text-align:left">Questions people actually ask</h2>
-<h3>What is the best Edgar Allan Poe biography?</h3><p>Kenneth Silverman&#x27;s Edgar A. Poe: Mournful and Never-Ending Remembrance (1991) is the usual first recommendation, at around 564 pages, and it is careful with the evidence. Arthur Hobson Quinn&#x27;s Edgar Allan Poe: A Critical Biography from 1941 is still the most thorough ever written at roughly 761 pages, and it is the book that proved how much had been forged. Jeffrey Meyers is the easiest to read of the three.</p><h3>Was Poe really a drunk and a drug addict?</h3><p>Partly, and much less than the legend says. Poe did lose jobs through drinking and he did fall apart after his wife Virginia died, but the drug addiction was largely invented. Rufus Griswold, his literary executor, wrote a hostile obituary in 1849 and a memoir in 1850 that used forged letters to build the image of a depraved genius, and because it was the only full account for years it became the accepted one. Quinn&#x27;s biography prints the originals against Griswold&#x27;s versions.</p><h3>Where should I start reading about Poe&#x27;s life?</h3><p>Start with Peter Ackroyd&#x27;s Poe: A Life Cut Short if you want something you can finish in two evenings, or Scott Peeples&#x27;s The Man of the Crowd if you would rather have a short modern book with a fresh angle. Then go to Silverman for the full life. Leave Quinn until you want to check something in detail.</p><h3>How did Edgar Allan Poe die?</h3><p>Nobody knows. He was found semiconscious on a Baltimore street on 3 October 1849, wearing clothes that were not his, and died in hospital four days later without ever explaining what had happened. All the medical records, including the death certificate, have been lost. Theories have included alcohol withdrawal, heart disease, epilepsy, rabies and cooping, a form of election fraud in which men were seized, drugged and made to vote repeatedly. Silverman and Quinn both treat the question as unresolved, and any book claiming certainty is overselling.</p><h3>Is there a good book about Poe beyond the horror stories?</h3><p>Yes. John Tresch&#x27;s The Reason for the Darkness of the Night puts Poe inside the scientific culture of his day, which explains the cryptography, the hoaxes, the detective fiction and Eureka far better than the tortured-genius framing ever did. Read a straight biography first, then this one, because it is an argument rather than a life story.</p>
-</div></section>
-<section class="wrap"><div class="capture">
+<div class="capture">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="inner" data-reveal>
   <h2>This book is free sometimes. Want to know when?</h2>
   <p class="why">Edgar Allan Poe goes free on Amazon from time to time, along with the rest of the series. Leave your email and we will tell you the moment it does.</p>
   <form class="signup" id="sub" novalidate>
@@ -169,12 +600,12 @@ footer .links{margin-bottom:9px;font-size:14.5px}
       <button class="btn" type="submit">Tell Me When They Are Free</button>
       <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off"
              aria-hidden="true">
-      <label class="opt"><input type="checkbox" name="groups[]" value="all" checked> Tell me about every free Turbo History book, not just this one</label>
+      <label class="opt"><input type="checkbox" name="groups[]" value="all" checked> <span>Tell me about every free Turbo History book, not just this one</span></label>
       <label class="opt consent" hidden><input type="checkbox" name="consent">
         <span>Yes, email me when Turbo History books are free. I can unsubscribe any time.</span></label>
       <p class="submsg" role="status" aria-live="polite"></p>
-      <p class="fineprint">We only ever use it to tell you when a book is free. No ads, no
-      sharing, no selling. Unsubscribe in one click. See our
+      <p class="fineprint">We only ever use it to tell you when a book is free, we never
+      share it with anyone, and you can unsubscribe in one click. See our
       <a href="/privacy/">privacy policy</a>.</p>
     </form>
     <script>
@@ -212,14 +643,19 @@ footer .links{margin-bottom:9px;font-size:14.5px}
       });
     })();
     </script>
-</div></section>
-<section class="wrap"><h2>More from the series</h2>
-  <p class="sub">One figure or one event per book. Under an hour each.</p>
-  <div class="grid"><a href="/books/lewis-and-clark/"><img src="/covers/lewis-and-clark.jpg" alt="Lewis and Clark book cover" loading="lazy"><span>Lewis and Clark</span></a><a href="/books/jane-austen/"><img src="/covers/jane-austen.jpg" alt="Jane Austen book cover" loading="lazy"><span>Jane Austen</span></a><a href="/books/mary-shelley/"><img src="/covers/mary-shelley.jpg" alt="Mary Shelley book cover" loading="lazy"><span>Mary Shelley</span></a><a href="/books/frederick-douglass/"><img src="/covers/frederick-douglass.jpg" alt="Frederick Douglass book cover" loading="lazy"><span>Frederick Douglass</span></a><a href="/books/abraham-lincoln/"><img src="/covers/abraham-lincoln.jpg" alt="Abraham Lincoln book cover" loading="lazy"><span>Abraham Lincoln</span></a><a href="/books/thomas-jefferson/"><img src="/covers/thomas-jefferson.jpg" alt="Thomas Jefferson book cover" loading="lazy"><span>Thomas Jefferson</span></a></div>
+</div></div>
+<section class="wrap">
+  <div class="sect-head" data-reveal>
+    <h2>More from the series</h2>
+    <p class="sub">One figure or one event per book. Under an hour each.</p>
+    <div class="rule"></div>
+  </div>
+  <div class="grid" data-stagger><a href="/books/lewis-and-clark/"><span class="cov"><img src="/covers/lewis-and-clark.jpg" alt="Lewis and Clark book cover" loading="lazy"></span><span class="t">Lewis and Clark</span></a><a href="/books/jane-austen/"><span class="cov"><img src="/covers/jane-austen.jpg" alt="Jane Austen book cover" loading="lazy"></span><span class="t">Jane Austen</span></a><a href="/books/mary-shelley/"><span class="cov"><img src="/covers/mary-shelley.jpg" alt="Mary Shelley book cover" loading="lazy"></span><span class="t">Mary Shelley</span></a><a href="/books/frederick-douglass/"><span class="cov"><img src="/covers/frederick-douglass.jpg" alt="Frederick Douglass book cover" loading="lazy"></span><span class="t">Frederick Douglass</span></a><a href="/books/abraham-lincoln/"><span class="cov"><img src="/covers/abraham-lincoln.jpg" alt="Abraham Lincoln book cover" loading="lazy"></span><span class="t">Abraham Lincoln</span></a><a href="/books/thomas-jefferson/"><span class="cov"><img src="/covers/thomas-jefferson.jpg" alt="Thomas Jefferson book cover" loading="lazy"></span><span class="t">Thomas Jefferson</span></a></div>
 </section>
 
+</main>
 <footer><div class="wrap">
-  <div class="links"><a href="/">Home</a> &middot; <a href="https://www.amazon.com/author/turbohistory">Amazon Author Page</a> &middot; <a href="/privacy/">Privacy</a> &middot; <a href="#" onclick="thPrivacy();return false;">Your privacy choices</a> &middot; <a href="mailto:turbo@turbohistory.com">turbo@turbohistory.com</a></div>
+  <div class="links"><a href="/">Home</a><span>&middot;</span><a href="https://www.amazon.com/author/turbohistory">Amazon Author Page</a><span>&middot;</span><a href="/privacy/">Privacy</a><span>&middot;</span><a href="#" onclick="thPrivacy();return false;">Your privacy choices</a><span>&middot;</span><a href="mailto:turbo@turbohistory.com">turbo@turbohistory.com</a></div>
   <div>&copy; Turbo History. All books available on Amazon and Kindle Unlimited.</div>
 </div></footer>
 
@@ -279,5 +715,46 @@ footer .links{margin-bottom:9px;font-size:14.5px}
 })();
 </script>
 
+<script>
+(function(){
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.documentElement.classList.add('motion');
+  document.querySelectorAll('[data-stagger]').forEach(function(g){
+    Array.prototype.forEach.call(g.children,function(c,i){
+      c.setAttribute('data-reveal','');
+      c.style.transitionDelay = Math.min(i*60,540)+'ms';
+    });
+  });
+  var els = document.querySelectorAll('[data-reveal]');
+  els.forEach(function(el){ el.classList.add('pre'); });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  },{rootMargin:'0px 0px -10% 0px',threshold:.08});
+  els.forEach(function(el){ io.observe(el); });
+  // sand timer: runs one cycle when it reaches the viewport, then rests drained
+  var hg = document.querySelector('.hg-inline:not(.hg-loop)');
+  if (hg){
+    hg.style.setProperty('--hg-rep','1');
+    var hio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('hg-run'); hio.unobserve(e.target); }
+      });
+    },{threshold:.6});
+    hio.observe(hg);
+  }
+  // the spine draws itself once the reading path enters view
+  var path = document.getElementById('thepath');
+  if (path){
+    var pio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('lit'); pio.unobserve(e.target); }
+      });
+    },{rootMargin:'0px 0px -12% 0px',threshold:.04});
+    pio.observe(path);
+  }
+})();
+</script>
 </body>
 </html>

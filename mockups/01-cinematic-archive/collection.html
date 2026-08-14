@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conquerors: Six Books, One Reading Order | Turbo History</title>
+<meta name="description" content="The men who took more of the map than anyone thought possible, and what it cost. Six Turbo History books in a curated reading order, an hour each.">
+<style>
+:root{
+  --ink:#0d0b08;
+  --ink-2:#131009;
+  --ink-3:#060504;
+  --line:rgba(233,221,198,.14);
+  --hairline:rgba(233,221,198,.09);
+  --parchment:#e9ddc6;
+  --muted:#a39781;
+  --gold:#c9a24b;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --t-label:.75rem;
+  --t-body:1.0625rem;
+  --t-lede:1.375rem;
+  --t-h2:clamp(1.9rem,3.6vw,2.6rem);
+  --t-display:clamp(2.7rem,7vw,6rem);
+  --sans:Futura,'Avenir Next','Trebuchet MS',Arial,sans-serif;
+  --serif:Georgia,'Times New Roman',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--ink);color:var(--parchment);font-family:var(--serif);font-size:var(--t-body);line-height:1.68}
+img{max-width:100%;display:block}
+a{color:var(--gold);text-decoration:none;transition:opacity .2s var(--ease)}
+a:hover{opacity:.82}
+::selection{background:var(--gold);color:var(--ink)}
+
+.grain{position:fixed;inset:0;z-index:1000;pointer-events:none;opacity:.055;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:200;
+  display:flex;align-items:center;gap:26px;padding:9px 26px 9px 16px;border-radius:999px;
+  background:rgba(9,7,5,.74);border:1px solid var(--line);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);white-space:nowrap}
+.nav .logo{display:inline-flex;align-items:center}
+.nav .logo svg{height:38px;width:auto;display:block}
+.nav a{transition:color .2s var(--ease),opacity .2s var(--ease)}
+.nav .links{display:flex;gap:22px}
+.nav .links a{font-family:var(--sans);font-size:var(--t-label);letter-spacing:.18em;text-transform:uppercase;color:var(--parchment)}
+.nav .links a:hover{color:var(--gold);opacity:1}
+
+.label{font-family:var(--sans);font-size:var(--t-label);letter-spacing:.04em;color:var(--muted)}
+.label b{color:var(--gold);font-weight:700}
+
+/* ============ collection hero ============ */
+.chero{position:relative;overflow:hidden;background:var(--ink)}
+.scene{position:absolute;inset:0;overflow:hidden}
+.scene .base{position:absolute;inset:0;background:
+  radial-gradient(120% 96% at 50% 116%, rgba(201,162,75,.30) 0%, rgba(201,162,75,.09) 36%, rgba(201,162,75,0) 60%),
+  radial-gradient(44% 36% at 18% 62%, rgba(158,110,44,.14) 0%, rgba(158,110,44,0) 66%),
+  radial-gradient(150% 130% at 50% -12%, #1b140b 0%, #120e08 46%, #0d0b08 74%)}
+.scene .drift,.scene .drift2{position:absolute;inset:-22%;will-change:transform}
+.scene .drift{background:
+  radial-gradient(38% 30% at 32% 60%, rgba(233,221,198,.05) 0%, rgba(233,221,198,0) 70%),
+  radial-gradient(28% 24% at 76% 46%, rgba(233,221,198,.035) 0%, rgba(233,221,198,0) 70%)}
+.scene .drift2{background:
+  radial-gradient(46% 34% at 62% 72%, rgba(201,162,75,.09) 0%, rgba(201,162,75,0) 70%),
+  radial-gradient(24% 20% at 20% 38%, rgba(201,162,75,.05) 0%, rgba(201,162,75,0) 72%)}
+@media (prefers-reduced-motion:no-preference){
+  .scene .drift{animation:drift 82s var(--ease) infinite alternate}
+  .scene .drift2{animation:drift2 110s var(--ease) infinite alternate}
+}
+@keyframes drift{from{transform:translate3d(-2.5%,1.5%,0) scale(1.02) rotate(-1deg)}to{transform:translate3d(2.5%,-2%,0) scale(1.07) rotate(1.2deg)}}
+@keyframes drift2{from{transform:translate3d(2%,-1%,0) scale(1.05)}to{transform:translate3d(-2.5%,2%,0) scale(1)}}
+.scene .streak{position:absolute;left:6%;right:6%;bottom:22%;height:1px;background:linear-gradient(to right,rgba(201,162,75,0) 0%,rgba(201,162,75,.45) 36%,rgba(233,221,198,.6) 50%,rgba(201,162,75,.45) 64%,rgba(201,162,75,0) 100%);filter:blur(.4px)}
+.scene .table{position:absolute;inset:auto 0 0 0;height:26%;background:linear-gradient(to top,#060504 0%,rgba(6,5,4,.86) 24%,rgba(6,5,4,0) 100%)}
+.scene .vignette{position:absolute;inset:0;background:radial-gradient(120% 100% at 50% 42%, rgba(6,5,4,0) 46%, rgba(6,5,4,.62) 100%)}
+
+.chero .inner{position:relative;z-index:2;max-width:1160px;margin:0 auto;padding:132px 26px 76px}
+.crumbs{font-family:var(--sans);font-size:var(--t-label);letter-spacing:.04em;color:var(--muted);margin-bottom:54px}
+.crumbs a{color:var(--muted)}
+.crumbs a:hover{color:var(--gold);opacity:1}
+.crumbs .sep{margin:0 10px;color:var(--gold)}
+.chero h1{font-size:var(--t-display);font-weight:400;line-height:1.02;letter-spacing:-.015em;max-width:13ch}
+.chero h1 .line{display:block;overflow:hidden}
+.chero h1 .line>span{display:block}
+.chero h1 em{font-style:italic;color:var(--gold)}
+.chero .deck{max-width:58ch;margin:32px 0 0;font-size:var(--t-lede);line-height:1.5;color:var(--muted)}
+.chero .deck b{color:var(--parchment);font-weight:400}
+.chero .stats{margin-top:34px}
+.chero .acts{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+
+/* THE authored hero moment: the six spines deal in, left to right, like cards on a table */
+.strip{position:relative;z-index:2;max-width:1160px;margin:0 auto;padding:0 26px 92px;display:flex;gap:14px;flex-wrap:wrap}
+.strip a{display:block;flex:0 0 auto;transition:transform .22s var(--ease),filter .22s var(--ease)}
+.strip img{width:clamp(78px,10vw,124px);aspect-ratio:5/8;object-fit:cover;border-radius:2px;filter:brightness(.86);
+  box-shadow:0 22px 40px -16px rgba(0,0,0,.85);transition:filter .22s var(--ease)}
+.strip a:hover{transform:translateY(-9px);opacity:1}
+.strip a:hover img{filter:brightness(1.05)}
+.motion .chero h1 .line>span{transform:translateY(112%);opacity:0;animation:rise 1s var(--ease) forwards}
+.motion .chero h1 .line:nth-child(2)>span{animation-delay:.14s}
+.motion .chero .deck,.motion .chero .stats,.motion .chero .acts{opacity:0;transform:translateY(26px);animation:rise2 1.05s var(--ease) .48s forwards}
+.motion .chero .stats{animation-delay:.62s}
+.motion .chero .acts{animation-delay:.76s}
+.motion .strip a{opacity:0;transform:translateY(42px);animation:rise2 .9s var(--ease) forwards}
+.motion .strip a:nth-child(1){animation-delay:.80s}
+.motion .strip a:nth-child(2){animation-delay:.88s}
+.motion .strip a:nth-child(3){animation-delay:.96s}
+.motion .strip a:nth-child(4){animation-delay:1.04s}
+.motion .strip a:nth-child(5){animation-delay:1.12s}
+.motion .strip a:nth-child(6){animation-delay:1.20s}
+.motion .scene{opacity:0;animation:sceneIn 2.1s ease-out forwards}
+@keyframes rise{to{transform:translateY(0);opacity:1}}
+@keyframes rise2{to{transform:translateY(0);opacity:1}}
+@keyframes sceneIn{to{opacity:1}}
+
+.btn{display:inline-block;background:var(--gold);color:var(--ink);padding:15px 30px;border-radius:2px;border:none;cursor:pointer;
+  font-family:var(--sans);font-weight:700;font-size:var(--t-label);letter-spacing:.16em;text-transform:uppercase;
+  transition:transform .2s var(--ease),filter .2s var(--ease),opacity .2s var(--ease)}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.09);opacity:1}
+.btn.ghost{background:transparent;color:var(--gold);box-shadow:inset 0 0 0 1px var(--gold)}
+.btn.ghost:hover{filter:brightness(1.15)}
+
+/* ============ sections ============ */
+.wrap{max-width:1160px;margin:0 auto;padding:0 26px}
+section{padding:88px 0}
+.sect-head{text-align:center;max-width:62ch;margin:0 auto 52px}
+.sect-head h2{font-size:var(--t-h2);font-weight:400;line-height:1.15;letter-spacing:-.01em}
+.sect-head .sub{color:var(--muted);margin-top:14px}
+.sect-head .rule{width:52px;height:1px;background:var(--gold);margin:26px auto 0}
+.prose{max-width:68ch;margin:0 auto}
+.prose p{margin:16px 0}
+.prose .lede{font-size:var(--t-lede);line-height:1.55}
+.prose .note{color:var(--muted);font-style:italic}
+
+/* ============ the reading path ============ */
+.path{position:relative;max-width:940px;margin:0 auto}
+.path .spine{position:absolute;left:31px;top:14px;bottom:120px;width:1px;
+  background:linear-gradient(to bottom,rgba(201,162,75,0) 0%,rgba(201,162,75,.55) 8%,rgba(201,162,75,.55) 88%,rgba(201,162,75,0) 100%);
+  transform-origin:top center}
+.motion .path .spine{transform:scaleY(0);transition:transform 1.8s var(--ease) .1s}
+.motion .path.lit .spine{transform:scaleY(1)}
+.step{position:relative;display:grid;grid-template-columns:64px 172px 1fr;gap:0 34px;align-items:start;padding:0 0 62px}
+.step:last-of-type{padding-bottom:0}
+.step .num{position:relative;font-size:var(--t-h2);font-weight:400;line-height:1;color:var(--gold);text-align:center;padding-top:4px}
+.step .num::after{content:"";position:absolute;left:50%;top:-14px;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px var(--ink)}
+.step .cov{display:block;border-radius:2px;overflow:hidden;box-shadow:0 20px 38px -14px rgba(0,0,0,.78)}
+.step .cov img{width:100%;aspect-ratio:5/8;object-fit:cover;filter:brightness(.92);transition:transform .25s var(--ease),filter .25s var(--ease)}
+.step .cov:hover img{transform:scale(1.035);filter:brightness(1.05)}
+.step .body{padding-top:2px}
+.step h3{font-size:var(--t-lede);font-weight:400;line-height:1.25;margin-bottom:8px}
+.step h3 a{color:var(--parchment)}
+.step h3 a:hover{color:var(--gold);opacity:1}
+.step .byline{color:var(--muted);font-family:var(--sans);font-size:var(--t-label);letter-spacing:.04em;margin-bottom:16px}
+.step .byline b{color:var(--gold);font-weight:700}
+.step .why{max-width:60ch}
+.step .why b{color:var(--parchment);font-weight:400;font-style:italic}
+.step .go{display:inline-block;margin-top:14px;font-family:var(--sans);font-size:var(--t-label);letter-spacing:.04em;
+  transition:transform .2s var(--ease),opacity .2s var(--ease)}
+.step .go:hover{transform:translateX(4px);opacity:1}
+.step .go .arr{display:inline-block;margin-left:8px}
+.step.here{background:rgba(201,162,75,.06);border-radius:2px;padding:34px 30px 40px;margin:0 -30px 62px}
+.step.here .num::after{top:-48px}
+.step.here h3 a{color:var(--gold)}
+.pathend{position:relative;margin-top:8px;padding-left:98px;color:var(--muted)}
+.pathend b{color:var(--gold);font-family:var(--sans);font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;display:block;margin-bottom:10px;font-weight:700}
+.pathend p{max-width:56ch}
+
+/* fair warning interlude */
+.warning{background:var(--ink-3);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
+.warning .inner{max-width:66ch;margin:0 auto;padding:80px 26px;text-align:center}
+.warning p{font-size:var(--t-lede);line-height:1.55;font-style:italic}
+.warning b{color:var(--gold);font-style:normal;font-family:var(--sans);font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;display:block;margin-bottom:22px}
+
+/* capture */
+.capture{position:relative;overflow:hidden;background:var(--ink-2);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
+.capture .glow{position:absolute;inset:0;background:radial-gradient(60% 80% at 50% 110%, rgba(201,162,75,.15) 0%, rgba(201,162,75,0) 60%)}
+.capture .inner{position:relative;max-width:640px;margin:0 auto;padding:88px 26px;text-align:center}
+.capture h2{font-size:var(--t-h2);font-weight:400;line-height:1.15}
+.capture .why{color:var(--muted);margin:18px auto 34px;max-width:48ch}
+.signup{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.signup input[type=email]{flex:1 1 260px;max-width:360px;padding:14px 16px;border-radius:2px;
+  border:1px solid var(--line);background:rgba(6,5,4,.6);color:var(--parchment);font-family:var(--serif);font-size:var(--t-body)}
+.signup input[type=email]::placeholder{color:var(--muted)}
+.signup input[type=email]:focus{border-color:var(--gold)}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0}
+.opt{display:flex;gap:10px;justify-content:center;align-items:flex-start;margin-top:20px;color:var(--muted);cursor:pointer;text-align:left;max-width:46ch;margin-left:auto;margin-right:auto}
+.opt input{accent-color:var(--gold);width:18px;height:18px;flex-shrink:0;margin-top:4px}
+.fineprint{color:var(--muted);font-size:var(--t-label);letter-spacing:.02em;margin-top:22px;font-family:var(--sans)}
+.fineprint a{color:var(--muted);text-decoration:underline}
+.fineprint a:hover{color:var(--gold)}
+
+/* elsewhere grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:30px 24px}
+.grid a{display:block;color:var(--parchment)}
+.grid a:hover{opacity:1}
+.grid .cov{overflow:hidden;border-radius:2px;box-shadow:0 18px 34px -14px rgba(0,0,0,.7)}
+.grid img{width:100%;aspect-ratio:5/8;object-fit:cover;transition:transform .25s var(--ease),filter .25s var(--ease);filter:brightness(.94)}
+.grid a:hover img{transform:scale(1.035);filter:brightness(1.04)}
+.grid span.t{display:block;margin-top:14px;text-align:center;font-family:var(--sans);font-size:var(--t-label);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);transition:color .2s var(--ease)}
+.grid a:hover span.t{color:var(--gold)}
+
+footer{border-top:1px solid var(--hairline);padding:44px 0 56px;text-align:center;color:var(--muted);font-family:var(--sans);font-size:var(--t-label);letter-spacing:.04em}
+footer .links{margin-bottom:12px}
+footer .links a{color:var(--muted)}
+footer .links a:hover{color:var(--gold)}
+footer .links span{margin:0 10px;opacity:.5}
+
+.pre{opacity:0;transform:translateY(44px);transition:opacity .95s var(--ease),transform .95s var(--ease)}
+.pre.in{opacity:1;transform:translateY(0)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+@media (max-width:820px){
+  .step{grid-template-columns:52px 132px 1fr;gap:0 24px}
+  .path .spine{left:25px}
+  .pathend{padding-left:76px}
+}
+@media (max-width:640px){
+  .nav{gap:14px;padding:8px 18px 8px 12px;top:12px}
+  .nav .logo svg{height:30px}
+  .nav .links{gap:14px}
+  section{padding:60px 0}
+  .chero .inner{padding:112px 22px 44px}
+  .crumbs{margin-bottom:34px}
+  .strip{padding:0 22px 64px;gap:9px}
+  .step{grid-template-columns:44px 1fr;gap:0 18px}
+  .step .cov{grid-column:2;max-width:132px;margin-bottom:18px}
+  .step .body{grid-column:2}
+  .path .spine{left:21px}
+  .step .num{font-size:var(--t-lede)}
+  .step.here{padding:26px 20px 30px;margin:0 -20px 62px}
+  .pathend{padding-left:62px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:22px 16px}
+}
+
+/* --- audit fixes: browser surfaces, focus, hit areas --- */
+::selection{background:var(--gold);color:var(--ink)}
+body{caret-color:var(--gold)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+.signup input[type=email]:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+h1,h2,h3{text-wrap:balance}
+.deck,.lede{text-wrap:pretty}
+.nav .links a{padding:12px 2px}
+footer .links a{display:inline-block;padding:6px 2px}
+@media (max-width:640px){
+  .nav{left:12px;right:12px;transform:none;width:auto;
+    justify-content:space-between;gap:10px;padding:6px 14px 6px 10px}
+  .nav .logo svg{height:26px}
+  .nav .links{gap:12px}
+  .nav .links a{font-size:.6875rem;letter-spacing:.08em;padding:10px 1px}
+}
+@media (prefers-reduced-motion:reduce){:focus-visible{outline:2px solid var(--gold)}}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Main">
+  <a class="logo" href="index.html" aria-label="Turbo History"><svg viewBox="0 0 300 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <g transform="translate(150,16) scale(0.26)">
+    <rect x="-32" y="-52" width="64" height="9" rx="4" fill="#c9a24b"/>
+    <rect x="-32" y="43" width="64" height="9" rx="4" fill="#c9a24b"/>
+    <path d="M-28,-45 L28,-45 L2,0 L28,45 L-28,45 L-2,0 Z" fill="none" stroke="#c9a24b" stroke-width="4.2" stroke-linejoin="round"/>
+    <path d="M-22,-40 L22,-40 L2,-3 L-2,-3 Z" fill="#e9ddc6" opacity="0.9"/>
+    <path d="M-17,45 L17,45 L0,26 Z" fill="#e9ddc6"/>
+  </g>
+  <text x="150" y="62" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="30" letter-spacing="0.5" fill="#c9a24b">TURBO</text>
+  <text x="150" y="90" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="30" letter-spacing="4.5" fill="#e9ddc6">HISTORY</text>
+</svg></a>
+  <span class="links"><a href="index.html#books">The Books</a><a href="collection.html">Collections</a><a href="https://www.amazon.com/author/turbohistory">Amazon</a></span>
+</nav>
+<main id="content">
+
+<header class="chero">
+  <div class="scene" aria-hidden="true">
+    <div class="base"></div>
+    <div class="drift"></div>
+    <div class="drift2"></div>
+    <div class="streak"></div>
+    <div class="table"></div>
+    <div class="vignette"></div>
+  </div>
+  <div class="inner">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Turbo History</a><span class="sep" aria-hidden="true">&rsaquo;</span><span aria-current="page">Conquerors</span></nav>
+    <h1><span class="line"><span>Six conquerors.</span></span><span class="line"><span>One <em>reading order</em>.</span></span></h1>
+    <p class="deck">The men who took more of the map than anyone thought possible, and what it cost. <b>Read in this order and the six books argue with each other</b> &mdash; each one inherits the last man&rsquo;s playbook and finds out where it breaks.</p>
+    <p class="label stats"><b>6 books</b> &nbsp;&middot;&nbsp; about 5 hours end to end &nbsp;&middot;&nbsp; &pound;2.99 / $2.99 each &nbsp;&middot;&nbsp; free with Kindle Unlimited</p>
+    <div class="acts">
+      <a class="btn" href="#path">Start the Path</a>
+      <a class="btn ghost" href="https://www.amazon.com/author/turbohistory">See Them on Amazon</a>
+    </div>
+  </div>
+  <div class="strip">
+    <a href="#step-1" aria-label="Alexander the Great, step one"><img src="covers/alexander-the-great.jpg" alt="Alexander the Great book cover"></a>
+    <a href="#step-2" aria-label="Hannibal, step two"><img src="covers/hannibal.jpg" alt="Hannibal book cover"></a>
+    <a href="#step-3" aria-label="Julius Caesar, step three"><img src="covers/julius-caesar.jpg" alt="Julius Caesar book cover"></a>
+    <a href="#step-4" aria-label="Genghis Khan, step four"><img src="covers/genghis-khan.jpg" alt="Genghis Khan book cover"></a>
+    <a href="#step-5" aria-label="William the Conqueror, step five"><img src="covers/william-the-conqueror.jpg" alt="William the Conqueror book cover"></a>
+    <a href="#step-6" aria-label="Napoleon, step six"><img src="covers/napoleon.jpg" alt="Napoleon book cover"></a>
+  </div>
+</header>
+
+<section class="wrap">
+  <div class="prose" data-reveal>
+    <p class="lede">Conquest is the one subject school gets backwards. You get the battles and the dates, and never the thing that actually explains them: every conqueror on this list was copying somebody. Alexander wrote the manual. Hannibal used it against Rome. Rome learned from Hannibal and handed the lesson to Caesar, who used it on Rome itself. Genghis Khan built the same machine from outside the classical world entirely and made it bigger than all of them. William proved you could do it in a single afternoon if you picked the right afternoon. Napoleon tried the whole thing one last time with modern armies, and found the ceiling.</p>
+    <p>So the six books are ordered as an argument rather than a timeline, though it lands close to chronological anyway. Read straight through and you watch one idea &mdash; move faster than anyone can react, then govern what you took &mdash; get picked up, sharpened, industrialised, and finally broken. Each book stands alone and starts from nothing, so you can jump in anywhere. The order is where the collection pays.</p>
+    <p class="note">Six books, an hour each, roughly five hours end to end. That is a long train journey, or a week of commutes, for two thousand years of empire. Reading times are honest estimates from word count at roughly 250 words per minute.</p>
+  </div>
+</section>
+
+<section class="wrap" id="path">
+  <div class="sect-head" data-reveal>
+    <h2>The reading path</h2>
+    <p class="sub">Six books, in the order that makes each one hit harder than it would alone.</p>
+    <div class="rule"></div>
+  </div>
+
+  <div class="path" id="thepath">
+    <div class="spine" aria-hidden="true"></div>
+
+    <article class="step" id="step-1" data-reveal>
+      <p class="num">01</p>
+      <a class="cov" href="#" aria-label="Alexander the Great book page"><img src="covers/alexander-the-great.jpg" alt="Alexander the Great: The Boy Who Conquered the World by Thirty-Two book cover" loading="lazy"></a>
+      <div class="body">
+        <h3><a href="#">Alexander the Great</a> &mdash; The Boy Who Conquered the World by Thirty-Two</h3>
+        <p class="byline">356&ndash;323 BC &middot; Macedon to the Indus &middot; <b>Under an hour</b></p>
+        <p class="why"><b>Start here because everyone after him is working from this template.</b> Eleven years, no defeat, an empire from Greece to the Punjab, dead at thirty-two with no plan for what came next. It gives you the whole pattern in its purest form: speed as a weapon, a father&rsquo;s army inherited and improved, and the part nobody warns you about, which is that conquering is the easy half.</p>
+        <a class="go" href="#">Read the book<span class="arr" aria-hidden="true">&rsaquo;</span></a>
+      </div>
+    </article>
+
+    <article class="step" id="step-2" data-reveal>
+      <p class="num">02</p>
+      <a class="cov" href="#" aria-label="Hannibal book page"><img src="covers/hannibal.jpg" alt="Hannibal: Elephants Over the Alps book cover" loading="lazy"></a>
+      <div class="body">
+        <h3><a href="#">Hannibal</a> &mdash; Elephants Over the Alps</h3>
+        <p class="byline">247&ndash;183 BC &middot; Carthage against Rome &middot; <b>Under an hour</b></p>
+        <p class="why"><b>Second, because Hannibal is Alexander&rsquo;s method aimed at a state that refuses to lose.</b> Cannae is still taught in war colleges and it still did not win him the war. Read after Alexander and the contrast does the work for you: the same genius, the same speed, a very different enemy, and fifteen years stranded in Italy waiting for a surrender that never came.</p>
+        <a class="go" href="#">Read the book<span class="arr" aria-hidden="true">&rsaquo;</span></a>
+      </div>
+    </article>
+
+    <article class="step" id="step-3" data-reveal>
+      <p class="num">03</p>
+      <a class="cov" href="#" aria-label="Julius Caesar book page"><img src="covers/julius-caesar.jpg" alt="Julius Caesar: The Dictator Stabbed by His Best Friend book cover" loading="lazy"></a>
+      <div class="body">
+        <h3><a href="#">Julius Caesar</a> &mdash; The Dictator Stabbed by His Best Friend</h3>
+        <p class="byline">100&ndash;44 BC &middot; Gaul, then Rome itself &middot; <b>Under an hour</b></p>
+        <p class="why"><b>Third, because this is the state that beat Hannibal turning the weapon on itself.</b> Caesar conquers Gaul, writes his own press coverage while doing it, then marches the army home. He is the first man on this list to prove that the real prize was never foreign territory, and the first to find out what a republic does to someone who works that out loud.</p>
+        <a class="go" href="#">Read the book<span class="arr" aria-hidden="true">&rsaquo;</span></a>
+      </div>
+    </article>
+
+    <article class="step" id="step-4" data-reveal>
+      <p class="num">04</p>
+      <a class="cov" href="#" aria-label="Genghis Khan book page"><img src="covers/genghis-khan.jpg" alt="Genghis Khan: From Outcast Boy to Emperor of the World book cover" loading="lazy"></a>
+      <div class="body">
+        <h3><a href="#">Genghis Khan</a> &mdash; From Outcast Boy to Emperor of the World</h3>
+        <p class="byline">c.1162&ndash;1227 &middot; The largest land empire ever assembled &middot; <b>Under an hour</b></p>
+        <p class="why"><b>Fourth, because the Mediterranean is not the world, and this is the moment the collection admits it.</b> An outcast child eating roots on the steppe builds an empire four times the size of Alexander&rsquo;s, with a postal service, a written law and religious tolerance bolted on, and a body count that still shows up in population estimates. Everything the first three did on a peninsula, done on a continent.</p>
+        <a class="go" href="#">Read the book<span class="arr" aria-hidden="true">&rsaquo;</span></a>
+      </div>
+    </article>
+
+    <article class="step" id="step-5" data-reveal>
+      <p class="num">05</p>
+      <a class="cov" href="#" aria-label="William the Conqueror book page"><img src="covers/william-the-conqueror.jpg" alt="William the Conqueror: How a Bastard Duke Took England in One Day book cover" loading="lazy"></a>
+      <div class="body">
+        <h3><a href="#">William the Conqueror</a> &mdash; How a Bastard Duke Took England in One Day</h3>
+        <p class="byline">c.1028&ndash;1087 &middot; Normandy to England &middot; <b>Under an hour</b></p>
+        <p class="why"><b>Fifth, for scale. This is the smallest conquest on the list and the one you are still living inside.</b> One battle, one afternoon, and a country&rsquo;s language, landholding, aristocracy and law rebuilt from the ground up, then audited in the Domesday Book. Put next to Genghis it looks trivial. Nine centuries later it is the one that never came undone.</p>
+        <a class="go" href="#">Read the book<span class="arr" aria-hidden="true">&rsaquo;</span></a>
+      </div>
+    </article>
+
+    <article class="step here" id="step-6" data-reveal>
+      <p class="num">06</p>
+      <a class="cov" href="book.html" aria-label="Napoleon book page"><img src="covers/napoleon.jpg" alt="Napoleon book cover" loading="lazy"></a>
+      <div class="body">
+        <h3><a href="book.html">Napoleon</a> &mdash; The Corsican Outsider Who Took Europe</h3>
+        <p class="byline">1769&ndash;1821 &middot; Corsica to Saint Helena &middot; <b>Under an hour</b></p>
+        <p class="why"><b>Finish here, because Napoleon is the last man to try all of it at once and the only one whose paperwork outlived his empire.</b> He read Alexander and Caesar and said so. He moved faster than anyone in Europe could react, exactly as they had. Then the ceiling: Russia, six million dead, an island in the South Atlantic. What survived was the boring half he built between campaigns &mdash; the Code, the prefects, the bank, the baccalaureate, the metric system, still running under the law of six countries.</p>
+        <a class="go" href="book.html">Read the book<span class="arr" aria-hidden="true">&rsaquo;</span></a>
+      </div>
+    </article>
+
+    <div class="pathend" data-reveal>
+      <b>End of the path</b>
+      <p>Charlemagne is written and joins this collection next. If you would rather not track it yourself, the email list below is the lazy way to hear about it.</p>
+    </div>
+  </div>
+</section>
+
+<div class="warning">
+  <div class="inner" data-reveal>
+    <b>Fair warning</b>
+    <p>These are not academic books. You will not find footnotes to chase, family trees to memorise, or ten pages on the logistics of a supply train. If you want that depth, every book ends with a page of proper ones to go to next. If you want the story and the big picture in an hour, you are home.</p>
+  </div>
+</div>
+
+<div class="capture">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="inner" data-reveal>
+    <h2>Conquerors books go free most weekends.</h2>
+    <p class="why">Most weekends one Turbo History book goes completely free on Amazon, and often it is one of these six. Leave your email and we will tell you which one, before it goes back to full price.</p>
+    <form class="signup" id="sub" novalidate>
+      <input type="hidden" name="fields[collection_interest]" value="conquerors">
+      <input type="email" name="email" placeholder="you@example.com" required autocomplete="email" aria-label="Email address">
+      <button class="btn" type="submit">Tell Me When They Are Free</button>
+      <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="opt"><input type="checkbox" name="groups[]" value="all" checked> <span>Tell me about every free Turbo History book, not just the Conquerors</span></label>
+    </form>
+    <p class="fineprint">We only ever use it to tell you when a book is free, we never share it, and you can unsubscribe in one click. See our <a href="#">privacy policy</a>.</p>
+  </div>
+</div>
+
+<section class="wrap">
+  <div class="sect-head" data-reveal>
+    <h2>If you liked the Conquerors</h2>
+    <p class="sub">Same series, same hour, people who were on the other end of an army.</p>
+    <div class="rule"></div>
+  </div>
+  <div class="grid" data-stagger>
+    <a href="#"><span class="cov"><img src="covers/cleopatra.jpg" alt="Cleopatra book cover" loading="lazy"></span><span class="t">Cleopatra</span></a>
+    <a href="#"><span class="cov"><img src="covers/spartacus.jpg" alt="Spartacus: The Slave Who Shook Rome book cover" loading="lazy"></span><span class="t">Spartacus</span></a>
+    <a href="#"><span class="cov"><img src="covers/joan-of-arc.jpg" alt="Joan of Arc: The Teenage Girl Who Saved France book cover" loading="lazy"></span><span class="t">Joan of Arc</span></a>
+    <a href="#"><span class="cov"><img src="covers/vlad-the-impaler.jpg" alt="Vlad the Impaler: The Prince Who Inspired Dracula book cover" loading="lazy"></span><span class="t">Vlad the Impaler</span></a>
+    <a href="#"><span class="cov"><img src="covers/ivan-the-terrible.jpg" alt="Ivan the Terrible: The First Tsar and His Terror book cover" loading="lazy"></span><span class="t">Ivan the Terrible</span></a>
+    <a href="#"><span class="cov"><img src="covers/world-war-ii.jpg" alt="World War II: The War That Redrew Everything book cover" loading="lazy"></span><span class="t">World War II</span></a>
+  </div>
+</section>
+
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="index.html">Home</a><span>&middot;</span><a href="https://www.amazon.com/author/turbohistory">Amazon Author Page</a><span>&middot;</span><a href="#">Privacy</a><span>&middot;</span><a href="mailto:turbo@turbohistory.com">turbo@turbohistory.com</a></div>
+  <div>&copy; Turbo History. All books available on Amazon and Kindle Unlimited.</div>
+</div></footer>
+
+<script>
+(function(){
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.documentElement.classList.add('motion');
+  document.querySelectorAll('[data-stagger]').forEach(function(g){
+    Array.prototype.forEach.call(g.children,function(c,i){
+      c.setAttribute('data-reveal','');
+      c.style.transitionDelay = Math.min(i*60,540)+'ms';
+    });
+  });
+  var els = document.querySelectorAll('[data-reveal]');
+  els.forEach(function(el){ el.classList.add('pre'); });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  },{rootMargin:'0px 0px -10% 0px',threshold:.08});
+  els.forEach(function(el){ io.observe(el); });
+
+  // the spine draws itself once the path enters view
+  var path = document.getElementById('thepath');
+  if (path){
+    var pio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('lit'); pio.unobserve(e.target); }
+      });
+    },{rootMargin:'0px 0px -12% 0px',threshold:.04});
+    pio.observe(path);
+  }
+})();
+</script>
+</body>
+</html>

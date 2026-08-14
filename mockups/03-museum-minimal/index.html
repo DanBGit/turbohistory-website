@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Turbo History | One-Hour History Books for People Who Hate How History Was Taught</title>
+<meta name="description" content="Love history, but hate how it was taught at school? Turbo History: one figure or one event per book, told in under an hour. 55 books. Free on Kindle Unlimited.">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+:root{
+  --paper:#f5efe2;
+  --paper-deep:#eee6d3;
+  --mat:#fbf7ed;
+  --ink:#181410;
+  --muted:#5f5644;
+  --line:#d8cdb4;
+  --gold:#c9a24b;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+  --serif:Georgia,'Times New Roman',serif;
+  --mono:ui-monospace,'SF Mono',Menlo,Consolas,'Courier New',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.65}
+body::after{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.05;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+a{color:var(--ink);text-decoration:none}
+img{max-width:100%}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+.prose{max-width:66ch}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.label.sentence{text-transform:none;letter-spacing:.02em;font-size:13px}
+.goldline{height:1px;background:var(--gold);border:none}
+.hairline{height:1px;background:var(--line);border:none}
+
+/* ---------- nav ---------- */
+.nav{display:flex;justify-content:space-between;align-items:center;padding:26px 0;border-bottom:1px solid var(--line)}
+.nav .logo svg{height:52px;width:auto;display:block}
+.nav .links a{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;margin-left:34px;transition:opacity .18s var(--ease)}
+.nav .links a:hover{opacity:.55}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:clip;padding:110px 0 130px;min-height:78vh}
+.hero-inner{position:relative;z-index:1;max-width:700px}
+h1{font-size:clamp(58px,9.5vw,124px);font-weight:400;line-height:.98;letter-spacing:-.015em}
+.hl-ghost{display:block;opacity:.15}
+.hl-ink{display:block}
+.hero .lede{margin:36px 0 0;color:var(--muted);max-width:56ch}
+.hero .pitch{margin:20px 0 0;max-width:58ch}
+.hero .cta-row{margin:40px 0 0;display:flex;align-items:center;gap:30px;flex-wrap:wrap}
+.hero .plaque-line{margin-top:44px}
+.hero .price{margin-top:16px;color:var(--muted)}
+.tlink{border-bottom:1px solid var(--gold);padding-bottom:2px;transition:opacity .2s var(--ease)}
+.tlink:hover{opacity:.55}
+.btn{display:inline-block;background:var(--gold);color:var(--ink);font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:17px 32px;border:none;cursor:pointer;transition:transform .2s var(--ease),filter .2s var(--ease)}
+.btn:hover{transform:translateY(-2px);filter:brightness(.93)}
+
+/* the monumental object: diagonal marble shard, CSS stand-in */
+.relic{position:absolute;z-index:0;top:-14%;right:-4%;width:min(46vw,580px);height:128%;transform:rotate(8deg);filter:drop-shadow(34px 46px 44px rgba(56,42,16,.30))}
+.relic-body{position:relative;width:100%;height:100%;clip-path:polygon(34% 0,100% 9%,74% 100%,0 84%);background:
+  radial-gradient(90% 55% at 32% 18%,rgba(255,255,255,.95),rgba(255,255,255,0) 62%),
+  radial-gradient(70% 45% at 72% 74%,rgba(96,80,52,.28),rgba(96,80,52,0) 60%),
+  linear-gradient(114deg,#f2ecdd 0%,#e3d9c2 38%,#cfc1a0 68%,#ab9a78 100%)}
+.relic-body::before{content:"";position:absolute;inset:0;background:
+  linear-gradient(76deg,transparent 49.55%,rgba(64,52,32,.38) 49.9%,transparent 50.35%),
+  linear-gradient(104deg,transparent 63.6%,rgba(64,52,32,.24) 63.9%,transparent 64.4%),
+  linear-gradient(58deg,transparent 30.6%,rgba(255,255,255,.5) 30.9%,transparent 31.6%)}
+.relic-body::after{content:"";position:absolute;inset:0;opacity:.14;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.05 0.09' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E")}
+
+/* ---------- sections ---------- */
+section{padding:72px 0}
+.sechead{display:flex;align-items:baseline;justify-content:space-between;gap:24px;border-top:1px solid var(--gold);padding-top:20px;margin-bottom:52px;flex-wrap:wrap}
+h2{font-size:34px;font-weight:400;line-height:1.2}
+.sechead .label{white-space:nowrap}
+.subnote{color:var(--muted);margin:-36px 0 48px;max-width:60ch}
+
+/* exhibits */
+.exhibits{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:52px 40px}
+.exhibits.dense{grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:44px 32px}
+.exhibit{display:block}
+.frame{background:var(--mat);padding:14px;box-shadow:18px 22px 34px -20px rgba(52,38,14,.5);transition:transform .22s var(--ease)}
+.exhibits.dense .frame{padding:10px}
+.frame img{display:block;width:100%;border:1px solid rgba(24,20,16,.22)}
+.exhibit:hover .frame{transform:translateY(-6px)}
+.plaque{margin-top:16px}
+.plaque .label{display:block;margin-bottom:5px}
+.plaque .name{font-size:17px}
+.grid-foot{margin-top:56px;text-align:center}
+
+/* placard */
+.placard{max-width:66ch;margin:0 auto;text-align:center;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:46px 12px}
+.placard p{font-size:24px;line-height:1.5}
+.placard .label{display:block;margin-top:22px}
+
+/* capture */
+.capture{max-width:620px;margin:0 auto;text-align:center}
+.capture h2{margin-bottom:14px}
+.capture .why{color:var(--muted);margin-bottom:34px}
+.signup input[type=email]{width:min(360px,100%);padding:14px 4px;border:none;border-bottom:1px solid var(--ink);background:transparent;color:var(--ink);font-family:var(--serif);font-size:17px;margin:0 18px 18px 0}
+.signup input[type=email]:focus{outline:none;border-bottom-color:var(--gold)}
+.signup button{vertical-align:baseline}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0}
+.submsg{min-height:1.4em;margin-top:18px}
+.submsg.ok{color:var(--ink)}
+.fineprint{margin-top:18px}
+.fineprint a{border-bottom:1px solid var(--gold)}
+
+/* contact + footer */
+.contact{text-align:center}
+.contact h2{margin-bottom:12px}
+.contact .mail{font-size:24px;border-bottom:1px solid var(--gold);padding-bottom:2px}
+.contact p{margin-top:14px}
+footer{border-top:1px solid var(--line);margin-top:40px;padding:36px 0 56px;text-align:center}
+footer .links a{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin:0 14px;transition:opacity .18s var(--ease)}
+footer .links a:hover{opacity:.55}
+footer .fine{margin-top:16px}
+
+/* ---------- motion (JS-gated, reduced-motion aware) ---------- */
+@media (prefers-reduced-motion: no-preference){
+  html.js .hl-ghost{opacity:0;transform:translateY(46px);animation:riseGhost 1s var(--ease) .1s forwards}
+  html.js .hl-ink{opacity:0;transform:translateY(46px);animation:rise 1s var(--ease) .26s forwards}
+  html.js .hero .lede,html.js .hero .pitch,html.js .hero .cta-row,html.js .hero .plaque-line,html.js .hero .price{opacity:0;transform:translateY(34px);animation:rise .9s var(--ease) forwards}
+  html.js .hero .lede{animation-delay:.42s}
+  html.js .hero .pitch{animation-delay:.52s}
+  html.js .hero .cta-row{animation-delay:.62s}
+  html.js .hero .plaque-line{animation-delay:.74s}
+  html.js .hero .price{animation-delay:.7s}
+  html.js .relic{opacity:0;transform:rotate(10.5deg) translateY(70px);animation:relicIn 1.5s var(--ease) .2s forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @keyframes riseGhost{to{opacity:.15;transform:translateY(0)}}
+  @keyframes relicIn{to{opacity:1;transform:rotate(8deg) translateY(0)}}
+  html.js [data-rv]{opacity:0;transform:translateY(42px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:calc(var(--d,0)*80ms)}
+  html.js [data-rv].in{opacity:1;transform:none}
+}
+
+@media (max-width:860px){
+  .hero{padding:70px 0 90px;min-height:0}
+  .relic{width:74vw;right:-34vw;opacity:.45}
+  .sechead{flex-direction:column;gap:10px}
+}
+@media (max-width:480px){
+  .wrap{padding:0 20px}
+  .exhibits{grid-template-columns:repeat(2,1fr);gap:36px 20px}
+  .exhibits.dense{grid-template-columns:repeat(2,1fr);gap:32px 18px}
+  .nav .links a{margin-left:18px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap"><nav class="nav">
+  <a class="logo" href="index.html" aria-label="Turbo History"><svg viewBox="0 0 300 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <g transform="translate(150,16) scale(0.26)">
+    <rect x="-32" y="-52" width="64" height="9" rx="4" fill="#c9a24b"/>
+    <rect x="-32" y="43" width="64" height="9" rx="4" fill="#c9a24b"/>
+    <path d="M-28,-45 L28,-45 L2,0 L28,45 L-28,45 L-2,0 Z" fill="none" stroke="#c9a24b" stroke-width="4.2" stroke-linejoin="round"/>
+    <path d="M-22,-40 L22,-40 L2,-3 L-2,-3 Z" fill="#181410" opacity="0.9"/>
+    <path d="M-17,45 L17,45 L0,26 Z" fill="#181410"/>
+  </g>
+  <text x="150" y="62" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="30" letter-spacing="0.5" fill="#c9a24b">TURBO</text>
+  <text x="150" y="90" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="30" letter-spacing="4.5" fill="#181410">HISTORY</text>
+</svg></a>
+  <span class="links"><a href="#books">The Books</a><a href="collection.html">Collections</a><a href="https://www.amazon.com/author/turbohistory">Amazon</a></span>
+</nav></div>
+
+<header class="hero">
+  <div class="relic" aria-hidden="true"><div class="relic-body"></div></div>
+  <div class="wrap"><div class="hero-inner">
+    <h1><span class="hl-ghost">Love history,</span><span class="hl-ink">hate how it was taught?</span></h1>
+    <p class="lede">Same. School taught history like a memory test: names, dates, family trees, exam. The actual story never stood a chance.</p>
+    <p class="pitch">Turbo History is different. One figure or one event per book, told in under an hour. The rise, the fall, the why-it-still-matters &mdash; straight to the point, without the filler or the 600-page commitment. Dates included, memorizing optional.</p>
+    <div class="cta-row">
+      <a class="btn" href="https://www.amazon.com/author/turbohistory">Browse the Series on Amazon</a>
+      <a class="tlink" href="collection.html">Or read by collection</a>
+    </div>
+    <p class="price label sentence">&pound;2.99 / $2.99 each &middot; free with Kindle Unlimited &middot; most weekends one is free for everyone</p>
+    <p class="plaque-line label sentence">A working catalogue &mdash; 55 volumes &middot; one hour each &middot; start anywhere</p>
+  </div></div>
+</header>
+
+<section class="wrap">
+  <div class="sechead" data-rv>
+    <h2>Queens and conquerors. Pirates and rebels.</h2>
+    <span class="label">Room I &mdash; Selected exhibits</span>
+  </div>
+  <p class="subnote" data-rv>Minds that changed everything, and the wars that changed everything else.</p>
+  <div class="exhibits">
+    <a class="exhibit" href="#" data-rv style="--d:0"><span class="frame"><img src="covers/cleopatra.jpg" alt="Cleopatra book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 02 &mdash; Ptolemaic Egypt</span><span class="name">Cleopatra</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:1"><span class="frame"><img src="covers/genghis-khan.jpg" alt="Genghis Khan: From Outcast Boy to Emperor of the World book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 01 &mdash; The Steppe</span><span class="name">Genghis Khan</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:2"><span class="frame"><img src="covers/anne-boleyn.jpg" alt="Anne Boleyn: The Queen Who Lost Her Head book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 35 &mdash; Tudor England</span><span class="name">Anne Boleyn</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:3"><span class="frame"><img src="covers/blackbeard.jpg" alt="Blackbeard: The Devil of the Carolinas book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 37 &mdash; Age of Piracy</span><span class="name">Blackbeard</span></span></a>
+    <a class="exhibit" href="book.html" data-rv style="--d:4"><span class="frame"><img src="covers/napoleon.jpg" alt="Napoleon book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 07 &mdash; First Empire</span><span class="name">Napoleon</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:5"><span class="frame"><img src="covers/elizabeth-i.jpg" alt="Elizabeth I: How England Became England book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 14 &mdash; Tudor England</span><span class="name">Elizabeth I</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:0"><span class="frame"><img src="covers/hannibal.jpg" alt="Hannibal: Elephants Over the Alps book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 38 &mdash; Carthage</span><span class="name">Hannibal</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:1"><span class="frame"><img src="covers/joan-of-arc.jpg" alt="Joan of Arc: The Teenage Girl Who Saved France book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 24 &mdash; Hundred Years' War</span><span class="name">Joan of Arc</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:2"><span class="frame"><img src="covers/leonardo-da-vinci.jpg" alt="Leonardo da Vinci: The Genius Who Left Everything Unfinished book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 31 &mdash; Renaissance</span><span class="name">Leonardo da Vinci</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:3"><span class="frame"><img src="covers/marie-curie.jpg" alt="Marie Curie: The Genius the Radiation Killed book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 23 &mdash; Modern Science</span><span class="name">Marie Curie</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:4"><span class="frame"><img src="covers/edgar-allan-poe.jpg" alt="Edgar Allan Poe: Master of the Macabre book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 39 &mdash; American Gothic</span><span class="name">Edgar Allan Poe</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:5"><span class="frame"><img src="covers/world-war-ii.jpg" alt="World War II: The War That Redrew Everything book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 09 &mdash; Total War</span><span class="name">World War II</span></span></a>
+  </div>
+  <div class="grid-foot" data-rv><a class="tlink" href="collection.html">Enter Room II &mdash; the Conquerors collection</a></div>
+</section>
+
+<section class="wrap">
+  <div class="placard" data-rv>
+    <p><b>Fair warning:</b> these are not academic books. No footnotes to chase, no family trees, no ten pages on a treaty. If you want that depth, you'll want a bigger book. If you want the story and the big picture, you're home.</p>
+    <span class="label">Placard &mdash; read before entering</span>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="capture" data-rv>
+    <h2>Turbo History books are free most weekends.</h2>
+    <p class="why">Most weekends one book in the series goes completely free on Amazon. Leave your email and we will tell you which one, before it goes back to full price.</p>
+    <form class="signup" id="sub" novalidate>
+      <input type="email" name="email" placeholder="you@example.com" required autocomplete="email" aria-label="Email address">
+      <button class="btn" type="submit">Tell Me When They Are Free</button>
+      <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <p class="submsg" role="status" aria-live="polite"></p>
+      <p class="fineprint label sentence">We use it for free-book alerts and nothing else. Unsubscribe in one click. <a href="#">Privacy policy</a></p>
+    </form>
+  </div>
+</section>
+
+<section class="wrap" id="books">
+  <div class="sechead" data-rv>
+    <h2>Every book in the series</h2>
+    <span class="label sentence">Permanent collection &mdash; 55 and counting</span>
+  </div>
+  <div class="exhibits dense">
+    <a class="exhibit" href="#" data-rv style="--d:0"><span class="frame"><img src="covers/genghis-khan.jpg" alt="Genghis Khan: From Outcast Boy to Emperor of the World book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 01</span><span class="name">Genghis Khan</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:1"><span class="frame"><img src="covers/cleopatra.jpg" alt="Cleopatra book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 02</span><span class="name">Cleopatra</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:2"><span class="frame"><img src="covers/queen-victoria.jpg" alt="Queen Victoria book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 03</span><span class="name">Queen Victoria</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:3"><span class="frame"><img src="covers/william-shakespeare.jpg" alt="William Shakespeare book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 04</span><span class="name">William Shakespeare</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:4"><span class="frame"><img src="covers/franklin-d.-roosevelt.jpg" alt="Franklin D. Roosevelt book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 05</span><span class="name">Franklin D. Roosevelt</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:5"><span class="frame"><img src="covers/abraham-lincoln.jpg" alt="Abraham Lincoln book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 06</span><span class="name">Abraham Lincoln</span></span></a>
+    <a class="exhibit" href="book.html" data-rv style="--d:0"><span class="frame"><img src="covers/napoleon.jpg" alt="Napoleon book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 07</span><span class="name">Napoleon</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:1"><span class="frame"><img src="covers/george-washington.jpg" alt="George Washington book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 08</span><span class="name">George Washington</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:2"><span class="frame"><img src="covers/world-war-ii.jpg" alt="World War II: The War That Redrew Everything book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 09</span><span class="name">World War II</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:3"><span class="frame"><img src="covers/world-war-i.jpg" alt="World War I: How the Modern World Started With a Gunshot book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 10</span><span class="name">World War I</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:4"><span class="frame"><img src="covers/theodore-roosevelt.jpg" alt="Theodore Roosevelt: The President Who Wouldn&#x27;t Sit Still book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 11</span><span class="name">Theodore Roosevelt</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:5"><span class="frame"><img src="covers/alexander-the-great.jpg" alt="Alexander the Great: The Boy Who Conquered the World by Thirty-Two book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 12</span><span class="name">Alexander the Great</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:0"><span class="frame"><img src="covers/george-iii.jpg" alt="George III: The Mad King Who Lost America book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 13</span><span class="name">George III</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:1"><span class="frame"><img src="covers/elizabeth-i.jpg" alt="Elizabeth I: How England Became England book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 14</span><span class="name">Elizabeth I</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:2"><span class="frame"><img src="covers/marie-antoinette.jpg" alt="Marie Antoinette: She Never Said Let Them Eat Cake book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 15</span><span class="name">Marie Antoinette</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:3"><span class="frame"><img src="covers/mary-queen-of-scots.jpg" alt="Mary, Queen of Scots: The Queen Beheaded by Her Cousin book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 16</span><span class="name">Mary, Queen of Scots</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:4"><span class="frame"><img src="covers/william-the-conqueror.jpg" alt="William the Conqueror: How a Bastard Duke Took England in One Day book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 17</span><span class="name">William the Conqueror</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:5"><span class="frame"><img src="covers/isaac-newton.jpg" alt="Isaac Newton: The Genius Who Hated Everyone book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 18</span><span class="name">Isaac Newton</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:0"><span class="frame"><img src="covers/julius-caesar.jpg" alt="Julius Caesar: The Dictator Stabbed by His Best Friend book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 19</span><span class="name">Julius Caesar</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:1"><span class="frame"><img src="covers/christopher-columbus.jpg" alt="Christopher Columbus: The Fast, Sharp Story book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 20</span><span class="name">Christopher Columbus</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:2"><span class="frame"><img src="covers/american-civil-war.jpg" alt="American Civil War: The War That Remade a Nation book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 21</span><span class="name">American Civil War</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:3"><span class="frame"><img src="covers/amelia-earhart.jpg" alt="Amelia Earhart: The Pilot Who Vanished Into Legend book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 22</span><span class="name">Amelia Earhart</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:4"><span class="frame"><img src="covers/marie-curie.jpg" alt="Marie Curie: The Genius the Radiation Killed book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 23</span><span class="name">Marie Curie</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:5"><span class="frame"><img src="covers/joan-of-arc.jpg" alt="Joan of Arc: The Teenage Girl Who Saved France book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 24</span><span class="name">Joan of Arc</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:0"><span class="frame"><img src="covers/catherine-the-great.jpg" alt="Catherine the Great: The Empress Who Seized a Throne book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 25</span><span class="name">Catherine the Great</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:1"><span class="frame"><img src="covers/grigori-rasputin.jpg" alt="Grigori Rasputin: The Mad Monk Who Wouldn&#x27;t Die book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 26</span><span class="name">Grigori Rasputin</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:2"><span class="frame"><img src="covers/vlad-the-impaler.jpg" alt="Vlad the Impaler: The Prince Who Inspired Dracula book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 27</span><span class="name">Vlad the Impaler</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:3"><span class="frame"><img src="covers/mary-shelley.jpg" alt="Mary Shelley: The Teenager Who Invented Science Fiction book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 28</span><span class="name">Mary Shelley</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:4"><span class="frame"><img src="covers/jane-austen.jpg" alt="Jane Austen: The Spinster Who Conquered Literature book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 29</span><span class="name">Jane Austen</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:5"><span class="frame"><img src="covers/nikola-tesla.jpg" alt="Nikola Tesla: The Genius Who Died Penniless book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 30</span><span class="name">Nikola Tesla</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:0"><span class="frame"><img src="covers/leonardo-da-vinci.jpg" alt="Leonardo da Vinci: The Genius Who Left Everything Unfinished book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 31</span><span class="name">Leonardo da Vinci</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:1"><span class="frame"><img src="covers/louis-xiv.jpg" alt="Louis XIV: The Sun King Who Built Versailles book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 32</span><span class="name">Louis XIV</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:2"><span class="frame"><img src="covers/thomas-jefferson.jpg" alt="Thomas Jefferson: The Founder Who Wrote That All Men Are Equal book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 33</span><span class="name">Thomas Jefferson</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:3"><span class="frame"><img src="covers/ulysses-s.-grant.jpg" alt="Ulysses S. Grant: The Drunk They Wrote Off Who Won the War book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 34</span><span class="name">Ulysses S. Grant</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:4"><span class="frame"><img src="covers/anne-boleyn.jpg" alt="Anne Boleyn: The Queen Who Lost Her Head book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 35</span><span class="name">Anne Boleyn</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:5"><span class="frame"><img src="covers/henry-viii.jpg" alt="Henry VIII: Six Wives and a Broken Church book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 36</span><span class="name">Henry VIII</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:0"><span class="frame"><img src="covers/blackbeard.jpg" alt="Blackbeard: The Devil of the Carolinas book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 37</span><span class="name">Blackbeard</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:1"><span class="frame"><img src="covers/hannibal.jpg" alt="Hannibal: Elephants Over the Alps book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 38</span><span class="name">Hannibal</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:2"><span class="frame"><img src="covers/edgar-allan-poe.jpg" alt="Edgar Allan Poe: Master of the Macabre book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 39</span><span class="name">Edgar Allan Poe</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:3"><span class="frame"><img src="covers/spartacus.jpg" alt="Spartacus: The Slave Who Shook Rome book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 40</span><span class="name">Spartacus</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:4"><span class="frame"><img src="covers/frederick-douglass.jpg" alt="Frederick Douglass: The Voice That Broke Slavery book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 41</span><span class="name">Frederick Douglass</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:5"><span class="frame"><img src="covers/alexander-hamilton.jpg" alt="Alexander Hamilton: Founding Genius, Fatal Duel book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 42</span><span class="name">Alexander Hamilton</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:0"><span class="frame"><img src="covers/frida-kahlo.jpg" alt="Frida Kahlo: The Woman Who Painted Her Pain book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 43</span><span class="name">Frida Kahlo</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:1"><span class="frame"><img src="covers/vincent-van-gogh.jpg" alt="Vincent van Gogh: The Painter Nobody Bought book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 44</span><span class="name">Vincent van Gogh</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:2"><span class="frame"><img src="covers/michelangelo.jpg" alt="Michelangelo: The Man Who Carved David book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 45</span><span class="name">Michelangelo</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:3"><span class="frame"><img src="covers/lewis-and-clark.jpg" alt="Lewis and Clark: The Expedition That Mapped America book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 46</span><span class="name">Lewis and Clark</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:4"><span class="frame"><img src="covers/marco-polo.jpg" alt="Marco Polo: The Merchant Who Opened the East book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 47</span><span class="name">Marco Polo</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:5"><span class="frame"><img src="covers/john-f-kennedy.jpg" alt="John F. Kennedy: Camelot and the Motorcade book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 48</span><span class="name">John F. Kennedy</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:0"><span class="frame"><img src="covers/albert-einstein.jpg" alt="Albert Einstein: The Mind That Bent Space and Time book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 49</span><span class="name">Albert Einstein</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:1"><span class="frame"><img src="covers/harriet-tubman.jpg" alt="Harriet Tubman: The Conductor Who Never Lost a Passenger book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 50</span><span class="name">Harriet Tubman</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:2"><span class="frame"><img src="covers/rosa-parks.jpg" alt="Rosa Parks: The Woman Who Would Not Stand book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 51</span><span class="name">Rosa Parks</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:3"><span class="frame"><img src="covers/martin-luther-king-jr.jpg" alt="Martin Luther King Jr.: The Dream and the Mountaintop book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 52</span><span class="name">Martin Luther King Jr.</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:4"><span class="frame"><img src="covers/ivan-the-terrible.jpg" alt="Ivan the Terrible: The First Tsar and His Terror book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 53</span><span class="name">Ivan the Terrible</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:5"><span class="frame"><img src="covers/douglas-macarthur.jpg" alt="Douglas MacArthur: The General Who Returned book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 54</span><span class="name">Douglas MacArthur</span></span></a>
+    <a class="exhibit" href="#" data-rv style="--d:0"><span class="frame"><img src="covers/nicholas-ii.jpg" alt="Nicholas II: The Last Tsar book cover" loading="lazy"></span><span class="plaque"><span class="label">N&deg; 55</span><span class="name">Nicholas II</span></span></a>
+  </div>
+</section>
+
+<section class="wrap contact" id="contact">
+  <div data-rv>
+    <h2>Contact</h2>
+    <p class="why" style="color:var(--muted)">Questions, requests for who to cover next, or anything else.</p>
+    <p><a class="mail" href="mailto:turbo@turbohistory.com">turbo@turbohistory.com</a></p>
+    <p class="label sentence">Written and published by Turbo History &middot; every book on Amazon and Kindle Unlimited</p>
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <div class="links"><a href="index.html">Home</a><a href="collection.html">Collections</a><a href="https://www.amazon.com/author/turbohistory">Amazon</a><a href="#">Privacy</a><a href="mailto:turbo@turbohistory.com">Email</a></div>
+  <div class="fine label sentence">&copy; Turbo History. All books available on Amazon and Kindle Unlimited.</div>
+</div></footer>
+
+<script>
+(function(){
+  var els=[].slice.call(document.querySelectorAll('[data-rv]'));
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(ents){
+    ents.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+  },{threshold:.1,rootMargin:'0px 0px -6% 0px'});
+  els.forEach(function(e){io.observe(e)});
+})();
+(function(){
+  var f=document.getElementById('sub'); if(!f) return;
+  var msg=f.querySelector('.submsg');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!f.email.value){msg.className='submsg';msg.textContent='Please enter an email address.';return;}
+    f.innerHTML='<p class="submsg ok">You are in. We will email you the next time a book goes free.</p>';
+  });
+})();
+</script>
+</body>
+</html>

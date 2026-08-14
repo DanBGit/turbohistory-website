@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conquerors: Six Books, One Route | Turbo History</title>
+<meta name="description" content="The Conquerors collection: Alexander, Hannibal, Caesar, William, Genghis and Napoleon, in a curated reading order. Six books, one hour each, free on Kindle Unlimited.">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+:root{
+  --paper:#f5efe2;
+  --paper-deep:#eee6d3;
+  --mat:#fbf7ed;
+  --ink:#181410;
+  --muted:#5f5644;
+  --line:#d8cdb4;
+  --gold:#c9a24b;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+  --serif:Georgia,'Times New Roman',serif;
+  --mono:ui-monospace,'SF Mono',Menlo,Consolas,'Courier New',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.65}
+body::after{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.05;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+a{color:var(--ink);text-decoration:none}
+img{max-width:100%}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.label.sentence{text-transform:none;letter-spacing:.02em;font-size:13px}
+.tlink{border-bottom:1px solid var(--gold);padding-bottom:2px;transition:opacity .2s var(--ease)}
+.tlink:hover{opacity:.55}
+.btn{display:inline-block;background:var(--gold);color:var(--ink);font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:17px 32px;border:none;cursor:pointer;transition:transform .2s var(--ease),filter .2s var(--ease)}
+.btn:hover{transform:translateY(-2px);filter:brightness(.93)}
+
+.nav{display:flex;justify-content:space-between;align-items:center;padding:26px 0;border-bottom:1px solid var(--line)}
+.nav .logo svg{height:52px;width:auto;display:block}
+.nav .links a{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;margin-left:34px;transition:opacity .18s var(--ease)}
+.nav .links a:hover{opacity:.55}
+
+.crumbs{padding:22px 0 0}
+.crumbs a{transition:opacity .18s var(--ease)}
+.crumbs a:hover{opacity:.55}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:clip;padding:66px 0 88px}
+.hero-inner{position:relative;z-index:1;max-width:720px}
+h1{font-size:clamp(52px,8.4vw,112px);font-weight:400;line-height:.98;letter-spacing:-.015em}
+.hl-ghost{display:block;opacity:.15}
+.hl-ink{display:block}
+.hero .lede{margin:34px 0 0;max-width:62ch}
+.hero .pitch{margin:18px 0 0;color:var(--muted);max-width:60ch}
+.hero .cta-row{margin:38px 0 0;display:flex;align-items:center;gap:30px;flex-wrap:wrap}
+.hero .plaque-line{margin-top:40px}
+
+/* the monumental object: broken sword blade, CSS stand-in */
+.relic{position:absolute;z-index:0;top:-12%;right:-8%;width:min(46vw,560px);height:128%;transform:rotate(-9deg);filter:drop-shadow(30px 42px 40px rgba(56,42,16,.28))}
+.relic-body{position:relative;width:100%;height:100%;clip-path:polygon(34% 0,66% 5%,63% 51%,89% 55%,87% 67%,62% 63%,60% 100%,41% 96%,38% 62%,13% 65%,11% 53%,37% 49%);background:
+  radial-gradient(80% 50% at 38% 16%,rgba(255,255,255,.92),rgba(255,255,255,0) 60%),
+  radial-gradient(66% 46% at 70% 78%,rgba(96,80,52,.30),rgba(96,80,52,0) 62%),
+  linear-gradient(108deg,#f1ebdc 0%,#e0d5bd 40%,#c8ba98 70%,#a4936f 100%)}
+.relic-body::before{content:"";position:absolute;inset:0;background:
+  linear-gradient(80deg,transparent 47.6%,rgba(64,52,32,.36) 48%,transparent 48.5%),
+  linear-gradient(96deg,transparent 71.6%,rgba(64,52,32,.22) 72%,transparent 72.5%),
+  linear-gradient(62deg,transparent 26.6%,rgba(255,255,255,.48) 27%,transparent 27.7%)}
+.relic-body::after{content:"";position:absolute;inset:0;opacity:.14;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.05 0.09' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E")}
+
+/* ---------- floor plan ---------- */
+.floorplan{position:relative;z-index:1;padding-bottom:10px}
+.fp-rule{height:1px;background:var(--gold);border:none;transform-origin:left center}
+.fp-stops{display:flex;gap:0;justify-content:space-between;margin-top:0;flex-wrap:wrap}
+.fp-stop{flex:1 1 0;min-width:120px;padding:16px 16px 0 0;position:relative;transition:opacity .2s var(--ease)}
+.fp-stop::before{content:"";position:absolute;top:0;left:0;width:1px;height:12px;background:var(--gold)}
+.fp-stop:hover{opacity:.55}
+.fp-stop .num{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.22em;color:var(--muted)}
+.fp-stop .who{display:block;margin-top:4px;font-size:17px}
+
+/* ---------- sections ---------- */
+section{padding:64px 0}
+.sechead{display:flex;align-items:baseline;justify-content:space-between;gap:24px;border-top:1px solid var(--gold);padding-top:20px;margin-bottom:48px;flex-wrap:wrap}
+h2{font-size:34px;font-weight:400;line-height:1.2}
+.sechead .label{white-space:nowrap}
+.subnote{color:var(--muted);margin:-32px 0 48px;max-width:62ch}
+.intro{max-width:66ch}
+.intro p{margin-bottom:18px}
+.intro p:last-child{margin-bottom:0}
+
+/* ---------- the route: wall labels ---------- */
+.route{border-top:1px solid var(--line)}
+.stop{display:grid;grid-template-columns:76px 260px 1fr;gap:0 48px;align-items:start;padding:56px 0;border-bottom:1px solid var(--line)}
+.stop-num{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);padding-top:6px}
+.stop-num b{display:block;font-family:var(--serif);font-weight:400;font-size:44px;line-height:1;letter-spacing:0;color:var(--ink);margin-top:10px}
+.frame{display:block;background:var(--mat);padding:14px;box-shadow:18px 22px 34px -20px rgba(52,38,14,.5);transition:transform .22s var(--ease)}
+.frame img{display:block;width:100%;border:1px solid rgba(24,20,16,.22)}
+.stop:hover .frame{transform:translateY(-6px)}
+.stop h3{font-size:30px;font-weight:400;line-height:1.15;margin-bottom:8px}
+.stop h3 a{transition:opacity .2s var(--ease)}
+.stop h3 a:hover{opacity:.55}
+.stop .sub{color:var(--muted);font-style:italic;margin-bottom:16px}
+.walltext{max-width:64ch}
+.walltext p{margin-bottom:14px}
+.stop .why{border-top:1px solid var(--gold);padding-top:14px;margin-top:20px;max-width:64ch}
+.stop .why .label{display:block;margin-bottom:5px}
+.stop .go{margin-top:20px;display:flex;gap:26px;flex-wrap:wrap;align-items:center}
+
+/* placard */
+.placard{max-width:66ch;margin:0 auto;text-align:center;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:44px 12px}
+.placard h2{font-size:26px;margin-bottom:14px}
+.placard p{font-size:20px;line-height:1.55}
+.placard .label{display:block;margin-top:20px}
+
+/* capture */
+.capture{max-width:620px;margin:0 auto;text-align:center}
+.capture h2{margin-bottom:14px}
+.capture .why{color:var(--muted);margin-bottom:34px}
+.signup input[type=email]{width:min(360px,100%);padding:14px 4px;border:none;border-bottom:1px solid var(--ink);background:transparent;color:var(--ink);font-family:var(--serif);font-size:17px;margin:0 18px 18px 0}
+.signup input[type=email]:focus{outline:none;border-bottom-color:var(--gold)}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0}
+.opt{display:block;margin-top:16px;color:var(--muted);cursor:pointer}
+.opt input{margin-right:8px;accent-color:var(--gold)}
+.submsg{min-height:1.4em;margin-top:18px}
+.submsg.ok{color:var(--ink)}
+.fineprint{margin-top:18px}
+.fineprint a{border-bottom:1px solid var(--gold)}
+
+/* other rooms */
+.rooms{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0 44px}
+.room{border-top:1px solid var(--line);padding:22px 0 26px;transition:opacity .2s var(--ease)}
+.room:hover{opacity:.55}
+.room .name{display:block;font-size:24px;margin:8px 0 6px}
+.room .n{color:var(--muted)}
+
+footer{border-top:1px solid var(--line);margin-top:40px;padding:36px 0 56px;text-align:center}
+footer .links a{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin:0 14px;transition:opacity .18s var(--ease)}
+footer .links a:hover{opacity:.55}
+footer .fine{margin-top:16px}
+
+/* ---------- motion (JS-gated, reduced-motion aware) ---------- */
+@media (prefers-reduced-motion: no-preference){
+  html.js .hl-ghost{opacity:0;transform:translateY(46px);animation:riseGhost 1s var(--ease) .1s forwards}
+  html.js .hl-ink{opacity:0;transform:translateY(46px);animation:rise 1s var(--ease) .26s forwards}
+  html.js .hero .lede,html.js .hero .pitch,html.js .hero .cta-row,html.js .hero .plaque-line{opacity:0;transform:translateY(34px);animation:rise .9s var(--ease) forwards}
+  html.js .hero .lede{animation-delay:.42s}
+  html.js .hero .pitch{animation-delay:.52s}
+  html.js .hero .cta-row{animation-delay:.62s}
+  html.js .hero .plaque-line{animation-delay:.72s}
+  html.js .relic{opacity:0;transform:rotate(-11.5deg) translateY(70px);animation:relicIn 1.5s var(--ease) .2s forwards}
+  /* the authored moment: the route line draws itself across the floor plan, stops arrive along it */
+  html.js .fp-rule{transform:scaleX(0);animation:drawRule 1.25s var(--ease) .55s forwards}
+  html.js .fp-stop{opacity:0;transform:translateY(24px);animation:rise .8s var(--ease) forwards;animation-delay:calc(.85s + var(--d,0)*90ms)}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @keyframes riseGhost{to{opacity:.15;transform:translateY(0)}}
+  @keyframes relicIn{to{opacity:1;transform:rotate(-9deg) translateY(0)}}
+  @keyframes drawRule{to{transform:scaleX(1)}}
+  html.js [data-rv]{opacity:0;transform:translateY(44px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:calc(var(--d,0)*80ms)}
+  html.js [data-rv].in{opacity:1;transform:none}
+}
+
+@media (max-width:980px){
+  .stop{grid-template-columns:60px 200px 1fr;gap:0 34px}
+}
+@media (max-width:860px){
+  .hero{padding:46px 0 66px}
+  .relic{width:72vw;right:-32vw;opacity:.4}
+  .sechead{flex-direction:column;gap:10px}
+  .stop{grid-template-columns:1fr;gap:0}
+  .stop-num{padding-top:0;margin-bottom:18px}
+  .stop-num b{display:inline;font-size:32px;margin:0 0 0 10px}
+  .stop .frame{max-width:220px;margin-bottom:28px}
+  .fp-stop{flex:1 1 44%;min-width:0}
+}
+@media (max-width:480px){
+  .wrap{padding:0 20px}
+  .nav .links a{margin-left:18px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap"><nav class="nav">
+  <a class="logo" href="index.html" aria-label="Turbo History"><svg viewBox="0 0 300 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <g transform="translate(150,16) scale(0.26)">
+    <rect x="-32" y="-52" width="64" height="9" rx="4" fill="#c9a24b"/>
+    <rect x="-32" y="43" width="64" height="9" rx="4" fill="#c9a24b"/>
+    <path d="M-28,-45 L28,-45 L2,0 L28,45 L-28,45 L-2,0 Z" fill="none" stroke="#c9a24b" stroke-width="4.2" stroke-linejoin="round"/>
+    <path d="M-22,-40 L22,-40 L2,-3 L-2,-3 Z" fill="#181410" opacity="0.9"/>
+    <path d="M-17,45 L17,45 L0,26 Z" fill="#181410"/>
+  </g>
+  <text x="150" y="62" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="30" letter-spacing="0.5" fill="#c9a24b">TURBO</text>
+  <text x="150" y="90" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="30" letter-spacing="4.5" fill="#181410">HISTORY</text>
+</svg></a>
+  <span class="links"><a href="index.html#books">The Books</a><a href="collection.html">Collections</a><a href="https://www.amazon.com/author/turbohistory">Amazon</a></span>
+</nav></div>
+
+<div class="wrap"><p class="crumbs label sentence"><a href="index.html">Turbo History</a> &rsaquo; Collections &rsaquo; Conquerors</p></div>
+
+<header class="hero">
+  <div class="relic" aria-hidden="true"><div class="relic-body"></div></div>
+  <div class="wrap"><div class="hero-inner">
+    <h1><span class="hl-ghost">Six men who took</span><span class="hl-ink">the known world.</span></h1>
+    <p class="lede">Conquerors is six books read in a deliberate order, from a Macedonian boy with his father&rsquo;s army to a Corsican with a continent&rsquo;s worth of it. Two thousand years apart, running the same play.</p>
+    <p class="pitch">One figure per book, told in under an hour. Walk the route end to end in six hours, or take any door you like &mdash; each one stands alone.</p>
+    <div class="cta-row">
+      <a class="btn" href="#route">Start the Route</a>
+      <a class="tlink" href="index.html#books">Or see all 55 books</a>
+    </div>
+    <p class="plaque-line label sentence">Room II &mdash; Conquerors &middot; six volumes &middot; 356 BC to 1821</p>
+  </div></div>
+</header>
+
+<div class="wrap floorplan" aria-label="Route overview">
+  <hr class="fp-rule">
+  <div class="fp-stops">
+    <a class="fp-stop" href="#alexander" style="--d:0"><span class="num">I</span><span class="who">Alexander</span><span class="label">356&ndash;323 BC</span></a>
+    <a class="fp-stop" href="#hannibal" style="--d:1"><span class="num">II</span><span class="who">Hannibal</span><span class="label">247&ndash;183 BC</span></a>
+    <a class="fp-stop" href="#caesar" style="--d:2"><span class="num">III</span><span class="who">Caesar</span><span class="label">100&ndash;44 BC</span></a>
+    <a class="fp-stop" href="#william" style="--d:3"><span class="num">IV</span><span class="who">William</span><span class="label">1028&ndash;1087</span></a>
+    <a class="fp-stop" href="#genghis" style="--d:4"><span class="num">V</span><span class="who">Genghis</span><span class="label">1162&ndash;1227</span></a>
+    <a class="fp-stop" href="#napoleon" style="--d:5"><span class="num">VI</span><span class="who">Napoleon</span><span class="label">1769&ndash;1821</span></a>
+  </div>
+</div>
+
+<section class="wrap">
+  <div class="sechead" data-rv>
+    <h2>Why these six, in this order</h2>
+    <span class="label">Curator&rsquo;s introduction</span>
+  </div>
+  <div class="intro" data-rv>
+    <p>Conquest is the one subject school history handles worst. You get the battles as a list, the dates as a test, and the man himself as a portrait on page 40 with a caption. What you almost never get is the thing that makes any of it interesting: why a specific person, in a specific decade, was able to walk out of a small place and take an enormous one &mdash; and what was left standing afterwards.</p>
+    <p>So this room is hung chronologically, and it rewards being walked in order. Alexander sets the template at twenty, and every man after him knows the story. Hannibal proves the template can be turned against the largest power on earth and still lose. Caesar shows that the real prize was never the frontier, it was the capital behind it. William demonstrates that one afternoon, correctly won, can rewrite a country&rsquo;s language and landholding for a thousand years. Genghis works at a scale that makes the Mediterranean look provincial. Napoleon runs the whole sequence again with modern administration attached, which is why the roads and the legal codes outlasted him and the empire did not.</p>
+    <p>Read end to end, the six books answer one question the individual biographies cannot: what conquest is actually for, and how consistently it fails at it. Every volume is a standalone hour, so start wherever you like. If you want the argument rather than the anthology, start at the beginning and keep walking.</p>
+  </div>
+</section>
+
+<section class="wrap" id="route">
+  <div class="sechead" data-rv>
+    <h2>The route, in six stops</h2>
+    <span class="label">Wall labels &mdash; one hour each</span>
+  </div>
+  <p class="subnote" data-rv>Each entry below is a complete book. The order is a suggestion with an argument behind it.</p>
+
+  <div class="route">
+
+    <article class="stop" id="alexander" data-rv>
+      <div class="stop-num">Stop<b>I</b></div>
+      <a class="frame" href="#"><img src="covers/alexander-the-great.jpg" alt="Alexander the Great: The Boy Who Conquered the World by Thirty-Two book cover" loading="lazy"></a>
+      <div class="walltext">
+        <h3><a href="#">Alexander the Great</a></h3>
+        <p class="sub">The Boy Who Conquered the World by Thirty-Two &middot; N&deg; 12 &middot; Macedon</p>
+        <p>He inherited the best army in the world at twenty and had eleven years to use it. In that time he took Persia, the largest empire the world had ever assembled, and kept going east until his own men refused to walk any further. He founded cities, married into the people he had beaten, started dressing like them, and lost friends over it.</p>
+        <p>The book covers the campaign, the temper, the drinking, the murder of Cleitus, and the death at thirty-two that nobody has ever satisfactorily explained. It also covers the part that mattered most: an empire with no succession plan, carved up by his generals within a generation.</p>
+        <div class="why"><span class="label">Why it opens the route</span>Everything after this is a variation. Every conqueror in this room grew up on the Alexander story and measured himself against it, Caesar reportedly in tears.</div>
+        <div class="go"><a class="tlink" href="#">Open the wall label</a><span class="label sentence">Under an hour &middot; free on Kindle Unlimited</span></div>
+      </div>
+    </article>
+
+    <article class="stop" id="hannibal" data-rv>
+      <div class="stop-num">Stop<b>II</b></div>
+      <a class="frame" href="#"><img src="covers/hannibal.jpg" alt="Hannibal: Elephants Over the Alps book cover" loading="lazy"></a>
+      <div class="walltext">
+        <h3><a href="#">Hannibal</a></h3>
+        <p class="sub">Elephants Over the Alps &middot; N&deg; 38 &middot; Carthage</p>
+        <p>Everyone remembers the elephants. Almost nobody remembers that he then spent fifteen years loose in Italy, beating Roman armies at will, and still lost the war. Cannae is taught in staff colleges to this day: a smaller force that let its own centre collapse on purpose and annihilated some fifty thousand Romans in an afternoon.</p>
+        <p>The book follows the crossing, the years in Italy, the moment the strategy quietly stopped working, and the long exile that ended with poison rather than capture.</p>
+        <div class="why"><span class="label">Why it comes second</span>It is the counter-argument to stop one. Tactical genius on Alexander&rsquo;s level, against an enemy that could simply raise another army, and lose again, and win.</div>
+        <div class="go"><a class="tlink" href="#">Open the wall label</a><span class="label sentence">Under an hour &middot; free on Kindle Unlimited</span></div>
+      </div>
+    </article>
+
+    <article class="stop" id="caesar" data-rv>
+      <div class="stop-num">Stop<b>III</b></div>
+      <a class="frame" href="#"><img src="covers/julius-caesar.jpg" alt="Julius Caesar: The Dictator Stabbed by His Best Friend book cover" loading="lazy"></a>
+      <div class="walltext">
+        <h3><a href="#">Julius Caesar</a></h3>
+        <p class="sub">The Dictator Stabbed by His Best Friend &middot; N&deg; 19 &middot; Rome</p>
+        <p>Eight years in Gaul, a river crossed with one legion, and a republic that had lasted four and a half centuries folded inside five years. Caesar was a debt-ridden politician before he was a general, and the conquest was always partly a campaign advertisement, written up by the man himself in the third person and sent home in instalments.</p>
+        <p>The book covers Gaul, the civil war, Cleopatra, the reforms that outlived him including the calendar you are using today, and the fifteen minutes in March that made his heir the first emperor.</p>
+        <div class="why"><span class="label">Why it comes third</span>The pivot of the room. Here conquest stops being about foreign ground and becomes a way of taking your own capital, which is the lesson stops four to six all learn.</div>
+        <div class="go"><a class="tlink" href="#">Open the wall label</a><span class="label sentence">Under an hour &middot; free on Kindle Unlimited</span></div>
+      </div>
+    </article>
+
+    <article class="stop" id="william" data-rv>
+      <div class="stop-num">Stop<b>IV</b></div>
+      <a class="frame" href="#"><img src="covers/william-the-conqueror.jpg" alt="William the Conqueror: How a Bastard Duke Took England in One Day book cover" loading="lazy"></a>
+      <div class="walltext">
+        <h3><a href="#">William the Conqueror</a></h3>
+        <p class="sub">How a Bastard Duke Took England in One Day &middot; N&deg; 17 &middot; Normandy</p>
+        <p>An illegitimate duke who survived a childhood of assassinated guardians, gambled everything on one crossing, and won a kingdom in a single day at Hastings because an arrow, or something like it, found Harold. Then came the harder part: holding it. The castles, the Harrying of the North, and the Domesday Book, which is less a survey than an audit of everything he now owned.</p>
+        <p>The book covers the claim, the crossing, the day itself, and the systematic replacement of an entire ruling class.</p>
+        <div class="why"><span class="label">Why it comes fourth</span>The smallest campaign in the room and the deepest consequences. One afternoon rewired English land, law and language, and you are reading its vocabulary right now.</div>
+        <div class="go"><a class="tlink" href="#">Open the wall label</a><span class="label sentence">Under an hour &middot; free on Kindle Unlimited</span></div>
+      </div>
+    </article>
+
+    <article class="stop" id="genghis" data-rv>
+      <div class="stop-num">Stop<b>V</b></div>
+      <a class="frame" href="#"><img src="covers/genghis-khan.jpg" alt="Genghis Khan: From Outcast Boy to Emperor of the World book cover" loading="lazy"></a>
+      <div class="walltext">
+        <h3><a href="#">Genghis Khan</a></h3>
+        <p class="sub">From Outcast Boy to Emperor of the World &middot; N&deg; 01 &middot; The Steppe</p>
+        <p>He started as a boy called Tem&uuml;jin, abandoned on the steppe with his mother and brothers after his father was poisoned, eating roots and surviving a spell in a wooden collar. He finished with the largest contiguous land empire in history. In between he did something more unusual than winning battles: he dismantled the clan system that made his own rise nearly impossible, and promoted on loyalty and competence instead.</p>
+        <p>The book covers the rise, the machine he built out of horses and messengers, the cities that surrendered and the ones that did not, and the trade routes and law codes that came with the slaughter.</p>
+        <div class="why"><span class="label">Why it comes fifth</span>Scale. After this one, the Mediterranean campaigns in stops one to three read like regional matters, which is exactly the shift the room is built to produce.</div>
+        <div class="go"><a class="tlink" href="#">Open the wall label</a><span class="label sentence">Under an hour &middot; free on Kindle Unlimited</span></div>
+      </div>
+    </article>
+
+    <article class="stop" id="napoleon" data-rv style="border-bottom:none">
+      <div class="stop-num">Stop<b>VI</b></div>
+      <a class="frame" href="book.html"><img src="covers/napoleon.jpg" alt="Napoleon book cover" loading="lazy"></a>
+      <div class="walltext">
+        <h3><a href="book.html">Napoleon</a></h3>
+        <p class="sub">The Corsican Who Took France &middot; N&deg; 07 &middot; First Empire</p>
+        <p>A boy from an island nobody in Paris much wanted, sent to school in France at nine and mocked for his accent, who was running the country by thirty and most of Europe by thirty-five. He read Alexander and Caesar as a cadet and never stopped competing with them.</p>
+        <p>The book covers the rise, the expansion, the domination and the fall in four clear stages, then the part short accounts skip: what survived. The Napoleonic Code, still under the law of six jurisdictions. The prefects, the Banque de France, the baccalaureate, the metric system. And the ledger that does not fit on a monument, including slavery reinstated in the Caribbean in 1802 and roughly six million dead.</p>
+        <div class="why"><span class="label">Why it closes the route</span>He is the only one who ran the entire sequence knowingly, with a filing system attached. The empire lasted a decade. The paperwork is still running.</div>
+        <div class="go"><a class="tlink" href="book.html">Open the wall label</a><span class="label sentence">Under an hour &middot; free on Kindle Unlimited</span></div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="placard" data-rv>
+    <h2>Fair warning before you start walking</h2>
+    <p>These are not academic books. There are no footnotes to chase and no ten pages on a treaty, and if you want that depth you want a bigger book. If you want the story, the shape and the consequences in an hour, this is the room for you.</p>
+    <span class="label">Placard &mdash; read before entering</span>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="capture" data-rv>
+    <h2>These six go free on rotation.</h2>
+    <p class="why">Most weekends one Turbo History book is completely free on Amazon, and the Conquerors come round often. Leave your email and we will tell you which one, before it goes back to full price.</p>
+    <form class="signup" id="sub" novalidate>
+      <input type="hidden" name="fields[collection_interest]" value="conquerors">
+      <input type="email" name="email" placeholder="you@example.com" required autocomplete="email" aria-label="Email address">
+      <button class="btn" type="submit">Tell Me When They Are Free</button>
+      <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="opt"><input type="checkbox" name="groups[]" value="all" checked> Tell me about every free Turbo History book, not just the Conquerors</label>
+      <p class="submsg" role="status" aria-live="polite"></p>
+      <p class="fineprint label sentence">We use it for free-book alerts and nothing else. Unsubscribe in one click. <a href="#">Privacy policy</a></p>
+    </form>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="sechead" data-rv>
+    <h2>Other rooms in the building</h2>
+    <span class="label">Adjacent collections</span>
+  </div>
+  <div class="rooms">
+    <a class="room" href="#" data-rv style="--d:0"><span class="label">Room I</span><span class="name">Queens &amp; Rulers</span><span class="n">Nine volumes &middot; Cleopatra to Victoria</span></a>
+    <a class="room" href="#" data-rv style="--d:1"><span class="label">Room III</span><span class="name">Rebels &amp; Outlaws</span><span class="n">Seven volumes &middot; Spartacus to Blackbeard</span></a>
+    <a class="room" href="#" data-rv style="--d:2"><span class="label">Room IV</span><span class="name">Minds That Changed Everything</span><span class="n">Eleven volumes &middot; Newton to Einstein</span></a>
+    <a class="room" href="#" data-rv style="--d:3"><span class="label">Room V</span><span class="name">Wars That Redrew the Map</span><span class="n">Five volumes &middot; Carthage to 1945</span></a>
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <div class="links"><a href="index.html">Home</a><a href="collection.html">Collections</a><a href="https://www.amazon.com/author/turbohistory">Amazon</a><a href="#">Privacy</a><a href="mailto:turbo@turbohistory.com">Email</a></div>
+  <div class="fine label sentence">&copy; Turbo History. All books available on Amazon and Kindle Unlimited.</div>
+</div></footer>
+
+<script>
+(function(){
+  var els=[].slice.call(document.querySelectorAll('[data-rv]'));
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(ents){
+    ents.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+  },{threshold:.1,rootMargin:'0px 0px -6% 0px'});
+  els.forEach(function(e){io.observe(e)});
+})();
+(function(){
+  var f=document.getElementById('sub'); if(!f) return;
+  var msg=f.querySelector('.submsg');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!f.email.value){msg.className='submsg';msg.textContent='Please enter an email address.';return;}
+    f.innerHTML='<p class="submsg ok">You are in. We will email you the next time a book goes free.</p>';
+  });
+})();
+</script>
+</body>
+</html>
