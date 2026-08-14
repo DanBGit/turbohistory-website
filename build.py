@@ -64,8 +64,8 @@ LOGO_NAV_SVG = """<svg viewBox="0 0 300 96" xmlns="http://www.w3.org/2000/svg" a
 HEAD_EXTRA = f"""<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preload" href="/fonts/SourceSerif4-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/Archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/SourceSerif4-latin.woff2?v=1" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/Archivo-latin.woff2?v=1" as="font" type="font/woff2" crossorigin>
 <script>
 // Google Consent Mode v2. Default DENIED everywhere; granted immediately for visitors
 // outside consent-required jurisdictions, or on explicit Accept. No tag fires before this.
@@ -98,20 +98,20 @@ TAGLINE = "41 books and counting. Start anywhere. Finish everything."
 CSS = """
 @font-face{
   font-family:'Source Serif 4';
-  src:url('/fonts/SourceSerif4-latin.woff2') format('woff2-variations'),
-      url('/fonts/SourceSerif4-latin.woff2') format('woff2');
+  src:url('/fonts/SourceSerif4-latin.woff2?v=1') format('woff2-variations'),
+      url('/fonts/SourceSerif4-latin.woff2?v=1') format('woff2');
   font-weight:200 900;font-style:normal;font-display:swap;
 }
 @font-face{
   font-family:'Source Serif 4';
-  src:url('/fonts/SourceSerif4-Italic-latin.woff2') format('woff2-variations'),
-      url('/fonts/SourceSerif4-Italic-latin.woff2') format('woff2');
+  src:url('/fonts/SourceSerif4-Italic-latin.woff2?v=1') format('woff2-variations'),
+      url('/fonts/SourceSerif4-Italic-latin.woff2?v=1') format('woff2');
   font-weight:200 900;font-style:italic;font-display:swap;
 }
 @font-face{
   font-family:'Archivo';
-  src:url('/fonts/Archivo-latin.woff2') format('woff2-variations'),
-      url('/fonts/Archivo-latin.woff2') format('woff2');
+  src:url('/fonts/Archivo-latin.woff2?v=1') format('woff2-variations'),
+      url('/fonts/Archivo-latin.woff2?v=1') format('woff2');
   font-weight:100 900;font-style:normal;font-display:swap;
 }
 :root{
