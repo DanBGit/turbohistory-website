@@ -2194,8 +2194,9 @@ and Canada none of this runs unless you press Accept. Everywhere else it runs by
 and you can turn it off any time using "Your privacy choices" in the footer.</p>
 <p><b>Your email, if you give it.</b> If you sign up for free book alerts we store your email
 address and, if you told us, which book you were interested in. We use it for one thing:
-telling you when Turbo History books are free or newly released. We do not sell, rent or
-share it. Every email has a one-click unsubscribe.</p>
+telling you when Turbo History books are free or newly released. We never sell or rent it,
+and the only outside company that touches it is the one that sends the emails for us - see
+"Who else sees it" below. Every email has a one-click unsubscribe.</p>
 <p><b>Proof that you agreed.</b> When you subscribe we also record the date and time, your
 country, your IP address and the exact wording you agreed to. That is not marketing data. It
 exists so we can show you really did ask to be on the list, and it is deleted along with your
@@ -2208,9 +2209,12 @@ and troubleshooting.</p>
 you subscribe. Server logs: our legitimate interest in keeping the site up and secure.</p>
 
 <h2>Who else sees it</h2>
-<p>Google, for analytics, and only if you consented. That is the only third party involved.
-Your email address is stored on our own server rather than handed to a mailing list company,
-so nobody else touches it. If that ever changes we will say so here first. We never sell data.</p>
+<p>Two companies, and both only ever act on our instructions. <b>Google</b>, for analytics,
+and only if you consented. <b>MailerLite</b>, to send the emails: when we send one, your
+address is stored with them so they can deliver it and handle your unsubscribe. They never
+use it for anything of their own. Your address is also kept on our own server, which is where
+the record of your consent lives. That is the full list, and we will say so here first if it
+ever changes again. We never sell data.</p>
 
 <h2>How long we keep it</h2>
 <p>Analytics data: 14 months. Your email: until you unsubscribe or ask us to delete it.</p>

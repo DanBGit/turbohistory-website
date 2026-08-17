@@ -115,8 +115,18 @@ async def subscribe(req):
         return JSONResponse({"ok": False, "error": "Too many attempts. Try again later."},
                             status_code=429)
 
-    # Cloudflare gives us the country for free on every request through the proxy.
-    country = (req.headers.get("cf-ipcountry") or body.get("country") or "").upper()[:2]
+    # Cloudflare gives us the country for free on every request through the proxy. Read it
+    # from the header ONLY. It used to fall back to a country the client sent in the body,
+    # which meant anyone posting straight to the origin IP - bypassing Cloudflare, and so
+    # bypassing the WAF rule too - could simply claim to be somewhere they are not and walk
+    # past the Canada block below. A missing header now means "cannot place this visitor",
+    # which the opt-in test treats as consent-required rather than as permission.
+    #
+    # Note this does not make the origin unreachable: a determined bypass still skips the
+    # geo check entirely, because without Cloudflare there is no country to test. Closing
+    # that properly means firewalling the origin to Cloudflare's IP ranges, which needs
+    # access to the box rather than a change here.
+    country = (req.headers.get("cf-ipcountry") or "").upper()[:2]
 
     # Canada is excluded outright. CASL requires identifying info (incl. a mailing
     # address) at the point consent is sought, and a 60-day unsubscribe on every
