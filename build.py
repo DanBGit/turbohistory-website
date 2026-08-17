@@ -740,12 +740,16 @@ def capture(book: dict | None = None, collection: dict | None = None) -> str:
     # Real capture, posted to our own /api on our own box. No third-party form host,
     # so subscriber data never leaves infrastructure Daniel controls.
     #
-    # The consent tick is shown only where consent must be explicit (EEA/UK/CH/BR/CA).
+    # The consent tick is shown only where consent must be explicit (EEA/UK/CH/BR).
+    # Canada is not on that list because Canada is blocked outright - see CANADA_MSG.
     # Elsewhere the notice alone is enough and an extra click just costs signups. The
     # server enforces the same rule, so removing the box in devtools gains nothing, and
     # if the geo lookup fails we show the box rather than guess.
     consent_text = ("Yes, email me when Turbo History books are free. "
                     "I can unsubscribe any time.")
+    # Kept word-for-word in step with CANADA_MSG in api/app.py.
+    canada_msg = ("IN CANADA? Sorry, we are not risking Canada's anti-spam rules "
+                  "(CASL), so you cannot sign up. The books are still on Amazon.ca.")
     form = f"""<form class="signup" id="sub" novalidate>
       {hidden}
       <input type="email" name="email" placeholder="you@example.com" required
@@ -765,13 +769,15 @@ def capture(book: dict | None = None, collection: dict | None = None) -> str:
     (function(){{
       var f=document.getElementById('sub'); if(!f) return;
       var msg=f.querySelector('.submsg'), box=f.querySelector('.consent');
-      var TEXT={json.dumps(consent_text)};
+      var TEXT={json.dumps(consent_text)}, CA_MSG={json.dumps(canada_msg)};
       var ASK=['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT',
-      'LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH','BR','CA'];
+      'LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH','BR'];
       var country='';
       fetch('/cdn-cgi/trace').then(function(r){{return r.text();}}).then(function(t){{
         var m=/loc=([A-Z]{{2}})/.exec(t); country=m?m[1]:'';
-        if(!country||ASK.indexOf(country)>-1) box.hidden=false;
+        if(country==='CA'){{ f.innerHTML='<p class="submsg err">'+CA_MSG+'</p>'; return; }}
+        var UNKNOWN=(!country||country==='XX'||country==='T1');
+        if(UNKNOWN||ASK.indexOf(country)>-1) box.hidden=false;
       }}).catch(function(){{ box.hidden=false; }});
       f.addEventListener('submit',function(e){{
         e.preventDefault();
@@ -865,6 +871,13 @@ def load_books() -> list[dict]:
     for b in books:
         if not b.get("asin"):
             continue  # blocked/unpublished: never link to a dead product page
+        if b.get("blocked"):
+            # 17 Aug 2026: Amazon took john-f-kennedy and rosa-parks off the
+            # storefront with no explanation. The ASIN still exists but the
+            # product page is dead, so the book leaves the site entirely -
+            # grid, collection hubs, related rails and sitemap - until the
+            # block is resolved. Clear the flag in catalogue.json to restore.
+            continue
         meta_path = READY / b["slug"] / "metadata.json"
         meta = {}
         if meta_path.exists():
@@ -1268,16 +1281,16 @@ PATH_YEAR = {"american-civil-war": 1865, "world-war-i": 1918,
 COLLECTION_COPY: dict[str, dict] = {
     "the-tudors": {
         "h1": [
-            "Three books.",
+            "Four books.",
             "One family that <em>rebuilt England</em>.",
         ],
-        "meta_title": "The Tudors: Three Books, One Reading Order | Turbo History",
-        "meta_description": "One family, two generations, and the marriage that took England out of the Roman church. Three Turbo History books in a curated order, an hour each.",
-        "deck": "Three books on the family that turned a marriage problem into a national religion. <b>Read in this order and the century reads as cause and effect</b>, not a list of wives.",
+        "meta_title": "The Tudors: Four Books, One Reading Order | Turbo History",
+        "meta_description": "One family, two generations, and the marriage that took England out of the Roman church. Four Turbo History books in a curated order, an hour each.",
+        "deck": "Four books on the family that turned a marriage problem into a national religion. <b>Read in this order and the century reads as cause and effect</b>, not a list of wives.",
         "intro": [
-            "Most Tudor history is told as a parade of six wives, which puts the causation the wrong way round. Start instead with the woman who refused to be a mistress. Anne Boleyn held out for the best part of seven years, and the price of that refusal was the English church leaving Rome, eight hundred religious houses closed, and a queen executed with a sword in May 1536. Her daughter then held the throne for forty-four years and died leaving nobody behind. Three books, two generations, one continuous consequence.",
-            "So Anne comes first, before the king she married. Henry VIII then reads as the man who had to break a thousand-year institution to get one annulment, and kept going long after he had it. Elizabeth I comes last because she is the result: a girl declared illegitimate at two, queen at twenty-five, left holding a country her parents had rearranged around a single wedding.",
-            "Three books, an hour each, so under three hours in total. This is the story and the shape of it, not a scholarly account of the Reformation Parliament. If you want the statutes and the theology, each book closes with a page of proper histories to go to next.",
+            "Most Tudor history is told as a parade of six wives, which puts the causation the wrong way round. Start instead with the woman who refused to be a mistress. Anne Boleyn held out for the best part of seven years, and the price of that refusal was the English church leaving Rome, eight hundred religious houses closed, and a queen executed with a sword in May 1536. Her daughter then held the throne for forty-four years and died leaving nobody behind. Four books, two generations, one continuous consequence.",
+            "So Anne comes first, before the king she married. Henry VIII then reads as the man who had to break a thousand-year institution to get one annulment, and kept going long after he had it. Mary I comes third because she is the attempt to put it all back, five years of burnings that changed nothing permanent. Elizabeth I comes last because she is the result: a girl declared illegitimate at two, queen at twenty-five, left holding a country her parents had rearranged around a single wedding.",
+            "Four books, an hour each, so about four hours in total. This is the story and the shape of it, not a scholarly account of the Reformation Parliament. If you want the statutes and the theology, each book closes with a page of proper histories to go to next.",
         ],
         "pathend": "Elizabeth dies childless in 1603 and the crown goes north to a Scottish king, which is where the Stuarts begin. For the longer view, the British Monarchs path picks the story up on either side of these three.",
         "capture_head": "Tudor books go free most weekends.",
@@ -1290,6 +1303,10 @@ COLLECTION_COPY: dict[str, dict] = {
                 "dateline": "1491–1547 · England and the break with Rome",
                 "why": "<b>Second, because you now meet the king already knowing what he was willing to spend.</b> Six wives: two beheaded, two annulled, one dead after childbirth, one who outlived him. Around that, more than eight hundred religious houses closed and their land taken into the crown, the largest transfer of property in England since the Conquest. He began as a scholar-prince who spoke four languages and ended being carried between rooms.",
             },
+            "mary-i": {
+                "dateline": "1516–1558 · Five years, and a church dragged back",
+                "why": "<b>Third, because she is the correction that did not hold.</b> Henry\u2019s eldest daughter, declared illegitimate at seventeen and shut out of the succession, was pushed aside again in 1553 for Lady Jane Grey and took the throne anyway within a fortnight. Then a Spanish marriage the country hated, papal authority restored by statute, and close to three hundred Protestants burned in five years. Two pregnancies turned out not to be pregnancies. She died in November 1558 with no child, and the whole settlement reverted to her half-sister inside a day.",
+            },
             "elizabeth-i": {
                 "dateline": "1533–1603 · The last of her family",
                 "why": "<b>Last, because she is both what the first two books cost and what they bought.</b> Declared illegitimate at two, imprisoned in the Tower by her own half-sister, queen at twenty-five and then on the throne for forty-four years. She signed her cousin’s death warrant in 1587, saw off the Armada the year after, never married, and closed the dynasty herself by leaving no heir at all.",
@@ -1299,15 +1316,15 @@ COLLECTION_COPY: dict[str, dict] = {
     "british-monarchs": {
         "h1": [
             "A thousand years.",
-            "<em>Six crowns</em>, in order.",
+            "<em>Seven crowns</em>, in order.",
         ],
-        "meta_title": "British Monarchs: Six Books in Order | Turbo History",
-        "meta_description": "Nine centuries of the British crown in six short books, from the Conquest to the empire, an hour each, ordered so every reign explains the next.",
-        "deck": "Six reigns across nine centuries, picked because each one changed what the crown actually was. <b>The throne is not the same object at the end of this path as it was at the start.</b>",
+        "meta_title": "British Monarchs: Seven Books in Order | Turbo History",
+        "meta_description": "Nine centuries of the British crown in seven short books, from the Conquest to the empire, an hour each, ordered so every reign explains the next.",
+        "deck": "Seven reigns across nine centuries, picked because each one changed what the crown actually was. <b>The throne is not the same object at the end of this path as it was at the start.</b>",
         "intro": [
             "A monarchy is easier to follow as a set of arguments than as a family tree. Who owns the land. Who owns the church. Who decides the succession. Who pays for the wars. William settles the first question in a single afternoon in 1066 and audits the answer twenty years later in the Domesday Book. Henry VIII settles the second by inventing a church. By the time Victoria dies in 1901 the crown has given up nearly every practical power it started with and become the most recognised institution on earth.",
-            "So the six run in date order, because here the chronology is the argument. Each monarch inherits a crown the last one altered and hands on something different again. One of them lost thirteen colonies, one lost her head to a cousin, and the one who ended with the largest empire in history could not choose her own prime minister.",
-            "Six books, an hour each, so about six hours for nine hundred years. That is less time than one decent biography of any single reign here. There are no genealogical tables and no constitutional theory, and each book ends with a short list of the fuller works if a reign catches you.",
+            "So the seven run in date order, because here the chronology is the argument. Each monarch inherits a crown the last one altered and hands on something different again. One of them lost thirteen colonies, one lost her head to a cousin, and the one who ended with the largest empire in history could not choose her own prime minister.",
+            "Seven books, an hour each, so about seven hours for nine hundred years. That is less time than one decent biography of any single reign here. There are no genealogical tables and no constitutional theory, and each book ends with a short list of the fuller works if a reign catches you.",
         ],
         "pathend": "Nine centuries, six crowns, and a throne that finishes the path with almost no authority and extraordinary reach. Victoria’s grandchildren were sitting on or beside the thrones of Britain, Germany and Russia by 1914, which is roughly where the Wars and Events books begin.",
         "capture_head": "British Monarchs books go free most weekends.",
@@ -1320,17 +1337,21 @@ COLLECTION_COPY: dict[str, dict] = {
                 "dateline": "1491–1547 · The crown takes the church",
                 "why": "<b>Second, for the moment the crown stops answering to anybody abroad.</b> To end one marriage Henry made himself supreme head of the church in England, and the wealth of eight hundred dissolved houses came with it. What that left behind was a power no earlier king had held: the right to define what his own subjects were required to believe, enforced as treason.",
             },
+            "mary-i": {
+                "dateline": "1516–1558 · The crown tries to give the church back",
+                "why": "<b>Third, because she is the one ruler on this path who tried to reverse the previous reign and found the crown could not do it twice.</b> The first woman to hold England in her own right rather than through a husband, queen in 1553 on a wave of genuine support, married to the king of Spain the year after, and restoring papal authority by act of parliament within two. Close to three hundred burnings followed. Five years later the country was less Catholic than when she began, and the land taken from the monasteries was never going back.",
+            },
             "mary-queen-of-scots": {
                 "dateline": "1542–1587 · Scotland, France and nineteen years a prisoner",
-                "why": "<b>Third, because she is the reign that shows what a crown is worth without the means to hold it.</b> Queen of Scotland at six days old, queen of France and widowed by eighteen, then a second husband murdered, an abdication forced on her at twenty-four, and nineteen years as her cousin’s prisoner in England. The axe at Fotheringhay in 1587 also settled who would inherit England, though not in the way anyone intended.",
+                "why": "<b>Fourth, because she is the reign that shows what a crown is worth without the means to hold it.</b> Queen of Scotland at six days old, queen of France and widowed by eighteen, then a second husband murdered, an abdication forced on her at twenty-four, and nineteen years as her cousin’s prisoner in England. The axe at Fotheringhay in 1587 also settled who would inherit England, though not in the way anyone intended.",
             },
             "elizabeth-i": {
                 "dateline": "1533–1603 · Forty-four years, no heir",
-                "why": "<b>Fourth, and she inherits both earlier problems at once: a church her father invented and a cousin with a rival claim to her throne.</b> The second she settled with a signature. The first she never fully settled at all, and she refused for forty-four years to answer the only question her council really cared about, which was who came next. The succession was resolved in her final hours, and it went to the son of the woman she had executed.",
+                "why": "<b>Fifth, and she inherits every earlier problem at once: a church her father invented, a restoration her sister attempted, and a cousin with a rival claim to her throne.</b> The second she settled with a signature. The first she never fully settled at all, and she refused for forty-four years to answer the only question her council really cared about, which was who came next. The succession was resolved in her final hours, and it went to the son of the woman she had executed.",
             },
             "george-iii": {
                 "dateline": "1738–1820 · Britain loses thirteen colonies",
-                "why": "<b>Fifth, because this is the reign where the crown finds the edge of its reach.</b> Fifty-nine years on the throne, longer than any British king before him, and the part everyone remembers is the thirteen colonies gone by 1783. He spent his last decade blind, deaf and confined at Windsor while his son governed as regent. The monarchy that came out the other side was a quieter and much more constitutional thing.",
+                "why": "<b>Sixth, because this is the reign where the crown finds the edge of its reach.</b> Fifty-nine years on the throne, longer than any British king before him, and the part everyone remembers is the thirteen colonies gone by 1783. He spent his last decade blind, deaf and confined at Windsor while his son governed as regent. The monarchy that came out the other side was a quieter and much more constitutional thing.",
             },
             "queen-victoria": {
                 "dateline": "1819–1901 · Sixty-three years and an empire",
@@ -1340,18 +1361,18 @@ COLLECTION_COPY: dict[str, dict] = {
     },
     "american-presidents": {
         "h1": [
-            "Seven men.",
-            "One office, <em>seven ways</em> to hold it.",
+            "Eight men.",
+            "One office, <em>eight ways</em> to hold it.",
         ],
-        "meta_title": "American Presidents: Seven Books in Order | Turbo History",
-        "meta_description": "Seven presidents, Washington to Kennedy, in seven short books of an hour each, ordered to show how a deliberately weak office became the most powerful.",
-        "deck": "Seven men, one office, and a job that changes shape under every one of them. <b>Read in order and you watch the presidency grow from an experiment into the most powerful post on earth.</b>",
+        "meta_title": "American Presidents: Eight Books in Order | Turbo History",
+        "meta_description": "Eight presidents, Washington to Reagan, in eight short books of an hour each, ordered to show how a deliberately weak office became the most powerful.",
+        "deck": "Eight men, one office, and a job that changes shape under every one of them. <b>Read in order and you watch the presidency grow from an experiment into the most powerful post on earth.</b>",
         "intro": [
-            "The American presidency was designed to be weak. The men who drafted it had just fought a war against a king and had no intention of building a second one. What these seven books show, taken end to end, is how it stopped being weak. Washington sets the limit by walking away after two terms. Lincoln discovers the office can suspend habeas corpus and turn a war into emancipation for four million people. Franklin Roosevelt wins four elections and rebuilds the state around the job. By Kennedy, one man in one room has minutes rather than months to decide how a crisis ends.",
-            "So the order is chronological, because the accumulation is the whole point. Each book stands on its own and assumes nothing, but together they make a single argument about power collecting in one office and never dispersing again. Two of these seven were shot dead in post. One was a general who had been written off as a drunk. One could not walk and kept the extent of it out of sight for twelve years.",
-            "Seven books, an hour each, so a working day in total for a hundred and seventy-five years of the office. These are lives rather than policy histories, and no attempt is made at a balanced verdict on any of them. Every book ends with a short list of the fuller biographies if one of the seven grabs you.",
+            "The American presidency was designed to be weak. The men who drafted it had just fought a war against a king and had no intention of building a second one. What these eight books show, taken end to end, is how it stopped being weak. Washington sets the limit by walking away after two terms. Lincoln discovers the office can suspend habeas corpus and turn a war into emancipation for four million people. Franklin Roosevelt wins four elections and rebuilds the state around the job. By Kennedy, one man in one room has minutes rather than months to decide how a crisis ends. By Reagan the job is largely televised, and being good on camera is most of it.",
+            "So the order is chronological, because the accumulation is the whole point. Each book stands on its own and assumes nothing, but together they make a single argument about power collecting in one office and never dispersing again. Two of these eight were shot dead in post and a third was shot and back at his desk within a fortnight. One was a general who had been written off as a drunk. One could not walk and kept the extent of it out of sight for twelve years.",
+            "Eight books, an hour each, so a long working day in total for two hundred years of the office. These are lives rather than policy histories, and no attempt is made at a balanced verdict on any of them. Every book ends with a short list of the fuller biographies if one of the seven grabs you.",
         ],
-        "pathend": "From a president who argued his way out of a royal-sounding title to one whose death was watched live on television. For the wars underneath half of this path, the Wars and Events books cover the ground these men stood on.",
+        "pathend": "From a president who argued his way out of a royal-sounding title to one who had spent his first career in front of a camera and treated the office as the bigger role. For the wars underneath half of this path, the Wars and Events books cover the ground these men stood on.",
         "capture_head": "American Presidents books go free most weekends.",
         "stations": {
             "george-washington": {
@@ -1380,7 +1401,11 @@ COLLECTION_COPY: dict[str, dict] = {
             },
             "john-f-kennedy": {
                 "dateline": "1917–1963 · A thousand days",
-                "why": "<b>Last, because this is the presidency at maximum power with the smallest margin for error anyone had yet faced.</b> Just over a thousand days in office, a botched invasion of Cuba in his first months, then thirteen days in October 1962 spent overruling most of the senior advisers pressing him for air strikes. Thirteen months after that, an open car in Dallas, and the office he had made glamorous became something the country watched being taken apart.",
+                "why": "<b>Seventh, because this is the presidency at maximum power with the smallest margin for error anyone had yet faced.</b> Just over a thousand days in office, a botched invasion of Cuba in his first months, then thirteen days in October 1962 spent overruling most of the senior advisers pressing him for air strikes. Thirteen months after that, an open car in Dallas, and the office he had made glamorous became something the country watched being taken apart.",
+            },
+            "ronald-reagan": {
+                "dateline": "1911\u20132004 \u00b7 Hollywood, California, then the end of the Cold War",
+                "why": "<b>Last, because the job has now become mostly performance, and he is the first president who had trained for that part.</b> A film actor and screen actors\u2019 union president who changed parties in middle age, governor of California, and sworn in at sixty-nine, the oldest to that point. Shot in the chest in March 1981 and back at work inside a fortnight. Then tax cuts, a national debt close to tripled, and an arms treaty signed in 1987 with the leader of a country he had called an evil empire four years earlier. He announced his own Alzheimer\u2019s in a handwritten letter in 1994 and was not seen in public again.",
             },
         },
     },
@@ -1466,18 +1491,18 @@ COLLECTION_COPY: dict[str, dict] = {
     },
     "queens-and-empresses": {
         "h1": [
-            "Seven women.",
+            "Eight women.",
             "Thrones held, and <em>heads lost</em>.",
         ],
-        "meta_title": "Queens and Empresses: Seven Books in Order | Turbo History",
-        "meta_description": "Seven women who ruled, or died getting close to a throne, in short books of about an hour each, read in an order that makes the pattern impossible to miss.",
-        "deck": "Seven women and two very different outcomes: rule in your own name, or get close to a throne and pay for it. <b>Three of these seven were executed.</b>",
+        "meta_title": "Queens and Empresses: Eight Books in Order | Turbo History",
+        "meta_description": "Eight women who ruled, or died getting close to a throne, in short books of about an hour each, read in an order that makes the pattern impossible to miss.",
+        "deck": "Eight women and two very different outcomes: rule in your own name, or get close to a throne and pay for it. <b>Three of these eight were executed.</b>",
         "intro": [
-            "There is a pattern across these seven lives that has very little to do with ability. The women who held power in their own name — Cleopatra, Elizabeth, Catherine, Victoria — died with the throne still theirs. The women whose power came through a husband, or through a claim they had no army to defend — Anne Boleyn, Mary Stuart, Marie Antoinette — died on a scaffold, all three of them after trials that were decided before they opened. Read across nineteen centuries in date order, the division is impossible to look away from.",
-            "So the order runs by date, and the collection is deliberately not a list of winners. One of the seven was queen at six days old and had lost her kingdom by twenty-five. One was a minor German princess who made herself empress of Russia and kept it for thirty-four years. One reigned longer than any British monarch before her and had almost no power left to use. The comparison only works if you read them together.",
-            "Seven books, an hour each, so around seven hours for nineteen centuries. These are lives, not an argument about gender and power, though the pattern is difficult to ignore once you have seen it. Every book ends with a page of fuller biographies for anyone who wants the scholarship behind the story.",
+            "There is a pattern across these eight lives that has very little to do with ability. The women who held power in their own name — Cleopatra, Mary I, Elizabeth, Catherine, Victoria — died with the throne still theirs. The women whose power came through a husband, or through a claim they had no army to defend — Anne Boleyn, Mary Stuart, Marie Antoinette — died on a scaffold, all three of them after trials that were decided before they opened. Read across nineteen centuries in date order, the division is impossible to look away from. Two of them are half-sisters who ended up on opposite sides of it only by outliving the danger.",
+            "So the order runs by date, and the collection is deliberately not a list of winners. One of the eight was queen at six days old and had lost her kingdom by twenty-five. One was a minor German princess who made herself empress of Russia and kept it for thirty-four years. One reigned longer than any British monarch before her and had almost no power left to use. The comparison only works if you read them together.",
+            "Eight books, an hour each, so around eight hours for nineteen centuries. These are lives, not an argument about gender and power, though the pattern is difficult to ignore once you have seen it. Every book ends with a page of fuller biographies for anyone who wants the scholarship behind the story.",
         ],
-        "pathend": "Seven reigns, three scaffolds, and a queen at the end who outlived the idea that a woman on a throne needed explaining. Three of these seven also appear in the British Monarchs path, where they read as reigns rather than as lives.",
+        "pathend": "Eight reigns, three scaffolds, and a queen at the end who outlived the idea that a woman on a throne needed explaining. Four of these eight also appear in the British Monarchs path, where they read as reigns rather than as lives.",
         "capture_head": "Queens and Empresses books go free most weekends.",
         "stations": {
             "cleopatra": {
@@ -1488,25 +1513,29 @@ COLLECTION_COPY: dict[str, dict] = {
                 "dateline": "c.1501–1536 · Roughly a thousand days as queen",
                 "why": "<b>Second, and she is the counter-example: all of the influence, none of the title that protects you.</b> She changed the religion of a country without ever holding authority in her own right, and when she failed to produce a son the same machinery that crowned her convicted her in one morning. Under three years as queen, and a daughter who would outlive every single one of her accusers.",
             },
+            "mary-i": {
+                "dateline": "1516\u20131558 \u00b7 England\u2019s first queen regnant",
+                "why": "<b>Third, because she is the first woman to hold the English crown in her own name, and she had to fight for it before she could wear it.</b> Declared illegitimate as a teenager, then pushed aside in 1553 for Lady Jane Grey, she raised her own support in East Anglia and was queen within a fortnight. What followed was a Spanish marriage the country never accepted, two pregnancies that were not pregnancies, and five years of burnings that fixed her in English memory under a nickname. She died with the throne still hers, which on this path is not a small thing.",
+            },
             "mary-queen-of-scots": {
                 "dateline": "1542–1587 · Queen at six days old",
-                "why": "<b>Third, because she had the strongest claim of anybody in this collection and it was worth nothing without soldiers behind it.</b> Crowned before she could sit up, raised at the French court, widowed at seventeen, then home to a Scotland that had changed religion while she was away. A murdered husband, a forced abdication, and nineteen years of English captivity ending in a warrant her cousin signed and then insisted she had not meant to send.",
+                "why": "<b>Fourth, because she had the strongest claim of anybody in this collection and it was worth nothing without soldiers behind it.</b> Crowned before she could sit up, raised at the French court, widowed at seventeen, then home to a Scotland that had changed religion while she was away. A murdered husband, a forced abdication, and nineteen years of English captivity ending in a warrant her cousin signed and then insisted she had not meant to send.",
             },
             "elizabeth-i": {
                 "dateline": "1533–1603 · The queen who would not marry",
-                "why": "<b>Fourth, because she watched her mother and her cousin die and drew the obvious conclusion about marriage.</b> Every European negotiation for her hand was a way of not answering. She kept the succession open for forty-four years, used the mere possibility of a husband as a diplomatic instrument, and built her entire public image out of the absence of a king. It cost her the dynasty and it kept her the crown.",
+                "why": "<b>Fifth, because she watched her mother and her cousin die and drew the obvious conclusion about marriage.</b> Every European negotiation for her hand was a way of not answering. She kept the succession open for forty-four years, used the mere possibility of a husband as a diplomatic instrument, and built her entire public image out of the absence of a king. It cost her the dynasty and it kept her the crown.",
             },
             "marie-antoinette": {
                 "dateline": "1755–1793 · Vienna to the Place de la Révolution",
-                "why": "<b>Fifth, and she is the one punished hardest for the least actual power.</b> Married into France at fourteen, never a ruler in her own right, blamed for a national bankruptcy that predated her by decades, and wrecked by a jewellery fraud she had no part in. She never said the line about cake. She was tried over two days, on charges that included one so grotesque it embarrassed the court, and guillotined nine months after her husband.",
+                "why": "<b>Sixth, and she is the one punished hardest for the least actual power.</b> Married into France at fourteen, never a ruler in her own right, blamed for a national bankruptcy that predated her by decades, and wrecked by a jewellery fraud she had no part in. She never said the line about cake. She was tried over two days, on charges that included one so grotesque it embarrassed the court, and guillotined nine months after her husband.",
             },
             "catherine-the-great": {
                 "dateline": "1729–1796 · A German princess takes Russia",
-                "why": "<b>Sixth, because she is the answer to everything the previous two books show going wrong.</b> A minor princess from a small German house, married to an emperor she despised, who took the throne herself in a coup in 1762 and then held it alone for thirty-four years. She annexed Crimea, took a large share of Poland, corresponded with the philosophers of the Enlightenment, and conceded no power to anyone. Most of what people think they know about her death was invented by her enemies.",
+                "why": "<b>Seventh, because she is the answer to everything the previous two books show going wrong.</b> A minor princess from a small German house, married to an emperor she despised, who took the throne herself in a coup in 1762 and then held it alone for thirty-four years. She annexed Crimea, took a large share of Poland, corresponded with the philosophers of the Enlightenment, and conceded no power to anyone. Most of what people think they know about her death was invented by her enemies.",
             },
             "queen-victoria": {
                 "dateline": "1819–1901 · Sixty-three years and a quarter of the world",
-                "why": "<b>Last, because by her reign a queen no longer has to seize anything, and that turns out to carry its own cost.</b> Eighteen at her accession, nine children, forty years in black after Albert died, Empress of India from 1876. Her authority was constitutional rather than personal, and more territory was attached to her name than to all six of them put together, and she spent much of the reign discovering the difference.",
+                "why": "<b>Last, because by her reign a queen no longer has to seize anything, and that turns out to carry its own cost.</b> Eighteen at her accession, nine children, forty years in black after Albert died, Empress of India from 1876. Her authority was constitutional rather than personal, and more territory was attached to her name than to all seven of them put together, and she spent much of the reign discovering the difference.",
             },
         },
     },
@@ -1682,18 +1711,18 @@ COLLECTION_COPY: dict[str, dict] = {
     },
     "outlaws-and-villains": {
         "h1": [
-            "Two men.",
-            "Two <em>legends that ate them</em>.",
+            "Three men.",
+            "Three <em>legends that ate them</em>.",
         ],
-        "meta_title": "Outlaws and Villains: Two Short Books | Turbo History",
-        "meta_description": "Two Turbo History books about men who became stories before they were dead: Vlad the Impaler and Blackbeard. Under an hour each, and no myth left standing.",
-        "deck": "A deliberately short path with a single question behind it: what happens to a real man once he is more useful as a monster? <b>Both of these were flesh and blood before they were a brand.</b>",
+        "meta_title": "Outlaws and Villains: Three Short Books | Turbo History",
+        "meta_description": "Three Turbo History books about men who became stories before they were dead: Vlad the Impaler, Blackbeard and Mussolini. Under an hour each, and no myth left standing.",
+        "deck": "A deliberately short path with a single question behind it: what happens to a real man once he is more useful as a monster? <b>All three were flesh and blood before they were a brand.</b>",
         "intro": [
-            "Two books is a small collection, so here is the honest version: these are the two subjects in the series where the legend has almost entirely replaced the person, and putting them side by side is the point. Vlad III of Wallachia was a real prince fighting a real war against the Ottomans, and four hundred years later a novelist borrowed his father's byname for a vampire. Edward Teach ran a pirate career of roughly two years and built the terrifying image himself, on purpose, because a reputation that frightening meant fewer ships had to be fought at all.",
-            "Read Vlad first and Blackbeard second, and the difference does the work. One man had his myth applied to him by other people, mostly hostile pamphleteers and later a Victorian author. The other man manufactured his own and used it as a weapon. Between them you get a fairly complete account of how historical reputation actually gets made, and how little either man would recognise the version we have now.",
-            "Two books, an hour each, so about two hours. Vlad's story involves mass impalement and is described factually, without relish; if that is not what you want, skip to the pirate. Neither book is a debunking exercise for its own sake, but neither leaves the myth standing where the record does not support it.",
+            "Three books is a small collection, so here is the honest version: these are the subjects in the series where the legend has almost entirely replaced the person, and putting them side by side is the point. Vlad III of Wallachia was a real prince fighting a real war against the Ottomans, and four hundred years later a novelist borrowed his father's byname for a vampire. Edward Teach ran a pirate career of roughly two years and built the terrifying image himself, on purpose, because a reputation that frightening meant fewer ships had to be fought at all. Mussolini did the same trick with a country attached.",
+            "Read Vlad first and Blackbeard second, and the difference does the work. One man had his myth applied to him by other people, mostly hostile pamphleteers and later a Victorian author. The other man manufactured his own and used it as a weapon. Mussolini comes last because he is the industrial version of the second case: the same manufacture run by a state, on a whole population, for twenty-one years. Between them you get a fairly complete account of how a reputation actually gets made, and how little any of the three would recognise the version we have now.",
+            "Three books, an hour each, so about three hours. Vlad's story involves mass impalement and is described factually, without relish; if that is not what you want, skip to the pirate. None of the three is a debunking exercise for its own sake, but none of them leaves the myth standing where the record does not support it.",
         ],
-        "pathend": "Two books, and no pretence that this is a full shelf. It is the start of one. Tyrants and pirates are being written; the men who did their damage from a throne have their own collections already.",
+        "pathend": "Three books, and no pretence that this is a full shelf. It is the start of one. More tyrants and more pirates are being written; the men who did their damage from a throne have their own collections already.",
         "capture_head": "Outlaws and Villains books go free most weekends.",
         "stations": {
             "vlad-the-impaler": {
@@ -1702,7 +1731,11 @@ COLLECTION_COPY: dict[str, dict] = {
             },
             "blackbeard": {
                 "dateline": "c.1680–1718 · The Caribbean and the Carolinas",
-                "why": "<b>Finish here for the opposite case: a man who designed his own legend and knew exactly what it was for.</b> Edward Teach was at large for around two years. He blockaded Charleston harbour in 1718 and took the town's hostages for a chest of medicine. The smoking beard and the terrifying appearance were deliberate stagecraft, and there is little evidence he ever killed anyone before the fight at Ocracoke that killed him in November 1718.",
+                "why": "<b>Second, for the opposite case: a man who designed his own legend and knew exactly what it was for.</b> Edward Teach was at large for around two years. He blockaded Charleston harbour in 1718 and took the town's hostages for a chest of medicine. The smoking beard and the terrifying appearance were deliberate stagecraft, and there is little evidence he ever killed anyone before the fight at Ocracoke that killed him in November 1718.",
+            },
+            "benito-mussolini": {
+                "dateline": "1883\u20131945 \u00b7 Italy, and an image that governed for twenty-one years",
+                "why": "<b>Finish here with the case where the invented man took over a country.</b> A socialist newspaper editor who changed sides, marched on Rome in 1922 and was handed the government without having to fight for it, then spent two decades as a manufactured picture: the jaw, the balcony, the staged photographs, the trains that did not in fact run on time. Behind the picture were an opposition deputy murdered in 1924, a colonial war in Ethiopia fought with poison gas, race laws in 1938 and an alliance that finished him. Partisans shot him in April 1945 and the body was strung up at a Milan petrol station, where the crowd went for the image rather than the man.",
             },
         },
     },
@@ -1845,30 +1878,34 @@ COLLECTION_COPY: dict[str, dict] = {
     "the-second-world-war": {
         "h1": [
             "The war,",
-            "then the <em>three men who ran it</em>.",
+            "then the <em>four men inside it</em>.",
         ],
-        "meta_title": "The Second World War: Four Books in Order | Turbo History",
-        "meta_description": "Four Turbo History books on the Second World War: the whole war first, then Roosevelt, MacArthur and Churchill. An hour each, in a reading order that builds.",
-        "deck": "One book for the war itself, then three for the men who had to make decisions inside it. <b>Take the overview first and the three lives stop being anecdotes.</b>",
+        "meta_title": "The Second World War: Five Books in Order | Turbo History",
+        "meta_description": "Five Turbo History books on the Second World War: the whole war first, then Roosevelt, Mussolini, MacArthur and Churchill. An hour each, in a reading order that builds.",
+        "deck": "One book for the war itself, then four for the men who had to make decisions inside it. <b>Take the overview first and the three lives stop being anecdotes.</b>",
         "intro": [
-            "This collection is built differently from the others in the series, because one of its four books is an event and the other three are people. That is deliberate. Read the war first and you get the frame: the scale, the fronts, the chronology, the industrial arithmetic and the civilian dead. Then the three lives sit inside that frame rather than floating free. Roosevelt is the production and the alliance, MacArthur is the Pacific, and Churchill is the year Britain spent alone with nothing much beyond a refusal to negotiate.",
-            "After the overview the order runs by when each life ends, which is close enough to useful. Roosevelt second, because American factories decide the outcome long before American infantry do. MacArthur third, because the Pacific war has almost nothing in common with the European one and needs its own guide. Churchill last, because reading him after the full sweep makes 1940 look less like destiny and more like the narrow thing it was. Every book stands alone.",
-            "Four books, an hour each, about four hours for the largest war in history. The overview does not soften the Holocaust, the bombing of cities or the atomic weapons, and none of the three men is presented as a hero without a bill attached. For depth on any single campaign, this is the wrong length of book.",
+            "This collection is built differently from the others in the series, because one of its five books is an event and the other four are people. That is deliberate. Read the war first and you get the frame: the scale, the fronts, the chronology, the industrial arithmetic and the civilian dead. Then the three lives sit inside that frame rather than floating free. Roosevelt is the production and the alliance, Mussolini is the Axis seen from the inside, MacArthur is the Pacific, and Churchill is the year Britain spent alone with nothing much beyond a refusal to negotiate.",
+            "After the overview the order runs by when each life ends, which is close enough to useful. Roosevelt second, because American factories decide the outcome long before American infantry do. Mussolini third, since he died sixteen days after Roosevelt and because the Axis is easier to understand from its weakest founder than from its strongest one. MacArthur fourth, because the Pacific war has almost nothing in common with the European one and needs its own guide. Churchill last, because reading him after the full sweep makes 1940 look less like destiny and more like the narrow thing it was. Every book stands alone.",
+            "Five books, an hour each, about five hours for the largest war in history. The overview does not soften the Holocaust, the bombing of cities or the atomic weapons, and none of the four men is presented as a hero, or as a monster, without the record attached. For depth on any single campaign, this is the wrong length of book.",
         ],
-        "pathend": "The path ends in 1945 with three men who all outlived their moment except one. The Wars and Events collection puts this war back in sequence with the two that produced it, which is the shortest way to see why it happened at all.",
+        "pathend": "The path ends with two of the four dead before the war was, and two who outlived their moment by twenty years. The Wars and Events collection puts this war back in sequence with the two that produced it, which is the shortest way to see why it happened at all.",
         "capture_head": "Second World War books go free most weekends.",
         "stations": {
             "world-war-ii": {
                 "dateline": "1939–1945 · Six continents and every ocean",
-                "why": "<b>Start here because the three lives that follow are unreadable without the shape of the war around them.</b> Six years, somewhere between seventy and eighty-five million dead, the majority of them civilians, and roughly six million murdered in the Holocaust. This book does the whole thing at altitude: how it began, why the Eastern Front dwarfs everything else, and what the two atomic weapons in August 1945 settled and started.",
+                "why": "<b>Start here because the four lives that follow are unreadable without the shape of the war around them.</b> Six years, somewhere between seventy and eighty-five million dead, the majority of them civilians, and roughly six million murdered in the Holocaust. This book does the whole thing at altitude: how it began, why the Eastern Front dwarfs everything else, and what the two atomic weapons in August 1945 settled and started.",
             },
             "franklin-d.-roosevelt": {
                 "dateline": "1882–1945 · Washington, and the arsenal behind the war",
                 "why": "<b>Second, because the war is decided in factories some time before it is decided in the field, and that is his doing.</b> Paralysed from the waist down since 1921 and rarely photographed in the chair, he won four presidential elections, pushed Lend-Lease through a neutral country in 1941, and held an alliance together with Stalin and Churchill in it. He died on 12 April 1945, less than a month before Germany surrendered.",
             },
+            "benito-mussolini": {
+                "dateline": "1883\u20131945 \u00b7 Rome, and the alliance that consumed him",
+                "why": "<b>Third, because the Axis needs a face on it, and his is the one that shows how thin the thing actually was.</b> He built fascism as a system of government and Hitler copied it, then spent the war as the junior partner in his own idea: an invasion of Greece in 1940 that Germany had to come and finish, an army lost in North Africa, and his own Grand Council voting him out in July 1943. German commandos took him off a mountain and installed him over a puppet republic in the north. Partisans caught him near Lake Como in April 1945, two days before Hitler shot himself in Berlin.",
+            },
             "douglas-macarthur": {
                 "dateline": "1880–1964 · The Philippines, Japan, then Korea",
-                "why": "<b>Third, because the Pacific is effectively a separate war and he is the way into it.</b> Ordered out of the Philippines in 1942 leaving his men to captivity, he came back at Leyte in October 1944 and took the Japanese surrender aboard the Missouri in September 1945. He then governed occupied Japan for six years and wrote much of its constitution, before being sacked in 1951 for arguing publicly with his own president.",
+                "why": "<b>Fourth, because the Pacific is effectively a separate war and he is the way into it.</b> Ordered out of the Philippines in 1942 leaving his men to captivity, he came back at Leyte in October 1944 and took the Japanese surrender aboard the Missouri in September 1945. He then governed occupied Japan for six years and wrote much of its constitution, before being sacked in 1951 for arguing publicly with his own president.",
             },
             "winston-churchill": {
                 "dateline": "1874–1965 · Britain, from the wilderness to Downing Street",

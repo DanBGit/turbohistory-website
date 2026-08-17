@@ -25,11 +25,18 @@ from starlette.routing import Route
 DB = Path(os.environ.get("TH_DB", "/data/subscribers.db"))
 ADMIN_KEY = os.environ.get("TH_ADMIN_KEY", "")
 
-# Opt-in regimes: consent must be explicit and recorded. Mirrors the ASK list the
-# cookie modal uses, so a visitor never sees one standard for cookies and another here.
+# Opt-in regimes: consent must be explicit and recorded. This is the EMAIL list, and it
+# deliberately no longer mirrors the cookie modal's list: the modal still asks Canadians
+# about analytics (nothing changed there), but Canada is blocked from the email list
+# entirely, so it does not belong here.
 OPT_IN = {"AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU",
           "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES",
-          "SE", "IS", "LI", "NO", "GB", "CH", "BR", "CA"}
+          "SE", "IS", "LI", "NO", "GB", "CH", "BR"}
+
+# Shown to Canadian visitors in place of the form, and returned by the API if one
+# reaches it anyway (stale cache, devtools, direct POST).
+CANADA_MSG = ("IN CANADA? Sorry, we are not risking Canada's anti-spam rules (CASL), "
+              "so you cannot sign up. The books are still on Amazon.ca.")
 
 EMAIL_RE = re.compile(r"^[^@\s,;]{1,64}@[A-Za-z0-9.-]{1,190}\.[A-Za-z]{2,24}$")
 
@@ -110,7 +117,20 @@ async def subscribe(req):
 
     # Cloudflare gives us the country for free on every request through the proxy.
     country = (req.headers.get("cf-ipcountry") or body.get("country") or "").upper()[:2]
-    required = country in OPT_IN or country == ""      # unknown geo -> treat as opt-in
+
+    # Canada is excluded outright. CASL requires identifying info (incl. a mailing
+    # address) at the point consent is sought, and a 60-day unsubscribe on every
+    # message. We are not set up for that, so we never collect a Canadian address
+    # rather than collect one we cannot lawfully mail. Cloudflare's country header is
+    # authoritative here, not the client's - a tampered page cannot talk its way past.
+    # Note this blocks the LIST only; Amazon.ca still sells to Canada.
+    if country == "CA":
+        return JSONResponse({"ok": False, "error": CANADA_MSG}, status_code=403)
+
+    # Unknown geo -> treat as opt-in. "" is a missing header, XX is Cloudflare's
+    # "could not place this IP", T1 is a Tor exit. In all three the visitor could be
+    # sitting in the EEA, so ask for the tick rather than assume implied consent.
+    required = country in OPT_IN or country in ("", "XX", "T1")
     given = bool(body.get("consent"))
     consent_text = (body.get("consent_text") or "").strip()[:500]
 
@@ -130,11 +150,89 @@ async def subscribe(req):
                    (req.headers.get("user-agent") or "")[:300]))
         c.commit()
     except sqlite3.IntegrityError:
+        # A row already exists for this address. If they had unsubscribed, this is a
+        # genuine fresh opt-in and must be honoured: clear the flag and record the new
+        # consent. Returning "already on the list" here would both be a lie and silently
+        # drop a subscriber who just asked to come back.
+        row = c.execute("SELECT unsubscribed_utc FROM subscribers WHERE email=?",
+                        (email,)).fetchone()
+        if row and row[0]:
+            c.execute("""UPDATE subscribers SET unsubscribed_utc=NULL, created_utc=?,
+                         country=?, consent_required=?, consent_given=?, consent_text=?,
+                         source_page=?, ip=?, user_agent=? WHERE email=?""",
+                      (now, country, int(required), int(given), consent_text,
+                       (body.get("source") or "")[:200], ip,
+                       (req.headers.get("user-agent") or "")[:300], email))
+            c.commit()
+            return JSONResponse({"ok": True, "message": "You are in."})
         return JSONResponse({"ok": True, "already": True,
                              "message": "You are already on the list."})
     finally:
         c.close()
     return JSONResponse({"ok": True, "message": "You are in."})
+
+
+async def unsubscribe(req):
+    """Mark addresses as unsubscribed. Admin-only, POST.
+
+    The mail tool (MailerLite) owns the subscriber-facing unsubscribe link and honours
+    it on its own. The problem this solves is the opposite direction: without a write
+    path back into this file, an opt-out over there never reaches the consent ledger
+    here, /export keeps handing back people who left, and the next import resurrects
+    them. That is the actual violation risk, so this is the reconciliation hook.
+
+    Paste MailerLite's unsubscribe export straight in - JSON list, or any blob of text
+    with addresses separated by whitespace, commas or semicolons.
+
+    Deletes outright rather than flagging: nothing here needs to remember them, and the
+    less we keep the less there is to get wrong. The unsubscribed_utc column stays in the
+    schema (export and count still filter on it) but nothing sets it any more.
+    """
+    if not ADMIN_KEY or req.query_params.get("key") != ADMIN_KEY:
+        return PlainTextResponse("nope", status_code=403)
+
+    try:
+        body = await req.json()
+        raw = body.get("emails") if isinstance(body, dict) else body
+    except Exception:
+        raw = (await req.body()).decode("utf-8", "replace")
+
+    if isinstance(raw, str):
+        candidates = re.split(r"[\s,;]+", raw)
+    elif isinstance(raw, list):
+        candidates = [str(x) for x in raw]
+    else:
+        candidates = []
+
+    # Be liberal about what is pasted in, but only act on things shaped like an email:
+    # a stray CSV header or quote must never be treated as an address.
+    emails = []
+    for e in candidates:
+        e = e.strip().strip('"\'').lower()
+        if e and EMAIL_RE.match(e) and e not in emails:
+            emails.append(e)
+    if not emails:
+        return JSONResponse({"ok": False, "error": "No valid addresses found."},
+                            status_code=400)
+
+    c = db()
+    done, missed = [], []
+    try:
+        for e in emails:
+            # Hard delete, row and all. Once someone is off the list the consent proof
+            # has no purpose left - we are not mailing them, so we will never need to
+            # prove they agreed - and the privacy policy promises the lot goes. If they
+            # ever come back it is a clean INSERT with a fresh consent record, so there
+            # is no state to reconcile. Suppression lives in the mail tool, which keeps
+            # its own permanent unsubscribe list; this file is the consent ledger.
+            cur = c.execute("DELETE FROM subscribers WHERE email=?", (e,))
+            (done if cur.rowcount else missed).append(e)
+        c.commit()
+    finally:
+        c.close()
+    return JSONResponse({"ok": True, "unsubscribed": len(done),
+                         "already_gone_or_unknown": len(missed),
+                         "missed": missed[:25]})
 
 
 async def export(req):
@@ -166,6 +264,7 @@ async def health(req):
 app = Starlette(routes=[
     Route("/api/subscribe", subscribe, methods=["POST"]),
     Route("/api/subscribers/export", export, methods=["GET"]),
+    Route("/api/subscribers/unsubscribe", unsubscribe, methods=["POST"]),
     Route("/api/subscribers/count", count, methods=["GET"]),
     Route("/api/health", health, methods=["GET"]),
 ])

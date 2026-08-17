@@ -660,13 +660,15 @@ footer .links a{display:inline-block;padding:6px 2px}
     (function(){
       var f=document.getElementById('sub'); if(!f) return;
       var msg=f.querySelector('.submsg'), box=f.querySelector('.consent');
-      var TEXT="Yes, email me when Turbo History books are free. I can unsubscribe any time.";
+      var TEXT="Yes, email me when Turbo History books are free. I can unsubscribe any time.", CA_MSG="IN CANADA? Sorry, we are not risking Canada's anti-spam rules (CASL), so you cannot sign up. The books are still on Amazon.ca.";
       var ASK=['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT',
-      'LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH','BR','CA'];
+      'LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH','BR'];
       var country='';
       fetch('/cdn-cgi/trace').then(function(r){return r.text();}).then(function(t){
         var m=/loc=([A-Z]{2})/.exec(t); country=m?m[1]:'';
-        if(!country||ASK.indexOf(country)>-1) box.hidden=false;
+        if(country==='CA'){ f.innerHTML='<p class="submsg err">'+CA_MSG+'</p>'; return; }
+        var UNKNOWN=(!country||country==='XX'||country==='T1');
+        if(UNKNOWN||ASK.indexOf(country)>-1) box.hidden=false;
       }).catch(function(){ box.hidden=false; });
       f.addEventListener('submit',function(e){
         e.preventDefault();
