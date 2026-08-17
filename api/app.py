@@ -109,6 +109,19 @@ async def subscribe(req):
         return JSONResponse({"ok": False, "error": "That does not look like an email address."},
                             status_code=400)
 
+    # Every genuine signup arrives through Cloudflare, because the form is only ever served
+    # from turbohistory.com. A request carrying no Cloudflare headers came straight to the
+    # origin IP: it skipped the WAF rule, and it brings no country we are willing to trust,
+    # which is the one remaining route past the Canada block. There is no legitimate version
+    # of this request, so refuse it rather than guess at a country.
+    #
+    # Deliberately fails loud, not open. If Cloudflare ever stopped sending these headers
+    # the form would break rather than quietly start accepting unverifiable signups - and
+    # the Monday signup check does a real browser submit, so it would surface within a week.
+    if not (req.headers.get("cf-connecting-ip") or req.headers.get("cf-ipcountry")):
+        return JSONResponse(
+            {"ok": False, "error": "Please sign up at turbohistory.com."}, status_code=403)
+
     ip = client_ip(req)
     c = db()
     if rate_limited(c, ip):
