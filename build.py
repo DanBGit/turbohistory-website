@@ -1296,20 +1296,20 @@ COLLECTION_COPY: dict[str, dict] = {
         "capture_head": "Tudor books go free most weekends.",
         "stations": {
             "anne-boleyn": {
-                "dateline": "c.1501–1536 · The French court to the Tower",
-                "why": "<b>She goes first because the whole century starts with her saying no.</b> Years of refusal, an annulment England could not get from Rome, and a new church built to settle one marriage. Then a daughter instead of a son, a treason trial that took a morning, and a swordsman brought over from France for the job. Read her first and everything after it is consequence.",
+                "dateline": "c.1501-1536 · The French court to the Tower",
+                "why": "<b>She goes first because the whole century starts with her saying no.</b> Years of refusal, an annulment England could not get from Rome, and a new church built to settle one marriage. Then a daughter instead of a son, a treason trial that took a morning, and the executioner of Calais, an expert swordsman sent for the job. Read her first and everything after it is consequence.",
             },
             "henry-viii": {
-                "dateline": "1491–1547 · England and the break with Rome",
+                "dateline": "1491-1547 · England and the break with Rome",
                 "why": "<b>Second, because you now meet the king already knowing what he was willing to spend.</b> Six wives: two beheaded, two annulled, one dead after childbirth, one who outlived him. Around that, more than eight hundred religious houses closed and their land taken into the crown, the largest transfer of property in England since the Conquest. He began as a scholar-prince who spoke four languages and ended being carried between rooms.",
             },
             "mary-i": {
-                "dateline": "1516–1558 · Five years, and a church dragged back",
-                "why": "<b>Third, because she is the correction that did not hold.</b> Henry\u2019s eldest daughter, declared illegitimate at seventeen and shut out of the succession, was pushed aside again in 1553 for Lady Jane Grey and took the throne anyway within a fortnight. Then a Spanish marriage the country hated, papal authority restored by statute, and close to three hundred Protestants burned in five years. Two pregnancies turned out not to be pregnancies. She died in November 1558 with no child, and the whole settlement reverted to her half-sister inside a day.",
+                "dateline": "1516-1558 · Five years, and a church dragged back",
+                "why": "<b>Third, because she is the correction that did not hold.</b> Henry's eldest daughter, declared illegitimate at seventeen and shut out of the succession, was pushed aside again in 1553 for Lady Jane Grey and took the throne anyway within a fortnight. Then a Spanish marriage the country hated, papal authority restored by statute, and close to three hundred Protestants burned in five years. Two pregnancies turned out not to be pregnancies. She died in November 1558 with no child, and the whole settlement reverted to her half-sister inside a day.",
             },
             "elizabeth-i": {
-                "dateline": "1533–1603 · The last of her family",
-                "why": "<b>Last, because she is both what the first two books cost and what they bought.</b> Declared illegitimate at two, imprisoned in the Tower by her own half-sister, queen at twenty-five and then on the throne for forty-four years. She signed her cousin’s death warrant in 1587, saw off the Armada the year after, never married, and closed the dynasty herself by leaving no heir at all.",
+                "dateline": "1533-1603 · The last of her family",
+                "why": "<b>Last, because she is both what the first two books cost and what they bought.</b> Declared illegitimate at two, imprisoned in the Tower by her own half-sister, queen at twenty-five and then on the throne for forty-four years. She signed her cousin's death warrant in 1587, saw off the Armada the year after, never married, and closed the dynasty herself by leaving no heir at all.",
             },
         },
     },
@@ -1326,36 +1326,36 @@ COLLECTION_COPY: dict[str, dict] = {
             "So the seven run in date order, because here the chronology is the argument. Each monarch inherits a crown the last one altered and hands on something different again. One of them lost thirteen colonies, one lost her head to a cousin, and the one who ended with the largest empire in history could not choose her own prime minister.",
             "Seven books, an hour each, so about seven hours for nine hundred years. That is less time than one decent biography of any single reign here. There are no genealogical tables and no constitutional theory, and each book ends with a short list of the fuller works if a reign catches you.",
         ],
-        "pathend": "Nine centuries, six crowns, and a throne that finishes the path with almost no authority and extraordinary reach. Victoria’s grandchildren were sitting on or beside the thrones of Britain, Germany and Russia by 1914, which is roughly where the Wars and Events books begin.",
+        "pathend": "Nine centuries, seven crowns, and a throne that finishes the path with almost no authority and extraordinary reach. Victoria's grandchildren were sitting on or beside the thrones of Britain, Germany and Russia by 1914, which is roughly where the Wars and Events books begin.",
         "capture_head": "British Monarchs books go free most weekends.",
         "stations": {
             "william-the-conqueror": {
-                "dateline": "c.1028–1087 · Normandy, then all of England",
+                "dateline": "c.1028-1087 · Normandy, then all of England",
                 "why": "<b>He opens the path because he is the point at which English kingship is imported wholesale.</b> An illegitimate duke wins one battle on one October afternoon in 1066 and replaces the language of government, the owners of the land and the top of the church. Twenty years later the entire country is written down in the Domesday Book, shire by shire, down to the ploughs and the pigs.",
             },
             "henry-viii": {
-                "dateline": "1491–1547 · The crown takes the church",
+                "dateline": "1491-1547 · The crown takes the church",
                 "why": "<b>Second, for the moment the crown stops answering to anybody abroad.</b> To end one marriage Henry made himself supreme head of the church in England, and the wealth of eight hundred dissolved houses came with it. What that left behind was a power no earlier king had held: the right to define what his own subjects were required to believe, enforced as treason.",
             },
             "mary-i": {
-                "dateline": "1516–1558 · The crown tries to give the church back",
+                "dateline": "1516-1558 · The crown tries to give the church back",
                 "why": "<b>Third, because she is the one ruler on this path who tried to reverse the previous reign and found the crown could not do it twice.</b> The first woman to hold England in her own right rather than through a husband, queen in 1553 on a wave of genuine support, married to the king of Spain the year after, and restoring papal authority by act of parliament within two. Close to three hundred burnings followed. Five years later the country was less Catholic than when she began, and the land taken from the monasteries was never going back.",
             },
             "mary-queen-of-scots": {
-                "dateline": "1542–1587 · Scotland, France and nineteen years a prisoner",
-                "why": "<b>Fourth, because she is the reign that shows what a crown is worth without the means to hold it.</b> Queen of Scotland at six days old, queen of France and widowed by eighteen, then a second husband murdered, an abdication forced on her at twenty-four, and nineteen years as her cousin’s prisoner in England. The axe at Fotheringhay in 1587 also settled who would inherit England, though not in the way anyone intended.",
+                "dateline": "1542-1587 · Scotland, France and nineteen years a prisoner",
+                "why": "<b>Fourth, because she is the reign that shows what a crown is worth without the means to hold it.</b> Queen of Scotland at six days old, queen of France and widowed by eighteen, then a second husband murdered, an abdication forced on her at twenty-four, and nineteen years as her cousin's prisoner in England. The axe at Fotheringhay in 1587 also settled who would inherit England, though not in the way anyone intended.",
             },
             "elizabeth-i": {
-                "dateline": "1533–1603 · Forty-four years, no heir",
-                "why": "<b>Fifth, and she inherits every earlier problem at once: a church her father invented, a restoration her sister attempted, and a cousin with a rival claim to her throne.</b> The second she settled with a signature. The first she never fully settled at all, and she refused for forty-four years to answer the only question her council really cared about, which was who came next. The succession was resolved in her final hours, and it went to the son of the woman she had executed.",
+                "dateline": "1533-1603 · Forty-four years, no heir",
+                "why": "<b>Fifth, and she inherits every earlier problem at once: a church her father invented, a restoration her sister attempted, and a cousin with a rival claim to her throne.</b> The second she settled with a signature. The first she never fully settled at all, and she refused for forty-four years to answer the only question her council really cared about, which was who came next. The succession had been quietly arranged for years by Robert Cecil, and it went to the son of the woman she had executed.",
             },
             "george-iii": {
-                "dateline": "1738–1820 · Britain loses thirteen colonies",
+                "dateline": "1738-1820 · Britain loses thirteen colonies",
                 "why": "<b>Sixth, because this is the reign where the crown finds the edge of its reach.</b> Fifty-nine years on the throne, longer than any British king before him, and the part everyone remembers is the thirteen colonies gone by 1783. He spent his last decade blind, deaf and confined at Windsor while his son governed as regent. The monarchy that came out the other side was a quieter and much more constitutional thing.",
             },
             "queen-victoria": {
-                "dateline": "1819–1901 · Sixty-three years and an empire",
-                "why": "<b>Last, because the crown now has barely any power left and more reach than it has ever had.</b> Eighteen when she acceded, sixty-three years on the throne, Empress of India from 1876, and forty years in black after Albert died in 1861. William took a country with an army and a fleet of ships. Victoria presided over close to a quarter of the world’s people with a signature, a title and a photograph.",
+                "dateline": "1819-1901 · Sixty-three years and an empire",
+                "why": "<b>Last, because the crown now has barely any power left and more reach than it has ever had.</b> Eighteen when she acceded, sixty-three years on the throne, Empress of India from 1876, and forty years in black after Albert died in 1861. William took a country with an army and a fleet of ships. Victoria presided over close to a quarter of the world's people with a signature, a title and a photograph.",
             },
         },
     },
@@ -1370,42 +1370,42 @@ COLLECTION_COPY: dict[str, dict] = {
         "intro": [
             "The American presidency was designed to be weak. The men who drafted it had just fought a war against a king and had no intention of building a second one. What these eight books show, taken end to end, is how it stopped being weak. Washington sets the limit by walking away after two terms. Lincoln discovers the office can suspend habeas corpus and turn a war into emancipation for four million people. Franklin Roosevelt wins four elections and rebuilds the state around the job. By Kennedy, one man in one room has minutes rather than months to decide how a crisis ends. By Reagan the job is largely televised, and being good on camera is most of it.",
             "So the order is chronological, because the accumulation is the whole point. Each book stands on its own and assumes nothing, but together they make a single argument about power collecting in one office and never dispersing again. Two of these eight were shot dead in post and a third was shot and back at his desk within a fortnight. One was a general who had been written off as a drunk. One could not walk and kept the extent of it out of sight for twelve years.",
-            "Eight books, an hour each, so a long working day in total for two hundred years of the office. These are lives rather than policy histories, and no attempt is made at a balanced verdict on any of them. Every book ends with a short list of the fuller biographies if one of the seven grabs you.",
+            "Eight books, an hour each, so a long working day in total for two hundred years of the office. These are lives rather than policy histories, and no attempt is made at a balanced verdict on any of them. Every book ends with a short list of the fuller biographies if one of the eight grabs you.",
         ],
         "pathend": "From a president who argued his way out of a royal-sounding title to one who had spent his first career in front of a camera and treated the office as the bigger role. For the wars underneath half of this path, the Wars and Events books cover the ground these men stood on.",
         "capture_head": "American Presidents books go free most weekends.",
         "stations": {
             "george-washington": {
-                "dateline": "1732–1799 · Virginia to the first presidency",
+                "dateline": "1732-1799 · Virginia to the first presidency",
                 "why": "<b>First, because he had no model to copy and everything he did became one.</b> He won a war in which he lost most of the battles, then did the unexpected thing twice: handed his commission back to Congress in 1783, and walked out of the presidency in 1797 after two terms. No law required either. The second decision held for the next century and a half on nothing but his example.",
             },
             "thomas-jefferson": {
-                "dateline": "1743–1826 · Monticello and the Louisiana Purchase",
+                "dateline": "1743-1826 · Monticello and the Louisiana Purchase",
                 "why": "<b>Second, because the contradiction at the centre of the country is easiest to see inside one man.</b> He wrote that all men are created equal, and he enslaved more than six hundred people over the course of his life. He also doubled the size of the United States in 1803 for about fifteen million dollars, using a presidential power he had spent his whole career insisting did not exist.",
             },
             "abraham-lincoln": {
-                "dateline": "1809–1865 · A country at war with itself",
+                "dateline": "1809-1865 · A country at war with itself",
                 "why": "<b>Third, because the union the first two built comes apart here, and the office swells to hold it together.</b> A one-term congressman with roughly a year of formal schooling in total, elected in 1860 without carrying a single southern state, and by 1865 slavery is finished and the presidency has taken wartime powers it never entirely handed back. He was shot five days after the surrender at Appomattox.",
             },
             "ulysses-s.-grant": {
-                "dateline": "1822–1885 · The Union army, then the White House",
-                "why": "<b>Fourth, because Lincoln’s war needed somebody to actually win it and nobody expected it to be this man.</b> He had failed at farming, at business and, by reputation, at staying sober, and was selling firewood on a street corner before the war. Then Vicksburg, Appomattox, two terms in the White House and eight years spent trying to defend Black voters in the South. He finished his memoirs days before throat cancer killed him, to clear his family’s debts.",
+                "dateline": "1822-1885 · The Union army, then the White House",
+                "why": "<b>Fourth, because Lincoln's war needed somebody to actually win it and nobody expected it to be this man.</b> He had failed at farming, at business and, by reputation, at staying sober, and was selling firewood on a street corner before the war. Then Vicksburg, Appomattox, two terms in the White House and eight years spent trying to defend Black voters in the South. He finished his memoirs days before throat cancer killed him, to clear his family's debts.",
             },
             "theodore-roosevelt": {
-                "dateline": "1858–1919 · The office becomes a platform",
-                "why": "<b>Fifth, because he is the first president to treat the job as a stage rather than an administration.</b> The youngest ever at forty-two, put there by an assassin’s bullet rather than a vote. He broke up trusts, took the ground for the Panama Canal, placed something like two hundred and thirty million acres under federal protection, and won the Nobel Peace Prize in 1906 for ending somebody else’s war between Russia and Japan.",
+                "dateline": "1858-1919 · The office becomes a platform",
+                "why": "<b>Fifth, because he is the first president to treat the job as a stage rather than an administration.</b> The youngest ever at forty-two, put there by an assassin's bullet rather than a vote. He broke up trusts, took the ground for the Panama Canal, placed something like two hundred and thirty million acres under federal protection, and won the Nobel Peace Prize in 1906 for ending somebody else's war between Russia and Japan.",
             },
             "franklin-d.-roosevelt": {
-                "dateline": "1882–1945 · Depression, then a world war",
+                "dateline": "1882-1945 · Depression, then a world war",
                 "why": "<b>Sixth, because the office finally becomes the centre of American daily life and never leaves.</b> Elected four times, twelve years in post, and a state rebuilt around banking rules, public works and old-age pensions that are still there. He had been paralysed from the waist down since 1921 and was almost never photographed in the chair. He died in April 1945, weeks before the German surrender he had spent his last term arranging.",
             },
             "john-f-kennedy": {
-                "dateline": "1917–1963 · A thousand days",
+                "dateline": "1917-1963 · A thousand days",
                 "why": "<b>Seventh, because this is the presidency at maximum power with the smallest margin for error anyone had yet faced.</b> Just over a thousand days in office, a botched invasion of Cuba in his first months, then thirteen days in October 1962 spent overruling most of the senior advisers pressing him for air strikes. Thirteen months after that, an open car in Dallas, and the office he had made glamorous became something the country watched being taken apart.",
             },
             "ronald-reagan": {
-                "dateline": "1911\u20132004 \u00b7 Hollywood, California, then the end of the Cold War",
-                "why": "<b>Last, because the job has now become mostly performance, and he is the first president who had trained for that part.</b> A film actor and screen actors\u2019 union president who changed parties in middle age, governor of California, and sworn in at sixty-nine, the oldest to that point. Shot in the chest in March 1981 and back at work inside a fortnight. Then tax cuts, a national debt close to tripled, and an arms treaty signed in 1987 with the leader of a country he had called an evil empire four years earlier. He announced his own Alzheimer\u2019s in a handwritten letter in 1994 and was not seen in public again.",
+                "dateline": "1911-2004 \u00b7 Hollywood, California, then the end of the Cold War",
+                "why": "<b>Last, because the job has now become mostly performance, and he is the first president who had trained for that part.</b> A film actor and screen actors' union president who changed parties in middle age, governor of California, and sworn in at sixty-nine, the oldest to that point. Shot in the chest in March 1981 and back at work inside a fortnight. Then tax cuts, a national debt close to tripled, and an arms treaty signed in 1987 with the leader of a country he had called an evil empire four years earlier. He announced his own Alzheimer's in a handwritten letter in 1994 and was not seen in public again.",
             },
         },
     },
@@ -1426,11 +1426,11 @@ COLLECTION_COPY: dict[str, dict] = {
         "capture_head": "Ancient World books go free most weekends.",
         "stations": {
             "alexander-the-great": {
-                "dateline": "356–323 BC · Macedon to the Indus",
+                "dateline": "356-323 BC · Macedon to the Indus",
                 "why": "<b>First, because he is the benchmark everyone else in this collection is measured against, usually by their own choice.</b> Eleven years of campaigning without losing a battle, an empire running from Greece to the Punjab, then dead at thirty-two in Babylon with no succession arranged and no heir old enough to matter. The Hellenistic world his generals carved up is the world the remaining four books take place inside.",
             },
             "hannibal": {
-                "dateline": "247–183 BC · Carthage, the Alps, and years stranded in Italy",
+                "dateline": "247-183 BC · Carthage, the Alps, and years stranded in Italy",
                 "why": "<b>Second, because Rome only gets interesting once you have seen how nearly it did not survive.</b> He brought an army and elephants over the Alps, destroyed a much larger Roman force at Cannae in 216 BC in a single afternoon, and then spent fifteen years camped in Italy while Rome simply declined to negotiate. Losing that slowly, and refusing to stop, is what taught Rome how to win everything afterwards.",
             },
             "spartacus": {
@@ -1438,12 +1438,12 @@ COLLECTION_COPY: dict[str, dict] = {
                 "why": "<b>Third, because the ancient world makes no sense without the people it was built on, and this is the one occasion they nearly took it apart.</b> A gladiator breaks out of a training school at Capua with about seventy others and ends up commanding tens of thousands, beating consular armies for two years. Crassus finished it, and six thousand survivors were crucified along the road to Rome as a notice to everybody else.",
             },
             "julius-caesar": {
-                "dateline": "100–44 BC · Gaul, then Rome itself",
-                "why": "<b>Fourth, because the republic that survived Hannibal and Spartacus does not survive him.</b> Eight years conquering Gaul, an account of it he wrote himself and had circulated at home, then the Rubicon, a civil war against his own side, and the title of dictator for life. Around sixty senators decided that was the end of the discussion and stabbed him in a hall beside Pompey’s theatre in March 44 BC.",
+                "dateline": "100-44 BC · Gaul, then Rome itself",
+                "why": "<b>Fourth, because the republic that survived Hannibal and Spartacus does not survive him.</b> Eight years conquering Gaul, an account of it he wrote himself and had circulated at home, then the Rubicon, a civil war against his own side, and the title of dictator for life. Around sixty senators decided that was the end of the discussion and stabbed him in a hall beside Pompey's theatre in March 44 BC.",
             },
             "cleopatra": {
-                "dateline": "69–30 BC · The last of the Ptolemies",
-                "why": "<b>Last, because she is the closing of the world the other four lived in.</b> A Macedonian Greek ruling Egypt nearly three hundred years after one of Alexander’s generals took it, and reputedly the only one of her line who troubled to learn Egyptian. She backed Caesar, then Antony, lost at Actium in 31 BC, and with her death the following year Egypt became a province and the Hellenistic age was finished.",
+                "dateline": "69-30 BC · The last of the Ptolemies",
+                "why": "<b>Last, because she is the closing of the world the other four lived in.</b> A Macedonian Greek ruling Egypt nearly three hundred years after one of Alexander's generals took it, and reputedly the only one of her line who troubled to learn Egyptian. She backed Caesar, then Antony, lost at Actium in 31 BC, and with her death the following year Egypt became a province and the Hellenistic age was finished.",
             },
         },
     },
@@ -1454,38 +1454,38 @@ COLLECTION_COPY: dict[str, dict] = {
         ],
         "meta_title": "Conquerors: Six Books, One Reading Order | Turbo History",
         "meta_description": "The men who took more of the map than anyone thought possible, and what it cost. Six Turbo History books in a curated reading order, an hour each.",
-        "deck": "The men who took more of the map than anyone thought possible, and what it cost. <b>Read in this order and the six books argue with each other</b> — each one inherits the last man’s playbook and finds out where it breaks.",
+        "deck": "The men who took more of the map than anyone thought possible, and what it cost. <b>Read in this order and the six books argue with each other</b> - each one inherits the last man's playbook and finds out where it breaks.",
         "intro": [
             "Conquest is the one subject school gets backwards. You get the battles and the dates, and never the thing that actually explains them: every conqueror on this list was copying somebody. Alexander wrote the manual. Hannibal used it against Rome. Rome learned from Hannibal and handed the lesson to Caesar, who used it on Rome itself. William proved the whole thing could be done in a single afternoon if you picked the right afternoon. Genghis Khan built the same machine from outside the classical world entirely and made it bigger than all of them. Napoleon tried it one last time with modern armies and found the ceiling.",
-            "So the six run in date order, which turns out to be the order the argument wants anyway. Read straight through and you watch one idea — move faster than anyone can react, then govern what you took — get picked up, sharpened, compressed into a single day, scaled up to a continent, and finally broken. Each book stands alone and starts from nothing, so you can begin anywhere. The order is where the collection pays.",
+            "So the six run in date order, which turns out to be the order the argument wants anyway. Read straight through and you watch one idea - move faster than anyone can react, then govern what you took - get picked up, sharpened, compressed into a single day, scaled up to a continent, and finally broken. Each book stands alone and starts from nothing, so you can begin anywhere. The order is where the collection pays.",
             "Six books, an hour each, roughly six hours end to end. That is one long train ride, or a week of commutes, for two thousand years of empire. Reading times are honest estimates from word count at roughly 250 words per minute, and none of these books pretends to be the last word on anything.",
         ],
         "pathend": "Six men, two thousand years, and the same discovery every time: taking the map is the quick half. Only a couple left an institution standing. For the view from the other end of an army, the Ancient World and France paths overlap with this one.",
         "capture_head": "Conquerors books go free most weekends.",
         "stations": {
             "alexander-the-great": {
-                "dateline": "356–323 BC · Macedon to the Indus",
-                "why": "<b>Start here because everyone after him is working from this template.</b> Eleven years, no defeat, an empire from Greece to the Punjab, dead at thirty-two with no plan for what came next. It gives you the whole pattern in its purest form: speed as a weapon, a father’s army inherited and improved, and the part nobody warns you about, which is that conquering is the easy half.",
+                "dateline": "356-323 BC · Macedon to the Indus",
+                "why": "<b>Start here because everyone after him is working from this template.</b> Eleven years, no defeat, an empire from Greece to the Punjab, dead at thirty-two with no plan for what came next. It gives you the whole pattern in its purest form: speed as a weapon, a father's army inherited and improved, and the part nobody warns you about, which is that conquering is the easy half.",
             },
             "hannibal": {
-                "dateline": "247–183 BC · Carthage against Rome",
-                "why": "<b>Second, because Hannibal is Alexander’s method aimed at a state that refuses to lose.</b> Cannae is still taught in war colleges and it still did not win him the war. Read after Alexander and the contrast does the work for you: the same genius, the same speed, a very different enemy, and fifteen years stranded in Italy waiting for a surrender that never came.",
+                "dateline": "247-183 BC · Carthage against Rome",
+                "why": "<b>Second, because Hannibal is Alexander's method aimed at a state that refuses to lose.</b> Cannae is still taught in war colleges and it still did not win him the war. Read after Alexander and the contrast does the work for you: the same genius, the same speed, a very different enemy, and fifteen years stranded in Italy waiting for a surrender that never came.",
             },
             "julius-caesar": {
-                "dateline": "100–44 BC · Gaul, then Rome itself",
+                "dateline": "100-44 BC · Gaul, then Rome itself",
                 "why": "<b>Third, because this is the state that beat Hannibal turning the weapon on itself.</b> Caesar conquers Gaul, writes his own press coverage while doing it, then marches the army home. He is the first man on this list to prove that the real prize was never foreign territory, and the first to find out what a republic does to someone who works that out loud.",
             },
             "william-the-conqueror": {
-                "dateline": "c.1028–1087 · Normandy to England",
-                "why": "<b>Fourth, for scale. This is the smallest conquest on the list and the one you are still living inside.</b> One battle, one afternoon, and a country’s language, landholding, aristocracy and law rebuilt from the ground up, then audited in the Domesday Book. Put straight after Caesar it looks like a footnote. Nine centuries later it is the only conquest here that never came undone.",
+                "dateline": "c.1028-1087 · Normandy to England",
+                "why": "<b>Fourth, for scale. This is the smallest conquest on the list and the one you are still living inside.</b> One battle, one afternoon, and a country's language, landholding, aristocracy and law rebuilt from the ground up, then audited in the Domesday Book. Put straight after Caesar it looks like a footnote. Nine centuries later it is the only conquest here that never came undone.",
             },
             "genghis-khan": {
-                "dateline": "c.1162–1227 · The largest land empire ever assembled",
-                "why": "<b>Fifth, because the Mediterranean is not the world, and this is the point where the collection has to admit it.</b> An outcast child eating roots on the steppe builds an empire more than twice the size of Alexander’s, and the seed of the largest land empire ever assembled, with a postal relay system, a written law and religious tolerance bolted on, and a death toll that still shows up in population estimates. Everything the first four did on a peninsula or an island, done across a continent.",
+                "dateline": "c.1162-1227 · The largest land empire ever assembled",
+                "why": "<b>Fifth, because the Mediterranean is not the world, and this is the point where the collection has to admit it.</b> An outcast child eating roots on the steppe builds an empire more than twice the size of Alexander's, and the seed of the largest land empire ever assembled, with a postal relay system, a written law and religious tolerance bolted on, and a death toll that still shows up in population estimates. Everything the first four did on a peninsula or an island, done across a continent.",
             },
             "napoleon": {
-                "dateline": "1769–1821 · Corsica to Saint Helena",
-                "why": "<b>Finish here, because Napoleon is the last man to try all of it at once and the only one whose paperwork outlived his empire.</b> He read Alexander and Caesar and said so. He moved faster than anyone in Europe could react, exactly as they had. Then the ceiling: Russia, a catastrophic retreat, an island in the South Atlantic. What survived was the boring half he built between campaigns — the Code, the prefects, the bank, the baccalaureate — still running under the law of several countries.",
+                "dateline": "1769-1821 · Corsica to Saint Helena",
+                "why": "<b>Finish here, because Napoleon is the last man to try all of it at once and the only one whose paperwork outlived his empire.</b> He read Alexander and Caesar and said so. He moved faster than anyone in Europe could react, exactly as they had. Then the ceiling: Russia, a catastrophic retreat, an island in the South Atlantic. What survived was the boring half he built between campaigns - the Code, the prefects, the bank, the baccalaureate - still running under the law of several countries.",
             },
         },
     },
@@ -1498,7 +1498,7 @@ COLLECTION_COPY: dict[str, dict] = {
         "meta_description": "Eight women who ruled, or died getting close to a throne, in short books of about an hour each, read in an order that makes the pattern impossible to miss.",
         "deck": "Eight women and two very different outcomes: rule in your own name, or get close to a throne and pay for it. <b>Three of these eight were executed.</b>",
         "intro": [
-            "There is a pattern across these eight lives that has very little to do with ability. The women who held power in their own name — Cleopatra, Mary I, Elizabeth, Catherine, Victoria — died with the throne still theirs. The women whose power came through a husband, or through a claim they had no army to defend — Anne Boleyn, Mary Stuart, Marie Antoinette — died on a scaffold, all three of them after trials that were decided before they opened. Read across nineteen centuries in date order, the division is impossible to look away from. Two of them are half-sisters who ended up on opposite sides of it only by outliving the danger.",
+            "There is a pattern across these eight lives that has very little to do with ability. The women who held power in their own name - Cleopatra, Mary I, Elizabeth, Catherine, Victoria - died with the throne still theirs. The women whose power came through a husband, or through a claim they had no army to defend - Anne Boleyn, Mary Stuart, Marie Antoinette - died on a scaffold, all three of them after trials that were decided before they opened. Read across nineteen centuries in date order, the division is impossible to look away from. Two of them are half-sisters who ended up on opposite sides of it only by outliving the danger.",
             "So the order runs by date, and the collection is deliberately not a list of winners. One of the eight was queen at six days old and had lost her kingdom by twenty-five. One was a minor German princess who made herself empress of Russia and kept it for thirty-four years. One reigned longer than any British monarch before her and had almost no power left to use. The comparison only works if you read them together.",
             "Eight books, an hour each, so around eight hours for nineteen centuries. These are lives, not an argument about gender and power, though the pattern is difficult to ignore once you have seen it. Every book ends with a page of fuller biographies for anyone who wants the scholarship behind the story.",
         ],
@@ -1506,35 +1506,35 @@ COLLECTION_COPY: dict[str, dict] = {
         "capture_head": "Queens and Empresses books go free most weekends.",
         "stations": {
             "cleopatra": {
-                "dateline": "69–30 BC · Alexandria and the end of a dynasty",
+                "dateline": "69-30 BC · Alexandria and the end of a dynasty",
                 "why": "<b>She opens the collection because she is the last of the classical Mediterranean's great female rulers, and the one every queen after her gets measured against.</b> Co-ruler at eighteen, pushed out by her own brother, back inside two years, then the sole authority over the richest kingdom in the Mediterranean. Almost everything written about her afterwards was written by the men who beat her, which is a problem this entire path keeps running into.",
             },
             "anne-boleyn": {
-                "dateline": "c.1501–1536 · Roughly a thousand days as queen",
+                "dateline": "c.1501-1536 · Roughly a thousand days as queen",
                 "why": "<b>Second, and she is the counter-example: all of the influence, none of the title that protects you.</b> She changed the religion of a country without ever holding authority in her own right, and when she failed to produce a son the same machinery that crowned her convicted her in one morning. Under three years as queen, and a daughter who would outlive every single one of her accusers.",
             },
             "mary-i": {
-                "dateline": "1516\u20131558 \u00b7 England\u2019s first queen regnant",
+                "dateline": "1516-1558 \u00b7 England's first queen regnant",
                 "why": "<b>Third, because she is the first woman to hold the English crown in her own name, and she had to fight for it before she could wear it.</b> Declared illegitimate as a teenager, then pushed aside in 1553 for Lady Jane Grey, she raised her own support in East Anglia and was queen within a fortnight. What followed was a Spanish marriage the country never accepted, two pregnancies that were not pregnancies, and five years of burnings that fixed her in English memory under a nickname. She died with the throne still hers, which on this path is not a small thing.",
             },
             "mary-queen-of-scots": {
-                "dateline": "1542–1587 · Queen at six days old",
+                "dateline": "1542-1587 · Queen at six days old",
                 "why": "<b>Fourth, because she had the strongest claim of anybody in this collection and it was worth nothing without soldiers behind it.</b> Crowned before she could sit up, raised at the French court, widowed at seventeen, then home to a Scotland that had changed religion while she was away. A murdered husband, a forced abdication, and nineteen years of English captivity ending in a warrant her cousin signed and then insisted she had not meant to send.",
             },
             "elizabeth-i": {
-                "dateline": "1533–1603 · The queen who would not marry",
+                "dateline": "1533-1603 · The queen who would not marry",
                 "why": "<b>Fifth, because she watched her mother and her cousin die and drew the obvious conclusion about marriage.</b> Every European negotiation for her hand was a way of not answering. She kept the succession open for forty-four years, used the mere possibility of a husband as a diplomatic instrument, and built her entire public image out of the absence of a king. It cost her the dynasty and it kept her the crown.",
             },
             "marie-antoinette": {
-                "dateline": "1755–1793 · Vienna to the Place de la Révolution",
+                "dateline": "1755-1793 · Vienna to the Place de la Révolution",
                 "why": "<b>Sixth, and she is the one punished hardest for the least actual power.</b> Married into France at fourteen, never a ruler in her own right, blamed for a national bankruptcy that predated her by decades, and wrecked by a jewellery fraud she had no part in. She never said the line about cake. She was tried over two days, on charges that included one so grotesque it embarrassed the court, and guillotined nine months after her husband.",
             },
             "catherine-the-great": {
-                "dateline": "1729–1796 · A German princess takes Russia",
+                "dateline": "1729-1796 · A German princess takes Russia",
                 "why": "<b>Seventh, because she is the answer to everything the previous two books show going wrong.</b> A minor princess from a small German house, married to an emperor she despised, who took the throne herself in a coup in 1762 and then held it alone for thirty-four years. She annexed Crimea, took a large share of Poland, corresponded with the philosophers of the Enlightenment, and conceded no power to anyone. Most of what people think they know about her death was invented by her enemies.",
             },
             "queen-victoria": {
-                "dateline": "1819–1901 · Sixty-three years and a quarter of the world",
+                "dateline": "1819-1901 · Sixty-three years and a quarter of the world",
                 "why": "<b>Last, because by her reign a queen no longer has to seize anything, and that turns out to carry its own cost.</b> Eighteen at her accession, nine children, forty years in black after Albert died, Empress of India from 1876. Her authority was constitutional rather than personal, and more territory was attached to her name than to all seven of them put together, and she spent much of the reign discovering the difference.",
             },
         },
@@ -1556,23 +1556,23 @@ COLLECTION_COPY: dict[str, dict] = {
         "capture_head": "Scientists and Inventors books go free most weekends.",
         "stations": {
             "leonardo-da-vinci": {
-                "dateline": "1452–1519 · Florence, Milan and a French château",
+                "dateline": "1452-1519 · Florence, Milan and a French château",
                 "why": "<b>He starts the path because he is what curiosity looks like before there is a method to attach it to.</b> Thousands of notebook pages on anatomy, water, flight and gearing, written in mirror script and left unpublished, so almost none of it reached anybody for centuries. Fewer than twenty finished paintings. He dissected around thirty human bodies and drew the workings of the heart valves better than anyone would manage for four hundred years.",
             },
             "isaac-newton": {
-                "dateline": "1642–1727 · Cambridge, the Mint, and a great many feuds",
+                "dateline": "1642-1727 · Cambridge, the Mint, and a great many feuds",
                 "why": "<b>Second, because he is the first man here whose work is published, checked and built on, which is the entire difference.</b> The Principia in 1687 gave the world gravity, the laws of motion and the mathematics for both. He also spent more of his life on alchemy and biblical chronology than on physics, ran the Royal Mint and had counterfeiters hanged, and pursued Hooke and Leibniz with a spite that outlasted both men.",
             },
             "marie-curie": {
-                "dateline": "1867–1934 · A Paris shed and two Nobel Prizes",
+                "dateline": "1867-1934 · A Paris shed and two Nobel Prizes",
                 "why": "<b>Third, because this is where the work starts costing the person doing it.</b> Shut out of university in Poland, she studied in secret classes, then boiled tonnes of pitchblende by hand in an unheated shed to isolate radium. The Nobel Prize in Physics came in 1903 and one in Chemistry in 1911, and she remains the only person to win in two different sciences. She died of aplastic anaemia, and her notebooks are still too radioactive to handle unprotected.",
             },
             "nikola-tesla": {
-                "dateline": "1856–1943 · Alternating current and an empty hotel room",
+                "dateline": "1856-1943 · Alternating current and an empty hotel room",
                 "why": "<b>Fourth, because being right and being paid turn out to be unrelated, and he is the clearest proof of it.</b> The alternating-current system carrying electricity into your house is largely his, and he tore up the royalty agreement that would have made him one of the richest men alive. Around three hundred patents, a remote-controlled boat demonstrated in 1898 that nobody knew what to do with, and a death in a New York hotel in 1943 surrounded by debts and pigeons.",
             },
             "albert-einstein": {
-                "dateline": "1879–1955 · Bern, Berlin, Princeton",
+                "dateline": "1879-1955 · Bern, Berlin, Princeton",
                 "why": "<b>Last, because he closes the collection the way Leonardo opens it: one person thinking, except now the whole apparatus of modern science exists to check the answer.</b> Four papers in 1905, written around a day job in a patent office. General relativity in 1915, confirmed by an eclipse expedition in 1919, which is the exact moment a physicist becomes a household name. The Nobel arrived in 1921, and not for relativity.",
             },
         },
@@ -1586,7 +1586,7 @@ COLLECTION_COPY: dict[str, dict] = {
         "meta_description": "Shakespeare, Austen, Poe and Mary Shelley in four short books, an hour each, read in an order that becomes a history of what writing was worth.",
         "deck": "Four writers whose lives are stranger, and in two cases far shorter, than anything they published. <b>Two of the four put their best-known book into the world with no name on the title page.</b>",
         "intro": [
-            "The books came first for all four of these people, and the lives were whatever happened around them, usually badly. Shakespeare left an enormous body of work and almost no personal trace, which is why people still argue about who he was. Austen published four novels without her name on them and died at forty-one. Poe invented the detective story and could not make it pay. Mary Shelley wrote the first science fiction novel at eighteen, on a washed-out holiday by a lake, and buried nearly everyone she loved before she was thirty.",
+            "The books came first for all four of these people, and the lives were whatever happened around them, usually badly. Shakespeare left an enormous body of work and almost no personal trace, which is why people still argue about who he was. Austen published four novels without her name on them and died at forty-one. Poe invented the detective story and could not make it pay. Mary Shelley began the book most often named as the first science fiction novel at eighteen, on a washed-out holiday by a lake, and buried nearly everyone she loved before she was thirty.",
             "Read in date order the collection quietly turns into a history of what writing was worth. Shakespeare held a share in his own theatre and retired comfortable. Austen wrote in a family sitting room on a tiny allowance and earned a few hundred pounds in her lifetime. Poe was paid by the line and died broke at forty. Shelley wrote to keep herself and a son. The work outlasted every one of those arrangements, which is the only consolation on offer here.",
             "Four books, an hour each, so about four hours in total. These are lives rather than literary criticism, and there is no close reading of the texts anywhere in them. If you want the writing itself, each book ends with a short list of where to start and which of the long biographies is worth the time.",
         ],
@@ -1594,20 +1594,20 @@ COLLECTION_COPY: dict[str, dict] = {
         "capture_head": "Writers books go free most weekends.",
         "stations": {
             "william-shakespeare": {
-                "dateline": "1564–1616 · Stratford, the Globe, and very few documents",
-                "why": "<b>He opens the path because he is the largest body of work and the smallest quantity of biography in the collection.</b> Around thirty-eight plays and a hundred and fifty-four sonnets, against six surviving signatures and not one manuscript in his hand. He was a businessman as much as a writer, held a share in his company and its theatre, and left his wife the second-best bed. Roughly half the plays would have disappeared without a collection two colleagues printed seven years after he died.",
+                "dateline": "1564-1616 · Stratford, the Globe, and very few documents",
+                "why": "<b>He opens the path because he is the largest body of work and the smallest quantity of biography in the collection.</b> Roughly thirty-nine plays and a hundred and fifty-four sonnets, against six surviving signatures and not one manuscript in his hand. He was a businessman as much as a writer, held a share in his company and its theatre, and left his wife the second-best bed. Roughly half the plays would have disappeared without a collection two colleagues printed seven years after he died.",
             },
             "jane-austen": {
-                "dateline": "1775–1817 · Hampshire, and a very small writing table",
-                "why": "<b>Second, because she is the first person here writing for a market rather than a patron, and having to do it without a name attached.</b> Four books published while she was alive, credited only to a Lady. By family account she wrote in a sitting room with a creaking door, which gave her warning enough to cover the pages. She made a few hundred pounds in total and died at forty-one, months before the last two novels appeared with her name on them at last.",
+                "dateline": "1775-1817 · Hampshire, and a very small writing table",
+                "why": "<b>Second, because she is the first person here writing for a market rather than a patron, and having to do it without a name attached.</b> Four books published while she was alive, published anonymously - the first as By a Lady. By family account she wrote in a sitting room with a creaking door, which gave her warning enough to cover the pages. She made a few hundred pounds in total and died at forty-one, months before the last two novels appeared with her name on them at last.",
             },
             "edgar-allan-poe": {
-                "dateline": "1809–1849 · Richmond, Baltimore, and the magazine trade",
-                "why": "<b>Third, because he shows what happens when a writer depends entirely on periodicals for a living.</b> He invented the detective story in 1841 and built the modern horror tale beside it, and was paid around nine dollars for the most famous poem in America. His wife died of tuberculosis at twenty-four. He was found delirious on a Baltimore street in clothes that were not his and died four days later at forty, with no agreed cause and no reliable account of the missing week.",
+                "dateline": "1809-1849 · Richmond, Baltimore, and the magazine trade",
+                "why": "<b>Third, because he shows what happens when a writer depends entirely on periodicals for a living.</b> He invented the detective story in 1841 and built the modern horror tale beside it, and was paid a reported nine dollars for the most famous poem in America. His wife died of tuberculosis at twenty-four. He was found delirious on a Baltimore street in clothes that were not his and died four days later at forty, with no agreed cause and no reliable account of the missing week.",
             },
             "mary-shelley": {
-                "dateline": "1797–1851 · Lake Geneva, then a long widowhood",
-                "why": "<b>Last, because a teenager on a rained-off holiday invented a genre and then spent thirty years being described as somebody’s widow.</b> The ghost-story competition at the Villa Diodati in 1816 produced two books that lasted, and the one everybody remembers is hers. Published anonymously when she was twenty, widowed at twenty-four, three of her four children dead before she turned thirty, and a long later career of novels and editing that almost nobody reads now.",
+                "dateline": "1797-1851 · Lake Geneva, then a long widowhood",
+                "why": "<b>Last, because a teenager on a rained-off holiday invented a genre and then spent thirty years being described as somebody's widow.</b> The ghost-story competition at the Villa Diodati in 1816 produced two books that lasted, and the one everybody remembers is hers. Published anonymously when she was twenty, widowed at twenty-four, three of her four children dead before she turned thirty, and a long later career of novels and editing that almost nobody reads now.",
             },
         },
     },
@@ -1620,27 +1620,27 @@ COLLECTION_COPY: dict[str, dict] = {
         "meta_description": "Joan of Arc, Louis XIV, Marie Antoinette and Napoleon in four short books, an hour each, ordered so four centuries of France read as one long argument.",
         "deck": "Four lives running from a besieged city in 1429 to a rock in the South Atlantic. <b>One was burned, one was guillotined, and one died a British prisoner.</b>",
         "intro": [
-            "France spends four hundred years asking the same question in different costumes: who is entitled to speak for the country. In 1429 the answer is a teenage farmer’s daughter who says God told her, and it works, right up to the point where the people she saved let her burn. Under Louis XIV the answer is one man in one palace, permanently and by design. In 1793 it is a crowd, and it takes the head off a queen. By 1804 it is a Corsican artillery officer putting a crown on himself in front of the Pope.",
-            "So these four are read in date order because each one is a response to the failure of the last. Absolute monarchy is Louis XIV’s answer to a childhood spent fleeing noble revolt. The Revolution is the bill for what absolutism cost, presented to the family that inherited it. Napoleon is the Revolution deciding it wants one man after all. Four books, four answers, and a country that has never entirely stopped arguing about which of them was right.",
+            "France spends four hundred years asking the same question in different costumes: who is entitled to speak for the country. In 1429 the answer is a teenage farmer's daughter who says God told her, and it works, right up to the point where the people she saved let her burn. Under Louis XIV the answer is one man in one palace, permanently and by design. In 1793 it is a crowd, and it takes the head off a queen. By 1804 it is a Corsican artillery officer putting a crown on himself in front of the Pope.",
+            "So these four are read in date order because each one is a response to the failure of the last. Absolute monarchy is Louis XIV's answer to a childhood spent fleeing noble revolt. The Revolution is the bill for what absolutism cost, presented to the family that inherited it. Napoleon is the Revolution deciding it wants one man after all. Four books, four answers, and a country that has never entirely stopped arguing about which of them was right.",
             "Four books, an hour each, so about four hours for four centuries. These are lives, not a history of France, and the gaps between them are enormous: no Capetians, no Dreyfus, no world wars. Each book ends with a short list of the fuller histories if you want the connective tissue rather than the four peaks.",
         ],
         "pathend": "From Orléans to Saint Helena, and a country that has worked through more than a dozen constitutions since 1791. Two of these four turn up elsewhere as well: Napoleon closes the Conquerors path, and Marie Antoinette sits among the Queens and Empresses.",
         "capture_head": "France books go free most weekends.",
         "stations": {
             "joan-of-arc": {
-                "dateline": "c.1412–1431 · Domrémy, Orléans, Rouen",
-                "why": "<b>She opens the path because France as an idea, rather than a collection of feudal holdings, more or less begins with her.</b> An illiterate farmer’s daughter talks her way to a disinherited prince, breaks the siege of Orléans in days, and has him crowned at Reims inside three months. Captured the following year, sold to the English, tried by French churchmen and burned at nineteen. Twenty-five years later the same church declared that trial a fraud.",
+                "dateline": "c.1412-1431 · Domrémy, Orléans, Rouen",
+                "why": "<b>She opens the path because France as an idea, rather than a collection of feudal holdings, more or less begins with her.</b> An illiterate farmer's daughter talks her way to a disinherited prince, breaks the siege of Orléans in days, and has him crowned at Reims inside three months. Captured the following year, sold to the English, tried by French churchmen and burned at nineteen. Twenty-five years later the same church declared that trial a fraud.",
             },
             "louis-xiv": {
-                "dateline": "1638–1715 · Seventy-two years and one palace",
-                "why": "<b>Second, because he is the opposite solution entirely: not a voice from outside, but a state engineered so that no outside voice can be heard.</b> King at four, seventy-two years on the throne, the longest reign of any sovereign in European history. He moved the nobility into Versailles and gave them ceremonial duties so they could not conspire at home, governed for over fifty years without a chief minister, and left the country exhausted by war and buried in debt.",
+                "dateline": "1638-1715 · Seventy-two years and one palace",
+                "why": "<b>Second, because he is the opposite solution entirely: not a voice from outside, but a state engineered so that no outside voice can be heard.</b> King at four, seventy-two years on the throne, the longest reign of any sovereign in European history. He drew the great nobles into orbit around Versailles, where attendance and ceremony replaced conspiracy, governed for over fifty years without a chief minister, and left the country exhausted by war and buried in debt.",
             },
             "marie-antoinette": {
-                "dateline": "1755–1793 · Versailles to the scaffold",
+                "dateline": "1755-1793 · Versailles to the scaffold",
                 "why": "<b>Third, because the bill for the previous book arrives here, and she is the one handed it.</b> An Austrian teenager married into a court she did not understand, who became the face of a system perfected a lifetime before she reached it. The debt was mostly war debt, a good deal of it run up funding the American revolution. She was tried over two days and guillotined in October 1793, nine months after the husband whose crown she had never wanted.",
             },
             "napoleon": {
-                "dateline": "1769–1821 · Corsica to Saint Helena",
+                "dateline": "1769-1821 · Corsica to Saint Helena",
                 "why": "<b>Last, because he is the Revolution deciding it wants an emperor, and the only figure here who left more behind on paper than on the map.</b> A Corsican who spoke French with an accent his whole life, first consul at thirty, emperor at thirty-five, master of most of Europe until Russia in 1812 ended it. The empire lasted about a decade. The Civil Code, the prefects, the Bank of France and the baccalaureate are all still running.",
             },
         },
@@ -1662,15 +1662,15 @@ COLLECTION_COPY: dict[str, dict] = {
         "capture_head": "Wars and Events books go free most weekends.",
         "stations": {
             "american-civil-war": {
-                "dateline": "1861–1865 · The United States against itself",
+                "dateline": "1861-1865 · The United States against itself",
                 "why": "<b>Start here because this is where war becomes industrial, and everything after it inherits that.</b> Four years, roughly 620,000 dead by the traditional count and probably more, and a country that had to invent conscription, income tax and national cemeteries as it went. It also settles the question the founding generation had deliberately left open, at the price of the bloodiest event in American history.",
             },
             "world-war-i": {
-                "dateline": "1914–1918 · Europe and its empires",
-                "why": "<b>Second, because Europe spent 1914 making mistakes the Americans had already paid for.</b> A single shooting in Sarajevo, six weeks of diplomacy, and then four years of men walking into machine guns because the tactics had not caught up with the tools. Four empires gone by the end: Russian, German, Austro-Hungarian, Ottoman. The map of the modern Middle East and Eastern Europe is drawn in the wreckage.",
+                "dateline": "1914-1918 · Europe and its empires",
+                "why": "<b>Second, because Europe spent 1914 making mistakes the Americans had already paid for.</b> A single shooting in Sarajevo, five weeks of diplomacy, and then four years of men walking into machine guns because the tactics had not caught up with the tools. Four empires gone by the end: Russian, German, Austro-Hungarian, Ottoman. The map of the modern Middle East and Eastern Europe is drawn in the wreckage.",
             },
             "world-war-ii": {
-                "dateline": "1939–1945 · Six continents",
+                "dateline": "1939-1945 · Six continents",
                 "why": "<b>Finish here, because this war is the unfinished business of the last one, fought with better machines.</b> Somewhere between seventy and eighty-five million dead, most of them civilians. The Holocaust, the bombing of cities as policy, and two atomic weapons used on people. It ends with the map, the alliances and the anxieties that the world still operates under, which is the honest reason to read all three in a row.",
             },
         },
@@ -1692,19 +1692,19 @@ COLLECTION_COPY: dict[str, dict] = {
         "capture_head": "Russia books go free most weekends.",
         "stations": {
             "ivan-the-terrible": {
-                "dateline": "1530–1584 · Moscow and the first tsardom",
-                "why": "<b>Start here because Ivan invents the job every other person in this collection inherits.</b> The first Russian ruler crowned tsar, in 1547, he expands Russia east and south, then turns the state inward with the oprichnina, a personal terror apparatus that gutted the nobility and sacked Novgorod. He also killed his own heir in a rage in 1581, which is how the dynasty ran out.",
+                "dateline": "1530-1584 · Moscow and the first tsardom",
+                "why": "<b>Start here because Ivan invents the job every other person in this collection inherits.</b> The first Russian ruler crowned tsar, in 1547, he expands Russia east and south, then turns the state inward with the oprichnina, a personal terror apparatus that gutted the nobility and sacked Novgorod. He is said to have struck his heir a fatal blow in 1581 - contemporaries treated it as rumour - and the dynasty ran out.",
             },
             "catherine-the-great": {
-                "dateline": "1729–1796 · A German princess on the Russian throne",
+                "dateline": "1729-1796 · A German princess on the Russian throne",
                 "why": "<b>Second, for the strongest possible case that absolutism can be done well, and the point where that case fails.</b> Born in Prussia, married into the Romanovs, she deposed her own husband in 1762 and ruled for thirty-four years. She corresponded with the philosophes, founded schools and hospitals, and enlarged the empire hugely. She also left serfdom intact and harder, which is the crack the fourth book falls through.",
             },
             "grigori-rasputin": {
-                "dateline": "1869–1916 · Siberia to the Winter Palace",
+                "dateline": "1869-1916 · Siberia to the Winter Palace",
                 "why": "<b>Third, because he is the clearest evidence that by the dynasty's last years nobody was actually running the place.</b> A Siberian peasant with no office and no education ends up advising the imperial family, because he could apparently ease the heir's haemophilia when doctors could not. The story of his killing in December 1916 has been embroidered for a century; the book separates what is documented from what is legend.",
             },
             "nicholas-ii": {
-                "dateline": "1868–1918 · The end of three hundred years",
+                "dateline": "1868-1918 · The end of three hundred years",
                 "why": "<b>Finish here, because everything the first three books set up collapses on this one man's watch.</b> He inherited absolute power without the temperament for it, took personal command of the army in 1915 and personal blame with it, abdicated in March 1917, and was shot with his wife, four daughters and son at Yekaterinburg in July 1918. Three centuries of Romanov rule ended in a cellar.",
             },
         },
@@ -1718,7 +1718,7 @@ COLLECTION_COPY: dict[str, dict] = {
         "meta_description": "Three Turbo History books about men who became stories before they were dead: Vlad the Impaler, Blackbeard and Mussolini. Under an hour each, and no myth left standing.",
         "deck": "A deliberately short path with a single question behind it: what happens to a real man once he is more useful as a monster? <b>All three were flesh and blood before they were a brand.</b>",
         "intro": [
-            "Three books is a small collection, so here is the honest version: these are the subjects in the series where the legend has almost entirely replaced the person, and putting them side by side is the point. Vlad III of Wallachia was a real prince fighting a real war against the Ottomans, and four hundred years later a novelist borrowed his father's byname for a vampire. Edward Teach ran a pirate career of roughly two years and built the terrifying image himself, on purpose, because a reputation that frightening meant fewer ships had to be fought at all. Mussolini did the same trick with a country attached.",
+            "Three books is a small collection, so here is the honest version: these are the subjects in the series where the legend has almost entirely replaced the person, and putting them side by side is the point. Vlad III of Wallachia was a real prince fighting a real war against the Ottomans, and four hundred years later a novelist borrowed his byname for a vampire. Edward Teach ran a pirate career of roughly two years and built the terrifying image himself, on purpose, because a reputation that frightening meant fewer ships had to be fought at all. Mussolini did the same trick with a country attached.",
             "Read Vlad first and Blackbeard second, and the difference does the work. One man had his myth applied to him by other people, mostly hostile pamphleteers and later a Victorian author. The other man manufactured his own and used it as a weapon. Mussolini comes last because he is the industrial version of the second case: the same manufacture run by a state, on a whole population, for twenty-one years. Between them you get a fairly complete account of how a reputation actually gets made, and how little any of the three would recognise the version we have now.",
             "Three books, an hour each, so about three hours. Vlad's story involves mass impalement and is described factually, without relish; if that is not what you want, skip to the pirate. None of the three is a debunking exercise for its own sake, but none of them leaves the myth standing where the record does not support it.",
         ],
@@ -1726,15 +1726,15 @@ COLLECTION_COPY: dict[str, dict] = {
         "capture_head": "Outlaws and Villains books go free most weekends.",
         "stations": {
             "vlad-the-impaler": {
-                "dateline": "1431–1476 · Wallachia, between two empires",
+                "dateline": "1431-1476 · Wallachia, between two empires",
                 "why": "<b>Start here because Vlad shows a reputation being built by other people, mostly his enemies.</b> A Wallachian prince held hostage by the Ottomans as a boy, ruling a small territory squeezed between Hungary and the Sultan, who used mass impalement as terror and as policy. German pamphlets made him a monster in print within his own century. Bram Stoker took the name Dracula in 1897 and the man disappeared behind it.",
             },
             "blackbeard": {
-                "dateline": "c.1680–1718 · The Caribbean and the Carolinas",
+                "dateline": "c.1680-1718 · The Caribbean and the Carolinas",
                 "why": "<b>Second, for the opposite case: a man who designed his own legend and knew exactly what it was for.</b> Edward Teach was at large for around two years. He blockaded Charleston harbour in 1718 and took the town's hostages for a chest of medicine. The smoking beard and the terrifying appearance were deliberate stagecraft, and there is little evidence he ever killed anyone before the fight at Ocracoke that killed him in November 1718.",
             },
             "benito-mussolini": {
-                "dateline": "1883\u20131945 \u00b7 Italy, and an image that governed for twenty-one years",
+                "dateline": "1883-1945 \u00b7 Italy, and an image that governed for twenty-one years",
                 "why": "<b>Finish here with the case where the invented man took over a country.</b> A socialist newspaper editor who changed sides, marched on Rome in 1922 and was handed the government without having to fight for it, then spent two decades as a manufactured picture: the jaw, the balcony, the staged photographs, the trains that did not in fact run on time. Behind the picture were an opposition deputy murdered in 1924, a colonial war in Ethiopia fought with poison gas, race laws in 1938 and an alliance that finished him. Partisans shot him in April 1945 and the body was strung up at a Milan petrol station, where the crowd went for the image rather than the man.",
             },
         },
@@ -1756,19 +1756,19 @@ COLLECTION_COPY: dict[str, dict] = {
         "capture_head": "Civil Rights books go free most weekends.",
         "stations": {
             "frederick-douglass": {
-                "dateline": "c.1818–1895 · Maryland to Washington",
-                "why": "<b>Start here because Douglass is the first of the four to make the case in public, and he makes it with his own life.</b> Born into slavery on the Eastern Shore, taught to read against the law, escaped north in 1838 and published his account in 1845. He then had to leave the country for two years because the book named names and made him recapturable. He spent the rest of a long life arguing, editing and refusing to let the argument close.",
+                "dateline": "c.1818-1895 · Maryland to Washington",
+                "why": "<b>Start here because Douglass is the first of the four to make the case in public, and he makes it with his own life.</b> Born into slavery on the Eastern Shore, taught to read in defiance of his enslaver, escaped north in 1838 and published his account in 1845. He then had to leave the country for two years because the book named names and made him recapturable. He spent the rest of a long life arguing, editing and refusing to let the argument close.",
             },
             "harriet-tubman": {
-                "dateline": "c.1822–1913 · The Underground Railroad",
-                "why": "<b>Second, because Tubman answers Douglass in the only other language available: she went back.</b> Having escaped in 1849, she returned to Maryland roughly thirteen times and brought out around seventy people, and never lost one. During the war she scouted for the Union and helped lead the Combahee River raid in 1863, which freed more than seven hundred. She waited decades for the pension the government owed her.",
+                "dateline": "c.1822-1913 · The Underground Railroad",
+                "why": "<b>Second, because Tubman answers Douglass in the only other language available: she went back.</b> Having escaped in 1849, she returned to Maryland roughly thirteen times and brought out around seventy people, and said she never lost a passenger. During the war she scouted for the Union and helped lead the Combahee River raid in 1863, which freed more than seven hundred. She waited decades for the pension the government owed her.",
             },
             "martin-luther-king-jr": {
-                "dateline": "1929–1968 · Montgomery to Memphis",
+                "dateline": "1929-1968 · Montgomery to Memphis",
                 "why": "<b>Third, and the shock of the jump is the point: a century has passed and the argument has barely moved.</b> A twenty-six-year-old minister is handed the Montgomery bus boycott in 1955, and twelve years later he has a Nobel Prize, two federal Acts and a bullet on a motel balcony in Memphis. The book keeps the last year in view, when he turned to poverty and to Vietnam and lost a good deal of his support for it.",
             },
             "rosa-parks": {
-                "dateline": "1913–2005 · Montgomery, and fifty years after",
+                "dateline": "1913-2005 · Montgomery, and fifty years after",
                 "why": "<b>Finish here, because Parks lived longest into the aftermath and knew best how the story got flattened.</b> She was not a tired seamstress who happened to sit down; she had been secretary of the Montgomery NAACP for twelve years and had trained for exactly this. Her arrest on 1 December 1955 started the boycott that started book three. She then lost her job, left Alabama, and spent another five decades at it in Detroit.",
             },
         },
@@ -1790,19 +1790,19 @@ COLLECTION_COPY: dict[str, dict] = {
         "capture_head": "Artists books go free most weekends.",
         "stations": {
             "leonardo-da-vinci": {
-                "dateline": "1452–1519 · Florence, Milan, France",
+                "dateline": "1452-1519 · Florence, Milan, France",
                 "why": "<b>Start here because Leonardo sets the terms: a working craftsman on commission who could not stop thinking sideways.</b> An illegitimate notary's son apprenticed in a Florentine workshop, he finished perhaps fifteen to twenty paintings in a career of nearly fifty years, and filled thousands of notebook pages with anatomy, water and flying machines that nobody saw for centuries. He died in France, having carried the Mona Lisa with him and never handed it over.",
             },
             "michelangelo": {
-                "dateline": "1475–1564 · Florence and Rome",
+                "dateline": "1475-1564 · Florence and Rome",
                 "why": "<b>Second, because he is the same system with the opposite temperament, and the two men could not stand each other.</b> He took a block of marble other sculptors had abandoned and produced the David between 1501 and 1504. He spent four years on the Sistine ceiling insisting he was a sculptor being made to paint. He lived to eighty-eight, outlasted a string of popes, and ran the building of St Peter's without pay.",
             },
             "vincent-van-gogh": {
-                "dateline": "1853–1890 · The Netherlands to Provence",
+                "dateline": "1853-1890 · The Netherlands to Provence",
                 "why": "<b>Third, and the floor falls out: this is what the same obsession looks like with no patron underneath it.</b> He came to painting in his late twenties and had about a decade, producing roughly 2,100 works including some 860 oils, while living on money from his brother Theo. He sold vanishingly little in his lifetime. He died at thirty-seven in July 1890, and the letters to Theo are the reason we know the interior of any of it.",
             },
             "frida-kahlo": {
-                "dateline": "1907–1954 · Mexico City",
+                "dateline": "1907-1954 · Mexico City",
                 "why": "<b>Finish here, because Kahlo turns the whole arrangement round and makes herself the commission.</b> A bus accident at eighteen broke her spine, pelvis and right foot, and the surgeries never stopped; she painted lying down, in a mirror, and fifty-five of her 143 paintings are self-portraits. Better known in her lifetime as a Mexican Communist and a painter's wife, she had one solo show at home, in 1953, a year before she died.",
             },
         },
@@ -1824,20 +1824,20 @@ COLLECTION_COPY: dict[str, dict] = {
         "capture_head": "Great Explorers books go free most weekends.",
         "stations": {
             "marco-polo": {
-                "dateline": "1254–1324 · Venice to Xanadu and back",
+                "dateline": "1254-1324 · Venice to Xanadu and back",
                 "why": "<b>Start here because Polo is the first European to describe China at length, and the one who put it in everybody else's head.</b> He left Venice as a teenager, spent around seventeen years in the service of Kublai Khan, and was away twenty-four in total. The book was dictated to a romance writer while both were prisoners in Genoa, which is precisely why it was doubted for centuries and still is in parts.",
             },
             "christopher-columbus": {
-                "dateline": "1451–1506 · Four crossings of the Atlantic",
+                "dateline": "1451-1506 · Four crossings of the Atlantic",
                 "why": "<b>Second, because Columbus sails on Polo's book and a badly wrong estimate of the earth's circumference.</b> Every educated person already knew the world was round; the argument was distance, and his critics had the maths right. He made four voyages from 1492, governed Hispaniola so brutally that the Crown sent him home in chains in 1500, and went to his grave maintaining he had found Asia. The consequences for the Caribbean were annihilating.",
             },
             "lewis-and-clark": {
-                "dateline": "1804–1806 · St Louis to the Pacific",
+                "dateline": "1804-1806 · St Louis to the Pacific",
                 "why": "<b>Third, because this is exploration as state paperwork, and it is far more effective for it.</b> Jefferson bought Louisiana in 1803 and sent the Corps of Discovery to walk it, some 8,000 miles out and back in two years and four months, with one death in the whole party. They mapped rivers, catalogued species, and depended on the Shoshone woman Sacagawea and on dozens of Native nations who could have stopped them and did not.",
             },
             "amelia-earhart": {
-                "dateline": "1897–1937 · The last blank space is the sky",
-                "why": "<b>Finish here, because by 1937 the coastlines are drawn and the only unmapped route left runs over the ocean.</b> First woman to fly the Atlantic solo, in 1932, in fifteen hours from Newfoundland to a field in Northern Ireland. Five years later she and Fred Noonan vanished heading for Howland Island, a target two miles long in the open Pacific, with about 22,000 miles already behind them and 7,000 still to fly. No wreck has ever been confirmed.",
+                "dateline": "1897-1937 · The last blank space is the sky",
+                "why": "<b>Finish here, because by 1937 the coastlines are drawn and the only unmapped route left runs over the ocean.</b> First woman to fly the Atlantic solo, in 1932, in fifteen hours from Newfoundland to a field in Northern Ireland. Five years later she and Fred Noonan vanished heading for Howland Island, a target a mile and a half long in the open Pacific, with about 22,000 miles already behind them and 7,000 still to fly. No wreck has ever been confirmed.",
             },
         },
     },
@@ -1858,19 +1858,19 @@ COLLECTION_COPY: dict[str, dict] = {
         "capture_head": "American Revolution books go free most weekends.",
         "stations": {
             "george-washington": {
-                "dateline": "1732–1799 · Virginia to Yorktown to Mount Vernon",
+                "dateline": "1732-1799 · Virginia to Yorktown to Mount Vernon",
                 "why": "<b>Start here because the rebellion survives eight years mainly by not losing, and that is Washington's particular skill.</b> He lost a great many battles, kept an unpaid army in existence through Valley Forge, and won at Yorktown in 1781 with a French fleet doing half the work. Then the decisive act: he handed his commission back in 1783 and went home, and later left the presidency after two terms when nobody was making him.",
             },
             "alexander-hamilton": {
-                "dateline": "c.1755–1804 · Nevis to the Treasury",
+                "dateline": "c.1755-1804 · Nevis to the Treasury",
                 "why": "<b>Second, because independence was won on credit and Hamilton is the one who understood that.</b> Born illegitimate on Nevis and orphaned, he came to New York as a student, served as Washington's aide, and led a bayonet charge at Yorktown. As the first Treasury Secretary he assumed the states' war debts, founded a national bank and made the new country creditworthy. He died in 1804 from a wound taken in a duel with the sitting vice president.",
             },
             "george-iii": {
-                "dateline": "1738–1820 · London, and the war seen from the losing end",
+                "dateline": "1738-1820 · London, and the war seen from the losing end",
                 "why": "<b>Third, because the revolution reads very differently once you have the other party in the room.</b> He reigned for fifty-nine years, longer than any king before him, and his American war was one crisis among many: France, Ireland, India, and a Parliament he did not simply command. The recurrent madness that produced the Regency in 1811 came mostly after the colonies were lost, and its cause is still argued over rather than settled.",
             },
             "thomas-jefferson": {
-                "dateline": "1743–1826 · Monticello and the Declaration",
+                "dateline": "1743-1826 · Monticello and the Declaration",
                 "why": "<b>Finish here, because Jefferson wrote the promise the other three books are judged against and did not keep it.</b> He drafted the Declaration at thirty-three, doubled the country with the Louisiana Purchase in 1803, and founded a university. He also enslaved more than six hundred people across his life and freed almost none of them. He died on 4 July 1826, fifty years to the day after the document, hours before John Adams.",
             },
         },
@@ -1882,9 +1882,9 @@ COLLECTION_COPY: dict[str, dict] = {
         ],
         "meta_title": "The Second World War: Five Books in Order | Turbo History",
         "meta_description": "Five Turbo History books on the Second World War: the whole war first, then Roosevelt, Mussolini, MacArthur and Churchill. An hour each, in a reading order that builds.",
-        "deck": "One book for the war itself, then four for the men who had to make decisions inside it. <b>Take the overview first and the three lives stop being anecdotes.</b>",
+        "deck": "One book for the war itself, then four for the men who had to make decisions inside it. <b>Take the overview first and the four lives stop being anecdotes.</b>",
         "intro": [
-            "This collection is built differently from the others in the series, because one of its five books is an event and the other four are people. That is deliberate. Read the war first and you get the frame: the scale, the fronts, the chronology, the industrial arithmetic and the civilian dead. Then the three lives sit inside that frame rather than floating free. Roosevelt is the production and the alliance, Mussolini is the Axis seen from the inside, MacArthur is the Pacific, and Churchill is the year Britain spent alone with nothing much beyond a refusal to negotiate.",
+            "This collection is built differently from the others in the series, because one of its five books is an event and the other four are people. That is deliberate. Read the war first and you get the frame: the scale, the fronts, the chronology, the industrial arithmetic and the civilian dead. Then the four lives sit inside that frame rather than floating free. Roosevelt is the production and the alliance, Mussolini is the Axis seen from the inside, MacArthur is the Pacific, and Churchill is the year Britain spent alone with nothing much beyond a refusal to negotiate.",
             "After the overview the order runs by when each life ends, which is close enough to useful. Roosevelt second, because American factories decide the outcome long before American infantry do. Mussolini third, since he died sixteen days after Roosevelt and because the Axis is easier to understand from its weakest founder than from its strongest one. MacArthur fourth, because the Pacific war has almost nothing in common with the European one and needs its own guide. Churchill last, because reading him after the full sweep makes 1940 look less like destiny and more like the narrow thing it was. Every book stands alone.",
             "Five books, an hour each, about five hours for the largest war in history. The overview does not soften the Holocaust, the bombing of cities or the atomic weapons, and none of the four men is presented as a hero, or as a monster, without the record attached. For depth on any single campaign, this is the wrong length of book.",
         ],
@@ -1892,23 +1892,23 @@ COLLECTION_COPY: dict[str, dict] = {
         "capture_head": "Second World War books go free most weekends.",
         "stations": {
             "world-war-ii": {
-                "dateline": "1939–1945 · Six continents and every ocean",
+                "dateline": "1939-1945 · Six continents and every ocean",
                 "why": "<b>Start here because the four lives that follow are unreadable without the shape of the war around them.</b> Six years, somewhere between seventy and eighty-five million dead, the majority of them civilians, and roughly six million murdered in the Holocaust. This book does the whole thing at altitude: how it began, why the Eastern Front dwarfs everything else, and what the two atomic weapons in August 1945 settled and started.",
             },
             "franklin-d.-roosevelt": {
-                "dateline": "1882–1945 · Washington, and the arsenal behind the war",
+                "dateline": "1882-1945 · Washington, and the arsenal behind the war",
                 "why": "<b>Second, because the war is decided in factories some time before it is decided in the field, and that is his doing.</b> Paralysed from the waist down since 1921 and rarely photographed in the chair, he won four presidential elections, pushed Lend-Lease through a neutral country in 1941, and held an alliance together with Stalin and Churchill in it. He died on 12 April 1945, less than a month before Germany surrendered.",
             },
             "benito-mussolini": {
-                "dateline": "1883\u20131945 \u00b7 Rome, and the alliance that consumed him",
-                "why": "<b>Third, because the Axis needs a face on it, and his is the one that shows how thin the thing actually was.</b> He built fascism as a system of government and Hitler copied it, then spent the war as the junior partner in his own idea: an invasion of Greece in 1940 that Germany had to come and finish, an army lost in North Africa, and his own Grand Council voting him out in July 1943. German commandos took him off a mountain and installed him over a puppet republic in the north. Partisans caught him near Lake Como in April 1945, two days before Hitler shot himself in Berlin.",
+                "dateline": "1883-1945 \u00b7 Rome, and the alliance that consumed him",
+                "why": "<b>Third, because the Axis needs a face on it, and his is the one that shows how thin the thing actually was.</b> He built fascism as a system of government and Hitler copied it, then spent the war as the junior partner in his own idea: an invasion of Greece in 1940 that Germany had to come and finish, an army lost in North Africa, and his own Grand Council voting him out in July 1943. German commandos took him off a mountain and installed him over a puppet republic in the north. Partisans caught him near Lake Como in April 1945, three days before Hitler shot himself in Berlin.",
             },
             "douglas-macarthur": {
-                "dateline": "1880–1964 · The Philippines, Japan, then Korea",
+                "dateline": "1880-1964 · The Philippines, Japan, then Korea",
                 "why": "<b>Fourth, because the Pacific is effectively a separate war and he is the way into it.</b> Ordered out of the Philippines in 1942 leaving his men to captivity, he came back at Leyte in October 1944 and took the Japanese surrender aboard the Missouri in September 1945. He then governed occupied Japan for six years and wrote much of its constitution, before being sacked in 1951 for arguing publicly with his own president.",
             },
             "winston-churchill": {
-                "dateline": "1874–1965 · Britain, from the wilderness to Downing Street",
+                "dateline": "1874-1965 · Britain, from the wilderness to Downing Street",
                 "why": "<b>Finish here, because after the full sweep of the war his one indispensable year looks far more precarious than the legend allows.</b> Written off through the 1930s and carrying Gallipoli and a gold standard disaster behind him, he became prime minister in May 1940 as France fell. The book keeps in what the statue leaves out, including the Bengal famine, and the fact that the country voted him out weeks after victory in Europe.",
             },
         },
@@ -1940,7 +1940,7 @@ def collection_page(c: dict, books: list[dict], by_slug: dict[str, dict]) -> str
         st = copy["stations"][b["slug"]]
         hook = b["title"].split(":", 1)[1].strip() if ":" in b["title"] else ""
         heading = (f'<a href="/books/{b["slug"]}/">{esc(b["name"])}</a>'
-                   + (f" &mdash; {esc(hook)}" if hook else ""))
+                   + (f" - {esc(hook)}" if hook else ""))
         steps.append(f"""<article class="step" id="step-{i}" data-reveal>
       <p class="num">{i:02d}</p>
       <a class="cov" href="/books/{b['slug']}/" aria-label="{esc(b['name'])} book page"><img src="/covers/{b['slug']}.jpg" alt="{esc(b['title'])} book cover" loading="lazy"></a>
