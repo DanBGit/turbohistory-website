@@ -378,6 +378,14 @@ section{padding:88px 0}
 .pathend{position:relative;margin-top:8px;padding-left:98px;color:var(--muted)}
 .pathend b{color:var(--gold);font-family:var(--sans);font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;display:block;margin-bottom:10px;font-weight:700}
 .pathend p{max-width:69ch}
+/* ============ boxset CTA ============ */
+.boxcta-wrap{padding-top:0}
+.boxcta{display:flex;gap:34px;align-items:center;background:var(--ink-2);border:1px solid var(--hairline);border-radius:4px;padding:34px 38px;margin-top:26px}
+.boxcta .bc-cov img{width:132px;height:auto;display:block;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.boxcta .label{color:var(--gold);font-family:var(--sans);font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;font-weight:700;margin-bottom:10px}
+.boxcta h2{font-size:var(--t-h3);font-weight:400;line-height:1.2;margin-bottom:10px}
+.boxcta .bc-why{color:var(--muted);max-width:56ch;margin-bottom:22px}
+@media (max-width:640px){.boxcta{flex-direction:column;text-align:center;padding:28px 22px}.boxcta .bc-why{margin-left:auto;margin-right:auto}}
 
 /* collections index */
 .cols{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:34px 30px}
@@ -1112,6 +1120,15 @@ def book_page(b: dict, books: list[dict]) -> str:
 
 CURATION_DIR = PROJECT / "seo" / "curation"
 COLLECTIONS_FILE = PROJECT / "seo" / "collections.json"
+BOXSETS_FILE = PROJECT / "seo" / "boxsets.json"
+
+# Live boxset editions (one Kindle title containing the whole path). Rendered
+# as the whole-path CTA on the collection hub; an entry exists only once the
+# boxset is LIVE on Amazon with an ASIN, so the CTA can never point at a
+# not-yet-live product.
+import json as _json
+BOXSETS = (_json.loads(BOXSETS_FILE.read_text())["boxsets"]
+           if BOXSETS_FILE.exists() else {})
 
 
 # Collection membership is stored per book in catalogue.json (written by
@@ -1923,6 +1940,26 @@ def collection_members(c: dict, by_slug: dict[str, dict]) -> list[dict]:
     return ms
 
 
+def boxset_cta(slug: str, c: dict, n: int) -> str:
+    """The whole path as one Kindle title. Only rendered when the boxset is
+    live (an entry in seo/boxsets.json), so this can never 404 a reader."""
+    bs = BOXSETS.get(slug)
+    if not bs:
+        return ""
+    return f"""<section class="wrap boxcta-wrap">
+  <div class="boxcta" data-reveal>
+    <a class="bc-cov" href="https://www.amazon.com/dp/{bs['asin']}" rel="noopener"><img src="/covers/boxset-{slug}.jpg" alt="{esc(bs['title'])} cover" loading="lazy"></a>
+    <div class="bc-body">
+      <p class="label">The whole path, one book</p>
+      <h2>{esc(bs['title'])}</h2>
+      <p class="bc-why">Every book on this page in a single Kindle edition - {bs['n']} complete histories, one download, free with Kindle Unlimited or ${bs['price_usd']:.2f} to keep.</p>
+      <a class="btn" href="https://www.amazon.com/dp/{bs['asin']}" rel="noopener">Get the Collection on Amazon</a>
+    </div>
+  </div>
+</section>
+"""
+
+
 def collection_page(c: dict, books: list[dict], by_slug: dict[str, dict]) -> str:
     slug = c["slug"]
     copy = COLLECTION_COPY[slug]
@@ -2012,6 +2049,8 @@ def collection_page(c: dict, books: list[dict], by_slug: dict[str, dict]) -> str
     </div>
   </div>
 </section>
+
+{boxset_cta(slug, c, n)}
 
 {FAIR_WARNING}
 {capture(collection=dict(slug=slug, title=c["title"], capture_head=copy["capture_head"]))}

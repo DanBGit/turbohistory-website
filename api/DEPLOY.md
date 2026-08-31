@@ -26,3 +26,15 @@ Verify a deploy with:
 
     curl -s https://turbohistory.com/api/health                  # 200
     curl -s https://turbohistory.com/api/subscribers/count       # subscriber count, not 0
+
+## Admin key (subscriber export / unsubscribe reconcile)
+
+`TH_ADMIN_KEY` is not in `secrets.env` and not in this repo. It exists only as an
+environment variable on the Coolify app, so read it from there when you need it:
+
+    curl -s -H "Authorization: Bearer $COOLIFY_API_TOKEN" \
+      "$COOLIFY_API_URL/api/v1/applications/dt0o3de99yjqke04qxrif2rd/envs"
+
+Two rows come back for the key (runtime and preview, same value). Use the `value`
+field, 32 characters. `real_value` is the same string quote-wrapped, 34 characters,
+and passing that to the API returns 403.

@@ -311,6 +311,14 @@ section{padding:88px 0}
 .pathend{position:relative;margin-top:8px;padding-left:98px;color:var(--muted)}
 .pathend b{color:var(--gold);font-family:var(--sans);font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;display:block;margin-bottom:10px;font-weight:700}
 .pathend p{max-width:69ch}
+/* ============ boxset CTA ============ */
+.boxcta-wrap{padding-top:0}
+.boxcta{display:flex;gap:34px;align-items:center;background:var(--ink-2);border:1px solid var(--hairline);border-radius:4px;padding:34px 38px;margin-top:26px}
+.boxcta .bc-cov img{width:132px;height:auto;display:block;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.boxcta .label{color:var(--gold);font-family:var(--sans);font-size:var(--t-label);letter-spacing:.22em;text-transform:uppercase;font-weight:700;margin-bottom:10px}
+.boxcta h2{font-size:var(--t-h3);font-weight:400;line-height:1.2;margin-bottom:10px}
+.boxcta .bc-why{color:var(--muted);max-width:56ch;margin-bottom:22px}
+@media (max-width:640px){.boxcta{flex-direction:column;text-align:center;padding:28px 22px}.boxcta .bc-why{margin-left:auto;margin-right:auto}}
 
 /* collections index */
 .cols{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:34px 30px}
