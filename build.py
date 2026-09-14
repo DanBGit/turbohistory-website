@@ -713,9 +713,9 @@ CONSENT_JS = """
 """
 
 
-# Set once the Turbo History MailerLite account exists (separate from the business
-# account - different brand, different sender domain, different consent purpose).
-# Paste the embedded-form action URL here and the real form renders automatically.
+# Unused. The Turbo History MailerLite account exists (14 Sep 2026) and is fed
+# server-side by api/app.py after each signup, so the site keeps its own form and its own
+# consent ledger instead of embedding a MailerLite form. Left empty on purpose.
 ML_FORM_ACTION = ""
 
 
@@ -2239,7 +2239,8 @@ and the only outside company that touches it is the one that sends the emails fo
 <p><b>Proof that you agreed.</b> When you subscribe we also record the date and time, your
 country, your IP address and the exact wording you agreed to. That is not marketing data. It
 exists so we can show you really did ask to be on the list, and it is deleted along with your
-email the moment you unsubscribe.</p>
+email when you unsubscribe. MailerLite keeps your address on a do-not-email list after you
+unsubscribe, so you are never emailed again by mistake.</p>
 <p><b>Server logs.</b> Our host keeps standard web server logs (IP, page, time) for security
 and troubleshooting.</p>
 
@@ -2249,11 +2250,12 @@ you subscribe. Server logs: our legitimate interest in keeping the site up and s
 
 <h2>Who else sees it</h2>
 <p>Two companies, and both only ever act on our instructions. <b>Google</b>, for analytics,
-and only if you consented. <b>MailerLite</b>, to send the emails: when we send one, your
-address is stored with them so they can deliver it and handle your unsubscribe. They never
-use it for anything of their own. Your address is also kept on our own server, which is where
-the record of your consent lives. That is the full list, and we will say so here first if it
-ever changes again. We never sell data.</p>
+and only if you consented. <b>MailerLite</b>, to send the emails: when you subscribe, your
+address is passed to them straight away, along with a copy of the record that you agreed
+(the date and time, your country, your IP address and the wording you agreed to), so they
+can deliver the emails and handle your unsubscribe. They never use it for anything of their
+own. The original record of your consent stays on our own server. That is the full list, and
+we will say so here first if it ever changes again. We never sell data.</p>
 
 <h2>How long we keep it</h2>
 <p>Analytics data: 14 months. Your email: until you unsubscribe or ask us to delete it.</p>

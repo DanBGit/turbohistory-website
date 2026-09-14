@@ -1,9 +1,10 @@
 """
 Turbo History email capture.
 
-Deliberately small: one endpoint, one SQLite file, no third-party processor. Subscriber
-data never leaves Daniel's own box, which keeps the privacy story simple (no processor
-agreement, no international transfer, nothing to disclose beyond "we store it ourselves").
+Deliberately small: one SQLite file on Daniel's own box is the consent ledger. Each
+signup is then copied to MailerLite (the processor that sends the emails, disclosed in the
+privacy policy), carrying its consent history with it: opt-in time, IP, country, page
+and the exact wording agreed to. The ledger stays authoritative; MailerLite is a copy.
 
 Consent record is the point of this file. For anyone in an opt-in jurisdiction we store
 what they agreed to, word for word, plus when and from where. That is what a regulator
@@ -16,14 +17,29 @@ import os
 import re
 import sqlite3
 import time
+import urllib.error
+import urllib.parse
+import urllib.request
 from pathlib import Path
 
 from starlette.applications import Starlette
+from starlette.background import BackgroundTask
+from starlette.concurrency import run_in_threadpool
 from starlette.responses import JSONResponse, PlainTextResponse
 from starlette.routing import Route
 
 DB = Path(os.environ.get("TH_DB", "/data/subscribers.db"))
 ADMIN_KEY = os.environ.get("TH_ADMIN_KEY", "")
+
+ML_API = "https://connect.mailerlite.com/api"
+ML_KEY = os.environ.get("TH_ML_KEY", "")
+ML_GROUP = os.environ.get("TH_ML_GROUP", "")
+# The Monday routine submits the live form as a real reader would. Those rows prove the
+# form works; they must never land on the mailing list and get a Saturday email.
+ML_SKIP_PREFIXES = ("formtest-",)
+# MailerLite states in which an address must not be put back on the list by us.
+ML_SUPPRESSED = {"unsubscribed", "bounced", "junk"}
+IP_RE = re.compile(r"^[0-9a-fA-F:.]{3,45}$")
 
 # Opt-in regimes: consent must be explicit and recorded. This is the EMAIL list, and it
 # deliberately no longer mirrors the cookie modal's list: the modal still asks Canadians
@@ -61,8 +77,95 @@ def db() -> sqlite3.Connection:
         unsubscribed_utc TEXT)""")
     c.execute("""CREATE TABLE IF NOT EXISTS hits(
         ip TEXT PRIMARY KEY, n INTEGER, window_start REAL)""")
+    cols = {r[1] for r in c.execute("PRAGMA table_info(subscribers)")}
+    if "ml_sync" not in cols:
+        # Last MailerLite outcome and when: "synced@<utc>", "suppressed@<utc>",
+        # "skipped-test@<utc>", "error:<status>@<utc>". NULL = never attempted.
+        try:
+            c.execute("ALTER TABLE subscribers ADD COLUMN ml_sync TEXT")
+        except sqlite3.OperationalError:
+            pass  # another request added it first
     c.commit()
     return c
+
+
+def _ml(method: str, path: str, body: dict | None = None) -> tuple[int, dict]:
+    req = urllib.request.Request(
+        ML_API + path, method=method,
+        data=json.dumps(body).encode() if body is not None else None,
+        headers={"Authorization": f"Bearer {ML_KEY}", "Accept": "application/json",
+                 "Content-Type": "application/json", "User-Agent": "turbohistory-api/1"})
+    try:
+        with urllib.request.urlopen(req, timeout=8) as r:
+            return r.status, json.loads(r.read() or b"{}")
+    except urllib.error.HTTPError as e:
+        try:
+            return e.code, json.loads(e.read() or b"{}")
+        except ValueError:
+            return e.code, {}
+    except (urllib.error.URLError, TimeoutError, OSError):
+        return 0, {}
+
+
+def push_to_mailerlite(email: str) -> str:
+    """Copy one ledger row to MailerLite and record the outcome on the row.
+
+    Never raises: a MailerLite outage must not lose a signup. The row is already safe in
+    the ledger, stays unsynced, and /api/subscribers/sync retries it later.
+    """
+    if not (ML_KEY and ML_GROUP):
+        return "not-configured"
+    c = db()
+    try:
+        row = c.execute("""SELECT email,created_utc,country,consent_required,consent_text,
+                           source_page,ip FROM subscribers
+                           WHERE email=? AND unsubscribed_utc IS NULL""", (email,)).fetchone()
+        if not row:
+            return "gone"
+        email, created, country, required, consent_text, source, ip = row
+        if email.startswith(ML_SKIP_PREFIXES):
+            outcome = "skipped-test"
+        else:
+            status, data = _ml("GET", "/subscribers/" + urllib.parse.quote(email))
+            if status == 200 and (data.get("data") or {}).get("status") in ML_SUPPRESSED:
+                # They left (or bounce) on MailerLite's side. Re-adding them from here
+                # would override their unsubscribe, which is the one thing we must never
+                # do. A genuine change of heart goes through MailerLite's own resubscribe.
+                outcome = "suppressed"
+            elif status not in (200, 404):
+                outcome = f"error:{status}"
+            else:
+                ts = created.replace("T", " ").rstrip("Z")
+                body = {
+                    "email": email,
+                    "groups": [ML_GROUP],
+                    "subscribed_at": ts,
+                    "opted_in_at": ts,
+                    "fields": {
+                        "consent_text": consent_text or "",
+                        "signup_page": source or "",
+                        "signup_country": country or "",
+                        "consent_required": "yes" if required else "no",
+                        "country": country or "",
+                    },
+                }
+                if ip and IP_RE.match(ip):
+                    body["optin_ip"] = ip
+                    body["ip_address"] = ip
+                status, _ = _ml("POST", "/subscribers", body)
+                outcome = "synced" if status in (200, 201) else f"error:{status}"
+        now = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        c.execute("UPDATE subscribers SET ml_sync=? WHERE email=?", (f"{outcome}@{now}", email))
+        c.commit()
+        return outcome
+    except Exception as e:  # noqa: BLE001 - see docstring
+        return f"error:{type(e).__name__}"
+    finally:
+        c.close()
+
+
+def _after(email: str) -> BackgroundTask:
+    return BackgroundTask(push_to_mailerlite, email)
 
 
 def client_ip(req) -> str:
@@ -187,12 +290,16 @@ async def subscribe(req):
                        (body.get("source") or "")[:200], ip,
                        (req.headers.get("user-agent") or "")[:300], email))
             c.commit()
-            return JSONResponse({"ok": True, "message": "You are in."})
+            return JSONResponse({"ok": True, "message": "You are in."},
+                                background=_after(email))
+        # Also retried here: an address that signed up before the MailerLite copy
+        # existed, or whose copy failed, gets another attempt when it comes back.
         return JSONResponse({"ok": True, "already": True,
-                             "message": "You are already on the list."})
+                             "message": "You are already on the list."},
+                            background=_after(email))
     finally:
         c.close()
-    return JSONResponse({"ok": True, "message": "You are in."})
+    return JSONResponse({"ok": True, "message": "You are in."}, background=_after(email))
 
 
 async def unsubscribe(req):
@@ -264,13 +371,38 @@ async def export(req):
         return PlainTextResponse("nope", status_code=403)
     c = db()
     rows = c.execute("""SELECT email,created_utc,country,consent_required,consent_given,
-                        consent_text,source_page FROM subscribers
+                        consent_text,source_page,ml_sync FROM subscribers
                         WHERE unsubscribed_utc IS NULL ORDER BY id""").fetchall()
     c.close()
-    out = ["email,created_utc,country,consent_required,consent_given,consent_text,source_page"]
+    out = ["email,created_utc,country,consent_required,consent_given,consent_text,source_page,"
+           "ml_sync"]
     for r in rows:
         out.append(",".join('"' + str(x or "").replace('"', '""') + '"' for x in r))
     return PlainTextResponse("\n".join(out), media_type="text/csv")
+
+
+async def sync(req):
+    """Admin-only, POST. Copy every row MailerLite does not have yet (or failed) across.
+
+    Safe to run any time: rows already synced, suppressed or test rows are left alone,
+    and push_to_mailerlite itself refuses to re-add anyone who unsubscribed over there.
+    """
+    if not ADMIN_KEY or req.query_params.get("key") != ADMIN_KEY:
+        return PlainTextResponse("nope", status_code=403)
+    if not (ML_KEY and ML_GROUP):
+        return JSONResponse({"ok": False, "error": "TH_ML_KEY / TH_ML_GROUP not set"},
+                            status_code=500)
+    c = db()
+    emails = [r[0] for r in c.execute(
+        """SELECT email FROM subscribers WHERE unsubscribed_utc IS NULL AND
+           (ml_sync IS NULL OR ml_sync LIKE 'error%' OR ml_sync LIKE 'not-configured%')
+           ORDER BY id""")]
+    c.close()
+    tally: dict[str, int] = {}
+    for e in emails:
+        outcome = (await run_in_threadpool(push_to_mailerlite, e)).split(":")[0]
+        tally[outcome] = tally.get(outcome, 0) + 1
+    return JSONResponse({"ok": True, "attempted": len(emails), "outcomes": tally})
 
 
 async def count(req):
@@ -288,6 +420,7 @@ app = Starlette(routes=[
     Route("/api/subscribe", subscribe, methods=["POST"]),
     Route("/api/subscribers/export", export, methods=["GET"]),
     Route("/api/subscribers/unsubscribe", unsubscribe, methods=["POST"]),
+    Route("/api/subscribers/sync", sync, methods=["POST"]),
     Route("/api/subscribers/count", count, methods=["GET"]),
     Route("/api/health", health, methods=["GET"]),
 ])
