@@ -1694,18 +1694,18 @@ COLLECTION_COPY: dict[str, dict] = {
     },
     "russia": {
         "h1": [
-            "Tsars, an empress,",
-            "and a <em>mad monk</em>.",
+            "Tsars, an empress, a monk,",
+            "and then <em>Stalin</em>.",
         ],
-        "meta_title": "Russia: Four Books, One Reading Order | Turbo History",
-        "meta_description": "Four Turbo History books on the Russian throne, from the first tsar to the last, read in the order that explains how it kept collapsing. An hour each.",
+        "meta_title": "Russia: Five Books, One Reading Order | Turbo History",
+        "meta_description": "Five Turbo History books on absolute power in Russia, from the first tsar to Stalin, read in the order that explains how it collapsed and came back. An hour each.",
         "intro": [
-            "Russia is a country that has never quite solved the problem of what happens when one man holds everything. Ivan invents the office of tsar and then demonstrates, at length, what an unchecked one can do to his own nobility and his own city. Catherine takes the same absolute power two centuries later, applies it with genuine intelligence, expands the empire enormously, and still cannot touch the thing underneath it, which is serfdom. Rasputin shows how a court that answers to nobody can be captured by one persuasive outsider. Nicholas inherits all of it and drops it.",
-            "So the sequence is chronological, and it is also a slow demolition. Each book widens the crack in the same wall. You can read any of them cold, and the Rasputin book in particular works fine as a standalone curiosity, but the last two are far better read together: Rasputin is the symptom and Nicholas is the patient, and the diagnosis arrives in 1917.",
-            "Four books, an hour each, roughly four hours for four hundred years. Some of this is grim without relief, particularly the fate of the last imperial family, and it is told plainly rather than dramatically. If you want the Soviet century, it is not here yet.",
+            "Russia is a country that has never quite solved the problem of what happens when one man holds everything. Ivan invents the office of tsar and then demonstrates, at length, what an unchecked one can do to his own nobility and his own city. Catherine takes the same absolute power two centuries later, applies it with genuine intelligence, expands the empire enormously, and still cannot touch the thing underneath it, which is serfdom. Rasputin shows how a court that answers to nobody can be captured by one persuasive outsider. Nicholas inherits all of it and drops it. Stalin picks it up.",
+            "So the sequence is chronological, and it is also a slow demolition followed by a rebuild. The first four books each widen the crack in the same wall, and the fifth shows what went up on the rubble. You can read any of them cold, and the Rasputin book in particular works fine as a standalone curiosity, but Rasputin and Nicholas are far better read together: Rasputin is the symptom and Nicholas is the patient, and the diagnosis arrives in 1917.",
+            "Five books, an hour each, roughly five hours for four hundred years. Some of this is grim without relief, particularly the fate of the last imperial family and the famine and terror under Stalin, and it is told plainly rather than dramatically.",
         ],
-        "deck": "Four hundred years of absolute power in one country, from the first man crowned tsar to the man who lost the throne. <b>The empire in these books never reforms, it only breaks.</b>",
-        "pathend": "The path stops in 1918 with the end of the Romanovs, which is where most people expect Russian history to get started. What follows the last tsar belongs to a collection that does not exist yet.",
+        "deck": "Four hundred years of absolute power in one country, from the first man crowned tsar to the man who outdid them all. <b>The system in these books never reforms. It breaks, and it comes back.</b>",
+        "pathend": "The path ends in March 1953, with Stalin dying over four days at his dacha outside Moscow. Four hundred years on, the question Ivan raised, what happens when one man holds everything, had been answered the same way every time.",
         "capture_head": "Russia books go free most weekends.",
         "stations": {
             "ivan-the-terrible": {
@@ -1722,7 +1722,11 @@ COLLECTION_COPY: dict[str, dict] = {
             },
             "nicholas-ii": {
                 "dateline": "1868-1918 · The end of three hundred years",
-                "why": "<b>Finish here, because everything the first three books set up collapses on this one man's watch.</b> He inherited absolute power without the temperament for it, took personal command of the army in 1915 and personal blame with it, abdicated in March 1917, and was shot with his wife, four daughters and son at Yekaterinburg in July 1918. Three centuries of Romanov rule ended in a cellar.",
+                "why": "<b>Fourth, because everything the first three books set up collapses on this one man's watch.</b> He inherited absolute power without the temperament for it, took personal command of the army in 1915 and personal blame with it, abdicated in March 1917, and was shot with his wife, four daughters and son at Yekaterinburg in July 1918. Three centuries of Romanov rule ended in a cellar.",
+            },
+            "joseph-stalin": {
+                "dateline": "1878-1953 · Georgia, the Kremlin, and the Near Dacha",
+                "why": "<b>Finish here, because the tsars fell and one man's rule did not.</b> A cobbler's son from Gori who won a place at a seminary in Tiflis, he turned the post of General Secretary into control of the party's files, then of the party, then of the country. The famine of 1932 to 1933 killed at least five million people, and in 1937 and 1938 well over a million were arrested. His foreign minister signed a treaty with Nazi Germany in 1939 and the German armies came anyway in June 1941. He died in March 1953 after a massive stroke, with the system he built still standing.",
             },
         },
     },
