@@ -196,12 +196,31 @@ def rate_limited(c: sqlite3.Connection, ip: str, limit: int = 8,
     return False
 
 
-async def subscribe(req):
+MAX_SIGNUP_BYTES = 16_384   # a real signup is a few hundred bytes
+
+
+def parse_signup(raw: bytes) -> dict | None:
+    """The signup body: JSON (the site's script) or a plain form post (no script). None = neither.
+
+    The form fallback used to call Starlette's req.form(), which needs python-multipart; that was never installed,
+    so every non-JSON post was a 500 (found 3 Nov 2026). A URL-encoded form is parsed here with the standard
+    library instead, and anything that is not an object comes back as None (a 400), never a crash."""
+    text = raw.decode("utf-8", "replace")
     try:
-        body = await req.json()
-    except Exception:
-        form = await req.form()
-        body = dict(form)
+        data = json.loads(text)
+    except ValueError:
+        return {k: v[0] for k, v in urllib.parse.parse_qs(text, keep_blank_values=True).items()} or None
+    return data if isinstance(data, dict) else None
+
+
+async def subscribe(req):
+    raw = await req.body()
+    if len(raw) > MAX_SIGNUP_BYTES:
+        return JSONResponse({"ok": False, "error": "That form was too large."}, status_code=413)
+    body = parse_signup(raw)
+    if body is None:
+        return JSONResponse({"ok": False, "error": "That does not look like an email address."},
+                            status_code=400)
 
     # Honeypot. Real people never fill a hidden field; bots fill everything.
     if (body.get("website") or "").strip():

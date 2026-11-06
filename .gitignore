@@ -1,3 +1,4 @@
 .admin-key
 .claude/
-mockups/graphify-out/
+graphify-out/
+__pycache__/
